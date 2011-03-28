@@ -1,4 +1,5 @@
 #labels Document-Other
+[http://code.google.com/p/nuke-viet/ Tiếng Việt] | *English*
 =I. Introduction:=
 NukeViet is the first opensource CMS in Vietnam. The lastest version - NukeViet 3.0 coding ground up support lastest web technologies, include xHTML, CSS 3, XTemplate, jQuery, Ajax... enables you to build websites and online applications rapidly.
 
