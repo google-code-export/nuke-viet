@@ -16,7 +16,6 @@ Nukeviet official website: [http://nukeviet.vn/en/]
 
 =II. Nukeviet managing agency:=
 VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY (VINADES.,JSC)
-Office:
  * Add: 67B (lane 35), Khuong Ha street, Khuong Dinh, Thanh Xuan, Hanoi, Vietnam.
  * Tel: (+84) (04) 85 87 2007
  * Fax: (+84) (04) 35 500 914
