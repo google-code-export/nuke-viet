@@ -1,0 +1,24 @@
+#labels Document-Other
+=I. Introduction:=
+NukeViet is the first opensource CMS in Vietnam. The lastest version - NukeViet 3.0 coding ground up support lastest web technologies, include xHTML, CSS 3, XTemplate, jQuery, Ajax... enables you to build websites and online applications rapidly.
+
+With it own core libraries built in, NukeViet 3.0 is cross platforms and frameworks independent. With basic knowledge of PHP and MySQL, you can easily extend NukeViet for your purposes.
+
+NukeViet 3.0 core is simply but powerful. It supports abstract modules which can be duplicate. So, it helps you create automatically many modules without any line of code from existing abstract modules.
+
+NukeViet 3.0 supports installing automatically modules, blocks, themes at Admin Control Panel and supports packing features which allow you to share your modules to web- community.
+
+NukeViet 3.0 fully supports multi-languages for internationalization and localization. Not only multi-interface languages but also multi-database languages are supported. NukeViet 3.0 supports you to build new languages which are not distributed by NukeViet. Many advanced features are being developed.
+
+Detailed information about Nukeviet at Wikipedia Encyclopedia: [http://vi.wikipedia.org/wiki/NukeViet]
+
+Nukeviet official website: [http://nukeviet.vn/en/]
+
+=II. Nukeviet managing agency:=
+VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY (VINADES.,JSC)
+Office:
+ * Add: 67B (lane 35), Khuong Ha street, Khuong Dinh, Thanh Xuan, Hanoi, Vietnam.
+ * Tel: (+84) (04) 85 87 2007
+ * Fax: (+84) (04) 35 500 914
+ * Emai: contact(at)vinades.vn
+ * Website: http://www.vinades.vn
