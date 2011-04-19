@@ -1,4 +1,4 @@
-#labels Document-Other,DoiTuong-not.All
+#labels Document-Other,DoiTuong-not.All,MHST2011
 =Danh sách ý tưởng đóng góp cho cuộc thi MHST2011=
 ==Thông tin chung==
   * Tất cả những ý tưởng trong tài liệu này được mô tả như là các module hoặc nhóm module sử dụng nền tảng là mã nguồn mở NukeViet. Phiên bản mới nhất là NukeViet 3.1 được phân phối tại website http://nukeviet.vn
@@ -12,4 +12,4 @@ Ngoài ra, Bất kỳ tổ chức, cá nhân nào cũng có thể đăng ký là
   * Cộng đồng mã nguồn mở NukeViet.VN
   * Cơ quan chủ quản NukeViet (VINADES.,JSC)
 ==Danh sách ý tưởng==
-1. Xây dựng hệ thống từ điển phân tán trong cộng đồng NukeViet: Module WikiDic
+[http://code.google.com/p/nuke-viet/wiki/WikiDic 1. Xây dựng hệ thống từ điển phân tán trong cộng đồng NukeViet: Module WikiDic]
