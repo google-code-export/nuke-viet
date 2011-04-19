@@ -1,5 +1,6 @@
 #labels Document-Other,DoiTuong-for.All,MHST2011
-==1. Xây dựng hệ thống từ điển phân tán trong cộng đồng NukeViet: Module WikiDic==
+==1. Xây dựng hệ thống từ điển phân tán trong cộng đồng NukeViet==
+==(Module WikiDic)==
 ===1.1.	Tóm tắt ý tưởng:===
 	Các website giáo dục, đặc biệt là các chuyên ngành kỹ thuật thường cần nhu cầu xây dựng một từ điển riêng để sử dụng cho website của mình. Module mang tính cộng đồng nhờ việc đóng góp từ thành viên và có thể chia sẻ dữ liệu giữa các website cùng sử dụng module.
 ===1.2.	Kỹ năng yêu cầu: ===
