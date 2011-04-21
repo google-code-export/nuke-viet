@@ -15,7 +15,7 @@
   * Khi mục từ bị sửa, ghi nhận và theo dõi các phiên bản sửa đổi của mục từ để có thể đối chiếu hoặc phục hồi mục từ bị sửa.
   * Chức năng kiểm duyệt mục từ bị thay đổi.
   * Chức năng tra cứu mục từ.
-*Chức năng xử lý việc liên kết site chủ và site khách:*
+*Chức năng nâng cao nhằm xử lý việc liên kết site chủ và site khách (không bắt buộc):*
   * Quản lý các website cùng sử dụng từ điển và có liên kết (xem có chấp nhận tiếp nhận dữ liệu hay không).
   * Nhập mục từ từ website liên kết.
   * Xuất dữ liệu liên kết dưới dạng API.
