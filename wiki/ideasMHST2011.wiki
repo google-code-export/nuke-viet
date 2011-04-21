@@ -22,3 +22,4 @@ Ngoài ra, Bất kỳ tổ chức, cá nhân nào cũng có thể đăng ký là
   * Cơ quan chủ quản NukeViet (VINADES.,JSC)
 ==Danh sách ý tưởng==
 [http://code.google.com/p/nuke-viet/wiki/WikiDic 1. Xây dựng hệ thống từ điển phân tán trong cộng đồng NukeViet: Module WikiDic]
+[http://code.google.com/p/nuke-viet/wiki/NukeVietSpell 2. Xây dựng chức năng kiểm tra chính tả trên NukeViet: NukeVietSpell]
