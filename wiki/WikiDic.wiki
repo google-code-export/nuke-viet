@@ -28,3 +28,5 @@
   * Công ty cổ phần phát triển nguồn mở Việt Nam.
   * Đội ngũ phát triển mã nguồn mở NukeViet.
   * Thí sinh tìm hiểu thông tin về ý tưởng để nhận ý tưởng hoặc nhận làm mentor, co-mentor... xin liên hệ: admin@nukeviet.vn
+----
+[http://code.google.com/p/nuke-viet/wiki/ideasMHST2011 Quay lại danh sách ý tưởng!]
