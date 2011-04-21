@@ -2,12 +2,12 @@
 ==2. Xây dựng chức năng kiểm tra chính tả trên NukeViet==
 ==(NukeVietSpell)==
 ===2.1.	Tóm tắt ý tưởng:===
-	
+NukeViet 3 được sử dụng chủ yếu làm website tin tức, do đó chức năng kiểm tra chính tả vô cùng quan trọng, với NukeVietSpell, website sẽ hạn chế được lỗi chính tả, bộ mặt website các trường học và doanh nghiệp đang sử dụng NukeViet sẽ trở lên "đẹp" hơn trong mắt khách truy cập.
 ===2.2.	Kỹ năng yêu cầu: ===
-	PHP, MySQL, JavaScript…
+PHP, MySQL, JavaScript…
 ===2.3.	Mô tả chi tiết:===
-	NukeViet 3 là một hệ quản trị nội dung nguồn mở (Opensource CMS) tương tác trên nền web thông qua trình duyệt. NukeViet hiện đang sử dụng CKeditor để làm trình soạn thảo và MUDIM làm bộ gõ tích hợp, tuy nhiên chưa có một chương trình kiểm tra chính tả nào.
-	Hiện tại nhân hệ thống NukeViet có tích hợp sẵn giải pháp so sánh từ khóa để lọc các từ tiếng Việt (phụ vụ cho việc tạo từ khóa tự động cho bài viết). Có thể sử dụng cơ chế này cùng với một từ điển các từ đúng và 1 từ điển các từ sai để kiểm tra các lỗi chính tả thường gặp, các lỗi trình bày... Cao cấp hơn là có thể kiểm tra chính tả ngay khi gõ, đề xuất từ gợi ý cho người biên tập, biên soạn, định nghĩa và bổ sung các từ điển từ ngay trên nền web.
+  * NukeViet 3 là một hệ quản trị nội dung nguồn mở (Opensource CMS) tương tác trên nền web thông qua trình duyệt. NukeViet hiện đang sử dụng CKeditor để làm trình soạn thảo và MUDIM làm bộ gõ tích hợp, tuy nhiên chưa có một chương trình kiểm tra chính tả nào.
+  * Hiện tại nhân hệ thống NukeViet có tích hợp sẵn giải pháp so sánh từ khóa để lọc các từ tiếng Việt (phụ vụ cho việc tạo từ khóa tự động cho bài viết). Có thể sử dụng cơ chế này cùng với một từ điển các từ đúng và 1 từ điển các từ sai để kiểm tra các lỗi chính tả thường gặp, các lỗi trình bày... Cao cấp hơn là có thể kiểm tra chính tả ngay khi gõ, đề xuất từ gợi ý cho người biên tập, biên soạn, định nghĩa và bổ sung các từ điển từ ngay trên nền web. Cụ thể các công việc như sau: 
 *Nghiên cứu và xử lý chính tả:*
   * Lập thư viện (danh sách) từ đúng, từ sai (các lỗi chính tả thường gặp, ví dụ "bổ sung" sai thành "bổ xung"...)
   * Nghiên cứu quy tắc chính tả tiếng Việt để đưa ra các đề xuất lập trình xử lý kiểu khác.
