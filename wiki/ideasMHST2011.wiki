@@ -1,6 +1,15 @@
 #labels Document-Other,DoiTuong-not.All,MHST2011
 =Danh sách ý tưởng đóng góp cho cuộc thi MHST2011=
-==Thông tin chung==
+==Thông tin cuộc thi:==
+Cuộc thi do Hội Tin học Việt Nam, Văn phòng Công nghệ thông tin Bộ Khoa học và Công nghệ tổ chức hàng năm kể từ năm 2009, song hành với Olympic tin học. Rút kinh nghiệm 2 năm trước, Giải thưởng “Mùa hè sáng tạo viết ứng dụng Phần mềm nguồn mở” (MHST-FOSS) năm 2011 đã được khởi động. Cuộc thi là cơ hội cho sinh viên sáng tạo và lập trình trên mã nguồn mở. Cộng đồng NukeViet là cộng đồng mã nguồn mở duy nhất song hành cùng cuộc thi suốt 3 năm liền, năm nay Ban Quản Trị NukeViet cùng đơn vị chủ quản VINADES.,JSC sẽ có những hỗ trợ mạnh mẽ hơn nhằm tiếp sức cộng đồng tham gia cuộc thi.
+  * Trang chủ cuộc thi: http://www.olp.vn/mhst
+  * Thông tin cuộc thi: http://www.olp.vn/mhst/thong-tin
+  * Giải thưởng: http://www.olp.vn/mhst/giai-thuong
+  * Đăng ký: http://www.olp.vn/mhst/dang-ky
+  * Danh sách ý tưởng dự án: http://www.olp.vn/mhst/danh-sach-y-tuong
+  * Hướng dẫn: http://www.olp.vn/mhst/huong-dan
+
+==Thông tin chung về các ý tưởng==
   * Tất cả những ý tưởng trong tài liệu này được mô tả như là các module hoặc nhóm module sử dụng nền tảng là mã nguồn mở NukeViet. Phiên bản mới nhất là NukeViet 3.1 được phân phối tại website http://nukeviet.vn
 ==Ngôn ngữ lập trình==
   * Yêu cầu PHP, cơ sở dữ liệu MySQL. Ngoài ra có thể sử dụng ngôn ngữ lập trình bất kỳ để tương tác hệ thống thông qua PHP.
