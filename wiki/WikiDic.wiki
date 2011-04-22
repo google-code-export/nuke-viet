@@ -8,14 +8,14 @@
 ===1.3.	Mô tả chi tiết:===
 	Tự do và chia sẻ là tính chất đặc thù của mã nguồn mở, Module WikiDic trên nền NukeViet sẽ phát huy tính chất đặc thù đó một cách hoàn hảo nhờ cơ chế sử dụng tuần hoàn “đóng góp phân tán - chia sẻ tập trung”. Dữ liệu từ điển được đóng góp và hoàn thiện nhờ cộng đồng và cũng trả về cộng đồng tất cả những gì mà cộng đồng đóng góp.
 	Bằng cách thiết lập một website (site chủ) để đóng vai trò tiếp nhận và phân phối dữ liệu giữa các website cùng sử dụng module (site khách), thành viên của bất kỳ website nào cũng có thể tự đóng góp cho từ điển trên website của mình. Dữ liệu do thành viên đóng góp lên site khách (nếu được liên kết đến site chủ) sẽ trả về site chủ để hoàn thiện dữ liệu trên site chủ, dữ liệu hoàn thiện trên site chủ sẽ được phân phối ngược lại cho site khách khác. Quá trình đó sẽ liên tục được tiếp diễn dưới sự đóng góp của cộng đồng và ta có một mạng xã hội người sử dụng đóng góp cho từ điển.
-*Các chức năng cơ bản:*
+*Các chức năng cơ bản (độ khó trung bình):*
   * Chức năng tạo và quản lý từ điển.
   * Chức năng tạo mới và quản lý mục từ.
   * Chức năng cho phép thành viên tham gia sửa mục từ, đánh giá mục từ (thảo luận). 
   * Khi mục từ bị sửa, ghi nhận và theo dõi các phiên bản sửa đổi của mục từ để có thể đối chiếu hoặc phục hồi mục từ bị sửa.
   * Chức năng kiểm duyệt mục từ bị thay đổi.
   * Chức năng tra cứu mục từ.
-*Chức năng nâng cao nhằm xử lý việc liên kết site chủ và site khách (không bắt buộc):*
+*Chức năng nâng cao nhằm xử lý việc liên kết site chủ và site khách (độ khó vừa phải - không bắt buộc):*
   * Quản lý các website cùng sử dụng từ điển và có liên kết (xem có chấp nhận tiếp nhận dữ liệu hay không).
   * Nhập mục từ từ website liên kết.
   * Xuất dữ liệu liên kết dưới dạng API.
