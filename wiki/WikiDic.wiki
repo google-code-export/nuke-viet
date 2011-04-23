@@ -4,11 +4,12 @@
 ===1.1.	Tóm tắt ý tưởng:===
 	Các website giáo dục, đặc biệt là các chuyên ngành kỹ thuật thường cần nhu cầu xây dựng một từ điển riêng để sử dụng cho website của mình. Module mang tính cộng đồng nhờ việc đóng góp từ thành viên và có thể chia sẻ dữ liệu giữa các website cùng sử dụng module.
 ===1.2.	Kỹ năng yêu cầu: ===
-	PHP, MySQL, xHTML, CSS…
-        Độ khó của ý tưởng: Từ trung bình đến vừa phải (tùy chọn của đội thi, xem mô tả chi tiết)
+ * Ngôn ngữ lập trình: PHP, MySQL, xHTML, CSS…
+ * Đánh giá độ khó của ý tưởng: "trung bình" - "tương đối" (tùy chọn của đội thi, xem mô tả chi tiết).
+*Ghi chú*: Độ khó trung bình được giả định với một nhóm khoảng 3 SV thành thạo các kỹ năng yêu cầu chắc chắn sẽ hoàn thành dự án trong 3 tháng, không cần làm toàn thời gian.
 ===1.3.	Mô tả chi tiết:===
-	Tự do và chia sẻ là tính chất đặc thù của mã nguồn mở, Module WikiDic trên nền NukeViet sẽ phát huy tính chất đặc thù đó một cách hoàn hảo nhờ cơ chế sử dụng tuần hoàn “đóng góp phân tán - chia sẻ tập trung”. Dữ liệu từ điển được đóng góp và hoàn thiện nhờ cộng đồng và cũng trả về cộng đồng tất cả những gì mà cộng đồng đóng góp.
-	Bằng cách thiết lập một website (site chủ) để đóng vai trò tiếp nhận và phân phối dữ liệu giữa các website cùng sử dụng module (site khách), thành viên của bất kỳ website nào cũng có thể tự đóng góp cho từ điển trên website của mình. Dữ liệu do thành viên đóng góp lên site khách (nếu được liên kết đến site chủ) sẽ trả về site chủ để hoàn thiện dữ liệu trên site chủ, dữ liệu hoàn thiện trên site chủ sẽ được phân phối ngược lại cho site khách khác. Quá trình đó sẽ liên tục được tiếp diễn dưới sự đóng góp của cộng đồng và ta có một mạng xã hội người sử dụng đóng góp cho từ điển.
+ * Tự do và chia sẻ là tính chất đặc thù của mã nguồn mở, Module WikiDic trên nền NukeViet sẽ phát huy tính chất đặc thù đó một cách hoàn hảo nhờ cơ chế sử dụng tuần hoàn “đóng góp phân tán - chia sẻ tập trung”. Dữ liệu từ điển được đóng góp và hoàn thiện nhờ cộng đồng và cũng trả về cộng đồng tất cả những gì mà cộng đồng đóng góp.
+ * Bằng cách thiết lập một website (site chủ) để đóng vai trò tiếp nhận và phân phối dữ liệu giữa các website cùng sử dụng module (site khách), thành viên của bất kỳ website nào cũng có thể tự đóng góp cho từ điển trên website của mình. Dữ liệu do thành viên đóng góp lên site khách (nếu được liên kết đến site chủ) sẽ trả về site chủ để hoàn thiện dữ liệu trên site chủ, dữ liệu hoàn thiện trên site chủ sẽ được phân phối ngược lại cho site khách khác. Quá trình đó sẽ liên tục được tiếp diễn dưới sự đóng góp của cộng đồng và ta có một mạng xã hội người sử dụng đóng góp cho từ điển.
 *Các chức năng cơ bản (độ khó trung bình):*
   * Chức năng tạo và quản lý từ điển.
   * Chức năng tạo mới và quản lý mục từ.
@@ -16,7 +17,7 @@
   * Khi mục từ bị sửa, ghi nhận và theo dõi các phiên bản sửa đổi của mục từ để có thể đối chiếu hoặc phục hồi mục từ bị sửa.
   * Chức năng kiểm duyệt mục từ bị thay đổi.
   * Chức năng tra cứu mục từ.
-*Chức năng nâng cao nhằm xử lý việc liên kết site chủ và site khách (độ khó vừa phải - không bắt buộc):*
+*Chức năng nâng cao nhằm xử lý việc liên kết site chủ và site khách (độ khó tương đối - không bắt buộc):*
   * Quản lý các website cùng sử dụng từ điển và có liên kết (xem có chấp nhận tiếp nhận dữ liệu hay không).
   * Nhập mục từ từ website liên kết.
   * Xuất dữ liệu liên kết dưới dạng API.
