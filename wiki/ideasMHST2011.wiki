@@ -23,3 +23,4 @@ Ngoài ra, Bất kỳ tổ chức, cá nhân nào cũng có thể đăng ký là
 ==Danh sách ý tưởng==
   * [http://code.google.com/p/nuke-viet/wiki/WikiDic 1. Xây dựng hệ thống từ điển phân tán trong cộng đồng NukeViet: Module WikiDic]
   * [http://code.google.com/p/nuke-viet/wiki/NukeVietSpell 2. Xây dựng chức năng kiểm tra chính tả trên NukeViet: NukeVietSpell]
+  * [http://code.google.com/p/nuke-viet/wiki/GiaPha 3. Xây dựng module Gia Phả cho NukeViet]
