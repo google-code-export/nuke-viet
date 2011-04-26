@@ -57,6 +57,7 @@ Viết và quản lý Gia phả là nhu cầu của mọi dòng họ. Trong th�
 *Các website tham khảo*
  * [http://giaphatphcm.com/giapha/ Trung tâm Nghiên cứu và Thực hành gia phả TP.Hồ Chí Minh] 
  * [http://vi.wikipedia.org/wiki/Gia_ph%E1%BA%A3 Gia Phả - Wikipedia.org]
+ * Ý tưởng này được Ban Quản Trị NukeViet phân tích dựa trên ý tưởng do thành viên đóng góp theo lời kêu gọi xây dựng ý tưởng cho cuộc thi MHST 2011 trên diễn đàn NukeViet.VN: http://nukeviet.vn/phpbb/viewtopic.php?f=18&t=16601&p=84613#p84889
 ===1.5.	Mentor:===
   * Công ty cổ phần phát triển nguồn mở Việt Nam.
   * Đội ngũ phát triển mã nguồn mở NukeViet.
