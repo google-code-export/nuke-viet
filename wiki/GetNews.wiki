@@ -14,6 +14,7 @@ Việc biên tập tin, bài cho các trang tin điện tử tổng hợp vô c�
     * Xây dựng bộ đọc nhận dạng dữ liệu theo từng website nguồn.
     * Xây dựng tính năng quản trị và tương tác với dữ liệu bóc được:
     * Xây dựng tính năng đăng tin tự động vào module news (không qua kiểm duyệt và có qua kiểm duyệt tùy theo cấu hình).
+    * Các tính năng khác...
 ===2.4.	Thông tin khác: ===
 Mã nguồn mở NukeViet 3 đang vận hành khoảng 1 ngàn website và con số này đang tăng lên nhanh chóng, hầu hết website đều có nhu cầu bóc và đăng tin tự động (đặc biệt là các website doanh nghiệp, kể cả website nội bộ của doanh nghiệp). Do đó môt module bóc tin tự động ra đời sẽ giúp giải quyết được nhu cầu rất lớn của các website trong việc cập nhật tin tức, qua đó tiết kiệm chi phí và thời gian quản trị.
 ===2.5.	Mentor:===
