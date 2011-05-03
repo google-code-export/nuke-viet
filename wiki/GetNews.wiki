@@ -1,5 +1,5 @@
-==4. Tự động hóa bóc và lấy tin cho trang tin điện tử tổng hợp==
-==(GetNews)==
+==Tự động hóa bóc và lấy tin cho trang tin điện tử tổng hợp==
+==(Module GetNews)==
 ===2.1.	Tóm tắt ý tưởng:===
 Việc biên tập tin, bài cho các trang tin điện tử tổng hợp vô cùng mất thời gian và đòi hỏi nhân sự thường trực. Công việc này hoàn toàn có thể tự động hóa bằng module GetNews chạy trên nền NukeViet. Module sẽ tương tác vào cơ sở dữ liệu của module News.
 ===2.2.	Kỹ năng yêu cầu: ===
