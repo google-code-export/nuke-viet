@@ -27,7 +27,7 @@
 
 	NukeViet 3 hiện có hơn 1 ngàn website sử dụng, các website trường học có xu thế sử dụng NukeViet nhiều, do đó có cơ hội xây dựng một mạng xã hội với hàng chục triệu thành viên là học sinh, sinh viên, tri thức trẻ tham gia đóng góp cho hệ thống dữ liệu này. 
 
-	Module là mô hình của một Wiki mạng xã hội với chức năng cụ thể là xây dựng từ điển. Khách với Wiki là làm việc tập trung tại một site, nhờ việc tương tác phân tán và đóng góp dễ dàng ngay trên nhiều website, lượng người tham gia sẽ tăng lên đáng kể do đó tăng cường sự đóng góp của cộng đồng. Đặc biệt site chủ đóng vai trò trung gian có khả năng tập hợp và cung cấp dữ liệu nguồn cho các site mới sẽ đem lại giá trị xã hội to lớn (như mô hình của Wikipedia hiện nay) 
+	Module là mô hình của một Wiki mạng xã hội với chức năng cụ thể là xây dựng từ điển. Khác với Wiki là làm việc tập trung tại một site, nhờ việc tương tác phân tán và đóng góp dễ dàng ngay trên nhiều website, lượng người tham gia sẽ tăng lên đáng kể do đó tăng cường sự đóng góp của cộng đồng. Đặc biệt site chủ đóng vai trò trung gian có khả năng tập hợp và cung cấp dữ liệu nguồn cho các site mới sẽ đem lại giá trị xã hội to lớn (như mô hình của Wikipedia hiện nay) 
 ===1.5.	Mentor:===
   * Công ty cổ phần phát triển nguồn mở Việt Nam.
   * Đội ngũ phát triển mã nguồn mở NukeViet.
