@@ -26,3 +26,4 @@ Ngoài ra, Bất kỳ tổ chức, cá nhân nào cũng có thể đăng ký là
   # [http://code.google.com/p/nuke-viet/wiki/GiaPha Xây dựng module Gia Phả cho NukeViet]
   # [http://code.google.com/p/nuke-viet/wiki/GetNews Tự động hóa bóc và lấy tin cho trang tin điện tử tổng hợp]
   # [http://code.google.com/p/nuke-viet/wiki/emReport Sổ y bạ điện tử tích hợp cổng thông tin cho bệnh viện, trung tâm y tế, bộ y tế]
+  # [http://code.google.com/p/nuke-viet/wiki/Manthesis Quản lý luận án, luận văn cho trường học" (Module manthesis)]
