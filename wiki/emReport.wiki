@@ -1,4 +1,4 @@
-==Sổ y bạ điện tử==
+==Sổ y bạ điện tử tích hợp cổng thông tin cho bệnh viện, trung tâm y tế, bộ y tế==
 ==(Module emReport - electronic Medical report book)==
 ===1.1.	Tóm tắt ý tưởng:===
 	Sổ y bạ điện tử là ý tưởng xây dựng module có thể giúp bệnh viện, trung tâm y tế, các phòng khám... một cổng thông tin có chức năng cung cấp cho các bệnh nhân một tài khoản để họ có thể quản lý bệnh án thay thế cho việc sử dụng và quản lý sổ y bạ giấy hiện nay vừa lãng phí, vừa không hiệu quả.
