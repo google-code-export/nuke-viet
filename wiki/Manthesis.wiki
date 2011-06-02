@@ -1,3 +1,4 @@
+#labels MHST2011
 ==Quản lý luận án, luận văn cho trường học==
 ==(Module manthesis)==
 ===1.1.	Tóm tắt ý tưởng:===
