@@ -1,6 +1,6 @@
 #labels MHST2011
 ==Quản lý luận án, luận văn cho trường học==
-==(Module manthesis)==
+==(Module Manthesis)==
 ===1.1.	Tóm tắt ý tưởng:===
 	Module này sẽ cung cấp công cụ quản lý luận án, luận văn cho các trường đại học, cao đẳng. Với công cụ này, trường có thể thiết lập một cổng thông tin về luận án, luận văn cho phép sinh viên tra cứu, đồng thời cũng giúp tăng cường sức mạnh giúp ngăn chặn việc "đạo văn" đang lan tràn.
 ===1.2.	Kỹ năng yêu cầu: ===
