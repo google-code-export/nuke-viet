@@ -28,5 +28,12 @@ Mentor:
   * Email: thao@vinades.vn
 Co-mentor:
   * Đội ngũ phát triển mã nguồn mở NukeViet, cộng đồng http://nukeviet.vn/phpbb/index.php
+  * Công ty cổ phần phát triển nguồn mở Việt Nam.
+VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY (VINADES.,JSC)
+ * Add: 67B (lane 35), Khuong Ha street, Khuong Dinh, Thanh Xuan, Hanoi, Vietnam.
+ *  * Tel: (+84) (04) 85 87 2007
+ *  * Fax: (+84) (04) 35 500 914
+ *  * Emai: contact(at)vinades.vn
+ *  * Website: http://www.vinades.vn
 ----
 [http://code.google.com/p/nuke-viet/wiki/ideasMHST2011 Quay lại danh sách ý tưởng!]
