@@ -21,9 +21,10 @@ NukeViet 3 được sử dụng chủ yếu làm website tin tức, do đó ch�
 ===2.4.	Thông tin khác: ===
   * *Về NukeViet*: Mã nguồn mở NukeViet 3 đang vận hành khoảng 1 ngàn website, nếu tính trung bình như website của chính NukeViet là NukeViet.VN mỗi ngày có khoảng 2 ngàn lượt truy cập, thì số lượt truy cập là 2 triệu lượt. Giả sử mỗi lượt truy cập chỉ đọc 1 bài viết và NukeVietSpell giúp mỗi bài viết bớt đi một lỗi chính tả, như vậy mỗi ngày NukeVietSpell sẽ giúp 2 triệu lượt đọc bớt tức mắt vì lỗi chính tả. Như vậy với tính năng này sẽ giúp ích rất nhiều cho người biên tập nhằm nhanh chóng kiểm tra lỗi thường gặp.
   * *Về độ khó của ý tưởng*: NukeVietSpell nếu viết đơn giản thì không yêu cầu cầu kỳ (một lập trình viên biết PHP, MySQL, JavaScript, có kiến thức về cấu trúc NukeViet có thể làm trong 1 tuần), tuy nhiên nếu nghiên cứu sâu, lập trình các chức năng nâng cao thì sẽ đòi hỏi một nhóm mạnh, làm việc và nghiên cứu chuyên sâu vì ngoài việc xử lý thuật toán để kiểm tra chính tả thì bản thân chính tả tiếng Việt cũng đã là một lĩnh vực có thể đào sâu nghiên cứu để làm thành một công trình khoa học rồi. Do đó, với ý tưởng này tùy mức độ đáp ứng mà sinh viên có thể lựa chọn mức độ triển khai phù hợp.
-===2.5.	Mentor:===
-  * Anh Đặng Minh Tuấn (Vietkey), anh Phạm Kim Long (Unikey) và các chuyên gia của Viện ngôn ngữ học ... (hướng dẫn về tiếng Việt và lỗi, đang chờ xác nhận)
-  * Cộng đồng NukeViet và Công ty cổ phần phát triển nguồn mở Việt Nam (hướng dẫn phần tương tác với hệ thống NukeViet)
-  * Thí sinh tìm hiểu thông tin về ý tưởng để nhận ý tưởng hoặc nhận làm mentor, co-mentor... xin liên hệ: admin@nukeviet.vn
+===1.5.	Người hướng dẫn:===
+Mentor:
+  * Vũ Văn Thảo (Công ty cổ phần phát triển nguồn mở Việt Nam)
+Co-mentor:
+  * Đội ngũ phát triển mã nguồn mở NukeViet, cộng đồng http://nukeviet.vn/phpbb/index.php
 ----
 [http://code.google.com/p/nuke-viet/wiki/ideasMHST2011 Quay lại danh sách ý tưởng!]
