@@ -31,6 +31,7 @@
 ===1.5.	Người hướng dẫn:===
 Mentor:
   * Phùng Công Định (Học viên cao học trường Đại học Công Nghệ - Đại học Quốc Gia HN, thành viên cộng đồng NukeViet)
+  * Email: dinhpc.it@gmail.com 
 Co-mentor:
   * Đội ngũ phát triển mã nguồn mở NukeViet, cộng đồng http://nukeviet.vn/phpbb/index.php
   * Công ty cổ phần phát triển nguồn mở Việt Nam.
