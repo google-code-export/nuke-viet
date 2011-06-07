@@ -18,8 +18,19 @@ Việc biên tập tin, bài cho các trang tin điện tử tổng hợp vô c�
     * Các tính năng khác...
 ===2.4.	Thông tin khác: ===
 Mã nguồn mở NukeViet 3 đang vận hành khoảng 1 ngàn website và con số này đang tăng lên nhanh chóng, hầu hết website đều có nhu cầu bóc và đăng tin tự động (đặc biệt là các website doanh nghiệp, kể cả website nội bộ của doanh nghiệp). Do đó môt module bóc tin tự động ra đời sẽ giúp giải quyết được nhu cầu rất lớn của các website trong việc cập nhật tin tức, qua đó tiết kiệm chi phí và thời gian quản trị.
-===2.5.	Mentor:===
-  * Cộng đồng NukeViet và Công ty cổ phần phát triển nguồn mở Việt Nam (hướng dẫn phần tương tác với hệ thống NukeViet)
-  * Thí sinh tìm hiểu thông tin về ý tưởng để nhận ý tưởng hoặc nhận làm mentor, co-mentor... xin liên hệ: admin@nukeviet.vn
+===1.5.	Người hướng dẫn:===
+Mentor:
+  * Họ và tên: Nguyễn Thế Hùng
+  * Chức vụ: TGĐ VINADES.,JSC
+  * Email: thehung@vinades.vn
+Co-mentor:
+  * Đội ngũ phát triển mã nguồn mở NukeViet, cộng đồng http://nukeviet.vn/phpbb/index.php
+  * Công ty cổ phần phát triển nguồn mở Việt Nam.
+VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY (VINADES.,JSC)
+ * Add: 67B (lane 35), Khuong Ha street, Khuong Dinh, Thanh Xuan, Hanoi, Vietnam.
+ * Tel: (+84) (04) 85 87 2007
+ * Fax: (+84) (04) 35 500 914
+ * Emai: contact(at)vinades.vn
+ * Website: http://www.vinades.vn
 ----
 [http://code.google.com/p/nuke-viet/wiki/ideasMHST2011 Quay lại danh sách ý tưởng!]
