@@ -522,8 +522,7 @@ function nv_html_site_js ( )
 									var order = $(this).sortable("serialize");
 									$.post("' . NV_BASE_ADMINURL . 'index.php?' . NV_NAME_VARIABLE . '=themes&' . NV_OP_VARIABLE . '=sort_order", order+"&position="+position+"&func_id="+func_id, function(theResponse){
 										if(theResponse=="OK_"+func_id){
-					    					$("div#toolbar>ul.info>li").hide();
-					    					$("div#toolbar>ul.info>li").html("<span style=\'color:#ff0000;padding-left:150px;font-weight:700;\'>' . $lang_global['blocks_saved'] . '</span>").fadeIn(1000);
+					    					$("div#toolbar>ul.info").html("<li><span style=\'color:#ff0000;padding-left:150px;font-weight:700;\'>' . $lang_global['blocks_saved'] . '</span></li>").fadeIn(1000);
 										}
 										else{
 											alert("' . $lang_global['blocks_saved_error'] . '");
@@ -535,8 +534,7 @@ function nv_html_site_js ( )
 									var order = $(this).sortable("serialize");
 									$.post("' . NV_BASE_ADMINURL . 'index.php?' . NV_NAME_VARIABLE . '=themes&' . NV_OP_VARIABLE . '=sort_order", order+"&func_id="+func_id, function(theResponse){
 										if(theResponse=="OK_"+func_id){
-					    					$("div#toolbar>ul.info>li").hide();
-					    					$("div#toolbar>ul.info>li").html("<span style=\'color:#ff0000;padding-left:150px;font-weight:700;\'>' . $lang_global['blocks_saved'] . '</span>").fadeIn(1000);
+					    					$("div#toolbar>ul.info").html("<span style=\'color:#ff0000;padding-left:150px;font-weight:700;\'>' . $lang_global['blocks_saved'] . '</span>").fadeIn(1000);
 										}
 										else{
 											alert("' . $lang_global['blocks_saved_error'] . '");
@@ -553,68 +551,62 @@ function nv_html_site_js ( )
     return $return;
 }
 
-function nv_admin_menu ( )
+function nv_admin_menu()
 {
-    global $lang_global, $admin_info, $module_info, $module_name, $global_config;
-	
-	if ( file_exists( NV_ROOTDIR . "/themes/" . $global_config['site_theme'] . "/system/admin_toolbar.tpl" ) )
-	{
-		$block_theme = $global_config['site_theme'];
-	}
-	else
-	{
-		$block_theme = "default";
-	}
+    global $lang_global, $admin_info, $module_info, $module_name, $global_config, $db, $my_head;
 
-	$xtpl = new XTemplate( "admin_toolbar.tpl", NV_ROOTDIR . "/themes/" . $block_theme . "/system" );
-	$xtpl->assign( 'GLANG', $lang_global );
-	$xtpl->assign( 'ADMIN_INFO', $admin_info );
-	$xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
-	$xtpl->assign( 'NV_ADMINDIR', NV_ADMINDIR );
-	$xtpl->assign( 'URL_AUTHOR', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=authors&amp;id=" . $admin_info['admin_id'] );
-	
+    $block_theme = "default";
+
+    $xtpl = new XTemplate( "admin_toolbar.tpl", NV_ROOTDIR . "/themes/" . $block_theme . "/system" );
+    $xtpl->assign( 'GLANG', $lang_global );
+    $xtpl->assign( 'ADMIN_INFO', $admin_info );
+    $xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
+    $xtpl->assign( 'NV_ADMINDIR', NV_ADMINDIR );
+    $xtpl->assign( 'URL_AUTHOR', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=authors&amp;id=" . $admin_info['admin_id'] );
+
     if ( defined( 'NV_IS_SPADMIN' ) )
     {
+    	if ( ! defined( 'SHADOWBOX' ) )
+        {
+            $my_head .= "<link rel=\"Stylesheet\" href=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.css\" />\n";
+            $my_head .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.js\"></script>\n";
+            $my_head .= "<script type=\"text/javascript\">Shadowbox.init();</script>";
+            define( 'SHADOWBOX', true );
+        }
         $new_drag_block = ( defined( 'NV_IS_DRAG_BLOCK' ) ) ? 0 : 1;
         $lang_drag_block = ( $new_drag_block ) ? $lang_global['drag_block'] : $lang_global['no_drag_block'];
-				
-		$xtpl->assign( 'URL_DBLOCK', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;drag_block=" . $new_drag_block );
-		$xtpl->assign( 'LANG_DBLOCK', $lang_drag_block );
-		
-		$xtpl->parse( 'main.is_spadadmin' );
-    }
-	
-    if ( defined( 'NV_IS_MODADMIN' ) and ! empty( $module_info['admin_file'] ) )
-    {
-		$xtpl->assign( 'URL_MODULE', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
-		
-		$xtpl->parse( 'main.is_modadmin' );
-    }
 
-	$xtpl->parse( 'main' );
-	return $xtpl->text( 'main' );
-}
+        $xtpl->assign( 'URL_DBLOCK', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;drag_block=" . $new_drag_block );
+        $xtpl->assign( 'LANG_DBLOCK', $lang_drag_block );
 
-function nv_show_queries_for_admin ( )
-{
-    global $db, $lang_global, $global_config;
-    $return = "";
-    if ( defined( 'NV_IS_SPADMIN' ) )
-    {
-        $return .= "<a name=\"queries\"></a>\n";
-        $return .= "<h3 class=\"queries\">" . $lang_global['show_queries'] . "</h3>\n";
-        $return .= "<div class=\"queries\">\n";
+        $total_time = substr( ( array_sum( explode( " ", microtime() ) ) - NV_START_TIME + $db->time ), 0, 5 );
+        $xtpl->assign( 'COUNT_SHOW_QUERIES', count( $db->query_strs ) . " / " . $total_time );
+		
         foreach ( $db->query_strs as $key => $field )
         {
-            $class = ( $key % 2 ) ? " highlight" : " normal";
-            $return .= "<div class=\"clearfix" . $class . "\"><p>\n";
-            $return .= "<span class=\"first\">" . ( $field[1] ? "<img alt=\"" . $lang_global['ok'] . "\" title=\"" . $lang_global['ok'] . "\" src=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/images/icons/good.png\" width=\"16\" height=\"16\" />" : "<img alt=\"" . $lang_global['fail'] . "\" title=\"" . $lang_global['fail'] . "\" src=\"" . NV_BASE_SITEURL . "themes/default/images/icons/bad.png\" width=\"16\" height=\"16\" />" ) . "</span>\n";
-            $return .= "<span class=\"second\">" . nv_htmlspecialchars( $field[0] ) . "</span></p>\n";
-            $return .= "</div>\n";
-        }
-        $return .= "</div>\n";
+        	$data = array(
+        		"class"=>( $key % 2 ) ? " highlight" : " normal",
+        		"imgsrc"=> ($field[1]) ? NV_BASE_SITEURL . "themes/" . $block_theme . "/images/icons/good.png" : NV_BASE_SITEURL . "themes/" . $block_theme . "/images/icons/bad.png",
+        		"imgalt"=> ($field[1]) ? $lang_global['ok'] : $lang_global['fail'],
+        		"queries"=> nv_htmlspecialchars( $field[0] )
+			);
+    		$xtpl->assign( 'DATA', $data );
+    		$xtpl->parse( 'main.is_spadadmin3.queries' );
+        }	
+        $xtpl->parse( 'main.is_spadadmin' );
+        $xtpl->parse( 'main.is_spadadmin2' );
+        $xtpl->parse( 'main.is_spadadmin3' );
     }
-    return $return;
+
+    if ( defined( 'NV_IS_MODADMIN' ) and ! empty( $module_info['admin_file'] ) )
+    {
+        $xtpl->assign( 'URL_MODULE', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
+
+        $xtpl->parse( 'main.is_modadmin' );
+    }
+
+    $xtpl->parse( 'main' );
+    return $xtpl->text( 'main' );
 }
 
 /**

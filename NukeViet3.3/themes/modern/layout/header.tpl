@@ -69,4 +69,4 @@
             <div class="main">
                 [BELOW_NAV]
             </div>
-            {THEME_ERROR_INFO}
+            [THEME_ERROR_INFO]

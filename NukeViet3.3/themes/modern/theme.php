@@ -150,27 +150,17 @@ function nv_site_theme ( $contents )
     
     $xtpl->assign( 'THEME_STAT_IMG', $theme_stat_img );
     $xtpl->assign( 'THEME_IMG_CRONJOBS', NV_BASE_SITEURL . "index.php?second=cronjobs&amp;p=" . nv_genpass() );
-    $xtpl->assign( 'THEME_FOOTER_JS', $theme_footer_js );
     
-    if ( defined( 'NV_IS_ADMIN' ) )
-    {
-        $xtpl->assign( 'THEME_ADMIN_MENU', nv_admin_menu() );
-        $end_time = array_sum( explode( " ", microtime() ) );
-        $total_time = substr( ( $end_time - NV_START_TIME + $db->time ), 0, 5 );
-        $theme_click_show_queries = "";
-        if ( defined( 'NV_IS_SPADMIN' ) )
-        {
-            $show_queries = " <a href=\"#queries\" onclick=\"nv_show_hidden('div_hide',2);\">" . $lang_global['show_queries'] . "</a>";
-            $theme_click_show_queries = $lang_global['db_num_queries'] . ": " . count( $db->query_strs ) . " / " . $total_time . "'." . $show_queries . "<br />\n";
-        }
-        $xtpl->assign( 'CLICK_SHOW_QUERIES', $theme_click_show_queries );
-        $xtpl->assign( 'SHOW_QUERIES_FOR_ADMIN', nv_show_queries_for_admin() );
-        $xtpl->parse( 'main.for_admin' );
-    }
-    $xtpl->assign( 'THEME_ERROR_INFO', nv_error_info() );
     $xtpl->parse( 'main' );
     $sitecontent = $xtpl->text( 'main' );
     $sitecontent = nv_blocks_content($sitecontent);
+	$sitecontent = str_replace( '[THEME_ERROR_INFO]', nv_error_info(), $sitecontent );
+    
+	$my_footer = $theme_footer_js . $my_footer;
+    if ( defined( 'NV_IS_ADMIN' ) )
+    {
+        $my_footer = nv_admin_menu() . $my_footer;
+    }    
     if ( ! empty( $my_head ) ) $sitecontent = preg_replace( '/(<\/head>)/i', $my_head . "\\1", $sitecontent, 1 );
     if ( ! empty( $my_footer ) ) $sitecontent = preg_replace( '/(<\/body>)/i', $my_footer . "\\1", $sitecontent, 1 );
     return $sitecontent;

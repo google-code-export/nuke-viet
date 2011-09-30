@@ -21,20 +21,10 @@
 	    </div>
 	    <div class="clear">
 	    </div>
-	    <!-- BEGIN: for_admin -->
-		<p class="show_query">
-	    {CLICK_SHOW_QUERIES}
-		</p>
-	    <div id="div_hide" style="visibility: hidden; display: none;">
-	        {SHOW_QUERIES_FOR_ADMIN}
-	    </div>
-	    <!-- END: for_admin -->
 	    <div id="run_cronjobs" style="visibility: hidden; display: none;">
 	        <img alt="" title="" src="{THEME_IMG_CRONJOBS}" width="1" height="1" />
 	    </div>
 	</div>
 </div>
-{THEME_ADMIN_MENU}
-{THEME_FOOTER_JS}
 </body>
 </html>
