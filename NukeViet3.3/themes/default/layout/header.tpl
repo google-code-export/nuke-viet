@@ -17,7 +17,6 @@
                 DD_belatedPNG.fix('#');
             </script>
         <![endif]-->
-        {THEME_MY_HEAD}
     </head>
     <body>
         <div id="container">

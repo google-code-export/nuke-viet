@@ -1,4 +1,4 @@
-﻿<div id="choose-color-lang" class="clearfix">
+<div id="choose-color-lang" class="clearfix">
 	<div class="fr cl">
 			<!-- BEGIN: color_select -->
 			<div class="fl">
@@ -52,7 +52,6 @@
     </div>
 </div>
 {THEME_ADMIN_MENU}
-{THEME_MY_FOOTER}
 {THEME_FOOTER_JS}
 </body>
 </html>
