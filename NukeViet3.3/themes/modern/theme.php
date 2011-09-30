@@ -11,7 +11,7 @@ if ( ! defined( 'NV_SYSTEM' ) or ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
 function nv_site_theme ( $contents )
 {
-    global $home, $array_mod_title, $lang_global, $language_array, $global_config, $site_mods, $module_name, $module_file, $module_data, $module_info, $op, $db, $mod_title, $my_head, $my_footer, $nv_array_block_contents, $client_info;
+    global $home, $array_mod_title, $lang_global, $language_array, $global_config, $site_mods, $module_name, $module_file, $module_data, $module_info, $op, $db, $mod_title, $my_head, $my_footer, $client_info;
     if ( ! file_exists( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/layout/layout." . $module_info['funcs'][$op]['layout'] . ".tpl" ) )
     {
         nv_info_die( $lang_global['error_layout_title'], $lang_global['error_layout_title'], $lang_global['error_layout_content'] );
@@ -33,7 +33,6 @@ function nv_site_theme ( $contents )
     $xtpl->assign( 'THEME_META_TAGS', nv_html_meta_tags() );
     $xtpl->assign( 'THEME_SITE_JS', nv_html_site_js() );
     $xtpl->assign( 'THEME_CSS', nv_html_css() );
-    if ( $my_head ) $xtpl->assign( 'THEME_MY_HEAD', $my_head );
     $xtpl->assign( 'THEME_PAGE_TITLE', nv_html_page_title() );
     $xtpl->assign( 'THEME_SITE_HREF', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA );
     $xtpl->assign( 'MODULE_CONTENT', $contents . "&nbsp;" );
@@ -152,7 +151,6 @@ function nv_site_theme ( $contents )
     $xtpl->assign( 'THEME_STAT_IMG', $theme_stat_img );
     $xtpl->assign( 'THEME_IMG_CRONJOBS', NV_BASE_SITEURL . "index.php?second=cronjobs&amp;p=" . nv_genpass() );
     $xtpl->assign( 'THEME_FOOTER_JS', $theme_footer_js );
-    if ( $my_footer ) $xtpl->assign( 'THEME_MY_FOOTER', $my_footer );
     
     if ( defined( 'NV_IS_ADMIN' ) )
     {
@@ -172,10 +170,9 @@ function nv_site_theme ( $contents )
     $xtpl->assign( 'THEME_ERROR_INFO', nv_error_info() );
     $xtpl->parse( 'main' );
     $sitecontent = $xtpl->text( 'main' );
-    foreach ( $nv_array_block_contents as $position => $blcontent )
-    {
-        $sitecontent = str_replace( $position, $blcontent, $sitecontent );
-    }
+    $sitecontent = nv_blocks_content($sitecontent);
+    if ( ! empty( $my_head ) ) $sitecontent = preg_replace( '/(<\/head>)/i', $my_head . "\\1", $sitecontent, 1 );
+    if ( ! empty( $my_footer ) ) $sitecontent = preg_replace( '/(<\/body>)/i', $my_footer . "\\1", $sitecontent, 1 );
     return $sitecontent;
 }
 

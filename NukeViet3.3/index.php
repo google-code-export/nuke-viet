@@ -170,7 +170,6 @@ if ( preg_match( $global_config['check_module'], $module_name ) )
             if ( ! defined( 'NV_IS_AJAX' ) )
             {
                 if ( $module_info['submenu'] ) nv_create_submenu();
-                $nv_array_block_contents = nv_blocks_content();
             }
             
             //Ket noi voi cac op cua module de thuc hien
