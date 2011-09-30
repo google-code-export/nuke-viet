@@ -12,7 +12,7 @@ if ( ! defined( 'NV_IS_FILE_WEBTOOLS' ) ) die( 'Stop!!!' );
 $page_title = $lang_module['revision'];
 
 $repository_url = "http://nuke-viet.googlecode.com/svn/trunk/";
-define( 'NV3_DIRECTORY_SNV', '/trunk/NukeViet3.2/' );
+define( 'NV3_DIRECTORY_SNV', '/NukeViet3.3/' );
 
 $file_no_update = array();
 $file_no_update[] = NV_DATADIR . "/config_global.php";
