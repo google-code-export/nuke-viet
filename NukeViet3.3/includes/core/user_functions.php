@@ -177,7 +177,7 @@ function nv_blocks_content( $sitecontent )
         unset( $matches );
         if ( preg_match( "/^\[([^\]]+)\]$/is", $_pos, $matches ) )
         {
-            $_posAllowed[] = nv_preg_quote( $matches[1] );
+            $_posAllowed[] = $matches[1];
         }
     }
 
