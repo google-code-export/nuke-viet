@@ -278,7 +278,7 @@ function nv_blocks_content( $sitecontent )
             }
         }
 
-        $db->sql_freeresult( $result );
+        $db->sql_freeresult( $_result );
     }
 
     if ( defined( 'NV_IS_DRAG_BLOCK' ) )
