@@ -124,23 +124,31 @@ if ( preg_match( $global_config['check_module'], $module_name ) )
             //Ket noi giao dien chung
             if ( ! empty( $module_info['theme'] ) and file_exists( NV_ROOTDIR . "/themes/" . $module_info['theme'] . "/theme.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/themes/" . $module_info['theme'] . "/theme.php" );
                 $global_config['module_theme'] = $module_info['theme'];
             }
             elseif ( ! empty( $global_config['site_theme'] ) and file_exists( NV_ROOTDIR . "/themes/" . $global_config['site_theme'] . "/theme.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/themes/" . $global_config['site_theme'] . "/theme.php" );
                 $global_config['module_theme'] = $global_config['site_theme'];
             }
             elseif ( file_exists( NV_ROOTDIR . "/themes/default/theme.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/themes/default/theme.php" );
                 $global_config['module_theme'] = "default";
             }
             else
             {
                 trigger_error( "Error!  Does not exist themes default", 256 );
             }
+            require_once ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/theme.php" );
+            
+            //ket noi ngon ngu theo theme
+            if ( file_exists( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/" . NV_LANG_INTERFACE . ".php" ) )
+            {
+                require_once ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/" . NV_LANG_INTERFACE . ".php" );
+            }
+			elseif( file_exists( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/en.php" ) )
+            {
+                require_once ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/en.php" );
+            }		
             
             //Ket noi voi file functions.php, file chua cac function dung chung cho ca module
             if ( file_exists( NV_ROOTDIR . "/modules/" . $module_file . "/functions.php" ) )
