@@ -244,7 +244,7 @@ function nv_func_update_data ( )
         nv_delete_all_cache();
     }
     
-	if ($global_config['revision'] < 1071)
+	if ($global_config['revision'] < 1284)
 	{
 		$sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
 		$result = $db->sql_query($sql);
