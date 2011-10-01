@@ -235,26 +235,6 @@ $all_page = ( $numf ) ? $numf : 1;
 $data = array();
 while ( list( $id, $listcatid, $post_id, $title, $alias, $status, $publtime, $exptime, $username ) = $db->sql_fetchrow( $result ) )
 {
-    if ( $status == 0 )
-    {
-        $status = $lang_module['status_0'];
-        $edit_status = 0;
-    }
-    elseif ( $publtime < NV_CURRENTTIME and ( $exptime == 0 or $exptime > NV_CURRENTTIME ) )
-    {
-        $status = $lang_module['status_1'];
-        $edit_status = 1;
-    }
-    elseif ( $publtime > NV_CURRENTTIME )
-    {
-        $status = $lang_module['status_2'];
-        $edit_status = 2;
-    }
-    else
-    {
-        $status = $lang_module['status_3'];
-        $edit_status = 3;
-    }
     $publtime = nv_date( "H:i d/m/y", $publtime );
     $title = nv_clean60( $title );
     $class = ( $a % 2 == 0 ) ? "" : " class=\"second\"";
@@ -292,11 +272,11 @@ while ( list( $id, $listcatid, $post_id, $title, $alias, $status, $publtime, $ex
                     {
                         $check_edit ++;
                     }
-                    elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and $edit_status == 0 )
+                    elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and $status == 0 )
                     {
                         $check_edit ++;
                     }
-                    elseif ( $edit_status == 0 and $post_id == $admin_id )
+                    elseif ( $status == 0 and $post_id == $admin_id )
                     {
                         $check_edit ++;
                     }
@@ -305,7 +285,7 @@ while ( list( $id, $listcatid, $post_id, $title, $alias, $status, $publtime, $ex
                     {
                         $check_del ++;
                     }
-                    elseif ( $edit_status == 0 and $post_id == $admin_id )
+                    elseif ( $status == 0 and $post_id == $admin_id )
                     {
                         $check_del ++;
                     }
@@ -334,7 +314,7 @@ while ( list( $id, $listcatid, $post_id, $title, $alias, $status, $publtime, $ex
 		"link" => $link,
 		"title" => $title,
 		"publtime" => $publtime,
-		"status" => $status,
+		"status" => $lang_module['status_'.$status],
 		"username" => $username,
 		"feature" => implode( "&nbsp;-&nbsp;", $admin_funcs )
 	);

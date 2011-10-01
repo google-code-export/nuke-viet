@@ -92,10 +92,9 @@ if ( ! empty( $del_array ) )
     {
         $contents = "ERR_" . $lang_module['error_no_del_content_id'] . ": " . implode( ", ", $no_del_array );
     }
-
+	nv_set_status_module();
 }
 
-nv_del_moduleCache( $module_name );
 include ( NV_ROOTDIR . "/includes/header.php" );
 echo $contents;
 include ( NV_ROOTDIR . "/includes/footer.php" );

@@ -31,23 +31,6 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
             else
             {
                 $check_edit = 0;
-                
-                if ( $status == 0 )
-                {
-                    $edit_status = 0;
-                }
-                elseif ( $publtime < NV_CURRENTTIME and ( $exptime == 0 or $exptime > NV_CURRENTTIME ) )
-                {
-                    $edit_status = 1;
-                }
-                elseif ( $publtime > NV_CURRENTTIME )
-                {
-                    $edit_status = 2;
-                }
-                else
-                {
-                    $edit_status = 3;
-                }
                 foreach ( $arr_catid as $catid_i )
                 {
                     if ( isset( $array_cat_admin[$admin_id][$catid_i] ) )
@@ -62,11 +45,15 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
                             {
                                 $check_edit ++;
                             }
-                            elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and ( $edit_status == 0 or $edit_status = 2 ) )
+                            elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and ( $status == 0 or $status = 2 ) )
                             {
                                 $check_edit ++;
                             }
-                            elseif ( $edit_status == 0 and $post_id == $admin_id )
+                            elseif ( $status == 0 and $post_id == $admin_id )
+                            {
+                                $check_edit ++;
+                            }
+							elseif ( $status == 2 )
                             {
                                 $check_edit ++;
                             }
@@ -80,10 +67,10 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
             }
             if ( $check_permission > 0 )
             {
-                $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_rows` SET `exptime` = '" . NV_CURRENTTIME . "' WHERE `id` =" . $id . "" );
+                $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_rows` SET `status` = '3' WHERE `id` =" . $id . "" );
                 foreach ( $arr_catid as $catid_i )
                 {
-                    $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid_i . "` SET `exptime` = '" . NV_CURRENTTIME . "' WHERE `id` =" . $id . "" );
+                    $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid_i . "` SET `status` = '3' WHERE `id` =" . $id . "" );
                 }
                 $exp_array[] = $id;
             }
@@ -94,7 +81,7 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
     {
         nv_insert_logs( NV_LANG_DATA, $module_name, 'log_exp_content', "listid: " . implode( ", ", $exp_array ), $admin_info['userid'] );
     }
-    nv_del_moduleCache( $module_name );
+    nv_set_status_module();
 }
 
 Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "" );

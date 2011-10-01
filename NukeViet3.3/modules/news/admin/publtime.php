@@ -44,7 +44,7 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
                         {
                             $check_edit ++;
                         }
-                        elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and ( $edit_status == 0 or $edit_status = 2 ) )
+                        elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and ( $status == 0 or $status = 2 ) )
                         {
                             $check_edit ++;
                         }
@@ -72,7 +72,7 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
             {
                 $data_save['publtime'] = NV_CURRENTTIME;
             }
-            if ( $status == 0 )
+            if ( $status != 1 )
             {
                 $data_save['status'] = 1;
             }
@@ -98,7 +98,7 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
     {
         nv_insert_logs( NV_LANG_DATA, $module_name, 'log_publ_content', "listid: " . implode( ", ", $publ_array ), $admin_info['userid'] );
     }
-    nv_del_moduleCache( $module_name );
+    nv_set_status_module();
 }
 
 Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "" );

@@ -91,6 +91,7 @@
 <strong>{LANG.content_bodytext}</strong> <span class="txtrequired">(*)</span> <br />
 {HTMLBODYTEXT}
 
+<div class="news"><label><strong>{LANG.source}</strong></label> <input maxlength="255" value="{DATA.sourcetext}" name="sourcetext" type="text"></div>
 <div class="news"><label><strong>{LANG.search_author}</strong></label> <input maxlength="255" value="{DATA.author}" name="author" type="text"></div>
 <div class="news"><label><strong>{LANG.content_keywords}:</strong></label> <input maxlength="255" value="{DATA.keywords}" name="keywords" type="text"></div>
 <div class="news"><label><strong>{LANG.captcha}:</strong> <span class="txtrequired">(*)</span></label><input type="text" maxlength="6" value="" id="fcode_iavim" name="fcode" style="width: 100px;" /> <img height="22" src="{NV_BASE_SITEURL}index.php?scaptcha=captcha" title="{LANG.captcha}" alt="{LANG.captcha}" id="vimg" /> <img alt="{CAPTCHA_REFRESH}" src="{CAPTCHA_REFR_SRC}" width="16" height="16" class="refresh" onclick="nv_change_captcha('vimg','fcode_iavim');" /></div>

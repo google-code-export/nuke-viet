@@ -14,11 +14,11 @@ global $module_data, $module_name, $module_file, $global_array_cat, $global_conf
 $xtpl = new XTemplate( "block_newscenter.tpl", NV_ROOTDIR . "/themes/" . $module_info['template'] . "/modules/" . $module_file );
 $xtpl->assign( 'lang', $lang_module );
 
-$sql = "SELECT id, listcatid, publtime, exptime, title, alias, hometext, homeimgthumb, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 AND `publtime` < " . NV_CURRENTTIME . " AND (`exptime`=0 OR `exptime`>" . NV_CURRENTTIME . ") ORDER BY `publtime` DESC LIMIT 0 , 4";
-$result = $db->sql_query( $sql );
+$sql = "SELECT id, listcatid, publtime, exptime, title, alias, hometext, homeimgthumb, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 ORDER BY `publtime` DESC LIMIT 0 , 4";
+$list = nv_db_cache( $sql, 'id', $module_data );
 
 $i = 1;
-while ( $row = $db->sql_fetchrow( $result ) )
+foreach ( $list as $row )
 {
     $catid = explode( ',', $row['listcatid'] );
     $row['link'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid[0]]['alias'] . "/" . $row['alias'] . "-" . $row['id'];

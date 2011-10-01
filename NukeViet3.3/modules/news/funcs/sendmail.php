@@ -22,7 +22,7 @@ foreach ( $global_array_cat as $catid_i => $array_cat_i )
 }
 if ( $id > 0 and $catid > 0 )
 {
-    $sql = "SELECT `id`, `title`, `alias`, `hometext`,`allowed_send` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `id` ='" . $id . "' AND `status`=1 AND `publtime` < " . NV_CURRENTTIME . " AND (`exptime`=0 OR `exptime`>" . NV_CURRENTTIME . ")";
+    $sql = "SELECT `id`, `title`, `alias`, `hometext`,`allowed_send` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `id` ='" . $id . "' AND `status`=1";
     $result = $db->sql_query( $sql );
     list( $id, $title, $alias, $hometext, $allowed_send ) = $db->sql_fetchrow( $result );
     if ( $id > 0 and $allowed_send == 1 )

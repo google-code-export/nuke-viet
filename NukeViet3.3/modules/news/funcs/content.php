@@ -246,7 +246,8 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
         $rowcontent['homeimgfile'] = filter_text_input( 'homeimgfile', 'post', '' );
         $rowcontent['homeimgalt'] = filter_text_input( 'homeimgalt', 'post', '', 1 );
         $rowcontent['imgposition'] = $nv_Request->get_int( 'imgposition', 'post', 0 );
-        
+		$rowcontent['sourcetext'] = filter_text_input('sourcetext', 'post', '');
+       
         // Xu ly anh minh hoa
         $rowcontent['homeimgthumb'] = "";
         if ( ! nv_is_url( $rowcontent['homeimgfile'] ) and file_exists( NV_DOCUMENT_ROOT . $rowcontent['homeimgfile'] ) )
@@ -357,9 +358,27 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
         else
         {
             $rowcontent['status'] = ( $array_post_user['postcontent'] and $nv_Request->isset_request( 'status1', 'post' ) ) ? 1 : 0;
+			
+			$rowcontent['sourceid'] = 0;
+			if (!empty($rowcontent['sourcetext']))
+			{
+				$url_info = @parse_url($rowcontent['sourcetext']);
+				if (isset($url_info['scheme']) and isset($url_info['host']))
+				{
+					$sourceid_link = $url_info['scheme'] . "://" . $url_info['host'];
+					list($rowcontent['sourceid']) = $db->sql_fetchrow($db->sql_query("SELECT `sourceid` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_sources` WHERE `link`=" . $db->dbescape($sourceid_link) . ""));
+					if (empty($rowcontent['sourceid']))
+					{
+						list($weight) = $db->sql_fetchrow($db->sql_query("SELECT max(`weight`) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_sources`"));
+						$weight = intval($weight) + 1;
+						$query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_sources` (`sourceid`, `title`, `link`, `logo`, `weight`, `add_time`, `edit_time`) VALUES (NULL, " . $db->dbescape($url_info['host']) . ", " . $db->dbescape($sourceid_link) . ", '', " . $db->dbescape($weight) . ", UNIX_TIMESTAMP( ), UNIX_TIMESTAMP( ))";
+						$rowcontent['sourceid'] = $db->sql_query_insert_id($query);
+					}
+				}
+			}			
             if ( $rowcontent['id'] == 0 )
             {
-                $query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_rows` (`id`, `listcatid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `publtime`, `exptime`, `archive`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `imgposition`, `bodytext`, `copyright`, `inhome`, `allowed_comm`, `allowed_rating`, `allowed_send`, `allowed_print`, `allowed_save`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `keywords`) VALUES 
+                $query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_rows` (`id`, `listcatid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `publtime`, `exptime`, `archive`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `imgposition`, `bodytext`, `sourcetext`, `copyright`, `inhome`, `allowed_comm`, `allowed_rating`, `allowed_send`, `allowed_print`, `allowed_save`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `keywords`) VALUES 
                 (NULL, " . $db->dbescape_string( $rowcontent['listcatid'] ) . ",
                 " . intval( $rowcontent['topicid'] ) . ",
                 " . intval( $rowcontent['admin_id'] ) . ",
@@ -379,6 +398,7 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
                 " . $db->dbescape_string( $rowcontent['homeimgthumb'] ) . ",
                 " . intval( $rowcontent['imgposition'] ) . ",
                 " . $db->dbescape_string( $rowcontent['bodytext'] ) . ",
+                " . $db->dbescape_string( $rowcontent['sourcetext'] ) . ",
                 " . intval( $rowcontent['copyright'] ) . ",  
                 " . intval( $rowcontent['inhome'] ) . ",  
                 " . intval( $rowcontent['allowed_comm'] ) . ",  
@@ -431,6 +451,7 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
                            `homeimgthumb`=" . $db->dbescape_string( $rowcontent['homeimgthumb'] ) . ",
                            `imgposition`=" . intval( $rowcontent['imgposition'] ) . ",
                            `bodytext`=" . $db->dbescape_string( $rowcontent['bodytext'] ) . ", 
+                           `sourcetext`=" . $db->dbescape_string( $rowcontent['sourcetext'] ) . ", 
                            `copyright`=" . intval( $rowcontent['copyright'] ) . ", 
                            `inhome`=" . intval( $rowcontent['inhome'] ) . ", 
                            `allowed_comm`=" . intval( $rowcontent['allowed_comm'] ) . ", 

@@ -101,7 +101,7 @@ if ( strlen( $key ) >= NV_MIN_SEARCH_LENGTH )
     
     $sql = " SELECT SQL_CALC_FOUND_ROWS tb1.id,tb1.title,tb1.alias,tb1.listcatid,tb1.hometext,tb1.author,tb1.publtime,tb1.homeimgfile, tb1.homeimgthumb,tb1.sourceid
 	FROM `" . $table_search . "` as tb1 " . $tbl_src . " 
-	WHERE (tb1.status=1 AND tb1.publtime < " . NV_CURRENTTIME . " AND (tb1.exptime=0 OR tb1.exptime>" . NV_CURRENTTIME . ") ) " . $where . " ORDER BY tb1.id DESC LIMIT " . $pages . "," . $per_pages;
+	WHERE tb1.status=1 " . $where . " ORDER BY tb1.id DESC LIMIT " . $pages . "," . $per_pages;
     
     $result = $db->sql_query( $sql );
     $result_all = $db->sql_query( "SELECT FOUND_ROWS()" );

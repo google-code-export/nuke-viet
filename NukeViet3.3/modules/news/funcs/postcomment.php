@@ -45,7 +45,7 @@ if ( $module_config[$module_name]['activecomm'] and $id > 0 and $checkss == md5(
     }
     elseif ( $timeout == 0 or NV_CURRENTTIME - $timeout > $difftimeout )
     {
-        $query = $db->sql_query( "SELECT listcatid, allowed_comm FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `id` = " . $id . " AND `status`=1 AND `publtime` < " . NV_CURRENTTIME . " AND (`exptime`=0 OR `exptime`>" . NV_CURRENTTIME . ")" );
+        $query = $db->sql_query( "SELECT listcatid, allowed_comm FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `id` = " . $id . " AND `status`=1" );
         $row = $db->sql_fetchrow( $query );
         if ( isset( $row['allowed_comm'] ) and ( $row['allowed_comm'] == 1 or ( $row['allowed_comm'] == 2 and defined( 'NV_IS_USER' ) ) ) )
         {

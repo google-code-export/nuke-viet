@@ -23,7 +23,7 @@ $xtpl = new XTemplate( "block_newsright.tpl", NV_ROOTDIR . "/themes/" . $module_
 $xtpl->assign( 'BASESITE', NV_BASE_SITEURL );
 $xtpl->assign( 'LANG', $lang_module );
 
-$sql = "SELECT id, listcatid, publtime, exptime, title, alias FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 AND `publtime` < " . NV_CURRENTTIME . " AND (`exptime`=0 OR `exptime`>" . NV_CURRENTTIME . ") ORDER BY `hitstotal` DESC LIMIT 0 , 5";
+$sql = "SELECT id, listcatid, publtime, exptime, title, alias FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 ORDER BY `hitstotal` DESC LIMIT 0 , 5";
 $result = $db->sql_query( $sql );
 $chk_topview = $db->sql_numrows( $result );
 

@@ -25,10 +25,10 @@ $global_array_cat[0] = array(
 	"keywords" => "" 
 );
 
-$sql = "SELECT catid, parentid, title, alias, viewcat, subcatid, numlinks, del_cache_time, description, keywords, lev FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` ORDER BY `order` ASC";
+$sql = "SELECT catid, parentid, title, alias, viewcat, subcatid, numlinks, description, keywords, lev FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` ORDER BY `order` ASC";
 $result = $db->sql_query( $sql );
 
-while ( list( $catid_i, $parentid_i, $title_i, $alias_i, $viewcat_i, $subcatid_i, $numlinks_i, $del_cache_time_i, $description_i, $keywords_i, $lev_i ) = $db->sql_fetchrow( $result ) )
+while ( list( $catid_i, $parentid_i, $title_i, $alias_i, $viewcat_i, $subcatid_i, $numlinks_i, $description_i, $keywords_i, $lev_i ) = $db->sql_fetchrow( $result ) )
 {
     $global_array_cat[$catid_i] = array( 
         "catid" => $catid_i, 

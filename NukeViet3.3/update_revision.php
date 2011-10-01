@@ -243,6 +243,30 @@ function nv_func_update_data ( )
         }
         nv_delete_all_cache();
     }
+    
+	if ($global_config['revision'] < 1071)
+	{
+		$sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
+		$result = $db->sql_query($sql);
+		while (list($lang_i) = $db->sql_fetchrow($result))
+		{
+			$sql = "SELECT title, module_data FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `module_file`='news'";
+			$result_mod = $db->sql_query($sql);
+			while (list($mod, $mod_data) = $db->sql_fetchrow($result_mod))
+			{
+				$db->sql_query("INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang . "', '" . $mod . "', 'timecheckstatus', '0')");
+				$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat`  DROP `del_cache_time`");
+				$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows` ADD `sourcetext` VARCHAR( 255 ) NOT NULL DEFAULT '' AFTER `bodytext`");
+				$resultcatid = $db->sql_query("SELECT `catid` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat` ORDER BY `order` ASC");
+				while (list($catid_i) = $db->sql_fetchrow($resultcatid))
+				{
+					$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "` ADD `sourcetext` VARCHAR( 255 ) NOT NULL DEFAULT '' AFTER `bodytext`");
+				}
+				$db->sql_query("DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_log`");
+			}
+		}
+		nv_delete_all_cache();
+	}    
     // End date data
     if ( empty( $error_contents ) )
     {

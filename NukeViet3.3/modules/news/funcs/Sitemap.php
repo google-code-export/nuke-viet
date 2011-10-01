@@ -22,7 +22,7 @@ if ( ( $cache = nv_get_cache( $cacheFile ) ) != false and filemtime( $cacheFile 
 }
 else
 {
-    $sql = "SELECT `id`, `listcatid`, `publtime`, `alias` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`=1 AND `publtime` < " . NV_CURRENTTIME . " AND (`exptime`=0 OR `exptime` >" . NV_CURRENTTIME . ") ORDER BY `publtime` DESC LIMIT 1000";
+    $sql = "SELECT `id`, `listcatid`, `publtime`, `alias` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`=1 ORDER BY `publtime` DESC LIMIT 1000";
     $result = $db->sql_query( $sql );
     $url = array();
 

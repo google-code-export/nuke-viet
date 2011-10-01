@@ -22,13 +22,19 @@ if ( ! empty ( $savecat ) )
     $sourceid = $nv_Request->get_int( 'sourceid', 'post', 0 );
     $title = filter_text_input( 'title', 'post', '', 1 );
     $link = strtolower( filter_text_input( 'link', 'post', '' ) );
-    list( $logo_old ) = $db->sql_fetchrow( $db->sql_query( "SELECT logo FROM `" . NV_PREFIXLANG . "_" . $module_data . "_sources` WHERE `sourceid` =" . $sourceid . "" ) );
-    
-	if ( $link == "http://" )
-	{	
-		$link = "";
-	}	
 	
+	$url_info = @parse_url($link);
+	if (isset($url_info['scheme']) and isset($url_info['host']))
+	{
+		$link = $url_info['scheme'] . "://" . $url_info['host'];
+	}
+	else 
+	{
+		$link = "";
+	}
+	
+    list( $logo_old ) = $db->sql_fetchrow( $db->sql_query( "SELECT logo FROM `" . NV_PREFIXLANG . "_" . $module_data . "_sources` WHERE `sourceid` =" . $sourceid . "" ) );
+
     $logo = filter_text_input( 'logo', 'post', '' );
     if ( ! nv_is_url( $logo ) and file_exists( NV_DOCUMENT_ROOT . $logo ) )
     {

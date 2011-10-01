@@ -13,6 +13,7 @@ if ( ! in_array( $op, array( 'viewcat', 'detail' ) ) )
 }
 require_once ( NV_ROOTDIR . "/modules/" . $module_file . "/global.functions.php" );
 
+
 global $global_array_cat;
 $global_array_cat = array();
 $link_i = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=Other";
@@ -22,7 +23,7 @@ $parentid = 0;
 $alias_cat_url = isset( $array_op[0] ) ? $array_op[0] : "";
 $array_mod_title = array();
 
-$sql = "SELECT catid, parentid, title, alias, viewcat, subcatid, numlinks, del_cache_time, description, inhome, keywords, who_view, groups_view FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` ORDER BY `order` ASC";
+$sql = "SELECT catid, parentid, title, alias, viewcat, subcatid, numlinks, description, inhome, keywords, who_view, groups_view FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` ORDER BY `order` ASC";
 $list = nv_db_cache( $sql, 'catid', $module_name );
 foreach ( $list as $l )
 {
@@ -33,31 +34,6 @@ foreach ( $list as $l )
     {
         $catid = $l['catid'];
         $parentid = $l['parentid'];
-    }
-    
-    if ( NV_CURRENTTIME > $l['del_cache_time'] )
-    {
-        $sql = "SELECT `id`, `listcatid`, `exptime`, `archive` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $l['catid'] . "` WHERE `exptime` > 0 AND `exptime` <= UNIX_TIMESTAMP() AND `archive`!='2' ORDER BY `exptime` ASC LIMIT 0 , 1";
-        list( $id, $listcatid, $minexptime, $archive ) = $db->sql_fetchrow( $db->sql_query( $sql ) );
-        if ( intval( $id ) > 0 )
-        {
-            if ( intval( $archive ) == 0 )
-            {
-                nv_del_content_module( $id );
-            }
-            else
-            {
-                nv_archive_content_module( $id, $listcatid );
-            }
-        }
-        list( $minpubltime ) = $db->sql_fetchrow( $db->sql_query( "SELECT min(publtime) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $l['catid'] . "` WHERE `publtime` > UNIX_TIMESTAMP()" ) );
-        $minpubltime = ( empty( $minpubltime ) ) ? NV_CURRENTTIME + 26000000 : intval( $minpubltime );
-        
-        list( $id, $listcatid, $minexptime, $archive ) = $db->sql_fetchrow( $db->sql_query( $sql ) );
-        $minexptime = ( empty( $minexptime ) ) ? NV_CURRENTTIME + 26000000 : intval( $minexptime );
-        $del_cache_time = min( $minpubltime, $minexptime );
-        $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_cat` SET `del_cache_time`=" . $db->dbescape( $del_cache_time ) . " WHERE `catid`=" . $l['catid'] . "" );
-        nv_del_moduleCache( $module_name );
     }
 }
 

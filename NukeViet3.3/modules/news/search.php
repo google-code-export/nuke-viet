@@ -14,7 +14,7 @@ FROM `" . NV_PREFIXLANG . "_" . $m_values['module_data'] . "_rows`
 WHERE (" . nv_like_logic( 'title', $dbkeyword, $logic ) . " 
 OR " . nv_like_logic( 'bodytext', $dbkeyword, $logic ) . " 
 OR " . nv_like_logic( 'hometext', $dbkeyword, $logic ) . ") 
-AND ( `publtime` < " . NV_CURRENTTIME . " AND (`exptime`=0 OR `exptime`>" . NV_CURRENTTIME . ") ) 
+AND `status`= 1 
 LIMIT " . $pages . "," . $limit;
 
 $tmp_re = $db->sql_query( $sql );

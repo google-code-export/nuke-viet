@@ -29,7 +29,6 @@ $sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $la
 $sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_block_cat`";
 $sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_block`";
 $sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_rows`";
-$sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_log`";
 $sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_config_post`";
 $sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_admins`";
 
@@ -55,7 +54,6 @@ $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "
   `admins` mediumtext NOT NULL,
   `add_time` int(11) unsigned NOT NULL DEFAULT '0',
   `edit_time` int(11) unsigned NOT NULL DEFAULT '0',
-  `del_cache_time` int(11) NOT NULL DEFAULT '0',
   `who_view` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `groups_view` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`catid`),
@@ -152,6 +150,7 @@ $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "
   `homeimgthumb` varchar(255) NOT NULL DEFAULT '',
   `imgposition` tinyint(1) NOT NULL DEFAULT '1',
   `bodytext` mediumtext NOT NULL,
+  `sourcetext` varchar(255) NOT NULL DEFAULT '',  
   `copyright` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `inhome` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `allowed_comm` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -165,54 +164,6 @@ $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "
   `click_rating` int(11) NOT NULL DEFAULT '0',
   `keywords` text NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `topicid` (`topicid`),
-  KEY `admin_id` (`admin_id`),
-  KEY `author` (`author`),
-  KEY `title` (`title`),
-  KEY `addtime` (`addtime`),
-  KEY `publtime` (`publtime`),
-  KEY `exptime` (`exptime`),
-  KEY `listcatid` (`listcatid`)
-) ENGINE=MyISAM";
-
-$sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_log` (
-  `log_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `log_time` int(11) NOT NULL DEFAULT '0',
-  `log_admin` int(11) NOT NULL DEFAULT '0',
-  `id` int(11) NOT NULL DEFAULT '0',
-  `listcatid` varchar(255) NOT NULL DEFAULT '',
-  `topicid` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `author` varchar(255) NOT NULL DEFAULT '',
-  `sourceid` mediumint(8) NOT NULL DEFAULT '0',
-  `addtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `edittime` int(11) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '1',  
-  `publtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `exptime` int(11) unsigned NOT NULL DEFAULT '0',
-  `archive` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `alias` varchar(255) NOT NULL DEFAULT '',
-  `hometext` mediumtext NOT NULL,
-  `homeimgfile` varchar(255) NOT NULL DEFAULT '',
-  `homeimgalt` varchar(255) NOT NULL DEFAULT '',
-  `homeimgthumb` varchar(255) NOT NULL DEFAULT '',
-  `imgposition` tinyint(1) NOT NULL DEFAULT '1',
-  `bodytext` mediumtext NOT NULL,
-  `copyright` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `inhome` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_comm` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_rating` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_send` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_print` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `allowed_save` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `hitstotal` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `hitscm` mediumint(8) unsigned NOT NULL DEFAULT '0',
-  `total_rating` int(11) NOT NULL DEFAULT '0',
-  `click_rating` int(11) NOT NULL DEFAULT '0',
-  `keywords` text NOT NULL,
-  PRIMARY KEY (`log_id`),
-  KEY `id` (`id`),
   KEY `topicid` (`topicid`),
   KEY `admin_id` (`admin_id`),
   KEY `author` (`author`),
@@ -261,5 +212,6 @@ $sql_create_module[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `mo
 $sql_create_module[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang . "', '" . $module_name . "', 'showhometext', '1')";
 $sql_create_module[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang . "', '" . $module_name . "', 'activecomm', '1')";
 $sql_create_module[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang . "', '" . $module_name . "', 'emailcomm', '1')";
+$sql_create_module[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang . "', '" . $module_name . "', 'timecheckstatus', '0')";
 
 ?>
