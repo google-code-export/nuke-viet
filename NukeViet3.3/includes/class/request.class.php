@@ -682,6 +682,7 @@ class Request
      */
     private function filterTags ( $source )
     {
+		$source = preg_replace( "/\<script([^\>]*)\>(.*)\<\/script\>/isU", "", $source );
 		if (preg_match_all("/<iframe[a-z0-9\s\=\"]*src\=\"http(s)?\:\/\/([w]{3})?\.youtube[^\/]+\/embed\/([^\?]+)(\?[^\"]+)?\"[^\>]*\><\/iframe>/isU", $source, $match))
 		{
 			foreach ($match[0] as $key => $_m)
