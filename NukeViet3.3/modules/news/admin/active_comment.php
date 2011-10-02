@@ -19,7 +19,7 @@ if ( ! empty( $listcid ) )
     
     foreach ( $cid_array as $cid )
     {
-        $query = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_comments` SET status='" . $status . "' WHERE cid=" . $cid . "";
+        $query = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_comments` SET status='" . $status . "' WHERE cid=" . $cid;
         $db->sql_query( $query );
     }
     

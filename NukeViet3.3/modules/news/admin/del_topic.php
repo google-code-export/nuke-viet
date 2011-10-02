@@ -43,7 +43,7 @@ if ( $topicid > 0 )
     }
     if ( $check_del_topicid )
     {
-        $query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_topics` WHERE `topicid`=" . $topicid . "";
+        $query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_topics` WHERE `topicid`=" . $topicid;
         if ( $db->sql_query( $query ) )
         {
             $db->sql_freeresult();

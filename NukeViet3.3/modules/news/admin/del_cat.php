@@ -76,10 +76,10 @@ if ( $catid > 0 )
                     {
                         nv_insert_logs( NV_LANG_DATA, $module_name, $lang_module['delcatandrows'], $title, $admin_info['userid'] );
                         
-                        $query = $db->sql_query( "SELECT id, listcatid FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "`" );
+                        $query = $db->sql_query( "SELECT id, catid, listcatid FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "`" );
                         while ( $row = $db->sql_fetchrow( $query ) )
                         {
-                            if ( ( string )$row['listcatid'] == ( string )$catid )
+                            if ($row['catid'] == $row['listcatid'])
                             {
                                 nv_del_content_module( $row['id'] );
                             }
@@ -153,7 +153,7 @@ if ( $catid > 0 )
         {
             if ( $delallcheckss == md5( $catid . session_id() ) )
             {
-                $query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` WHERE catid=" . $catid . "";
+                $query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` WHERE catid=" . $catid;
                 if ( $db->sql_query( $query ) )
                 {
                     nv_insert_logs( NV_LANG_DATA, $module_name, $lang_module['delcatandrows'], $title, $admin_info['userid'] );

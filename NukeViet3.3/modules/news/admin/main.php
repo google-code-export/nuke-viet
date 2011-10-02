@@ -223,9 +223,9 @@ $base_url_exptime = "" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=
 
 $base_url = "" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $op . "&amp;per_page=" . $per_page . "&amp;catid=" . $catid . "&amp;stype=" . $stype . "&amp;q=" . $q . "&amp;checkss=" . $checkss . "&amp;ordername=" . $ordername . "&amp;order=" . $order;
 
-$ord_sql = "ORDER BY r." . $ordername . " " . $order . "";
+$ord_sql = "ORDER BY r." . $ordername . " " . $order;
 
-$sql = "SELECT SQL_CALC_FOUND_ROWS r.id, r.listcatid, r.admin_id, r.title, r.alias, r.status , r.publtime, r.exptime, u.username  FROM " . $from . " " . $where . " " . $ord_sql . " LIMIT " . $page . "," . $per_page;
+$sql = "SELECT SQL_CALC_FOUND_ROWS r.id, r.catid, r.listcatid, r.admin_id, r.title, r.alias, r.status , r.publtime, r.exptime, u.username  FROM " . $from . " " . $where . " " . $ord_sql . " LIMIT " . $page . "," . $per_page;
 $result = $db->sql_query( $sql );
 
 $result_all = $db->sql_query( "SELECT FOUND_ROWS()" );
@@ -233,20 +233,14 @@ list( $numf ) = $db->sql_fetchrow( $result_all );
 $all_page = ( $numf ) ? $numf : 1;
 
 $data = array();
-while ( list( $id, $listcatid, $post_id, $title, $alias, $status, $publtime, $exptime, $username ) = $db->sql_fetchrow( $result ) )
+while ( list( $id, $catid_i, $listcatid, $post_id, $title, $alias, $status, $publtime, $exptime, $username ) = $db->sql_fetchrow( $result ) )
 {
     $publtime = nv_date( "H:i d/m/y", $publtime );
     $title = nv_clean60( $title );
     $class = ( $a % 2 == 0 ) ? "" : " class=\"second\"";
-    $catid_i = 0;
     if ( $catid > 0 )
     {
         $catid_i = $catid;
-    }
-    else
-    {
-        $listcatid_arr = explode( ",", $listcatid );
-        $catid_i = $listcatid_arr[0];
     }
     $check_permission_edit = $check_permission_delete = false;
     if ( defined( 'NV_IS_ADMIN_MODULE' ) )

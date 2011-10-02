@@ -48,9 +48,9 @@ if ( ! nv_function_exists( 'nv_news_block_tophits' ) )
         $publtime = NV_CURRENTTIME - $block_config['number_day'] * 86400;
         
         $array_block_news = array();
-        $sql = "SELECT id, listcatid, publtime, exptime, title, alias, homeimgthumb, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $mod_data . "_rows` WHERE `status`= 1 AND `publtime` BETWEEN  " . $publtime . " AND " . NV_CURRENTTIME . " ORDER BY `hitstotal` DESC LIMIT 0 , " . $block_config['numrow'];
+        $sql = "SELECT id, catid, publtime, exptime, title, alias, homeimgthumb, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $mod_data . "_rows` WHERE `status`= 1 AND `publtime` BETWEEN  " . $publtime . " AND " . NV_CURRENTTIME . " ORDER BY `hitstotal` DESC LIMIT 0 , " . $block_config['numrow'];
         $result = $db->sql_query( $sql );
-        while ( list( $id, $listcatid, $publtime, $exptime, $title, $alias, $homeimgthumb, $homeimgfile ) = $db->sql_fetchrow( $result ) )
+        while ( list( $id, $catid, $publtime, $exptime, $title, $alias, $homeimgthumb, $homeimgfile ) = $db->sql_fetchrow( $result ) )
         {
             if ( ! empty( $homeimgthumb ) )
             {
@@ -78,13 +78,11 @@ if ( ! nv_function_exists( 'nv_news_block_tophits' ) )
             {
                 $imgurl = "";
             }
-            $arr_listcatid = explode( ",", $listcatid );
-            $catid = end( $arr_listcatid );
-            
+
             $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module . "&amp;" . NV_OP_VARIABLE . "=" . $module_array_cat[$catid]['alias'] . "/" . $alias . "-" . $id;
             
             $array_block_news[] = array( 
-                'id' => $id, 'listcatid' => $listcatid, 'title' => $title, 'link' => $link, 'imgurl' => $imgurl, 'width' => $blockwidth 
+                'id' => $id, 'title' => $title, 'link' => $link, 'imgurl' => $imgurl, 'width' => $blockwidth 
             );
         }
         

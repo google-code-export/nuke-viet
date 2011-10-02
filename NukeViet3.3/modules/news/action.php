@@ -131,6 +131,7 @@ $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "
 
 $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_rows` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `catid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `listcatid` varchar(255) NOT NULL DEFAULT '',
   `topicid` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `admin_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -164,6 +165,7 @@ $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "
   `click_rating` int(11) NOT NULL DEFAULT '0',
   `keywords` text NOT NULL,
   PRIMARY KEY (`id`),
+  KEY `catid` (`catid`),
   KEY `topicid` (`topicid`),
   KEY `admin_id` (`admin_id`),
   KEY `author` (`author`),
@@ -171,7 +173,7 @@ $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "
   KEY `addtime` (`addtime`),
   KEY `publtime` (`publtime`),
   KEY `exptime` (`exptime`),
-  KEY `listcatid` (`listcatid`)
+  KEY `status` (`status`)
 ) ENGINE=MyISAM";
 
 $sql_create_module[] = "CREATE TABLE IF NOT EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_config_post` (

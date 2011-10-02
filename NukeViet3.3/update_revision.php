@@ -244,7 +244,7 @@ function nv_func_update_data ( )
         nv_delete_all_cache();
     }
     
-	if ($global_config['revision'] < 1284)
+	if ($global_config['revision'] < 1288)
 	{
 		$sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
 		$result = $db->sql_query($sql);
@@ -257,11 +257,26 @@ function nv_func_update_data ( )
 				$db->sql_query("INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang . "', '" . $mod . "', 'timecheckstatus', '0')");
 				$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat`  DROP `del_cache_time`");
 				$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows` ADD `sourcetext` VARCHAR( 255 ) NOT NULL DEFAULT '' AFTER `bodytext`");
+				$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows` ADD `catid` mediumint( 8 ) NOT NULL DEFAULT '0' AFTER `id`"); 				
 				$resultcatid = $db->sql_query("SELECT `catid` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat` ORDER BY `order` ASC");
 				while (list($catid_i) = $db->sql_fetchrow($resultcatid))
 				{
 					$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "` ADD `sourcetext` VARCHAR( 255 ) NOT NULL DEFAULT '' AFTER `bodytext`");
+					$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "` ADD `catid` mediumint( 8 ) NOT NULL DEFAULT '0' AFTER `id`"); 				
 				}
+				$result_rows= $db->sql_query("SELECT `id`, `listcatid` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows` WHERE  `catid`=0 ORDER BY `id` ASC");
+				while (list($id, $listcatid) = $db->sql_fetchrow($result_rows))
+				{
+					$array_catid = explode( ",", $listcatid);
+					$catid = intval($array_catid[0]);
+                    $query = "UPDATE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows` SET `catid`='" . $catid . "' WHERE `id`=" . $id;
+                    $db->sql_query( $query );
+                    foreach ( $array_catid as $catid_i )
+                    {
+                        $query = "UPDATE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "` SET `catid`='" . $catid . "' WHERE `id`=" . $id;
+                        $db->sql_query( $query );
+                    }					
+				}				
 				$db->sql_query("DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_log`");
 			}
 		}

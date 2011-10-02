@@ -9,7 +9,7 @@
 
 if ( ! defined( 'NV_IS_MOD_SEARCH' ) ) die( 'Stop!!!' );
 
-$sql = "SELECT SQL_CALC_FOUND_ROWS `id`,`title`,`alias`,`listcatid`,`hometext`,`bodytext` 
+$sql = "SELECT SQL_CALC_FOUND_ROWS `id`,`title`,`alias`,`catid`,`hometext`,`bodytext` 
 FROM `" . NV_PREFIXLANG . "_" . $m_values['module_data'] . "_rows` 
 WHERE (" . nv_like_logic( 'title', $dbkeyword, $logic ) . " 
 OR " . nv_like_logic( 'bodytext', $dbkeyword, $logic ) . " 
@@ -36,12 +36,10 @@ if ( $all_page )
 
     $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $m_values['module_name'] . '&amp;' . NV_OP_VARIABLE . '=';
 
-    while ( list( $id, $tilterow, $alias, $listcatid, $hometext, $bodytext ) = $db->sql_fetchrow( $tmp_re ) )
+    while ( list( $id, $tilterow, $alias, $catid, $hometext, $bodytext ) = $db->sql_fetchrow( $tmp_re ) )
     {
         $content = $hometext . $bodytext;
-        $catid = explode( ",", $listcatid );
-        $catid = end( $catid );
-
+        
         $url = $link . $array_cat_alias[$catid] . '/' . $alias . "-" . $id;
 
         $result_array[] = array( //

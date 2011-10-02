@@ -21,7 +21,7 @@ while ( list( $catid_i, $parentid_i, $title_i, $alias_i, $viewcat_i, $subcatid_i
     );
 }
 
-$sql = "SELECT id, listcatid, alias, title FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE topicid='" . $topicid . "' ORDER BY `id` ASC";
+$sql = "SELECT id, catid, alias, title FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE topicid='" . $topicid . "' ORDER BY `id` ASC";
 $result = $db->sql_query( $sql );
 $num = $db->sql_numrows( $result );
 
@@ -42,8 +42,7 @@ if ( $num > 0 )
     );
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $arr_listcatid = explode( ",", $row['listcatid'] );
-        $catid_i = end( $arr_listcatid );
+        $catid_i = $row['catid'];
         $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid_i]['alias'] . "/" . $row['alias'] . "-" . $row['id'];
         
         $class = ( $a % 2 ) ? " class=\"second\"" : "";

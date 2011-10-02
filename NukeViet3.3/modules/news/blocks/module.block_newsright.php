@@ -23,7 +23,7 @@ $xtpl = new XTemplate( "block_newsright.tpl", NV_ROOTDIR . "/themes/" . $module_
 $xtpl->assign( 'BASESITE', NV_BASE_SITEURL );
 $xtpl->assign( 'LANG', $lang_module );
 
-$sql = "SELECT id, listcatid, publtime, exptime, title, alias FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 ORDER BY `hitstotal` DESC LIMIT 0 , 5";
+$sql = "SELECT id, catid, publtime, exptime, title, alias FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 ORDER BY `hitstotal` DESC LIMIT 0 , 5";
 $result = $db->sql_query( $sql );
 $chk_topview = $db->sql_numrows( $result );
 
@@ -32,9 +32,8 @@ if ( $chk_topview )
     $i = 1;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $catid = explode( ',', $row['listcatid'] );
-        $row['link'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid[0]]['alias'] . "/" . $row['alias'] . "-" . $row['id'];
-        $row['catname'] = $global_array_cat[$catid[0]]['title'];
+        $row['link'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$row['catid']]['alias'] . "/" . $row['alias'] . "-" . $row['id'];
+        $row['catname'] = $global_array_cat[$row['catid']]['title'];
         $xtpl->assign( 'topviews', $row );
         $xtpl->parse( 'main.topviews.loop' );
     }
@@ -50,10 +49,9 @@ if ( $chk_cm )
     $i = 1;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        list( $catid, $alias ) = $db->sql_fetchrow( $db->sql_query( "SELECT listcatid, alias FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE id=" . $row['id'] . "" ) );
-        $catid = explode( ',', $catid );
-        $row['link'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid[0]]['alias'] . "/" . $alias . "-" . $row['id'];
-        $row['catname'] = $global_array_cat[$catid[0]]['title'];
+        list( $catid, $alias ) = $db->sql_fetchrow( $db->sql_query( "SELECT catid, alias FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE id=" . $row['id'] . "" ) );
+        $row['link'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $alias . "-" . $row['id'];
+        $row['catname'] = $global_array_cat[$catid]['title'];
         $row['content'] = nv_clean60( $row['content'], 100 );
         $xtpl->assign( 'topcomment', $row );
         $xtpl->parse( 'main.topcomment.loop' );

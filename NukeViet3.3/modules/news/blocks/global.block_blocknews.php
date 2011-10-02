@@ -50,7 +50,7 @@ if ( ! nv_function_exists( 'nv_news_blocks' ) )
     {
         global $db, $module_array_cat, $module_info, $lang_module, $site_mods;
         $module = $block_config['module'];
-        $sql = "SELECT t1.id, t1.listcatid, t1.title, t1.alias, t1.homeimgthumb, t1.homeimgalt FROM `" . NV_PREFIXLANG . "_" . $site_mods[$module]['module_data'] . "_rows` as t1 INNER JOIN `" . NV_PREFIXLANG . "_" . $site_mods[$module]['module_data'] . "_block` AS t2 ON t1.id = t2.id WHERE t2.bid= " . $block_config['blockid'] . " AND t1.status= 1 AND t1.inhome='1' ORDER BY t2.weight ASC LIMIT 0 , " . $block_config['numrow'];
+        $sql = "SELECT t1.id, t1.catid, t1.title, t1.alias, t1.homeimgthumb, t1.homeimgalt FROM `" . NV_PREFIXLANG . "_" . $site_mods[$module]['module_data'] . "_rows` as t1 INNER JOIN `" . NV_PREFIXLANG . "_" . $site_mods[$module]['module_data'] . "_block` AS t2 ON t1.id = t2.id WHERE t2.bid= " . $block_config['blockid'] . " AND t1.status= 1 AND t1.inhome='1' ORDER BY t2.weight ASC LIMIT 0 , " . $block_config['numrow'];
         $list = nv_db_cache( $sql, 'id', $module );
         $html = "";
         $i = 1;
@@ -67,8 +67,7 @@ if ( ! nv_function_exists( 'nv_news_blocks' ) )
             $xtpl = new XTemplate( "block_blocknews.tpl", NV_ROOTDIR . "/themes/" . $block_theme . "/modules/news" );
         	foreach ( $list as $l )
             {
-                $arr_catid = explode( ',', $l['listcatid'] );
-                $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module . "&amp;" . NV_OP_VARIABLE . "=" . $module_array_cat[$arr_catid[0]]['alias'] . "/" . $l['alias'] . "-" . $l['id'];
+                $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module . "&amp;" . NV_OP_VARIABLE . "=" . $module_array_cat[$l['catid']]['alias'] . "/" . $l['alias'] . "-" . $l['id'];
                 $l['link'] = $link;
                 $l['thumb'] = "";
                 if ( ! empty( $l['homeimgthumb'] ) )

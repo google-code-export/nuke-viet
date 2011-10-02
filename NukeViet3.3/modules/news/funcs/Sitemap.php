@@ -22,14 +22,12 @@ if ( ( $cache = nv_get_cache( $cacheFile ) ) != false and filemtime( $cacheFile 
 }
 else
 {
-    $sql = "SELECT `id`, `listcatid`, `publtime`, `alias` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`=1 ORDER BY `publtime` DESC LIMIT 1000";
+    $sql = "SELECT `id`, `catid`, `publtime`, `alias` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`=1 ORDER BY `publtime` DESC LIMIT 1000";
     $result = $db->sql_query( $sql );
     $url = array();
 
-    while ( list( $id, $listcatid, $publtime, $alias ) = $db->sql_fetchrow( $result ) )
+    while ( list( $id, $catid_i, $publtime, $alias ) = $db->sql_fetchrow( $result ) )
     {
-        $arr_catid = explode( ',', $listcatid );
-        $catid_i = end( $arr_catid );
         $catalias = $global_array_cat[$catid_i]['alias'];
         $url[] = array( //
             'link' => NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $catalias . '/' . $alias . '-' . $id, //

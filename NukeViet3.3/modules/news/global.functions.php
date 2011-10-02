@@ -82,7 +82,7 @@
 		global $db, $module_name, $module_data, $global_config, $module_config, $per_page_comment;
 		$comment_array = array();
 		$per_page = $per_page_comment;
-		$sql = "SELECT SQL_CALC_FOUND_ROWS a.content, a.post_time, a.post_name, a.post_email, b.userid, b.email, b.full_name, b.photo, b.view_mail FROM `" . NV_PREFIXLANG . "_" . $module_data . "_comments` as a LEFT JOIN `" . NV_USERS_GLOBALTABLE . "` as b ON a.userid =b.userid  WHERE a.id= '" . $id . "' AND a.status=1 ORDER BY a.cid DESC LIMIT " . $page . "," . $per_page . "";
+		$sql = "SELECT SQL_CALC_FOUND_ROWS a.content, a.post_time, a.post_name, a.post_email, b.userid, b.email, b.full_name, b.photo, b.view_mail FROM `" . NV_PREFIXLANG . "_" . $module_data . "_comments` as a LEFT JOIN `" . NV_USERS_GLOBALTABLE . "` as b ON a.userid =b.userid  WHERE a.id= '" . $id . "' AND a.status=1 ORDER BY a.cid DESC LIMIT " . $page . "," . $per_page;
 		$comment = $db->sql_query($sql);
 		$result_all = $db->sql_query("SELECT FOUND_ROWS()");
 		list($all_page) = $db->sql_fetchrow($result_all);
@@ -131,7 +131,7 @@
 				$catid_i = intval($catid_i);
 				if ($catid_i > 0)
 				{
-					$query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid_i . "` WHERE `id`=" . $id . "";
+					$query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid_i . "` WHERE `id`=" . $id;
 					$db->sql_query($query);
 					if (!$db->sql_affectedrows())
 					{

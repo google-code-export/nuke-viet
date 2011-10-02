@@ -49,7 +49,7 @@ if ( $id > 0 and $catid > 0 )
         $to_mail = $content = "";
         if ( $checkss == md5( $id . session_id() . $global_config['sitekey'] ) and $allowed_send == 1 )
         {
-            $link = "" . $global_config['site_url'] . "" . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $alias . "-" . $id . "";
+            $link = "" . $global_config['site_url'] . "" . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $alias . "-" . $id;
             $link = "<a href=\"$link\" title=\"$title\">$link</a>\n";
             $nv_seccode = filter_text_input( 'nv_seccode', 'post', '' );
             
@@ -71,7 +71,7 @@ if ( $id > 0 and $catid > 0 )
             elseif ( empty( $err_email ) and empty( $err_youremail ) )
             {
                 $subject = $lang_module['sendmail_subject'] . "$name";
-                $message .= "" . $lang_module['sendmail_welcome'] . " <strong>" . $global_config['site_name'] . "</strong> " . $lang_module['sendmail_welcome1'] . "<br /><br />" . $content . "<br /><br />" . $hometext . " <br/><br /><strong>" . $lang_module['sendmail_welcome2'] . "</strong><br />" . $link . "";
+                $message .= "" . $lang_module['sendmail_welcome'] . " <strong>" . $global_config['site_name'] . "</strong> " . $lang_module['sendmail_welcome1'] . "<br /><br />" . $content . "<br /><br />" . $hometext . " <br/><br /><strong>" . $lang_module['sendmail_welcome2'] . "</strong><br />" . $link;
                 $from = array( 
                     $name, $youremail 
                 );

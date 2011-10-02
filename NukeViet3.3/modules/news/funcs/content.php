@@ -461,7 +461,7 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
                            `allowed_save`=" . intval( $rowcontent['allowed_save'] ) . ", 
                            `keywords`=" . $db->dbescape_string( $rowcontent['keywords'] ) . ", 
                            `edittime`=UNIX_TIMESTAMP( ) 
-                        WHERE `id` =" . $rowcontent['id'] . "";
+                        WHERE `id` =" . $rowcontent['id'];
                 $db->sql_query( $query );
                 
                 if ( $db->sql_affectedrows() > 0 )
@@ -652,7 +652,7 @@ elseif ( defined( 'NV_IS_USER' ) )
         $page = intval( substr( $array_op[1], 5 ) );
     }
     $array_catpage = array();
-    $sql = "SELECT SQL_CALC_FOUND_ROWS `id`, `listcatid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `publtime`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `imgposition`, `inhome`, `allowed_rating`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `keywords` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `admin_id`= " . $user_info['userid'] . " ORDER BY `id` DESC LIMIT " . $page . "," . $per_page . "";
+    $sql = "SELECT SQL_CALC_FOUND_ROWS `id`, `catid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `publtime`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `imgposition`, `inhome`, `allowed_rating`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `keywords` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `admin_id`= " . $user_info['userid'] . " ORDER BY `id` DESC LIMIT " . $page . "," . $per_page;
     $result = $db->sql_query( $sql );
     
     $result_all = $db->sql_query( "SELECT FOUND_ROWS()" );
@@ -690,8 +690,7 @@ elseif ( defined( 'NV_IS_USER' ) )
         $item['is_edit_content'] = ( empty( $item['status'] ) or $array_post_user['editcontent'] ) ? 1 : 0;
         $item['is_del_content'] = ( empty( $item['status'] ) or $array_post_user['delcontent'] ) ? 1 : 0;
         
-        $arr_listcatid = explode( ",", $item['listcatid'] );
-        $catid = end( $arr_listcatid );
+        $catid = $item['catid'];
         $item['link'] = $global_array_cat[$catid]['link'] . "/" . $item['alias'] . "-" . $item['id'];
         $array_catpage[] = $item;
     }

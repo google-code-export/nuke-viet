@@ -23,12 +23,10 @@ if ( ( $cache = nv_get_cache( $cache_file ) ) != false )
 }
 else
 {
-    $sql = "SELECT id, listcatid, publtime, exptime, title, alias, homeimgthumb, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 ORDER BY `publtime` DESC LIMIT 0 , 20";
+    $sql = "SELECT id, catid, publtime, exptime, title, alias, homeimgthumb, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 ORDER BY `publtime` DESC LIMIT 0 , 20";
     $result = $db->sql_query( $sql );
-    while ( list( $id, $listcatid, $publtime, $exptime, $title, $alias, $homeimgthumb, $homeimgfile ) = $db->sql_fetchrow( $result ) )
+    while ( list( $id, $catid, $publtime, $exptime, $title, $alias, $homeimgthumb, $homeimgfile ) = $db->sql_fetchrow( $result ) )
     {
-        $arr_listcatid = explode( ",", $listcatid );
-        $catid = end( $arr_listcatid );
         $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $alias . "-" . $id;
         
         if ( ! empty( $homeimgthumb ) )
@@ -59,7 +57,7 @@ else
         }
         
         $array_block_news[] = array( 
-            'id' => $id, 'listcatid' => $listcatid, 'title' => $title, 'link' => $link, 'imgurl' => $imgurl, 'width' => $blockwidth 
+            'id' => $id, 'title' => $title, 'link' => $link, 'imgurl' => $imgurl, 'width' => $blockwidth 
         );
     }
     $cache = serialize( $array_block_news );

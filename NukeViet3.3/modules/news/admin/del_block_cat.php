@@ -16,11 +16,11 @@ list( $bid ) = $db->sql_fetchrow( $db->sql_query( "SELECT `bid` FROM `" . NV_PRE
 if ( $bid > 0 )
 {
     nv_insert_logs( NV_LANG_DATA, $module_name, 'log_del_blockcat', "block_catid ".$bid, $admin_info['userid'] );
-	$query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_block_cat` WHERE `bid`=" .$bid . "";
+	$query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_block_cat` WHERE `bid`=" .$bid;
     if ( $db->sql_query( $query ) )
     {
         $db->sql_freeresult();
-        $query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_block` WHERE `bid`=" .$bid . "";
+        $query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_block` WHERE `bid`=" .$bid;
         $db->sql_query( $query );
         nv_fix_block_cat();
         nv_del_moduleCache($module_name);

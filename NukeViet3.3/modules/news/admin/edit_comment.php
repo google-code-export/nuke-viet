@@ -50,7 +50,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
     die();
 }
 
-$sql = "SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_data . "_comments` WHERE cid=" . $cid . "";
+$sql = "SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_data . "_comments` WHERE cid=" . $cid;
 $result = $db->sql_query( $sql );
 
 if ( $db->sql_numrows( $result ) == 0 )

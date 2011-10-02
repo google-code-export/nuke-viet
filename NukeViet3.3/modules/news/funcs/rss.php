@@ -40,20 +40,19 @@ if ( ! empty( $catid ) )
     $channel['link'] = NV_MY_DOMAIN . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=rss/" . $alias_cat_url;
     $channel['description'] = $global_array_cat[$catid]['description'];
     
-    $sql = "SELECT id, listcatid, publtime, title, alias, hometext, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `status`=1 ORDER BY `publtime` DESC LIMIT 30";
+    $sql = "SELECT id, catid, publtime, title, alias, hometext, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `status`=1 ORDER BY `publtime` DESC LIMIT 30";
 }
 else
 {
-    $sql = "SELECT id, listcatid, publtime, title, alias, hometext, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`=1 AND `inhome`='1' ORDER BY `publtime` DESC LIMIT 30";
+    $sql = "SELECT id, catid, publtime, title, alias, hometext, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`=1 AND `inhome`='1' ORDER BY `publtime` DESC LIMIT 30";
 }
 
 if ( $module_info['rss'] )
 {
     $result = $db->sql_query( $sql );
-    while ( list( $id, $listcatid, $publtime, $title, $alias, $hometext, $homeimgfile ) = $db->sql_fetchrow( $result ) )
+    while ( list( $id, $catid_i, $publtime, $title, $alias, $hometext, $homeimgfile ) = $db->sql_fetchrow( $result ) )
     {
-        $arr_catid = explode( ',', $listcatid );
-        $catid_i = end( $arr_catid );
+		if ( ! empty( $catid ) ) $catid_i = $catid;
         $catalias = $global_array_cat[$catid_i]['alias'];
         $rimages = ( ! empty( $homeimgfile ) ) ? "<img src=\"" . NV_MY_DOMAIN . NV_BASE_SITEURL . NV_UPLOADS_DIR . "/" . $module_name . "/" . $homeimgfile . "\" width=\"100\" align=\"left\" border=\"0\">" : "";
         $items[] = array(  //

@@ -93,7 +93,7 @@
 	$parentid = $nv_Request->get_int('parentid', 'get', 0);
 	$array_imgposition = array(0 => $lang_module['imgposition_0'], 1 => $lang_module['imgposition_1'], 2 => $lang_module['imgposition_2']);
 
-	$rowcontent = array("id" => "", "listcatid" => "" . $catid . "," . $parentid . "", "topicid" => "", "admin_id" => $admin_id, "author" => "", "sourceid" => 0, "addtime" => NV_CURRENTTIME, "edittime" => NV_CURRENTTIME, "status" => 0, "publtime" => NV_CURRENTTIME, "exptime" => 0, "archive" => 1, "title" => "", "alias" => "", "hometext" => "", "sourcetext" => "", "homeimgfile" => "", "homeimgalt" => "", "homeimgthumb" => "", "imgposition" => 1, "bodytext" => "", "copyright" => 0, "inhome" => 1, "allowed_comm" => $module_config[$module_name]['setcomm'], "allowed_rating" => 1, "allowed_send" => 1, "allowed_print" => 1, "allowed_save" => 1, "hitstotal" => 0, "hitscm" => 0, "total_rating" => 0, "click_rating" => 0, "keywords" => "");
+	$rowcontent = array("id" => "", "catid" => $catid, "listcatid" => "" . $catid . "," . $parentid . "", "topicid" => "", "admin_id" => $admin_id, "author" => "", "sourceid" => 0, "addtime" => NV_CURRENTTIME, "edittime" => NV_CURRENTTIME, "status" => 0, "publtime" => NV_CURRENTTIME, "exptime" => 0, "archive" => 1, "title" => "", "alias" => "", "hometext" => "", "sourcetext" => "", "homeimgfile" => "", "homeimgalt" => "", "homeimgthumb" => "", "imgposition" => 1, "bodytext" => "", "copyright" => 0, "inhome" => 1, "allowed_comm" => $module_config[$module_name]['setcomm'], "allowed_rating" => 1, "allowed_send" => 1, "allowed_print" => 1, "allowed_save" => 1, "hitstotal" => 0, "hitscm" => 0, "total_rating" => 0, "click_rating" => 0, "keywords" => "");
 
 	$rowcontent['topictext'] = "";
 	$page_title = $lang_module['content_add'];
@@ -219,6 +219,8 @@
 		$catids = array_unique($nv_Request->get_typed_array('catids', 'post', 'int', array()));
 		$id_block_content = array_unique($nv_Request->get_typed_array('bids', 'post', 'int', array()));
 
+		$rowcontent['catid'] = $nv_Request->get_int('catid', 'post', 0);
+
 		$rowcontent['listcatid'] = implode(",", $catids);
 
 		$rowcontent['status'] = ($nv_Request->isset_request('status1', 'post')) ? 1 : 0;
@@ -336,6 +338,7 @@
 
 		if (empty($error))
 		{
+			$rowcontent['catid'] = in_array($rowcontent['catid'], $catids) ? $rowcontent['catid'] : $catids[0];
 			if (!empty($rowcontent['topictext']))
 			{
 				list($weightopic) = $db->sql_fetchrow($db->sql_query("SELECT max(`weight`) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_topics`"));
@@ -459,8 +462,10 @@
 				{
 					$rowcontent['status'] = 2;
 				}
-				$query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_rows` (`id`, `listcatid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `publtime`, `exptime`, `archive`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `imgposition`, `bodytext`, `sourcetext`, `copyright`, `inhome`, `allowed_comm`, `allowed_rating`, `allowed_send`, `allowed_print`, `allowed_save`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `keywords`) VALUES 
-                (NULL, " . $db->dbescape_string($rowcontent['listcatid']) . ",
+				$query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_rows` (`id`, `catid`, `listcatid`, `topicid`, `admin_id`, `author`, `sourceid`, `addtime`, `edittime`, `status`, `publtime`, `exptime`, `archive`, `title`, `alias`, `hometext`, `homeimgfile`, `homeimgalt`, `homeimgthumb`, `imgposition`, `bodytext`, `sourcetext`, `copyright`, `inhome`, `allowed_comm`, `allowed_rating`, `allowed_send`, `allowed_print`, `allowed_save`, `hitstotal`, `hitscm`, `total_rating`, `click_rating`, `keywords`) VALUES 
+                (NULL, 
+                " . intval($rowcontent['catid']) . ",
+                " . $db->dbescape_string($rowcontent['listcatid']) . ",
                 " . intval($rowcontent['topicid']) . ",
                 " . intval($rowcontent['admin_id']) . ",
                 " . $db->dbescape_string($rowcontent['author']) . ",
@@ -524,7 +529,8 @@
 					$rowcontent['status'] = 2;
 				}
 				$query = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_rows` SET 
-                           `listcatid`=" . $db->dbescape_string($rowcontent['listcatid']) . ", 
+                           `catid`=" . intval($rowcontent['catid']) . ", 
+				           `listcatid`=" . $db->dbescape_string($rowcontent['listcatid']) . ", 
                            `topicid`=" . intval($rowcontent['topicid']) . ", 
                            `author`=" . $db->dbescape_string($rowcontent['author']) . ", 
                            `sourceid`=" . intval($rowcontent['sourceid']) . ", 
@@ -550,7 +556,7 @@
                            `allowed_save`=" . intval($rowcontent['allowed_save']) . ", 
                            `keywords`=" . $db->dbescape_string($rowcontent['keywords']) . ", 
                            `edittime`=UNIX_TIMESTAMP( ) 
-                        WHERE `id` =" . $rowcontent['id'] . "";
+                        WHERE `id` =" . $rowcontent['id'];
 				$db->sql_query($query);
 
 				if ($db->sql_affectedrows() > 0)
@@ -683,7 +689,7 @@
 	$xtpl->assign('NV_NAME_VARIABLE', NV_NAME_VARIABLE);
 	$xtpl->assign('NV_OP_VARIABLE', NV_OP_VARIABLE);
 	$xtpl->assign('module_name', $module_name);
-	$temp = "";
+
 	foreach ($global_array_cat as $catid_i => $array_value)
 	{
 		if (defined('NV_IS_ADMIN_MODULE'))
@@ -697,29 +703,13 @@
 		}
 		if (!empty($check_show))
 		{
-			$lev_i = $array_value['lev'];
-			$xtitle_i = "";
-			if ($lev_i > 0)
-			{
-				for ($i = 1; $i <= $lev_i; $i++)
-				{
-					$xtitle_i .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-				}
-			}
-			$ch = "";
-			if (!in_array($catid_i, $array_cat_check_content))
-			{
-				$ch .= " disabled=\"disabled\"";
-			}
-			if (in_array($catid_i, $array_catid_in_row))
-			{
-				$ch .= " checked=\"checked\"";
-			}
-
-			$temp .= "<li>" . $xtitle_i . "<input class=\"news_checkbox\" type=\"checkbox\" name=\"catids[]\" value=\"" . $catid_i . "\"" . $ch . " />" . $array_value['title'] . "</li>";
+			$space = intval($array_value['lev']) * 30;
+			$catiddisplay = (count($array_catid_in_row) > 1 and (in_array($catid_i, $array_catid_in_row))) ? '' : ' display: none;';
+			$temp = array('catid' => $catid_i, "space" => $space, "title" => $array_value['title'], "disabled" => (!in_array($catid_i, $array_cat_check_content)) ? " disabled=\"disabled\"" : "", "checked" => (in_array($catid_i, $array_catid_in_row)) ? " checked=\"checked\"" : "", "catidchecked" => ($catid_i == $rowcontent['catid']) ? " checked=\"checked\"" : "", "catiddisplay" => $catiddisplay);
+			$xtpl->assign('CATS', $temp);
+			$xtpl->parse('main.catid');
 		}
 	}
-	$xtpl->assign('listcatid', $temp);
 
 	// Copyright
 	$checkcop = ($rowcontent['copyright']) ? " checked=\"checked\"" : "";

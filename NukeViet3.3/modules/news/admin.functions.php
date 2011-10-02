@@ -22,7 +22,6 @@ if ( ! empty( $module_info['admins'] ) )
         }
     }
 }
-
 if ( $is_refresh )
 {
     $array_cat_admin = nv_array_cat_admin();
@@ -691,26 +690,15 @@ function nv_content_keywords ( $content )
 
 function nv_show_block_list ( $bid )
 {
-    global $db, $db_config, $lang_module, $lang_global, $module_name, $module_data, $op;
+    global $db, $db_config, $lang_module, $lang_global, $module_name, $module_data, $op, $global_array_cat;
     $contents = "";
     
-    $global_array_cat = array();
     $link_i = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=Other";
     $global_array_cat[0] = array( 
         "catid" => 0, "parentid" => 0, "title" => "Other", "alias" => "Other", "link" => $link_i, "viewcat" => "viewcat_page_new", "subcatid" => 0, "numlinks" => 3, "description" => "", "keywords" => "" 
     );
     
-    $sql = "SELECT catid, parentid, title, alias, viewcat, subcatid, numlinks, description, keywords, lev FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` ORDER BY `order` ASC";
-    $result = $db->sql_query( $sql );
-    while ( list( $catid_i, $parentid_i, $title_i, $alias_i, $viewcat_i, $subcatid_i, $numlinks_i, $description_i, $keywords_i, $lev_i ) = $db->sql_fetchrow( $result ) )
-    {
-        $link_i = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $alias_i;
-        $global_array_cat[$catid_i] = array( 
-            "catid" => $catid_i, "parentid" => $parentid_i, "title" => $title_i, "alias" => $alias_i, "link" => $link_i, "viewcat" => $viewcat_i, "subcatid" => $subcatid_i, "numlinks" => $numlinks_i, "description" => $description_i, "keywords" => $keywords_i 
-        );
-    }
-    
-    $sql = "SELECT t1.id, t1.listcatid, t1.title, t1.alias, t2.weight FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` as t1 INNER JOIN `" . NV_PREFIXLANG . "_" . $module_data . "_block` AS t2 ON t1.id = t2.id WHERE t2.bid= " . $bid . " AND t1.inhome='1' ORDER BY t2.weight ASC";
+    $sql = "SELECT t1.id, t1.catid, t1.title, t1.alias, t2.weight FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` as t1 INNER JOIN `" . NV_PREFIXLANG . "_" . $module_data . "_block` AS t2 ON t1.id = t2.id WHERE t2.bid= " . $bid . " AND t1.inhome='1' ORDER BY t2.weight ASC";
     $result = $db->sql_query( $sql );
     $num = $db->sql_numrows( $result );
     if ( $num > 0 )
@@ -732,11 +720,8 @@ function nv_show_block_list ( $bid )
         $contents .= "</tr>\n";
         $contents .= "</tfoot>\n";
         $a = 0;
-        while ( list( $id, $listcatid, $title, $alias, $weight ) = $db->sql_fetchrow( $result ) )
+        while ( list( $id, $catid_i, $title, $alias, $weight ) = $db->sql_fetchrow( $result ) )
         {
-            $arr_listcatid = explode( ",", $listcatid );
-            $catid_i = end( $arr_listcatid );
-            
             $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid_i]['alias'] . "/" . $alias . "-" . $id;
             $class = ( $a % 2 ) ? " class=\"second\"" : "";
             $contents .= "<tbody" . $class . ">\n";
