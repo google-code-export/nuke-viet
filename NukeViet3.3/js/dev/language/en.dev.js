@@ -66,3 +66,19 @@ var nv_fullname = "Full name entered is not valid.";
 var nv_title = "Title not valid.";
 var nv_content = "The content is not empty.";
 var nv_code = "Capcha not valid.";
+
+//ErrorMessage
+var NVJL = [];
+NVJL.errorRequest = "There was an error with the request.";
+NVJL.errortimeout = "The request timed out.";
+NVJL.errornotmodified = "The request was not modified but was not retrieved from the cache.";
+NVJL.errorparseerror = "XML/Json format is bad.";
+NVJL.error304 = "Not modified. The client requests a document that is already in its cache and the document has not been modified since it was cached. The client uses the cached copy of the document, instead of downloading it from the server.";
+NVJL.error400 = "Bad Request. The request was invalid.";
+NVJL.error401 = "Access denied.";
+NVJL.error403 = "Forbidden. The request is understood, but it has been refused.";
+NVJL.error404 = "Not Found. The URI requested is invalid or the resource requested does not exists.";
+NVJL.error406 = "Not Acceptable. Client browser does not accept the MIME type of the requested page.";
+NVJL.error500 = "Internal server error. You see this error message for a wide variety of server-side errors.";
+NVJL.error502 = "Bad Gateway. Web server received an invalid response while acting as a gateway or proxy. You receive this error message when you try to run a CGI script that does not return a valid set of HTTP headers.";
+NVJL.error503 = "Service Unavailable.";

@@ -66,3 +66,19 @@ var nv_fullname = "Họ tên nhập không hợp lệ.";
 var nv_title = "Bạn chưa nhập tiêu đề.";
 var nv_content = "Nội dung không được để trống.";
 var nv_code = "Mã chống spam không đúng.";
+
+//ErrorMessage
+var NVJL = [];
+NVJL.errorRequest = "Đã có lỗi xảy ra trong quá trình truy vấn.";
+NVJL.errortimeout = "Thời gian chờ thực thi yêu cầu đã quá thời lượng cho phép.";
+NVJL.errornotmodified = "Trình duyệt nhận được thông báo về nội dung tập tin không thay đổi, nhưng không tìm thấy nội dung lưu trữ từ bộ nhớ đệm.";
+NVJL.errorparseerror = "Định dạng XML/Json không hợp lệ.";
+NVJL.error304 = "Nội dung không đổi. Tài liệu có nội dung giống trong bộ nhớ đệm.";
+NVJL.error400 = "Yêu cầu truy vấn không hợp lệ.";
+NVJL.error401 = "Truy vấn bị từ chối.";
+NVJL.error403 = "Yêu cầu bị đình chỉ.";
+NVJL.error404 = "Không tìm thấy tập tin yêu cầu. Có thể do URL không hợp lệ hoặc tập tin không tồn tại trên máy chủ.";
+NVJL.error406 = "Không được chấp nhận. Trình duyệt không chấp nhận kiểu MIME của tập tin được yêu cầu.";
+NVJL.error500 = "Lỗi từ phía máy chủ nội bộ.";
+NVJL.error502 = "Web server nhận được phản hồi không hợp lệ trong khi hoạt động như một gateway hoặc proxy. Bạn nhận được thông báo lỗi khi cố gắng chạy một kịch bản CGI.";
+NVJL.error503 = "Dịch vụ không khả dụng.";
