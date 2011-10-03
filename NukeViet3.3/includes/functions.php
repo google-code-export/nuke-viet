@@ -1093,7 +1093,7 @@ function nv_sendmail( $from, $to, $subject, $message, $files = '' )
 
 		foreach ( $to as $_to )
 		{
-			$mail->AddAddress( $to );
+			$mail->AddAddress( $_to );
 		}
 
 		$mail->Subject = $subject;
@@ -1125,10 +1125,10 @@ function nv_sendmail( $from, $to, $subject, $message, $files = '' )
 /**
  * nv_generate_page()
  * 
- * @param mixed $base_url
- * @param mixed $num_items
- * @param mixed $per_page
- * @param mixed $start_item
+ * @param string $base_url
+ * @param integer $num_items
+ * @param integer $per_page
+ * @param integer $start_item
  * @param bool $add_prevnext_text
  * @param bool $onclick
  * @param string $js_func_name
@@ -1142,7 +1142,8 @@ function nv_generate_page( $base_url, $num_items, $per_page, $start_item, $add_p
 	$total_pages = ceil( $num_items / $per_page );
 	if ( $total_pages == 1 )
 		return '';
-	@$on_page = floor( $start_item / $per_page ) + 1;
+
+	$on_page = @floor( $start_item / $per_page ) + 1;
 
 	if ( ! is_array( $base_url ) )
 	{
@@ -1231,40 +1232,42 @@ function nv_generate_page( $base_url, $num_items, $per_page, $start_item, $add_p
 /**
  * nv_is_url()
  * 
- * @param mixed $url
+ * @param string $url
  * @return
  */
 function nv_is_url( $url )
 {
 	global $ips;
-	$url = substr( $url, -1 ) == "/" ? substr( $url, 0, -1 ) : $url;
+
 	if ( empty( $url ) )
 		return false;
+
+	$url = ( ( $_url = substr( $url, -1 ) ) == "/" ) ? $_url : $url;
+	if ( empty( $url ) )
+		return false;
+
 	$url = nv_strtolower( $url );
+
 	if ( ! ( $parts = @parse_url( $url ) ) )
 		return false;
-	else
-	{
-		if ( ! isset( $parts['scheme'] ) or ! isset( $parts['host'] ) or ( $parts['scheme'] != "http" && $parts['scheme'] != "https" && $parts['scheme'] != "ftp" && $parts['scheme'] != "gopher" ) )
-		{
-			return false;
-		} elseif ( ! preg_match( "/^[0-9a-z]([\-\.]?[0-9a-z])*\.(ac|ad|ae|aero|af|ag|ai|al|am|an|ao|aq|ar|arpa|as|asia|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|biz|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cat|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|com|coop|cr|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|edu|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gov|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|info|int|io|iq|ir|is|it|je|jm|jo|jobs|jp|ke|kg|kh|ki|km|kn|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|mg|mh|mil|mk|ml|mm|mn|mo|mobi|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|name|nc|ne|net|nf|ng|ni|nl|no|np|nr|nu|nz|om|org|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|pro|ps|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tel|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|travel|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)$/", $parts['host'] ) and ! $ips->nv_validip( $parts['host'] ) )
-		{
-			return false;
-		} elseif ( isset( $parts['user'] ) and ! preg_match( "/^([0-9a-z\-]|[\_])*$/", $parts['user'] ) )
-		{
-			return false;
-		} elseif ( isset( $parts['pass'] ) and ! preg_match( "/^([0-9a-z\-]|[\_])*$/", $parts['pass'] ) )
-		{
-			return false;
-		} elseif ( isset( $parts['path'] ) and ! preg_match( "/^[0-9A-Za-z\/\_\.\@\~\-\%\\s]*$/", $parts['path'] ) )
-		{
-			return false;
-		} elseif ( isset( $parts['query'] ) and ! preg_match( "/^[0-9a-z\-\_\/\?\&\=\#\.\,\;\%\\s]*$/", $parts['query'] ) )
-		{
-			return false;
-		}
-	}
+
+	if ( ! isset( $parts['scheme'] ) or ! isset( $parts['host'] ) or ( ! in_array( $parts['scheme'], array( 'http', 'https', 'ftp', 'gopher' ) ) ) )
+		return false;
+
+	if ( ! preg_match( "/^[0-9a-z]([\-\.]?[0-9a-z])*\.(ac|ad|ae|aero|af|ag|ai|al|am|an|ao|aq|ar|arpa|as|asia|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|biz|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cat|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|com|coop|cr|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|edu|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gov|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|info|int|io|iq|ir|is|it|je|jm|jo|jobs|jp|ke|kg|kh|ki|km|kn|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|mg|mh|mil|mk|ml|mm|mn|mo|mobi|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|name|nc|ne|net|nf|ng|ni|nl|no|np|nr|nu|nz|om|org|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|pro|ps|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tel|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|travel|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)$/", $parts['host'] ) and ! $ips->nv_validip( $parts['host'] ) )
+		return false;
+
+	if ( isset( $parts['user'] ) and ! preg_match( "/^([0-9a-z\-]|[\_])*$/", $parts['user'] ) )
+		return false;
+
+	if ( isset( $parts['pass'] ) and ! preg_match( "/^([0-9a-z\-]|[\_])*$/", $parts['pass'] ) )
+		return false;
+
+	if ( isset( $parts['path'] ) and ! preg_match( "/^[0-9A-Za-z\/\_\.\@\~\-\%\\s]*$/", $parts['path'] ) )
+		return false;
+
+	if ( isset( $parts['query'] ) and ! preg_match( "/^[0-9a-z\-\_\/\?\&\=\#\.\,\;\%\\s]*$/", $parts['query'] ) )
+		return false;
 
 	return true;
 }
@@ -1272,7 +1275,7 @@ function nv_is_url( $url )
 /**
  * nv_check_url()
  * 
- * @param mixed $url
+ * @param string $url
  * @param bool $is_200
  * @return
  */
@@ -1280,12 +1283,15 @@ function nv_check_url( $url, $is_200 = 0 )
 {
 	if ( empty( $url ) )
 		return false;
+
 	$url = str_replace( " ", "%20", $url );
 	$allow_url_fopen = ( ini_get( 'allow_url_fopen' ) == '1' || strtolower( ini_get( 'allow_url_fopen' ) ) == 'on' ) ? 1 : 0;
+
 	if ( nv_function_exists( 'get_headers' ) and $allow_url_fopen == 1 )
 	{
 		$res = get_headers( $url );
-	} elseif ( nv_function_exists( 'curl_init' ) and nv_function_exists( 'curl_exec' ) )
+	}
+    elseif ( nv_function_exists( 'curl_init' ) and nv_function_exists( 'curl_exec' ) )
 	{
 		$url_info = @parse_url( $url );
 		$port = isset( $url_info['port'] ) ? intval( $url_info['port'] ) : 80;
@@ -1307,7 +1313,6 @@ function nv_check_url( $url, $is_200 = 0 )
 		$curl = curl_init( $url );
 		curl_setopt( $curl, CURLOPT_HEADER, true );
 		curl_setopt( $curl, CURLOPT_NOBODY, true );
-
 		curl_setopt( $curl, CURLOPT_PORT, $port );
 		if ( ! $safe_mode and $open_basedir )
 		{
@@ -1315,7 +1320,6 @@ function nv_check_url( $url, $is_200 = 0 )
 		}
 
 		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-
 		curl_setopt( $curl, CURLOPT_TIMEOUT, 15 );
 		curl_setopt( $curl, CURLOPT_USERAGENT, $agent );
 
@@ -1331,46 +1335,49 @@ function nv_check_url( $url, $is_200 = 0 )
 		{
 			$res = explode( "\n", $response );
 		}
-	} elseif ( nv_function_exists( 'fsockopen' ) and nv_function_exists( 'fgets' ) )
+	}
+    elseif ( nv_function_exists( 'fsockopen' ) and nv_function_exists( 'fgets' ) )
 	{
 		$res = array();
 		$url_info = parse_url( $url );
 		$port = isset( $url_info['port'] ) ? intval( $url_info['port'] ) : 80;
 		$fp = fsockopen( $url_info['host'], $port, $errno, $errstr, 15 );
-		if ( $fp )
-		{
-			$path = ! empty( $url_info['path'] ) ? $url_info['path'] : '/';
-			$path .= ! empty( $url_info['query'] ) ? '?' . $url_info['query'] : '';
-
-			fputs( $fp, "HEAD " . $path . " HTTP/1.0\r\n" );
-			fputs( $fp, "Host: " . $url_info['host'] . ":" . $port . "\r\n" );
-			fputs( $fp, "Connection: close\r\n\r\n" );
-
-			while ( ! feof( $fp ) )
-			{
-				if ( $header = trim( fgets( $fp, 1024 ) ) )
-				{
-					$res[] = $header;
-				}
-			}
-		}
-		else
+		if ( ! $fp )
 		{
 			trigger_error( $errstr, E_USER_WARNING );
 			return false;
 		}
+
+		$path = ! empty( $url_info['path'] ) ? $url_info['path'] : '/';
+		$path .= ! empty( $url_info['query'] ) ? '?' . $url_info['query'] : '';
+
+		fputs( $fp, "HEAD " . $path . " HTTP/1.0\r\n" );
+		fputs( $fp, "Host: " . $url_info['host'] . ":" . $port . "\r\n" );
+		fputs( $fp, "Connection: close\r\n\r\n" );
+
+		while ( ! feof( $fp ) )
+		{
+			if ( $header = trim( fgets( $fp, 1024 ) ) )
+			{
+				$res[] = $header;
+			}
+		}
+        @fclose( $fp );
 	}
 	else
 	{
 		trigger_error( 'error server no support check url', E_USER_WARNING );
 		return false;
 	}
+
 	if ( empty( $res ) )
 		return false;
+
 	if ( preg_match( "/(200)/", $res[0] ) )
 		return true;
 	if ( $is_200 > 5 )
 		return false;
+
 	if ( preg_match( "/(301)|(302)|(303)/", $res[0] ) )
 	{
 		foreach ( $res as $k => $v )
@@ -1384,22 +1391,24 @@ function nv_check_url( $url, $is_200 = 0 )
 			}
 		}
 	}
+
 	return false;
 }
 
-// function IP
 /**
  * nv_ParseIP()
  * 
- * @param mixed $ip
+ * @param string $ip
  * @return
  */
 function nv_ParseIP( $ip )
 {
 	global $sys_info;
+
 	if ( $ip == '127.0.0.1' || $ip == '0.0.0.1' )
 		return "localhost";
-	if ( ! function_exists( "fsockopen" ) or in_array( 'fsockopen', $sys_info['disable_functions'] ) )
+
+	if ( ! nv_function_exists( "fsockopen" ) )
 		return false;
 
 	if ( ! $fp = @fsockopen( "whois.arin.net", 43, $errno, $errstr, 10 ) )
@@ -1424,20 +1433,16 @@ function nv_ParseIP( $ip )
 	{
 		$nextServer = "whois.nic.ad.jp";
 		$extra = "/e";
-	}
-	else
-	{
-		if ( preg_match( "/" . preg_quote( "whois.registro.br" ) . "/", $response ) )
-			$nextServer = "whois.registro.br";
-		elseif ( preg_match( "/" . preg_quote( "whois.apnic.net" ) . "/", $response ) )
-			$nextServer = "whois.apnic.net";
-		elseif ( preg_match( "/" . preg_quote( "ripe.net" ) . "/", $response ) )
-			$nextServer = "whois.ripe.net";
-		elseif ( preg_match( "/" . preg_quote( "afrinic.net" ) . "/", $response ) )
-			$nextServer = "whois.afrinic.net";
-		elseif ( preg_match( "/" . preg_quote( "LACNIC" ) . "/", $response ) )
-			$nextServer = "whois.lacnic.net";
-	}
+	} elseif ( preg_match( "/" . preg_quote( "whois.registro.br" ) . "/", $response ) )
+		$nextServer = "whois.registro.br";
+	elseif ( preg_match( "/" . preg_quote( "whois.apnic.net" ) . "/", $response ) )
+		$nextServer = "whois.apnic.net";
+	elseif ( preg_match( "/" . preg_quote( "ripe.net" ) . "/", $response ) )
+		$nextServer = "whois.ripe.net";
+	elseif ( preg_match( "/" . preg_quote( "afrinic.net" ) . "/", $response ) )
+		$nextServer = "whois.afrinic.net";
+	elseif ( preg_match( "/" . preg_quote( "LACNIC" ) . "/", $response ) )
+		$nextServer = "whois.lacnic.net";
 
 	if ( ! empty( $nextServer ) )
 	{
@@ -1450,45 +1455,52 @@ function nv_ParseIP( $ip )
 			@fclose( $fp );
 			return false;
 		}
+
 		while ( ! @feof( $fp ) )
 		{
 			$response .= @fgets( $fp, 4096 );
 		}
 		@fclose( $fp );
 	}
+
 	return $response;
 }
 
 /**
  * nv_getCountry()
  * 
- * @param mixed $ip
+ * @param string $ip
  * @return
  */
 function nv_getCountry( $ip )
 {
 	$result = nv_ParseIP( $ip );
+
 	if ( empty( $result ) or $result == "localhost" )
 	{
 		return array( "unkown", "", "" );
 	}
+
 	unset( $arr );
 	if ( preg_match( '/^\x20*country\x20*:\x20*([A-Z]{2})/im', $result, $arr ) )
 	{
-		include ( NV_ROOTDIR . "/includes/ip_files/countries.php" );
 		$code = strtoupper( $arr[1] );
-		if ( isset( $countries[$code] ) )
+		$countries = array();
+		include ( NV_ROOTDIR . "/includes/ip_files/countries.php" );
+
+		if ( isset( $countries[$code] ) and ! empty( $countries[$code] ) )
 		{
 			return array( $arr[1], $countries[$code][0], $countries[$code][1] );
 		}
 	}
+
 	return array( "unkown", "", "" );
 }
 
 /**
  * nv_getCountry_from_file()
  * 
- * @param mixed $ip
+ * @param string $ip
  * @return
  */
 function nv_getCountry_from_file( $ip )
@@ -1543,34 +1555,32 @@ function nv_check_rewrite_file()
 			return false;
 
 		$htaccess = @file_get_contents( NV_ROOTDIR . '/.htaccess' );
-		if ( ! preg_match( "/\#nukeviet\_rewrite\_start(.*)\#nukeviet\_rewrite\_end/s", $htaccess ) )
-			return false;
-		return true;
-	} elseif ( $sys_info['supports_rewrite'] == 'rewrite_mode_iis' )
+		return ( preg_match( "/\#nukeviet\_rewrite\_start(.*)\#nukeviet\_rewrite\_end/s", $htaccess ) );
+	}
+
+	if ( $sys_info['supports_rewrite'] == 'rewrite_mode_iis' )
 	{
 		if ( ! file_exists( NV_ROOTDIR . '/web.config' ) )
 			return false;
+
 		$web_config = @file_get_contents( NV_ROOTDIR . '/web.config' );
-		if ( ! preg_match( "/<rule name=\"nv_rule_rewrite\">(.*)<\/rule>/s", $web_config ) )
-			return false;
-		return true;
+		return ( preg_match( "/<rule name=\"nv_rule_rewrite\">(.*)<\/rule>/s", $web_config ) );
 	}
-	else
-	{
-		return false;
-	}
+
+	return false;
 }
 
 /**
  * nv_url_rewrite()
  * 
- * @param mixed $buffer
+ * @param string $buffer
  * @param bool $is_url
  * @return
  */
 function nv_url_rewrite( $buffer, $is_url = false )
 {
-	global $global_config, $module_name, $sys_info, $rewrite;
+	global $rewrite;
+
 	if ( ! empty( $rewrite ) )
 	{
 		if ( $is_url )
@@ -1581,13 +1591,14 @@ function nv_url_rewrite( $buffer, $is_url = false )
 		if ( $is_url )
 			$buffer = substr( $buffer, 1, -1 );
 	}
+
 	return $buffer;
 }
 
 /**
  * nv_valid_html()
  * 
- * @param mixed $html
+ * @param string $html
  * @param mixed $config
  * @param string $encoding
  * @return
@@ -1598,12 +1609,13 @@ function nv_valid_html( $html, $config, $encoding = 'utf8' )
 
 	if ( $sys_info['supports_tidy'] == "class" )
 	{
-		//PHP 5
 		$tidy = new tidy();
 		$tidy->parseString( $html, $config, $encoding );
 		$tidy->cleanRepair();
 		return $tidy;
-	} elseif ( $sys_info['supports_tidy'] == "func" )
+	}
+
+	if ( $sys_info['supports_tidy'] == "func" )
 	{
 		$tidy = tidy_parse_string( $html, $config, $encoding );
 		tidy_clean_repair();
@@ -1627,9 +1639,7 @@ function nv_change_buffer( $buffer )
 	$buffer = nv_url_rewrite( $buffer );
 
 	if ( defined( "NV_ANTI_IFRAME" ) and NV_ANTI_IFRAME )
-	{
 		$buffer = preg_replace( "/(<body[^>]*>)/", "$1\r\n<script type=\"text/javascript\">if(window.top!==window.self){document.write=\"\";window.top.location=window.self.location;setTimeout(function(){document.body.innerHTML=\"\"},1);window.self.onload=function(){document.body.innerHTML=\"\"}};</script>", $buffer, 1 );
-	}
 
 	if ( ! empty( $global_config['googleAnalyticsID'] ) and preg_match( '/^UA-\d{4,}-\d+$/', $global_config['googleAnalyticsID'] ) )
 	{
@@ -1648,69 +1658,59 @@ function nv_change_buffer( $buffer )
 		$googleAnalytics .= "</script>\r\n";
 		$buffer = preg_replace( '/(<\/head>)/i', $googleAnalytics . "\\1", $buffer, 1 );
 	}
-	$optActive = false;
-	if ( $global_config['optActive'] == 1 )
-	{
-		$optActive = true;
-	} elseif ( ! defined( 'NV_ADMIN' ) and $global_config['optActive'] == 2 )
-	{
-		$optActive = true;
-	} elseif ( defined( 'NV_ADMIN' ) and $global_config['optActive'] == 3 )
-	{
-		$optActive = true;
-	}
+
+	$optActive = ( ( $global_config['optActive'] == 1 ) || ( ! defined( 'NV_ADMIN' ) and $global_config['optActive'] == 2 ) || ( defined( 'NV_ADMIN' ) and $global_config['optActive'] == 3 ) ) ? true : false;
 
 	if ( $optActive )
-	{
-		include_once ( NV_ROOTDIR . '/includes/class/optimizer.class.php' );
-		$optimezer = new optimezer( $buffer, $sys_info['supports_tidy'] );
-		$buffer = $optimezer->process();
+		return $buffer;
 
-		if ( ! $sys_info['supports_rewrite'] )
-		{
-			$buffer = preg_replace( "/\<(script|link)(.*?)(src|href)=['\"]((?!http(s?)|ftp\:\/\/).*?\.(js|css))['\"](.*?)\>/", "<\\1\\2\\3=\"" . NV_BASE_SITEURL . "CJzip.php?file=\\4&amp;r=1\"\\7>", $buffer );
-		}
+	include_once ( NV_ROOTDIR . '/includes/class/optimizer.class.php' );
+	$optimezer = new optimezer( $buffer, $sys_info['supports_tidy'] );
+	$buffer = $optimezer->process();
 
-		//http://tidy.sourceforge.net/docs/quickref.html
-		$config = array( //
-			'doctype' => 'transitional', // Chuan HTML: omit, auto, strict, transitional, user
-			'input-encoding' => 'utf8', // Bang ma nguon
-			'output-encoding' => 'utf8', //Bang ma dich
-			'output-xhtml' => true, // Chuan xhtml
-			'drop-empty-paras' => true, // Xoa cac tags p rong
-			'drop-proprietary-attributes' => true, // Xoa tat ca nhung attributes dac thu cua microsoft (vi du: tu word)
-			'word-2000' => true, //Xoa tat ca nhung ma cua word khong phu hop voi chuan html
-			'enclose-block-text' => true, // Tat ca cac block-text duoc dong bang tag p
-			'enclose-text' => true, // Tat ca cac text nam trong khu vuc body nhung khong nam trong bat ky mot tag nao khac se duoc cho vao <p>text</p>
-			'hide-comments' => false, // Xoa cac chu thich
-			'hide-endtags' => true, // Xoa tat ca ve^' dong khong cua nhung tag khong doi hoi phai dong
-			'indent' => false, // Thut dau dong
-			'indent-spaces' => 4, //1 don vi indent = 4 dau cach
-			'logical-emphasis' => true, // Thay cac tag i va b bang em va strong
-			'lower-literals' => true, // Tat ca cac html-tags duoc bien thanh dang chu thuong
-			'markup' => true, // Sua cac loi Markup
-			'preserve-entities' => true, // Giu nguyen cac chu da duoc ma hoa trong nguon
-			'quote-ampersand' => true, // Thay & bang &amp;
-			'quote-marks' => true, // Thay cac dau ngoac bang ma html tuong ung
-			'quote-nbsp' => true, // Thay dau cach bang to hop &nbsp;
-			'show-warnings' => false, // Hien thi thong bao loi
-			'wrap' => 0, // Moi dong khong qua 150 ky tu
-			'alt-text' => true ); //Bat buoc phai co alt trong IMG
+	if ( ! $sys_info['supports_rewrite'] )
+		$buffer = preg_replace( "/\<(script|link)(.*?)(src|href)=['\"]((?!http(s?)|ftp\:\/\/).*?\.(js|css))['\"](.*?)\>/", "<\\1\\2\\3=\"" . NV_BASE_SITEURL . "CJzip.php?file=\\4&amp;r=1\"\\7>", $buffer );
 
-		$buffer = nv_valid_html( $buffer, $config );
-	}
+	//http://tidy.sourceforge.net/docs/quickref.html
+	$config = array( //
+		'doctype' => 'transitional', // Chuan HTML: omit, auto, strict, transitional, user
+		'input-encoding' => 'utf8', // Bang ma nguon
+		'output-encoding' => 'utf8', //Bang ma dich
+		'output-xhtml' => true, // Chuan xhtml
+		'drop-empty-paras' => true, // Xoa cac tags p rong
+		'drop-proprietary-attributes' => true, // Xoa tat ca nhung attributes dac thu cua microsoft (vi du: tu word)
+		'word-2000' => true, //Xoa tat ca nhung ma cua word khong phu hop voi chuan html
+		'enclose-block-text' => true, // Tat ca cac block-text duoc dong bang tag p
+		'enclose-text' => true, // Tat ca cac text nam trong khu vuc body nhung khong nam trong bat ky mot tag nao khac se duoc cho vao <p>text</p>
+		'hide-comments' => false, // Xoa cac chu thich
+		'hide-endtags' => true, // Xoa tat ca ve^' dong khong cua nhung tag khong doi hoi phai dong
+		'indent' => false, // Thut dau dong
+		'indent-spaces' => 4, //1 don vi indent = 4 dau cach
+		'logical-emphasis' => true, // Thay cac tag i va b bang em va strong
+		'lower-literals' => true, // Tat ca cac html-tags duoc bien thanh dang chu thuong
+		'markup' => true, // Sua cac loi Markup
+		'preserve-entities' => true, // Giu nguyen cac chu da duoc ma hoa trong nguon
+		'quote-ampersand' => true, // Thay & bang &amp;
+		'quote-marks' => true, // Thay cac dau ngoac bang ma html tuong ung
+		'quote-nbsp' => true, // Thay dau cach bang to hop &nbsp;
+		'show-warnings' => false, // Hien thi thong bao loi
+		'wrap' => 0, // Moi dong khong qua 150 ky tu
+		'alt-text' => true ); //Bat buoc phai co alt trong IMG
+
+	$buffer = nv_valid_html( $buffer, $config );
+
 	return $buffer;
 }
 
 /**
  * nv_insert_logs()
- *
- * @param mixed $lang
- * @param mixed $module_name
- * @param mixed $name_key
- * @param mixed $note_action
- * @param mixed $userid
- * @param mixed $link_acess
+ * 
+ * @param string $lang
+ * @param string $module_name
+ * @param string $name_key
+ * @param string $note_action
+ * @param integer $userid
+ * @param string $link_acess
  * @return
  */
 function nv_insert_logs( $lang = "", $module_name = "", $name_key = "", $note_action = "", $userid = 0, $link_acess = "" )
@@ -1729,13 +1729,13 @@ function nv_insert_logs( $lang = "", $module_name = "", $name_key = "", $note_ac
 }
 
 /**
- * nv_listDir()
+ * nv_listUploadDir()
  * 
  * @param mixed $dir
  * @param mixed $real_dirlist
  * @return
  */
-function nv_listUploadDir( $dir, $real_dirlist )
+function nv_listUploadDir( $dir, $real_dirlist = array() )
 {
 	$real_dirlist[] = $dir;
 
@@ -1744,12 +1744,8 @@ function nv_listUploadDir( $dir, $real_dirlist )
 		while ( false !== ( $subdir = readdir( $dh ) ) )
 		{
 			if ( preg_match( "/^[a-zA-Z0-9\-\_]+$/", $subdir ) )
-			{
 				if ( is_dir( NV_ROOTDIR . '/' . $dir . '/' . $subdir ) )
-				{
 					$real_dirlist = nv_listUploadDir( $dir . '/' . $subdir, $real_dirlist );
-				}
-			}
 		}
 		closedir( $dh );
 	}
