@@ -38,8 +38,8 @@ $submenu = array();
 $select_options = array();
 $error_info = array();
 $rewrite = array();
-
-unset( $key_words, $page_title, $mod_title, $editor, $editor_password, $my_head, $my_footer, $description, $rewrite );
+$page_title = $key_words = $canonicalUrl = $mod_title = $editor_password = $my_head = $my_footer = $description = "";
+$editor = $rewrite = false;
 
 //Xac dinh thu muc goc cua site
 define( 'NV_ROOTDIR', pathinfo( str_replace( '\\', '/', __file__ ), PATHINFO_DIRNAME ) );

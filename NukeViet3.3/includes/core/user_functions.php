@@ -298,62 +298,90 @@ function nv_blocks_content( $sitecontent )
 
 /**
  * nv_html_meta_tags()
- * 
+ *
  * @return
  */
-function nv_html_meta_tags ( )
+function nv_html_meta_tags()
 {
-    global $global_config, $lang_global, $key_words, $description, $module_info;
-    
-    $return = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=" . $global_config['site_charset'] . "\" />\n";
-    $kw = array();
-    if ( ! empty( $key_words ) ) $kw[] = $key_words;
-    if ( ! empty( $module_info['keywords'] ) ) $kw[] = $module_info['keywords'];
-    if ( ! empty( $global_config['site_keywords'] ) ) $kw[] = $global_config['site_keywords'];
-    if ( ! empty( $kw ) )
-    {
-        $kw = implode( ",", $kw );
-        $kw = preg_replace( "/\,\s+/", ",", $kw );
-        $key_words = nv_strtolower( strip_tags( $kw ) );
-        $return .= "<meta name=\"keywords\" content=\"" . $key_words . "\" />\n";
-    }
-    
-    $ds = ( ! empty( $description ) ) ? $description : $global_config['site_description'];
-    $return .= ( ! empty( $ds ) ) ? "<meta name=\"description\" content=\"" . strip_tags( $ds ) . "\" />\n" : "";
-    
-    $file_metatags = NV_ROOTDIR . "/" . NV_DATADIR . "/metatags.xml";
-    if ( file_exists( $file_metatags ) )
-    {
-        $mt = file_get_contents( $file_metatags );
-        $patters = array();
-        $patters['/\{CONTENT\-LANGUAGE\}/'] = $lang_global['Content_Language'];
-        $patters['/\{LANGUAGE\}/'] = $lang_global['LanguageName'];
-        $patters['/\{SITE\_NAME\}/'] = $global_config['site_name'];
-        $patters['/\{SITE\_EMAIL\}/'] = $global_config['site_email'];
-        $mt = preg_replace( array_keys( $patters ), array_values( $patters ), $mt );
-        $mt = preg_replace( "/\{(.*)\}/", "", $mt );
-        $mt = simplexml_load_string( $mt );
-        $mt = nv_object2array( $mt );
-        if ( $mt['meta_item'] )
-        {
-            if ( isset( $mt['meta_item'][0] ) ) $metatags = $mt['meta_item'];
-            else $metatags[] = $mt['meta_item'];
-            
-            foreach ( $metatags as $meta )
-            {
-                if ( ( $meta['group'] == "http-equiv" or $meta['group'] == "name" ) and preg_match( "/^[a-zA-Z0-9\-\_\.]+$/", $meta['value'] ) and preg_match( "/^([^\'\"]+)$/", $meta['content'] ) )
-                {
-                    $return .= "<meta " . $meta['group'] . "=\"" . $meta['value'] . "\" content=\"" . $meta['content'] . "\" />\n";
-                }
-            }
-        }
-    }
-    $return .= "<meta name=\"generator\" content=\"NukeViet v3.x\" />\n";
-    if ( defined( 'NV_IS_ADMIN' ) )
-    {
-        $return .= "<meta http-equiv=\"refresh\" content=\"" . NV_ADMIN_CHECK_PASS_TIME . "\" />\n";
-    }
-    return $return;
+	global $global_config, $lang_global, $key_words, $description, $module_info, $home, $client_info, $op, $page_title, $canonicalUrl;
+
+	$return = "";
+
+	if ( $home )
+	{
+		$return .= "<meta name=\"description\" content=\"" . strip_tags( $global_config['site_description'] ) . "\" />\n";
+	}
+	else
+	{
+		$ds = ( ! empty( $description ) ) ? $description : $module_info['custom_title'] . ( $op != "main" ? " - " . $module_info['funcs'][$op]['func_custom_name'] : "" ) . ( ! empty( $page_title ) ? " - " . $page_title : "" ) . " - " . $client_info['selfurl'];
+		$return .= "<meta name=\"description\" content=\"" . strip_tags( $ds ) . "\" />\n";
+	}
+
+	$kw = array();
+	if ( ! empty( $key_words ) )
+		$kw[] = $key_words;
+	if ( ! empty( $module_info['keywords'] ) )
+		$kw[] = $module_info['keywords'];
+	if ( ! empty( $global_config['site_keywords'] ) )
+		$kw[] = $global_config['site_keywords'];
+	if ( ! empty( $kw ) )
+	{
+		$kw = implode( ",", $kw );
+		$kw = preg_replace( array( "/[ ]*\,[ ]+/", "/[\,]+/" ), array( ",", "," ), $kw );
+		$key_words = nv_strtolower( strip_tags( $kw ) );
+		$return .= "<meta name=\"keywords\" content=\"" . $key_words . "\" />\n";
+	}
+
+	$return .= "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=" . $global_config['site_charset'] . "\" />\n";
+
+	$file_metatags = NV_ROOTDIR . "/" . NV_DATADIR . "/metatags.xml";
+	if ( file_exists( $file_metatags ) )
+	{
+		$mt = file_get_contents( $file_metatags );
+		$patters = array();
+		$patters['/\{CONTENT\-LANGUAGE\}/'] = $lang_global['Content_Language'];
+		$patters['/\{LANGUAGE\}/'] = $lang_global['LanguageName'];
+		$patters['/\{SITE\_NAME\}/'] = $global_config['site_name'];
+		$patters['/\{SITE\_EMAIL\}/'] = $global_config['site_email'];
+		$mt = preg_replace( array_keys( $patters ), array_values( $patters ), $mt );
+		$mt = preg_replace( "/\{(.*)\}/", "", $mt );
+		$mt = simplexml_load_string( $mt );
+		$mt = nv_object2array( $mt );
+		if ( $mt['meta_item'] )
+		{
+			if ( isset( $mt['meta_item'][0] ) )
+				$metatags = $mt['meta_item'];
+			else
+				$metatags[] = $mt['meta_item'];
+			foreach ( $metatags as $meta )
+			{
+				if ( ( $meta['group'] == "http-equiv" or $meta['group'] == "name" ) and preg_match( "/^[a-zA-Z0-9\-\_\.]+$/", $meta['value'] ) and preg_match( "/^([^\'\"]+)$/", $meta['content'] ) )
+				{
+					$return .= "<meta " . $meta['group'] . "=\"" . $meta['value'] . "\" content=\"" . $meta['content'] . "\" />\n";
+				}
+			}
+		}
+	}
+
+	$return .= "<meta name=\"generator\" content=\"NukeViet v3.x\" />\n";
+	if ( defined( 'NV_IS_ADMIN' ) )
+	{
+		$return .= "<meta http-equiv=\"refresh\" content=\"" . NV_ADMIN_CHECK_PASS_TIME . "\" />\n";
+	}
+
+	if ( empty( $canonicalUrl ) )
+		$canonicalUrl = $client_info['selfurl'];
+
+	if ( substr( $canonicalUrl, 0, 4 ) != "http" )
+	{
+		if ( substr( $canonicalUrl, 0, 1 ) != "/" )
+			$canonicalUrl = NV_BASE_SITEURL . $canonicalUrl;
+
+		$canonicalUrl = NV_MY_DOMAIN . $canonicalUrl;
+	}
+
+	$return .= "<link rel=\"canonical\" href=\"" . $canonicalUrl . "\" />\n";
+	return $return;
 }
 
 /**
@@ -373,7 +401,7 @@ function nv_html_page_title()
 	else
 	{
 		if ( ! isset( $global_config['pageTitleMode'] ) or empty( $global_config['pageTitleMode'] ) )
-			$global_config['pageTitleMode'] = "pagetitle - sitename";
+			$global_config['pageTitleMode'] = "pagetitle " . NV_TITLEBAR_DEFIS . " sitename";
 
 		if ( empty( $page_title ) and ! preg_match( "/(funcname|modulename|sitename)/i", $global_config['pageTitleMode'] ) )
 			return "<title>" . nv_htmlspecialchars( str_replace( $replace, "", strip_tags( $module_info['funcs'][$op]['func_custom_name'] . " " . NV_TITLEBAR_DEFIS . " " . $module_info['custom_title'] ) ) ) . "</title>\n";
@@ -385,91 +413,84 @@ function nv_html_page_title()
 
 /**
  * nv_html_css()
- * 
+ *
  * @return
  */
-function nv_html_css ( )
+function nv_html_css()
 {
-    global $module_info, $module_file;
-    $return = "";
-    if ( file_exists( NV_ROOTDIR . "/themes/" . $module_info['template'] . "/css/" . $module_file . ".css" ) )
-    {
-        $return .= "<link rel=\"StyleSheet\" href=\"" . NV_BASE_SITEURL . "themes/" . $module_info['template'] . "/css/" . $module_file . ".css\" type=\"text/css\" />\n";
-    }
-    return $return;
+	global $module_info, $module_file;
+
+	if ( file_exists( NV_ROOTDIR . "/themes/" . $module_info['template'] . "/css/" . $module_file . ".css" ) )
+	{
+		return "<link rel=\"StyleSheet\" href=\"" . NV_BASE_SITEURL . "themes/" . $module_info['template'] . "/css/" . $module_file . ".css\" type=\"text/css\" />\n";
+	}
+
+	return "";
 }
 
 /**
  * nv_html_site_rss()
- * 
+ *
  * @return
  */
-function nv_html_site_rss ( )
+function nv_html_site_rss()
 {
-    global $rss, $lang_global, $global_config;
-    $return = "";
-    if ( ! empty( $rss ) )
-    {
-        foreach ( $rss as $rss_item )
-        {
-            $return .= "<link rel=\"alternate\" href=\"" . $rss_item['src'] . "\" title=\"" . strip_tags( $rss_item['title'] ) . "\" type=\"application/rss+xml\" />\n";
-        }
-    }
-    return $return;
+	global $rss;
+
+	$return = "";
+	if ( ! empty( $rss ) )
+	{
+		foreach ( $rss as $rss_item )
+		{
+			$return .= "<link rel=\"alternate\" href=\"" . $rss_item['src'] . "\" title=\"" . strip_tags( $rss_item['title'] ) . "\" type=\"application/rss+xml\" />\n";
+		}
+	}
+
+	return $return;
 }
 
 /**
  * nv_html_site_js()
- * 
+ *
  * @return
  */
-function nv_html_site_js ( )
+function nv_html_site_js()
 {
-    global $global_config, $module_info, $module_name, $module_file, $lang_global, $op, $client_info;
-    $return = "";
-    $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/language/" . NV_LANG_INTERFACE . ".js\"></script>\n";
-    $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/jquery/jquery.min.js\"></script>\n";
-    $return .= "<script type=\"text/javascript\">\n";
-    $return .= "var nv_siteroot = '" . NV_BASE_SITEURL . "';\n";
-    $return .= "var nv_sitelang = '" . NV_LANG_INTERFACE . "';\n";
-    $return .= "var nv_name_variable = '" . NV_NAME_VARIABLE . "';\n";
-    $return .= "var nv_fc_variable = '" . NV_OP_VARIABLE . "';\n";
-    $return .= "var nv_lang_variable = '" . NV_LANG_VARIABLE . "';\n";
-    $return .= "var nv_module_name = '" . $module_name . "';\n";
-    $return .= "var nv_my_ofs = " . round( NV_SITE_TIMEZONE_OFFSET / 3600 ) . ";\n";
-    $return .= "var nv_my_abbr = '" . nv_date( "T", NV_CURRENTTIME ) . "';\n";
-    $return .= "var nv_cookie_prefix = '" . $global_config['cookie_prefix'] . "';\n";
-    $return .= "var nv_area_admin = 0;\n";
-    $return .= "</script>\n";
-    $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/global.js\"></script>\n";
-    if ( defined( 'NV_IS_ADMIN' ) )
-    {
-        $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/admin.js\"></script>\n";
-    }
-    if ( file_exists( NV_ROOTDIR . "/modules/" . $module_file . "/js/user.js" ) )
-    {
-        $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "modules/" . $module_file . "/js/user.js\"></script>\n";
-    }
-    if ( defined( 'NV_EDITOR' ) and nv_function_exists( 'nv_add_editor_js' ) )
-    {
-        $return .= nv_add_editor_js();
-    }
+	global $global_config, $module_info, $module_name, $module_file, $lang_global, $op, $client_info;
     
-    if ( defined( 'NV_IS_DRAG_BLOCK' ) )
-    {
-        if ( ! defined( 'SHADOWBOX' ) )
-        {
-            $return .= "<link rel=\"Stylesheet\" href=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.css\" />\n";
-            $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.js\"></script>\n";
-            $return .= "<script type=\"text/javascript\">Shadowbox.init();</script>";
-            define( 'SHADOWBOX', true );
-        }
-        $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/ui/jquery.ui.core.min.js\"></script>\n";
-        $return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/ui/jquery.ui.sortable.min.js\"></script>\n";
-        $return .= '<script type="text/javascript">
+	$return = "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/language/" . NV_LANG_INTERFACE . ".js\"></script>\n";
+	$return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/jquery/jquery.min.js\"></script>\n";
+	$return .= "<script type=\"text/javascript\">\n//<![CDATA[\n";
+    $return .= "var nv_siteroot=\"" . NV_BASE_SITEURL . "\",nv_sitelang=\"" . NV_LANG_INTERFACE . "\",nv_name_variable=\"" . NV_NAME_VARIABLE . "\",nv_fc_variable=\"" . NV_OP_VARIABLE . "\",nv_lang_variable=\"" . NV_LANG_VARIABLE . "\",nv_module_name=\"" . $module_name . "\",nv_my_ofs=" . round( NV_SITE_TIMEZONE_OFFSET / 3600 ) . ",nv_my_abbr=\"" . nv_date( "T", NV_CURRENTTIME ) . "\",nv_cookie_prefix=\"" . $global_config['cookie_prefix'] . "\",nv_area_admin=0;\n";
+	$return .= "//]]>\n</script>\n";
+	$return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/global.js\"></script>\n";
+	if ( defined( 'NV_IS_ADMIN' ) )
+	{
+		$return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/admin.js\"></script>\n";
+	}
+	if ( file_exists( NV_ROOTDIR . "/modules/" . $module_file . "/js/user.js" ) )
+	{
+		$return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "modules/" . $module_file . "/js/user.js\"></script>\n";
+	}
+	if ( defined( 'NV_EDITOR' ) and nv_function_exists( 'nv_add_editor_js' ) )
+	{
+		$return .= nv_add_editor_js();
+	}
+	if ( defined( 'NV_IS_DRAG_BLOCK' ) )
+	{
+		if ( ! defined( 'SHADOWBOX' ) )
+		{
+			$return .= "<link rel=\"Stylesheet\" href=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.css\" />\n";
+			$return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.js\"></script>\n";
+			$return .= "<script type=\"text/javascript\">Shadowbox.init();</script>";
+			define( 'SHADOWBOX', true );
+		}
+		$return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/ui/jquery.ui.core.min.js\"></script>\n";
+		$return .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/ui/jquery.ui.sortable.min.js\"></script>\n";
+		$return .= '<script type="text/javascript">
         			//<![CDATA[
 					var blockredirect = "' . nv_base64_encode( $client_info['selfurl'] ) . '";
-					$(function() {				
+					$(function() {
 						$("a.delblock").click(function(){
 							var bid = $(this).attr("name");
 							if (confirm("' . $lang_global['block_delete_confirm'] . '")){
@@ -479,7 +500,7 @@ function nv_html_site_js ( )
 								});
 							}
 						});
-						
+
 						$("a.outgroupblock").click(function(){
 							var bid = $(this).attr("name");
 							if (confirm("' . $lang_global['block_outgroup_confirm'] . '")){
@@ -488,7 +509,7 @@ function nv_html_site_js ( )
 								});
 							}
 						});
-											
+
 						$("a.block_content").click(function(){
 							var bid = $(this).attr("name");
 							var tag = $(this).attr("id");
@@ -499,14 +520,14 @@ function nv_html_site_js ( )
 						         height : 450,
 						         width : 780
 						      }
-						      );							
+						      );
 	            		});
 
 	            		var func_id = ' . ( $module_info['funcs'][$op]['func_id'] ) . ';
 	            		var post_order = false;
 						$(".column").sortable({
 							connectWith: \'.column\',
-							opacity: 0.8, 
+							opacity: 0.8,
 							cursor: \'move\',
 							receive: function(){
 									post_order = true;
@@ -534,71 +555,71 @@ function nv_html_site_js ( )
 									});
 								}
 							}
-						});	
+						});
 						$(".column").disableSelection();
 					});
 					//]]>
 					</script>';
-    }
-    return $return;
+	}
+	return $return;
 }
 
+/**
+ * nv_admin_menu()
+ * 
+ * @return
+ */
 function nv_admin_menu()
 {
-    global $lang_global, $admin_info, $module_info, $module_name, $global_config, $db, $my_head;
+	global $lang_global, $admin_info, $module_info, $module_name, $db, $my_head;
 
-    $block_theme = "default";
+	$block_theme = "default";
 
-    $xtpl = new XTemplate( "admin_toolbar.tpl", NV_ROOTDIR . "/themes/" . $block_theme . "/system" );
-    $xtpl->assign( 'GLANG', $lang_global );
-    $xtpl->assign( 'ADMIN_INFO', $admin_info );
-    $xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
-    $xtpl->assign( 'NV_ADMINDIR', NV_ADMINDIR );
-    $xtpl->assign( 'URL_AUTHOR', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=authors&amp;id=" . $admin_info['admin_id'] );
+	$xtpl = new XTemplate( "admin_toolbar.tpl", NV_ROOTDIR . "/themes/" . $block_theme . "/system" );
+	$xtpl->assign( 'GLANG', $lang_global );
+	$xtpl->assign( 'ADMIN_INFO', $admin_info );
+	$xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
+	$xtpl->assign( 'NV_ADMINDIR', NV_ADMINDIR );
+	$xtpl->assign( 'URL_AUTHOR', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=authors&amp;id=" . $admin_info['admin_id'] );
 
-    if ( defined( 'NV_IS_SPADMIN' ) )
-    {
-    	if ( ! defined( 'SHADOWBOX' ) )
-        {
-            $my_head .= "<link rel=\"Stylesheet\" href=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.css\" />\n";
-            $my_head .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.js\"></script>\n";
-            $my_head .= "<script type=\"text/javascript\">Shadowbox.init();</script>";
-            define( 'SHADOWBOX', true );
-        }
-        $new_drag_block = ( defined( 'NV_IS_DRAG_BLOCK' ) ) ? 0 : 1;
-        $lang_drag_block = ( $new_drag_block ) ? $lang_global['drag_block'] : $lang_global['no_drag_block'];
+	if ( defined( 'NV_IS_SPADMIN' ) )
+	{
+		if ( ! defined( 'SHADOWBOX' ) )
+		{
+			$my_head .= "<link rel=\"Stylesheet\" href=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.css\" />\n";
+			$my_head .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/shadowbox/shadowbox.js\"></script>\n";
+			$my_head .= "<script type=\"text/javascript\">Shadowbox.init();</script>";
+			define( 'SHADOWBOX', true );
+		}
 
-        $xtpl->assign( 'URL_DBLOCK', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;drag_block=" . $new_drag_block );
-        $xtpl->assign( 'LANG_DBLOCK', $lang_drag_block );
+		$new_drag_block = ( defined( 'NV_IS_DRAG_BLOCK' ) ) ? 0 : 1;
+		$lang_drag_block = ( $new_drag_block ) ? $lang_global['drag_block'] : $lang_global['no_drag_block'];
+		$total_time = substr( ( array_sum( explode( " ", microtime() ) ) - NV_START_TIME + $db->time ), 0, 5 );
 
-        $total_time = substr( ( array_sum( explode( " ", microtime() ) ) - NV_START_TIME + $db->time ), 0, 5 );
-        $xtpl->assign( 'COUNT_SHOW_QUERIES', count( $db->query_strs ) . " / " . $total_time );
-		
-        foreach ( $db->query_strs as $key => $field )
-        {
-        	$data = array(
-        		"class"=>( $key % 2 ) ? " highlight" : " normal",
-        		"imgsrc"=> ($field[1]) ? NV_BASE_SITEURL . "themes/" . $block_theme . "/images/icons/good.png" : NV_BASE_SITEURL . "themes/" . $block_theme . "/images/icons/bad.png",
-        		"imgalt"=> ($field[1]) ? $lang_global['ok'] : $lang_global['fail'],
-        		"queries"=> nv_htmlspecialchars( $field[0] )
-			);
-    		$xtpl->assign( 'DATA', $data );
-    		$xtpl->parse( 'main.is_spadadmin3.queries' );
-        }	
-        $xtpl->parse( 'main.is_spadadmin' );
-        $xtpl->parse( 'main.is_spadadmin2' );
-        $xtpl->parse( 'main.is_spadadmin3' );
-    }
+		$xtpl->assign( 'URL_DBLOCK', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;drag_block=" . $new_drag_block );
+		$xtpl->assign( 'LANG_DBLOCK', $lang_drag_block );
+		$xtpl->assign( 'COUNT_SHOW_QUERIES', count( $db->query_strs ) . " / " . $total_time );
 
-    if ( defined( 'NV_IS_MODADMIN' ) and ! empty( $module_info['admin_file'] ) )
-    {
-        $xtpl->assign( 'URL_MODULE', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
+		foreach ( $db->query_strs as $key => $field )
+		{
+			$data = array( "class" => ( $key % 2 ) ? " highlight" : " normal", "imgsrc" => ( $field[1] ) ? NV_BASE_SITEURL . "themes/" . $block_theme . "/images/icons/good.png" : NV_BASE_SITEURL . "themes/" . $block_theme . "/images/icons/bad.png", "imgalt" => ( $field[1] ) ? $lang_global['ok'] : $lang_global['fail'], "queries" => nv_htmlspecialchars( $field[0] ) );
+			$xtpl->assign( 'DATA', $data );
+			$xtpl->parse( 'main.is_spadadmin3.queries' );
+		}
 
-        $xtpl->parse( 'main.is_modadmin' );
-    }
+		$xtpl->parse( 'main.is_spadadmin' );
+		$xtpl->parse( 'main.is_spadadmin2' );
+		$xtpl->parse( 'main.is_spadadmin3' );
+	}
 
-    $xtpl->parse( 'main' );
-    return $xtpl->text( 'main' );
+	if ( defined( 'NV_IS_MODADMIN' ) and ! empty( $module_info['admin_file'] ) )
+	{
+		$xtpl->assign( 'URL_MODULE', NV_BASE_SITEURL . NV_ADMINDIR . "/index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
+		$xtpl->parse( 'main.is_modadmin' );
+	}
+
+	$xtpl->parse( 'main' );
+	return $xtpl->text( 'main' );
 }
 
 /**
