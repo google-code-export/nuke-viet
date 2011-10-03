@@ -1661,7 +1661,7 @@ function nv_change_buffer( $buffer )
 
 	$optActive = ( ( $global_config['optActive'] == 1 ) || ( ! defined( 'NV_ADMIN' ) and $global_config['optActive'] == 2 ) || ( defined( 'NV_ADMIN' ) and $global_config['optActive'] == 3 ) ) ? true : false;
 
-	if ( $optActive )
+	if ( ! $optActive )
 		return $buffer;
 
 	include_once ( NV_ROOTDIR . '/includes/class/optimizer.class.php' );
