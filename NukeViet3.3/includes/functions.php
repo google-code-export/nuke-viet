@@ -14,105 +14,112 @@ require_once ( NV_ROOTDIR . '/includes/utf8/utf8_functions.php' );
 require_once ( NV_ROOTDIR . '/includes/core/filesystem_functions.php' );
 require_once ( NV_ROOTDIR . '/includes/core/cache_functions.php' );
 
+/**
+ * array_intersect_key()
+ * 
+ * @param mixed $a
+ * @param mixed $b
+ * @return
+ */
 if ( ! function_exists( 'array_intersect_key' ) )
 {
 
-    /**
-     * array_intersect_key()
-     * 
-     * @param mixed $isec
-     * @param mixed $keys
-     * @return
-     */
-    function array_intersect_key ( $isec, $keys )
-    {
-        $num = func_num_args();
-        if ( $num > 2 )
-        {
-            for ( $i = 1; ! empty( $isec ) && $i < $num; $i ++ )
-            {
-                $arr = func_get_arg( $i );
-                foreach ( array_keys( $isec ) as $key )
-                {
-                    if ( ! isset( $arr[$key] ) ) unset( $isec[$key] );
-                }
-            }
-            return $isec;
-        }
-        else
-        {
-            $res = array();
-            foreach ( array_keys( $isec ) as $key )
-            {
-                if ( isset( $keys[$key] ) ) $res[$key] = $isec[$key];
-            }
-            return $res;
-        }
-    }
+	function array_intersect_key( $a, $b )
+	{
+		$c = func_num_args();
+		if ( $c > 2 )
+		{
+			for ( $d = 1; ! empty( $a ) && $d < $c; $d++ )
+			{
+				$e = func_get_arg( $d );
+				foreach ( array_keys( $a ) as $f )
+				{
+					if ( ! isset( $e[$f] ) )
+						unset( $a[$f] );
+				}
+			}
+			return $a;
+		}
+		$g = array();
+		foreach ( array_keys( $a ) as $f )
+		{
+			if ( isset( $b[$f] ) )
+				$g[$f] = $a[$f];
+		}
+		return $g;
+	}
 }
 
+/**
+ * array_diff_key()
+ * 
+ * @return
+ */
 if ( ! function_exists( 'array_diff_key' ) )
 {
-
-    /**
-     * array_diff_key()
-     * 
-     * @return
-     */
-    function array_diff_key ( )
-    {
-        $arrs = func_get_args();
-        $result = array_shift( $arrs );
-        foreach ( $arrs as $array )
-        {
-            foreach ( $result as $key => $v )
-            {
-                if ( array_key_exists( $key, $array ) )
-                {
-                    unset( $result[$key] );
-                }
-            }
-        }
-        return $result;
-    }
+	function array_diff_key()
+	{
+		$a = func_get_args();
+		$b = array_shift( $a );
+		foreach ( $a as $c )
+		{
+			foreach ( $b as $d => $e )
+			{
+				if ( array_key_exists( $d, $c ) )
+					unset( $b[$d] );
+			}
+		}
+		return $b;
+	}
 }
 
 /**
  * nv_object2array()
  * 
- * @param mixed $data
+ * @param mixed $a
  * @return
  */
-function nv_object2array ( $data )
+function nv_object2array ( $a )
 {
-    if ( is_object( $data ) ) $data = get_object_vars( $data );
-    return is_array( $data ) ? array_map( __function__, $data ) : $data;
+    if ( is_object( $a ) ) $a = get_object_vars( $a );
+    return is_array( $a ) ? array_map( __function__, $a ) : $a;
 }
 
 /**
  * nv_getenv()
  * 
- * @param mixed $key
+ * @param mixed $a
  * @return
  */
-function nv_getenv ( $key )
+function nv_getenv( $a )
 {
-    if ( isset( $_SERVER[$key] ) ) return $_SERVER[$key];
-    elseif ( isset( $_ENV[$key] ) ) return $_ENV[$key];
-    elseif ( @getenv( $key ) ) return @getenv( $key );
-    elseif ( function_exists( 'apache_getenv' ) && apache_getenv( $key, true ) ) return apache_getenv( $key, true );
-    return "";
+	if ( ! is_array( $a ) )
+	{
+		$a = array( $a );
+	}
+	foreach ( $a as $b )
+	{
+		if ( isset( $_SERVER[$b] ) )
+			return $_SERVER[$b];
+		elseif ( isset( $_ENV[$b] ) )
+			return $_ENV[$b];
+		elseif ( @getenv( $b ) )
+			return @getenv( $b );
+		elseif ( function_exists( 'apache_getenv' ) && apache_getenv( $b, true ) )
+			return apache_getenv( $b, true );
+	}
+	return "";
 }
 
 /**
  * nv_preg_quote()
  * 
- * @param mixed $string
+ * @param string $a
  * @return
  */
-function nv_preg_quote ( $string )
+function nv_preg_quote( $a )
 {
-    return preg_quote( $string, "/" );
+	return preg_quote( $a, "/" );
 }
 
 /**
@@ -121,81 +128,72 @@ function nv_preg_quote ( $string )
  * @param string $referer
  * @return
  */
-function nv_is_myreferer ( $referer = "" )
+function nv_is_myreferer( $referer = "" )
 {
-    if ( empty( $referer ) ) $referer = urldecode( nv_getenv( 'HTTP_REFERER' ) );
-    if ( empty( $referer ) ) return 2;
-    $server_name = preg_replace( '/^www\./e', '', nv_getenv( "HTTP_HOST" ) );
-    $referer_nohttp = preg_replace( array( '/^[a-zA-Z]+\:\/\//e', '/www\./e' ), array( '', '' ), $referer );
-    if ( preg_match( "/^" . preg_quote( $server_name ) . "/", $referer_nohttp ) ) return 1;
-    return 0;
+	if ( empty( $referer ) )
+		$referer = urldecode( nv_getenv( 'HTTP_REFERER' ) );
+	if ( empty( $referer ) )
+		return 2;
+	$server_name = preg_replace( '/^[w]+\./e', '', nv_getenv( "HTTP_HOST" ) );
+	$referer = preg_replace( array( '/^[a-zA-Z]+\:\/\/([w]+\.)?/e', '/^[w]+\./e' ), '', $referer );
+	if ( preg_match( "/^" . nv_preg_quote( $server_name ) . "/", $referer ) )
+		return 1;
+	return 0;
 }
 
 /**
  * nv_is_blocker_proxy()
  * 
- * @param mixed $is_proxy
- * @param mixed $proxy_blocker
+ * @param string $is_proxy
+ * @param integer $proxy_blocker
  * @return
  */
-function nv_is_blocker_proxy ( $is_proxy, $proxy_blocker )
+function nv_is_blocker_proxy( $is_proxy, $proxy_blocker )
 {
-    $blocker = false;
-    switch ( $proxy_blocker )
-    {
-        case 1:
-            if ( $is_proxy == 'Strong' ) $blocker = true;
-            break;
-        case 2:
-            if ( $is_proxy == 'Strong' || $is_proxy == 'Mild' ) $blocker = true;
-            break;
-        case 3:
-            if ( $is_proxy != 'No' ) $blocker = true;
-            break;
-    }
-    return $blocker;
+	if ( $proxy_blocker == 1 and $is_proxy == 'Strong' )
+		return true;
+	if ( $proxy_blocker == 2 and ( $is_proxy == 'Strong' || $is_proxy == 'Mild' ) )
+		return true;
+	if ( $proxy_blocker == 3 and $is_proxy != 'No' )
+		return true;
+	return false;
 }
 
 /**
  * nv_is_banIp()
  * 
- * @param mixed $ip
+ * @param string $ip
  * @return
  */
-function nv_is_banIp ( $ip )
+function nv_is_banIp( $ip )
 {
-    global $global_config;
-    if ( file_exists( NV_ROOTDIR . "/" . NV_DATADIR . "/banip.php" ) )
-    {
-        include ( NV_ROOTDIR . "/" . NV_DATADIR . "/banip.php" );
-        $array_banip = ( defined( 'NV_ADMIN' ) ) ? $array_banip_admin : $array_banip_site;
-        foreach ( $array_banip as $ip_i => $array_ip )
-        {
-            if ( $array_ip['begintime'] < NV_CURRENTTIME and ( $array_ip['endtime'] == 0 or $array_ip['endtime'] > NV_CURRENTTIME ) )
-            {
-                if ( preg_replace( $array_ip['mask'], "", $ip ) == preg_replace( $array_ip['mask'], "", $ip_i ) )
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
+	$array_banip_site = $array_banip_admin = array();
+
+	if ( file_exists( NV_ROOTDIR . "/" . NV_DATADIR . "/banip.php" ) )
+		include ( NV_ROOTDIR . "/" . NV_DATADIR . "/banip.php" );
+
+	$banIp = ( defined( 'NV_ADMIN' ) ) ? $array_banip_admin : $array_banip_site;
+	if ( empty( $banIp ) )
+		return false;
+
+	foreach ( $banIp as $e => $f )
+		if ( $f['begintime'] < NV_CURRENTTIME and ( $f['endtime'] == 0 or $f['endtime'] > NV_CURRENTTIME ) and ( preg_replace( $f['mask'], "", $ip ) == preg_replace( $f['mask'], "", $e ) ) )
+			return true;
+
+	return false;
 }
 
 /**
  * nv_checkagent()
  * 
- * @param mixed $agent
+ * @param string $a
  * @return
  */
-function nv_checkagent ( $agent )
+function nv_checkagent( $a )
 {
-    $agent = htmlspecialchars( substr( $agent, 0, 255 ) );
-    $agent = str_replace( ",", "-", $agent );
-    $agent = str_replace( "<", "(", $agent );
-    $agent = ( ! empty( $agent ) and $agent != "-" ) ? $agent : "none";
-    return $agent;
+	$a = htmlspecialchars( substr( $a, 0, 255 ) );
+	$a = str_replace( array( ",", "<" ), array( "-", "(" ), $a );
+	return ( ( ! empty( $a ) and $a != "-" ) ? $a : "none" );
 }
 
 /**
@@ -203,55 +201,89 @@ function nv_checkagent ( $agent )
  * 
  * @return
  */
-function nv_check_bot ( )
+function nv_check_bot()
 {
-    global $client_info;
-    $bot_info = array();
-    $file_bots = NV_ROOTDIR . "/" . NV_DATADIR . "/bots.config";
-    $bots = ( file_exists( $file_bots ) and filesize( $file_bots ) != 0 ) ? unserialize( file_get_contents( $file_bots ) ) : array();
-    if ( empty( $bots ) and file_exists( NV_ROOTDIR . "/includes/bots.php" ) )
-    {
-        include ( NV_ROOTDIR . "/includes/bots.php" );
-    }
-    if ( ! empty( $bots ) )
-    {
-        $bot = array();
-        foreach ( $bots as $name => $values )
-        {
-            $bot = false;
-            if ( $values['agent'] and preg_match( '#' . str_replace( '\*', '.*?', nv_preg_quote( $values['agent'], '#' ) ) . '#i', $client_info['agent'] ) ) $bot = true;
-            if ( ! empty( $values['ips'] ) and ( $bot or ! $values['agent'] ) )
-            {
-                $bot = false;
-                $ips = implode( "|", array_map( "nv_preg_quote", explode( "|", $values['ips'] ) ) );
-                if ( preg_match( "/^" . $ips . "/", $client_info['ip'] ) ) $bot = true;
-            }
-            if ( $bot )
-            {
-                $bot_info = array( 'name' => $name, 'agent' => $values['agent'], 'ip' => $client_info['ip'], 'allowed' => $values['allowed'] );
-                break;
-            }
-        }
-    }
-    return $bot_info;
+	global $client_info;
+
+	$file_bots = NV_ROOTDIR . "/" . NV_DATADIR . "/bots.config";
+	$bots = ( file_exists( $file_bots ) and filesize( $file_bots ) ) ? unserialize( file_get_contents( $file_bots ) ) : array();
+
+	if ( empty( $bots ) and file_exists( NV_ROOTDIR . "/includes/bots.php" ) )
+		include ( NV_ROOTDIR . "/includes/bots.php" );
+
+	if ( empty( $bots ) )
+		return array();
+
+	foreach ( $bots as $name => $values )
+	{
+		$is_bot = false;
+
+		if ( $values['agent'] and preg_match( '#' . str_replace( '\*', '.*?', nv_preg_quote( $values['agent'], '#' ) ) . '#i', $client_info['agent'] ) )
+			$is_bot = true;
+
+		if ( ! empty( $values['ips'] ) and ( $is_bot or ! $values['agent'] ) )
+		{
+			$is_bot = false;
+			$ips = implode( "|", array_map( "nv_preg_quote", explode( "|", $values['ips'] ) ) );
+			if ( preg_match( "/^" . $ips . "/", $client_info['ip'] ) )
+				$is_bot = true;
+		}
+
+		if ( $is_bot )
+			return array( 'name' => $name, 'agent' => $values['agent'], 'ip' => $client_info['ip'], 'allowed' => $values['allowed'] );
+	}
+
+	return array();
 }
 
 /**
  * nv_checkmobile()
  * 
+ * @param string $inifile
  * @return
  */
-function nv_checkmobile ( )
+function nv_checkmobile( $inifile )
 {
-    if ( isset( $_SERVER['HTTP_X_WAP_PROFILE'] ) || isset( $_SERVER['HTTP_PROFILE'] ) || isset( $_SERVER['X-OperaMini-Features'] ) || isset( $_SERVER['UA-pixels'] ) ) return 1;
-    if ( isset( $_SERVER['HTTP_ACCEPT'] ) && preg_match( "/wap\.|\.wap/i", $_SERVER["HTTP_ACCEPT"] ) ) return 1;
-    if ( preg_match( "/Creative\ AutoUpdate/i", NV_USER_AGENT ) ) return 0;
-    $uamatches = array( "midp", "j2me", "avantg", "docomo", "novarra", "palmos", "palmsource", "240x320", "opwv", "chtml", "pda", "windows\ ce", "mmp\/", "blackberry", "mib\/", "symbian", "wireless", "nokia", "hand", "mobi", "phone", "cdm", "up\.b", "audio", "SIE\-", "SEC\-", "samsung", "HTC", "mot\-", "mitsu", "sagem", "sony", "alcatel", "lg", "erics", "vx", "NEC", "philips", "mmm", "xx", "panasonic", "sharp", "wap", "sch", "rover", "pocket", "benq", "java", "pt", "pg", "vox", "amoi", "bird", "compal", "kg", "voda", "sany", "kdd", "dbt", "sendo", "sgh", "gradi", "jb", "\d\d\di", "moto" );
-    foreach ( $uamatches as $uastring )
-    {
-        if ( preg_match( "/" . $uastring . "/i", NV_USER_AGENT ) ) return 1;
-    }
-    return 0;
+	$user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+	if ( preg_match( "/Creative\ AutoUpdate/i", $user_agent ) )
+		return array();
+
+	$browsers = array();
+	if ( file_exists( $inifile ) )
+		$browsers = nv_parse_ini_file( $inifile, true );
+
+	if ( ! empty( $browsers ) )
+	{
+		foreach ( $browsers as $key => $info )
+			if ( preg_match( $info['rule'], $user_agent ) )
+				return array( 'key' => $key, 'name' => $info['name'] );
+	}
+
+	if ( isset( $_SERVER['X-OperaMini-Features'] ) )
+		return array( 'key' => 'opera', 'name' => 'Opera Mini' );
+
+	if ( isset( $_SERVER['UA-pixels'] ) )
+		return array( 'key' => 'mobile', 'name' => 'UA-pixels' );
+
+	if ( isset( $_SERVER['HTTP_X_WAP_PROFILE'] ) || isset( $_SERVER['HTTP_PROFILE'] ) )
+		return array( 'key' => 'mobile', 'name' => 'Unknown' );
+
+	if ( isset( $_SERVER['HTTP_ACCEPT'] ) && preg_match( "/wap\.|\.wap/i", $_SERVER["HTTP_ACCEPT"] ) )
+		return array( 'key' => 'mobile', 'name' => 'Unknown' );
+
+	if ( preg_match( '/(mini 9.5|vx1000|lge |m800|e860|u940|ux840|compal|wireless| mobi|ahong|lg380|lgku|lgu900|lg210|lg47|lg920|lg840|lg370|sam-r|mg50|s55|g83|t66|vx400|mk99|d615|d763|el370|sl900|mp500|samu3|samu4|vx10|xda_|samu5|samu6|samu7|samu9|a615|b832|m881|s920|n210|s700|c-810|_h797|mob-x|sk16d|848b|mowser|s580|r800|471x|v120|rim8|c500foma:|160x|x160|480x|x640|t503|w839|i250|sprint|w398samr810|m5252|c7100|mt126|x225|s5330|s820|htil-g1|fly v71|s302|-x113|novarra|k610i|-three|8325rc|8352rc|sanyo|vx54|c888|nx250|n120|mtk |c5588|s710|t880|c5005|i;458x|p404i|s210|c5100|teleca|s940|c500|s590|foma|samsu|vx8|vx9|a1000|_mms|myx|a700|gu1100|bc831|e300|ems100|me701|me702m-three|sd588|s800|8325rc|ac831|mw200|brew |d88|htc\/|htc_touch|355x|m50|km100|d736|p-9521|telco|sl74|ktouch|m4u\/|me702|8325rc|kddi|phone|lg |sonyericsson|samsung|240x|x320|vx10|nokia|sony cmd|motorola|up.browser|up.link|mmp|symbian|smartphone|midp|wap|vodafone|o2|pocket|kindle|mobile|psp|treo)/i', $user_agent ) )
+		return array( 'key' => 'mobile', 'name' => 'Unknown' );
+
+	$mbs = array( '1207', '3gso', '4thp', '501i', '502i', '503i', '504i', '505i', '506i', '6310', '6590', '770s', '802s', 'a wa', 'acer', 'acs-', 'airn', 'alav', 'asus', 'attw', 'au-m', 'aur ', 'aus ', 'abac', 'acoo', 'aiko', 'alco', 'alca', 'amoi', 'anex', 'anny', 'anyw', 'aptu', 'arch', 'argo', 'bell', 'bird', 'bw-n', 'bw-u', 'beck', 'benq', 'bilb', 'blac', 'c55/', 'cdm-', 'chtm', 'capi', 'cond', 'craw', 'dall', 'dbte', 'dc-s', 'dica', 'ds-d', 'ds12', 'dait', 'devi', 'dmob', 'doco', 'dopo', 'el49', 'erk0', 'esl8', 'ez40', 'ez60', 'ez70', 'ezos', 'ezze', 'elai', 'emul', 'eric', 'ezwa', 'fake', 'fly-', 'fly_', 'g-mo', 'g1 u', 'g560', 'gf-5', 'grun', 'gene', 'go.w', 'good', 'grad', 'hcit', 'hd-m', 'hd-p', 'hd-t', 'hei-', 'hp i', 'hpip', 'hs-c', 'htc ', 'htc-', 'htca', 'htcg', 'htcp', 'htcs', 'htct', 'htc_', 'haie', 'hita', 'huaw', 'hutc', 'i-20', 'i-go', 'i-ma', 'i230', 'iac', 'iac-', 'iac/', 'ig01', 'im1k', 'inno', 'iris', 'jata', 'java', 'kddi', 'kgt', 'kgt/', 'kpt ', 'kwc-', 'klon',
+		'lexi', 'lg g', 'lg-a', 'lg-b', 'lg-c', 'lg-d', 'lg-f', 'lg-g', 'lg-k', 'lg-l', 'lg-m', 'lg-o', 'lg-p', 'lg-s', 'lg-t', 'lg-u', 'lg-w', 'lg/k', 'lg/l', 'lg/u', 'lg50', 'lg54', 'lge-', 'lge/', 'lynx', 'leno', 'm1-w', 'm3ga', 'm50/', 'maui', 'mc01', 'mc21', 'mcca', 'medi', 'meri', 'mio8', 'mioa', 'mo01', 'mo02', 'mode', 'modo', 'mot ', 'mot-', 'mt50', 'mtp1', 'mtv ', 'mate', 'maxo', 'merc', 'mits', 'mobi', 'motv', 'mozz', 'n100', 'n101', 'n102', 'n202', 'n203', 'n300', 'n302', 'n500', 'n502', 'n505', 'n700', 'n701', 'n710', 'nec-', 'nem-', 'newg', 'neon', 'netf', 'noki', 'nzph', 'o2 x', 'o2-x', 'opwv', 'owg1', 'opti', 'oran', 'p800', 'pand', 'pg-1', 'pg-2', 'pg-3', 'pg-6', 'pg-8', 'pg-c', 'pg13', 'phil', 'pn-2', 'pt-g', 'palm', 'pana', 'pire', 'pock', 'pose', 'psio', 'qa-a', 'qc-2', 'qc-3', 'qc-5', 'qc-7', 'qc07', 'qc12', 'qc21', 'qc32', 'qc60', 'qci-', 'qwap', 'qtek', 'r380', 'r600', 'raks', 'rim9', 'rove', 's55/', 'sage', 'sams', 'sc01', 'sch-', 'scp-', 'sdk/', 'se47', 'sec-', 'sec0',
+		'sec1', 'semc', 'sgh-', 'shar', 'sie-', 'sk-0', 'sl45', 'slid', 'smb3', 'smt5', 'sp01', 'sph-', 'spv ', 'spv-', 'sy01', 'samm', 'sany', 'sava', 'scoo', 'send', 'siem', 'smar', 'smit', 'soft', 'sony', 't-mo', 't218', 't250', 't600', 't610', 't618', 'tcl-', 'tdg-', 'telm', 'tim-', 'ts70', 'tsm-', 'tsm3', 'tsm5', 'tx-9', 'tagt', 'talk', 'teli', 'topl', 'hiba', 'up.b', 'upg1', 'utst', 'v400', 'v750', 'veri', 'vk-v', 'vk40', 'vk50', 'vk52', 'vk53', 'vm40', 'vx98', 'virg', 'vite', 'voda', 'vulc', 'w3c ', 'w3c-', 'wapj', 'wapp', 'wapu', 'wapm', 'wig ', 'wapi', 'wapr', 'wapv', 'wapy', 'wapa', 'waps', 'wapt', 'winc', 'winw', 'wonu', 'x700', 'xda2', 'xdag', 'yas-', 'your', 'zte-', 'zeto', 'acs-', 'alav', 'alca', 'amoi', 'aste', 'audi', 'avan', 'benq', 'bird', 'blac', 'blaz', 'brew', 'brvw', 'bumb', 'ccwa', 'cell', 'cldc', 'cmd-', 'dang', 'doco', 'eml2', 'eric', 'fetc', 'hipt', 'http', 'ibro', 'idea', 'ikom', 'inno', 'ipaq', 'jbro', 'jemu', 'java', 'jigs', 'kddi', 'keji', 'kyoc', 'kyok', 'leno',
+		'lg-c', 'lg-d', 'lg-g', 'lge-', 'libw', 'm-cr', 'maui', 'maxo', 'midp', 'mits', 'mmef', 'mobi', 'mot-', 'moto', 'mwbp', 'mywa', 'nec-', 'newt', 'nok6', 'noki', 'o2im', 'opwv', 'palm', 'pana', 'pant', 'pdxg', 'phil', 'play', 'pluc', 'port', 'prox', 'qtek', 'qwap', 'rozo', 'sage', 'sama', 'sams', 'sany', 'sch-', 'sec-', 'send', 'seri', 'sgh-', 'shar', 'sie-', 'siem', 'smal', 'smar', 'sony', 'sph-', 'symb', 't-mo', 'teli', 'tim-', 'tosh', 'treo', 'tsm-', 'upg1', 'upsi', 'vk-v', 'voda', 'vx52', 'vx53', 'vx60', 'vx61', 'vx70', 'vx80', 'vx81', 'vx83', 'vx85', 'wap-', 'wapa', 'wapi', 'wapp', 'wapr', 'webc', 'whit', 'winw', 'wmlb', 'xda-', );
+	$user_agent = strtolower( substr( $user_agent, 0, 4 ) );
+	if ( in_array( $user_agent, $mbs ) )
+		return array( 'key' => 'mobile', 'name' => 'Unknown' );
+
+	return array();
 }
 
 /**

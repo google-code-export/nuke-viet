@@ -258,10 +258,13 @@ $client_info['is_bot'] = ( ! empty( $client_info['bot_info'] ) ) ? 1 : 0;
 //Neu la bot va bot bi cam truy cap
 if ( $client_info['is_bot'] and empty( $client_info['bot_info']['allowed'] ) ) trigger_error( 'Sorry! Website does not support the bot', 256 );
 
+//Xac dinh borwser cua client
+$client_info['browser'] = $client_info['is_bot'] ? array( 'key' => "Unknown", 'name' => 'Unknown' ) : array_combine( array( 'key', 'name' ), explode( "|", nv_getBrowser( NV_USER_AGENT, NV_ROOTDIR . '/includes/ini/br.ini' ) ) );
+
 //Xac dinh co phai truy cap bang mobile hay khong
-$client_info['is_mobile'] = nv_checkmobile();
+$client_info['is_mobile'] = $client_info['browser']['key'] == 'Unknown' ? nv_checkmobile( NV_ROOTDIR . '/includes/ini/mobile.ini' ) : array();
 //Chan hoac chuyen huong neu truy cap tu mobile
-//if ($client_info['is_mobile'])
+//if (!empty($client_info['is_mobile']))
 //	trigger_error('Sorry! Website does not support the browser your mobile', 256);
 
 
@@ -271,9 +274,6 @@ if ( defined( 'NV_IS_FLOOD_BLOCKER' ) and NV_IS_FLOOD_BLOCKER == 1 and ! $nv_Req
 {
     require_once ( NV_ROOTDIR . '/includes/core/flood_blocker.php' );
 }
-
-//Xac dinh borwser cua client
-$client_info['browser'] = $client_info['is_bot'] ? array( 'key' => "Unknown", 'name' => 'Unknown' ) : array_combine( array( 'key', 'name' ), explode( "|", nv_getBrowser( NV_USER_AGENT, NV_ROOTDIR . '/includes/ini/br.ini' ) ) );
 
 //Xac dinh OS cua client
 $client_info['client_os'] = $client_info['is_bot'] ? array( 'key' => "Robot", 'name' => $client_info['bot_info']['name'] ) : array_combine( array( 'key', 'name' ), explode( "|", nv_getOs( NV_USER_AGENT, NV_ROOTDIR . '/includes/ini/os.ini' ) ) );
