@@ -18,6 +18,9 @@ $lang_translator['copyright'] ="@Copyright (C) 2010 VINADES.,JSC. All rights res
 $lang_translator['info'] ="";
 $lang_translator['langtype'] ="lang_module";
 
+$lang_module['pagetitle'] = "Tag \"title\" Config";
+$lang_module['pagetitle2'] = "\"title\" tag display mode";
+$lang_module['pagetitleNote'] = "<strong>Accept the following variables:</strong><br /><br />- <strong>pagetitle</strong>: Page title is determined in each specific case,<br />- <strong>funcname</strong>: Function name,<br />- <strong>modulename</strong>: Module name,<br />- <strong>sitename</strong>: Site name";
 $lang_module['metaTagsConfig'] = "Meta-Tags Config";
 $lang_module['metaTagsGroupName'] = "Group type";
 $lang_module['metaTagsGroupValue'] = "Group Name";

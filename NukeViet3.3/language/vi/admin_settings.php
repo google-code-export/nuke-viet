@@ -18,6 +18,9 @@ $lang_translator['copyright'] ="@Copyright (C) 2010 VINADES.,JSC. All rights res
 $lang_translator['info'] ="";
 $lang_translator['langtype'] ="lang_module";
 
+$lang_module['pagetitle'] = "Cấu hình tag \"title\"";
+$lang_module['pagetitle2'] = "Phương án hiển thị tag \"title\"";
+$lang_module['pagetitleNote'] = "<strong>Chấp nhận các biến:</strong><br /><br />- <strong>pagetitle</strong>: Tiêu đề trang được xác định trong từng trường hợp cụ thể,<br />- <strong>funcname</strong>: Tên function,<br />- <strong>modulename</strong>: Tên module,<br />- <strong>sitename</strong>: Tên của site";
 $lang_module['metaTagsConfig'] = "Cấu hình Meta-Tags";
 $lang_module['metaTagsGroupName'] = "Kiểu Nhóm";
 $lang_module['metaTagsGroupValue'] = "Tên Nhóm";

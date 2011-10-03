@@ -358,37 +358,29 @@ function nv_html_meta_tags ( )
 
 /**
  * nv_html_page_title()
- * 
+ *
  * @return
  */
-function nv_html_page_title ( )
+function nv_html_page_title()
 {
-    global $home, $module_info, $op, $global_config, $page_title;
-    $array_title = array();
-    $array_title[] = $global_config['site_name'];
-    if ( $home )
-    {
-        if ( ! empty( $global_config['site_description'] ) )
-        {
-            $array_title[] = $global_config['site_description'];
-        }
-    }
-    else
-    {
-        //$array_title[] = $module_info['custom_title'];
-        if ( ! empty( $page_title ) )
-        {
-            $array_title[] = $page_title;
-        }
-        elseif ( $op != "main" )
-        {
-            $array_title[] = $module_info['funcs'][$op]['func_custom_name'];
-        }
-        sort( $array_title, SORT_NUMERIC );
-    }
-    $defis = trim( NV_TITLEBAR_DEFIS );
-    $defis = ! empty( $defis ) ? ' ' . urldecode( $defis ) . ' ' : ' - ';
-    return "<title>" . strip_tags( implode( $defis, $array_title ) ) . "</title>\n";
+	global $home, $module_info, $op, $global_config, $page_title;
+
+	$replace = array( "\\", "/", ":", "*", "?", "\"", "<", ">", "|" );
+	if ( $home )
+	{
+		return "<title>" . nv_htmlspecialchars( str_replace( $replace, "", strip_tags( $global_config['site_name'] ) ) ) . "</title>\n";
+	}
+	else
+	{
+		if ( ! isset( $global_config['pageTitleMode'] ) or empty( $global_config['pageTitleMode'] ) )
+			$global_config['pageTitleMode'] = "pagetitle - sitename";
+
+		if ( empty( $page_title ) and ! preg_match( "/(funcname|modulename|sitename)/i", $global_config['pageTitleMode'] ) )
+			return "<title>" . nv_htmlspecialchars( str_replace( $replace, "", strip_tags( $module_info['funcs'][$op]['func_custom_name'] . " " . NV_TITLEBAR_DEFIS . " " . $module_info['custom_title'] ) ) ) . "</title>\n";
+
+		$_title = preg_replace( array( "/pagetitle/i", "/funcname/i", "/modulename/i", "/sitename/i" ), array( $page_title, $module_info['funcs'][$op]['func_custom_name'], $module_info['custom_title'], $global_config['site_name'] ), $global_config['pageTitleMode'] );
+		return "<title>" . nv_htmlspecialchars( str_replace( $replace, "", strip_tags( $_title ) ) ) . "</title>\n";
+	}
 }
 
 /**
