@@ -109,7 +109,7 @@ if ( $allowed )
     }
 	if ($catid!=$news_contents['catid'])
 	{
-		$my_head .= "<link rel=\"canonical\" href=\"".$global_config['site_url'] . "/index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$news_contents['catid']]['alias'] . "/" . $news_contents['alias'] . "-" . $news_contents['id']."\"/>";
+		$canonicalUrl = $global_config['site_url'] . "/index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$news_contents['catid']]['alias'] . "/" . $news_contents['alias'] . "-" . $news_contents['id'];
 	}
     
     $news_contents['url_sendmail'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=sendmail/" . $global_array_cat[$catid]['alias'] . "/" . $news_contents['alias'] . "-" . $news_contents['id'];
