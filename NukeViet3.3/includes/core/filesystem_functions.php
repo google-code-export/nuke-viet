@@ -865,4 +865,44 @@ function nv_ImageInfo ( $original_name, $width = 0, $is_create_thumb = false, $t
     return $imageinfo;
 }
 
+/**
+ * nv_imageResize()
+ * 
+ * @param integer $origX
+ * @param integer $origY
+ * @param integer $maxX
+ * @param integer $maxY
+ * @return
+ */
+function nv_imageResize( $origX, $origY, $maxX, $maxY )
+{
+    $return = array( 'width' => $origX, 'height' => $origY );
+    if ( $origX > $maxX or $origY > $maxY )
+    {
+        if ( $origX >= $origY )
+        {
+            $return['width'] = $maxX;
+            $return['height'] = ceil( $maxX * $origY / $origX );
+
+            if ( $return['height'] > $maxY )
+            {
+                $return['width'] = ceil( $return['width'] / $return['height'] * $maxY );
+                $return['height'] = $maxY;
+            }
+        }
+        else
+        {
+            $return['width'] = ceil( $origX / $origY * $maxY );
+            $return['height'] = $maxY;
+
+            if ( $return['width'] > $maxX )
+            {
+                $return['height'] = ceil( $maxX * $return['height'] / $return['width'] );
+                $return['width'] = $maxX;
+            }
+        }
+    }
+    return $return;
+}
+
 ?>
