@@ -17,7 +17,7 @@ if ( $num_table > 0 )
     $result = $db->sql_query( "SELECT `catid` FROM `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_cat` ORDER BY `order` ASC" );
     while ( list( $catid_i ) = $db->sql_fetchrow( $result ) )
     {
-        $sql_drop_module[] = "DROP TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_" . $catid_i . "`";
+        $sql_drop_module[] = "DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_" . $catid_i . "`";
     }
     $db->sql_freeresult();
 }
