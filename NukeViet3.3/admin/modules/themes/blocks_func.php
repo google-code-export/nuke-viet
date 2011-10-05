@@ -96,7 +96,7 @@ $contents .= "<tfoot><tr align=\"right\"><td colspan='7'>
 $a = 0;
 
 $blocks_positions = array();
-$sql_bl = "SELECT t1.position, count(*) FROM `" . NV_BLOCKS_TABLE . "_groups` AS t1 INNER JOIN `" . NV_BLOCKS_TABLE . "_weight` AS t2 ON t1.bid = t2.bid WHERE t2.func_id='" . $func_id . "' AND t1.theme ='" . $selectthemes . "' GROUP BY t1.position";
+$sql_bl = "SELECT t1.position, COUNT(*) FROM `" . NV_BLOCKS_TABLE . "_groups` AS t1 INNER JOIN `" . NV_BLOCKS_TABLE . "_weight` AS t2 ON t1.bid = t2.bid WHERE t2.func_id='" . $func_id . "' AND t1.theme ='" . $selectthemes . "' GROUP BY t1.position";
 $result = $db->sql_query( $sql_bl );
 while ( list( $position, $numposition ) = $db->sql_fetchrow( $result ) )
 {
@@ -128,8 +128,8 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $contents .= "</td>\n";
     $contents .= "<td>";
     $contents .= "<select name=\"listpos\" title='" . $row['bid'] . "'>\n";
-    $count = count( $positions );
-    for ( $i = 0; $i < $count; ++$i )
+
+    for ( $i = 0, $count = sizeof( $positions ); $i < $count; ++$i )
     {
         $sel = ( $row['position'] == $positions[$i]->tag ) ? ' selected="selected"' : '';
         $contents .= "<option value=\"" . $positions[$i]->tag . "\" " . $sel . "> " . $positions[$i]->name . '</option>';

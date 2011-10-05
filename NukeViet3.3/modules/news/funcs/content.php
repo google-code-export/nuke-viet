@@ -501,7 +501,7 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
                         $array_temp['content'] = $lang_module['save_content_waite'];
                     }
                 }
-                elseif ( $rowcontent['status'] == 1 and count( $catids ) > 0 )
+                elseif ( $rowcontent['status'] == 1 and sizeof( $catids ) )
                 {
                     $catid = $catids[0];
                     $array_temp['urlrefresh'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $rowcontent['alias'] . "-" . $rowcontent['id'];
@@ -731,7 +731,7 @@ elseif ( defined( 'NV_IS_USER' ) )
         // parse list catid
         $n = 1;
         $array_catid = explode( ',', $array_row_i['listcatid'] );
-        $num_cat = count( $array_catid );
+        $num_cat = sizeof( $array_catid );
         foreach ( $array_catid as $catid_i )
         {
             if ( isset( $global_array_cat[$catid_i] ) )

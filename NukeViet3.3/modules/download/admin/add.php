@@ -243,8 +243,8 @@ else
 if ( ! empty( $array['description'] ) ) $array['description'] = nv_htmlspecialchars( $array['description'] );
 if ( ! empty( $array['introtext'] ) ) $array['introtext'] = nv_htmlspecialchars( $array['introtext'] );
 
-$array['fileupload_num'] = count( $array['fileupload'] );
-$array['linkdirect_num'] = count( $array['linkdirect'] );
+$array['fileupload_num'] = sizeof( $array['fileupload'] );
+$array['linkdirect_num'] = sizeof( $array['linkdirect'] );
 
 // Build fileimage
 if ( ! empty ( $array['fileimage'] ) )
@@ -270,8 +270,8 @@ if( ! empty( $array['fileupload'] ) )
 	}
 }
 
-if ( ! count( $array['linkdirect'] ) ) array_push( $array['linkdirect'], "" );
-if ( ! count( $array['fileupload'] ) ) array_push( $array['fileupload'], "" );
+if ( ! sizeof( $array['linkdirect'] ) ) array_push( $array['linkdirect'], "" );
+if ( ! sizeof( $array['fileupload'] ) ) array_push( $array['fileupload'], "" );
 
 $listcats = nv_listcats( $array['catid'] );
 if ( empty( $listcats ) )

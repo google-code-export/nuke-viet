@@ -141,7 +141,7 @@
 						}
 					}
 				}
-				if ($check_edit == count($arr_catid))
+				if ($check_edit == sizeof($arr_catid))
 				{
 					$check_permission = true;
 				}
@@ -704,7 +704,7 @@
 		if (!empty($check_show))
 		{
 			$space = intval($array_value['lev']) * 30;
-			$catiddisplay = (count($array_catid_in_row) > 1 and (in_array($catid_i, $array_catid_in_row))) ? '' : ' display: none;';
+			$catiddisplay = (sizeof($array_catid_in_row) > 1 and (in_array($catid_i, $array_catid_in_row))) ? '' : ' display: none;';
 			$temp = array('catid' => $catid_i, "space" => $space, "title" => $array_value['title'], "disabled" => (!in_array($catid_i, $array_cat_check_content)) ? " disabled=\"disabled\"" : "", "checked" => (in_array($catid_i, $array_catid_in_row)) ? " checked=\"checked\"" : "", "catidchecked" => ($catid_i == $rowcontent['catid']) ? " checked=\"checked\"" : "", "catiddisplay" => $catiddisplay);
 			$xtpl->assign('CATS', $temp);
 			$xtpl->parse('main.catid');
@@ -790,7 +790,7 @@
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////
 	$shtm = "";
-	if (count($array_block_cat_module) > 0)
+	if (sizeof($array_block_cat_module) )
 	{
 		foreach ($array_block_cat_module as $bid_i => $bid_title)
 		{

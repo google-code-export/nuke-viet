@@ -468,11 +468,11 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
 		}
 	}
 
-    if ( ! count( $array['fileupload2'] ) ) array_push( $array['fileupload2'], "" );
-    if ( ! count( $array['linkdirect'] ) ) array_push( $array['linkdirect'], "" );
+    if ( ! sizeof( $array['fileupload2'] ) ) array_push( $array['fileupload2'], "" );
+    if ( ! sizeof( $array['linkdirect'] ) ) array_push( $array['linkdirect'], "" );
 
-    $array['fileupload2_num'] = count( $array['fileupload2'] );
-    $array['linkdirect_num'] = count( $array['linkdirect'] );
+    $array['fileupload2_num'] = sizeof( $array['fileupload2'] );
+    $array['linkdirect_num'] = sizeof( $array['linkdirect'] );
 	
 	// Build fileimage
 	if ( ! empty ( $array['fileimage'] ) )

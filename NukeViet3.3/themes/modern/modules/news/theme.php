@@ -93,7 +93,7 @@ function viewcat_page_new ( $array_catpage, $array_cat_other )
     {
         $array_row_i['publtime'] = nv_date( 'd-m-Y h:i:s A', $array_row_i['publtime'] );
         $array_row_i['listcatid'] = explode( ',', $array_row_i['listcatid'] );
-        $num_cat = count( $array_row_i['listcatid'] );
+        $num_cat = sizeof( $array_row_i['listcatid'] );
         $n = 1;
         foreach ( $array_row_i['listcatid'] as $listcatid )
         {
@@ -321,7 +321,7 @@ function viewcat_two_column ( $array_content, $array_catpage )
     $xtpl->assign( 'IMGWIDTH01', $module_config[$module_name]['homewidth'] );
     foreach ( $array_catpage as $key => $array_catpage_i )
     {
-        $number_content = isset( $array_catpage[$key]['content'] ) ? count( $array_catpage[$key]['content'] ) : 0;
+        $number_content = isset( $array_catpage[$key]['content'] ) ? sizeof( $array_catpage[$key]['content'] ) : 0;
         if ( $number_content > 0 )
         {
             $array_catpage_i['rss'] = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=rss/" . $array_catpage_i['alias'] . "";
@@ -461,7 +461,7 @@ function detail_theme ( $news_contents, $related_new_array, $related_array, $top
     if ( ! empty( $news_contents['keywords'] ) )
     {
         $news_contents['keywords'] = explode( ',', $news_contents['keywords'] );
-        $count = count( $news_contents['keywords'] );
+        $count = sizeof( $news_contents['keywords'] );
         foreach ( $news_contents['keywords'] as $i => $value )
         {
             $value = trim( $value );

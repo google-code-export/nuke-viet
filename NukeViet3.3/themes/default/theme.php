@@ -50,7 +50,7 @@ function nv_site_theme ( $contents )
     
     $xtpl->assign( 'SITE_NAME', $global_config['site_name'] );
     
-    if ( $global_config['lang_multi'] and count( $global_config['allow_sitelangs'] ) > 1 )
+    if ( $global_config['lang_multi'] and sizeof( $global_config['allow_sitelangs'] ) > 1 )
     {
         $xtpl->assign( 'SELECTLANGSITE', $lang_global['langsite'] );
         foreach ( $global_config['allow_sitelangs'] as $lang_i )

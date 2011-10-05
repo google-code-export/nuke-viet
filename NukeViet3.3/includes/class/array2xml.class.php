@@ -58,7 +58,7 @@ class Array2XML
             $rootname = $this->rootname_default;
         }
 
-        if ( count( $array ) > 1 )
+        if ( sizeof( $array ) > 1 )
         {
             return $rootname;
         }
@@ -136,7 +136,7 @@ class Array2XML
         $root = $this->xml->createElement( $rootname );
         $root = $this->xml->appendchild( $root );
 
-        if ( count( $array ) > 1 )
+        if ( sizeof( $array ) > 1 )
         {
             $this->addArray( $array, $root, $rootname );
         }

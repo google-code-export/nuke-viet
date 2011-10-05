@@ -92,7 +92,7 @@ function nv_check_allow_upload_dir( $dir )
             }
         }
 
-        if ( preg_match( "/^([\d]{4})\_([\d]{1,2})$/", $arr_dir[count( $arr_dir ) - 1] ) )
+        if ( preg_match( "/^([\d]{4})\_([\d]{1,2})$/", $arr_dir[sizeof( $arr_dir ) - 1] ) )
         {
             unset( $level['rename_dir'], $level['delete_dir'] );
         }
@@ -152,7 +152,7 @@ function nv_delete_cache_upload( $path )
 
     $files = scandir( NV_ROOTDIR . '/' . $path );
     $files = array_diff( $files, array( ".", ".." ) );
-    if ( count( $files ) )
+    if ( sizeof( $files ) )
     {
         foreach ( $files as $file )
         {

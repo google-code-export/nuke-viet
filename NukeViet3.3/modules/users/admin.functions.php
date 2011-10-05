@@ -220,7 +220,7 @@ function main_theme ( $contents )
     $return .= "</tr>\n";
     $return .= "</thead>\n";
     $a = 0;
-    $num = count($contents['row']);
+    $num = sizeof($contents['row']);
     foreach ( $contents['row'] as $id => $values )
     {
         $class = ( $a % 2 ) ? " class=\"second\"" : "";

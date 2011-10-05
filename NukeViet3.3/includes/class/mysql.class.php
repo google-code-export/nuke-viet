@@ -670,8 +670,8 @@ class sql_db
         $replacement = func_get_args();
         unset( $replacement[0] );
         
-        $count1 = count( $matches[0] );
-        $count2 = count( $replacement );
+        $count1 = sizeof( $matches[0] );
+        $count2 = sizeof( $replacement );
         
         if ( ! empty( $count1 ) )
         {

@@ -503,14 +503,14 @@ function nv_deletefile ( $file, $delsub = false )
     {
         $files = scandir( $realpath );
         $files2 = array_diff( $files, array( ".", "..", ".htaccess", "index.html" ) );
-        if ( count( $files2 ) and ! $delsub )
+        if ( sizeof( $files2 ) and ! $delsub )
         {
             return array( 0, sprintf( $lang_global['error_delete_subdirectories_not_empty'], $path[2] ) );
         }
         else
         {
             $files = array_diff( $files, array( ".", ".." ) );
-            if ( count( $files ) )
+            if ( sizeof( $files ) )
             {
                 foreach ( $files as $f )
                 {

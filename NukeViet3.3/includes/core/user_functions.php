@@ -598,7 +598,7 @@ function nv_admin_menu()
 
 		$xtpl->assign( 'URL_DBLOCK', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;drag_block=" . $new_drag_block );
 		$xtpl->assign( 'LANG_DBLOCK', $lang_drag_block );
-		$xtpl->assign( 'COUNT_SHOW_QUERIES', count( $db->query_strs ) . " / " . $total_time );
+		$xtpl->assign( 'COUNT_SHOW_QUERIES', sizeof( $db->query_strs ) . " / " . $total_time );
 
 		foreach ( $db->query_strs as $key => $field )
 		{

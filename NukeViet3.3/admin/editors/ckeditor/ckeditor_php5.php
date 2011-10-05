@@ -382,7 +382,7 @@ class CKEditor
 				if (empty($handlers)) {
 					continue;
 				}
-				else if (count($handlers) == 1) {
+				else if (sizeof($handlers) == 1) {
 					$_config['on'][$eventName] = '@@'.$handlers[0];
 				}
 				else {
@@ -536,7 +536,7 @@ class CKEditor
 			return str_replace(',', '.', $val);
 		}
 		if (is_array($val) || is_object($val)) {
-			if (is_array($val) && (array_keys($val) === range(0,count($val)-1))) {
+			if (is_array($val) && (array_keys($val) === range(0,sizeof($val)-1))) {
 				return '[' . implode(',', array_map(array($this, 'jsEncode'), $val)) . ']';
 			}
 			$temp = array();

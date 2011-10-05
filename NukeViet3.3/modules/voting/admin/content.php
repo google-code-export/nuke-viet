@@ -27,7 +27,7 @@ if ( ! empty( $submit ) )
 
     $array_answervote = $nv_Request->get_array( 'answervote', 'post' );
     $answervotenews = $nv_Request->get_array( 'answervotenews', 'post' );
-	if ( $maxoption > count ($answervotenews) + count($array_answervote) ||  $maxoption <= 0 ) $maxoption = count ($answervotenews) + count($array_answervote);
+	if ( $maxoption > ( $sizeof = sizeof ($answervotenews) + sizeof($array_answervote)) ||  $maxoption <= 0 ) $maxoption = $sizeof;
     if ( ! empty( $publ_date ) and ! preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $publ_date ) ) $publ_date = "";
     if ( ! empty( $exp_date ) and ! preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $exp_date ) ) $exp_date = "";
 	

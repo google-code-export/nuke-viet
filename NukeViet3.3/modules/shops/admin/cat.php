@@ -44,7 +44,7 @@ if ( ! empty( $savecat ) )
     {
         $error = $lang_module['error_cat_name'];
     }
-    list( $check_alias ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM " . $table_name . " WHERE catid!=" . $data['catid'] . " and `" . NV_LANG_DATA . "_alias`=" . $db->dbescape( $data['alias'] ) . "" ) );
+    list( $check_alias ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM " . $table_name . " WHERE catid!=" . $data['catid'] . " and `" . NV_LANG_DATA . "_alias`=" . $db->dbescape( $data['alias'] ) . "" ) );
     if ( $check_alias and $data['parentid'] > 0 )
     {
         list( $parentid_alias ) = $db->sql_fetchrow( $db->sql_query( "SELECT `" . NV_LANG_DATA . "_alias` FROM " . $table_name . " WHERE catid=" . $data['parentid'] . "" ) );

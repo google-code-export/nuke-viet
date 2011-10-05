@@ -180,7 +180,7 @@ if ( $allow_change )
     }
     if ( defined( "NV_IS_GODADMIN" ) )
     {
-        if ( ( $new_suspend and ! empty( $susp_reason ) ) or ( empty( $new_suspend ) and count( $susp_reason ) >= 1 ) )
+        if ( ( $new_suspend and ! empty( $susp_reason ) ) or ( empty( $new_suspend ) and sizeof( $susp_reason ) >= 1 ) )
         {
             $contents['change_suspend']['clean_history'] = array( 
                 $lang_module['clean_history'], $clean_history 

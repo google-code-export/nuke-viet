@@ -141,7 +141,7 @@ class NL_Checkout
     {
         $data_orders_return = array();
         $param = "<ORDERS>
-			<TOTAL>" . count( $array_order ) . "</TOTAL>";
+			<TOTAL>" . sizeof( $array_order ) . "</TOTAL>";
         foreach ( $array_order as $arr_order_i )
         {
             $payment_id = ( empty( $arr_order_i['payment_id'] ) ) ? "" : $arr_order_i['payment_id'];

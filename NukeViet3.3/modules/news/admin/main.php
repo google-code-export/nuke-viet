@@ -287,11 +287,11 @@ while ( list( $id, $catid_i, $listcatid, $post_id, $title, $alias, $status, $pub
                 }
             }
         }
-        if ( $check_edit == count( $array_temp ) )
+        if ( $check_edit == sizeof( $array_temp ) )
         {
             $check_permission_edit = true;
         }
-        if ( $check_del == count( $array_temp ) )
+        if ( $check_del == sizeof( $array_temp ) )
         {
             $check_permission_delete = true;
         }

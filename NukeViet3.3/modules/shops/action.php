@@ -377,7 +377,7 @@ foreach ( $data as $config_name => $config_value )
 
 if ( ! empty( $set_lang_data ) )
 {
-    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_catalogs`" ) );
+    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_catalogs`" ) );
     if ( $numrow )
     {
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_catalogs` SET `" . $lang . "_title` = `" . $global_config['site_lang'] . "_title`";
@@ -386,7 +386,7 @@ if ( ! empty( $set_lang_data ) )
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_catalogs` SET `" . $lang . "_keywords` = `" . $set_lang_data . "_keywords`";
     }
     
-    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_rows`" ) );
+    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_rows`" ) );
     if ( $numrow )
     {
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_rows` SET `" . $lang . "_title` = `" . $set_lang_data . "_title`";
@@ -398,14 +398,14 @@ if ( ! empty( $set_lang_data ) )
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_rows` SET `" . $lang . "_address` = `" . $set_lang_data . "_address`";
     }
     
-    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_units`" ) );
+    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_units`" ) );
     if ( $numrow )
     {
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_units` SET `" . $lang . "_title` = `" . $set_lang_data . "_title`";
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_units` SET `" . $lang . "_note` = `" . $set_lang_data . "_note`";
     }
     
-    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_topics`" ) );
+    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_topics`" ) );
     if ( $numrow )
     {
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_topics` SET `" . $lang . "_title` = `" . $set_lang_data . "_title`";
@@ -414,13 +414,13 @@ if ( ! empty( $set_lang_data ) )
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_topics` SET `" . $lang . "_keywords` = `" . $set_lang_data . "_keywords`";
     }
     
-    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_sources`" ) );
+    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_sources`" ) );
     if ( $numrow )
     {
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_sources` SET `" . $lang . "_title` = `" . $set_lang_data . "_title`";
     }
     
-    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_block_cat`" ) );
+    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_block_cat`" ) );
     if ( $numrow )
     {
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_block_cat` SET `" . $lang . "_title` = `" . $set_lang_data . "_title`";
@@ -429,7 +429,7 @@ if ( ! empty( $set_lang_data ) )
         $sql_create_module[] = "UPDATE `" . $db_config['prefix'] . "_" . $module_data . "_block_cat` SET `" . $lang . "_keywords` = `" . $set_lang_data . "_keywords`";
     }
     
-    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_block_cat`" ) );
+    list( $numrow ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_block_cat`" ) );
     if ( $numrow )
     {
         $sql_create_module[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $module_data . "_money_" . $lang . "` SELECT * FROM `" . $db_config['prefix'] . "_" . $module_data . "_money_" . $set_lang_data . "`";

@@ -653,7 +653,7 @@ else
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 $shtm = "";
-if ( count( $array_block_cat_module ) > 0 )
+if ( sizeof( $array_block_cat_module ) )
 {
     foreach ( $array_block_cat_module as $bid_i => $bid_title )
     {

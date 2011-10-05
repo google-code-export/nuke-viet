@@ -274,7 +274,7 @@ E_USER_DEPRECATED => "User-generated warning message"
     function get_request ( )
     {
         $request = array();
-        if ( count( $_GET ) )
+        if ( sizeof( $_GET ) )
         {
             foreach ( $_GET as $key => $value )
             {

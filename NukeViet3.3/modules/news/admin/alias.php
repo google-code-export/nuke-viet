@@ -18,7 +18,7 @@ $mod = $nv_Request->get_string( 'mod', 'post', '' );
 if ( $mod == "cat" )
 {
     $tab = NV_PREFIXLANG . "_" . $module_data . "_cat";
-    list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . $tab . "` WHERE `catid`!=" . $id . " AND `alias`=" . $db->dbescape( $alias ) ) );
+    list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . $tab . "` WHERE `catid`!=" . $id . " AND `alias`=" . $db->dbescape( $alias ) ) );
     if ( ! empty( $nb ) )
     {
         $result = $db->sql_query( "SHOW TABLE STATUS WHERE `Name`=" . $db->dbescape( $tab ) );
@@ -31,7 +31,7 @@ if ( $mod == "cat" )
 elseif ( $mod == "topics" )
 {
     $tab = NV_PREFIXLANG . "_" . $module_data . "_topics";
-    list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . $tab . "` WHERE `topicid`!=" . $id . " AND `alias`=" . $db->dbescape( $alias ) ) );
+    list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . $tab . "` WHERE `topicid`!=" . $id . " AND `alias`=" . $db->dbescape( $alias ) ) );
     if ( ! empty( $nb ) )
     {
         $result = $db->sql_query( "SHOW TABLE STATUS WHERE `Name`=" . $db->dbescape( $tab ) );
@@ -44,7 +44,7 @@ elseif ( $mod == "topics" )
 elseif ( $mod == "blockcat" )
 {
     $tab = NV_PREFIXLANG . "_" . $module_data . "_block_cat";
-    list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . $tab . "` WHERE `bid`!=" . $id . " AND `alias`=" . $db->dbescape( $alias ) ) );
+    list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . $tab . "` WHERE `bid`!=" . $id . " AND `alias`=" . $db->dbescape( $alias ) ) );
     if ( ! empty( $nb ) )
     {
         $result = $db->sql_query( "SHOW TABLE STATUS WHERE `Name`=" . $db->dbescape( $tab ) );

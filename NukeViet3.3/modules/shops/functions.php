@@ -65,7 +65,7 @@ while ( list( $groupid_i, $parentid_i, $lev_i, $title_i, $alias_i, $viewgroup_i,
 /*end group*/
 $page = 0;
 $per_page = $pro_config['per_page'];
-$count_op = count( $array_op );
+$count_op = sizeof( $array_op );
 if ( ! empty( $array_op ) and $op == "main" )
 {
     if ( $catid == 0 )

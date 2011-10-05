@@ -66,7 +66,7 @@ if ( ! empty( $savecat ) )
             $check_exit = 0;
             if ( $data_content['parentid'] != $data_content['parentid_old'] )
             {
-                list( $check_exit ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `catid` = '" . $data_content['catid'] . "'" ) );
+                list( $check_exit ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `catid` = '" . $data_content['catid'] . "'" ) );
             }
             if ( intval( $check_exit ) > 0 )
             {

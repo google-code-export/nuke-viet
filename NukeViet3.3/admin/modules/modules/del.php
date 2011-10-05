@@ -76,7 +76,7 @@ if ( ! empty( $modname ) and preg_match( $global_config['check_module'], $modnam
         $result = $db->sql_query( $sql );
         while ( list( $lang_i ) = $db->sql_fetchrow( $result ) )
         {
-            list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `title`=" . $db->dbescape( $modname ) . "" ) );
+            list( $nb ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `title`=" . $db->dbescape( $modname ) . "" ) );
             if ( intval( $nb ) > 0 )
             {
                 $check_exit_mod = true;

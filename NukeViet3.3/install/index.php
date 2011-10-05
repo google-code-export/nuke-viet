@@ -184,7 +184,7 @@ elseif ( $step == 4 )
                         ++$a;
                     }
                 }
-                if ( $a == count( $check_files ) )
+                if ( $a == sizeof( $check_files ) )
                 {
                     $ftp_check_login = 1;
                     nv_chmod_dir( $conn_id, NV_DATADIR, true );

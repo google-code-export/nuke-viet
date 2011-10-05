@@ -62,7 +62,7 @@ function nv_substr_count( $haystack, $needle )
 {
     $needle = preg_quote( $needle, '/' );
     preg_match_all( '/' . $needle . '/u', $haystack, $dummy );
-    return count( $dummy[0] );
+    return sizeof( $dummy[0] );
 }
 
 /**
@@ -119,7 +119,7 @@ function nv_strrpos( $haystack, $needle, $offset = null )
 
         $ar = explode( $needle, $haystack );
 
-        if ( count( $ar ) > 1 )
+        if ( sizeof( $ar ) > 1 )
         {
             array_pop( $ar );
             $haystack = join( $needle, $ar );

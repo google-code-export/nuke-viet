@@ -58,7 +58,7 @@ if ( ! empty( $delmodule ) )
         $result = $db->sql_query( $sql );
         while ( list( $lang_i ) = $db->sql_fetchrow( $result ) )
         {
-            list( $nmd ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `module_file`=" . $db->dbescape_string( $delmodule ) ) );
+            list( $nmd ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `module_file`=" . $db->dbescape_string( $delmodule ) ) );
             if ( $nmd > 0 )
             {
                 $module_exit[] = $lang_i;
@@ -66,7 +66,7 @@ if ( ! empty( $delmodule ) )
         }
         if ( empty( $module_exit ) )
         {
-        	list( $nmd ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . $db_config['prefix'] . "_setup_modules` WHERE `module_file`=" . $db->dbescape_string( $delmodule ) . " AND `title`!=" . $db->dbescape_string( $delmodule ) ) );
+        	list( $nmd ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . $db_config['prefix'] . "_setup_modules` WHERE `module_file`=" . $db->dbescape_string( $delmodule ) . " AND `title`!=" . $db->dbescape_string( $delmodule ) ) );
             if ( $nmd > 0 )
             {
                 $module_exit = 1;

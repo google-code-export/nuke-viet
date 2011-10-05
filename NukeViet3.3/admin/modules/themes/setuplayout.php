@@ -40,15 +40,14 @@ $xml = simplexml_load_file( NV_ROOTDIR . '/themes/' . $selectthemes . '/config.i
 $layoutdefault = ( string )$xml->layoutdefault;
 $layout = $xml->xpath( 'setlayout/layout' );
 
-$count = count( $layout );
-for ( $i = 0; $i < $count; ++$i )
+for ( $i = 0, $count = sizeof( $layout ); $i < $count; ++$i )
 {
     $layout_name = ( string )$layout[$i]->name;
     if ( in_array( $layout_name, $layout_array ) )
     {
         $layout_funcs = $layout[$i]->xpath( 'funcs' );
-        $count = count( $layout_funcs );
-        for ( $j = 0; $j < $count; ++$j )
+
+        for ( $j = 0, $count = sizeof( $layout_funcs ); $j < $count; ++$j )
         {
             $mo_funcs = ( string )$layout_funcs[$j];
             $mo_funcs = explode( ":", $mo_funcs );

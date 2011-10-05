@@ -91,7 +91,7 @@ $page = 0;
 $per_page_comment = 5;
 $per_page = $module_config[$module_name]['per_page'];
 $st_links = $module_config[$module_name]['st_links'];
-$count_op = count( $array_op );
+$count_op = sizeof( $array_op );
 if ( ! empty( $array_op ) and $op == "main" )
 {
     if ( $catid == 0 )

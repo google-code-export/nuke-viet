@@ -445,7 +445,7 @@ function nv_show_topics_list ( )
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $row['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
             $contents .= "</select></td>\n";
-            list( $numnews ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_rows` where `topicid`=" . $row['topicid'] . "" ) );
+            list( $numnews ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_rows` where `topicid`=" . $row['topicid'] . "" ) );
             $contents .= ( $numnews > 0 ) ? "<td><a href='index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=topicsnews&amp;topicid=" . $row['topicid'] . "'>" . $row['title'] . " ($numnews " . $lang_module['topic_num_news'] . ")</a></td>\n" : "<td><a href='index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=topicsnews&amp;topicid=" . $row['topicid'] . "'>" . $row[NV_LANG_DATA . '_title'] . "</a></td>\n";
             $contents .= "<td>" . $row[NV_LANG_DATA . "_description"] . "</td>\n";
             $contents .= "<td align=\"center\"><span class=\"edit_icon\"><a href=\"" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=topics&amp;topicid=" . $row['topicid'] . "#edit\">" . $lang_global['edit'] . "</a></span>\n";
@@ -495,7 +495,7 @@ function nv_show_block_cat_list ( )
             }
             $contents .= "</select></td>\n";
             $contents .= "<td align=\"center\"><b>" . $row['bid'] . "</b></td>\n";
-            list( $numnews ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_block` where `bid`=" . $row['bid'] . "" ) );
+            list( $numnews ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*)  FROM `" . $db_config['prefix'] . "_" . $module_data . "_block` where `bid`=" . $row['bid'] . "" ) );
             if ( $numnews )
             {
                 $contents .= "<td><a href=\"" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=block&amp;bid=" . $row['bid'] . "\">" . $row[NV_LANG_DATA . '_title'] . " ($numnews " . $lang_module['topic_num_news'] . ")</a>";
@@ -598,8 +598,8 @@ function nv_content_keywords ( $content )
             $content = preg_replace( '/ {2,}/si', " ", $content );
             $content_array = explode( " ", $content );
             $a = 0;
-            $b = count( $content_array );
-            for ( $i = 0; $i < $b - 3; ++$i )
+
+            for ( $i = 0, $b = sizeof( $content_array ); $i < $b - 3; ++$i )
             {
                 $key3 = $content_array[$i] . " " . $content_array[$i + 1] . " " . $content_array[$i + 2];
                 $key2 = $content_array[$i] . " " . $content_array[$i + 1];
@@ -612,7 +612,7 @@ function nv_content_keywords ( $content )
                     $keywords_return[] = $key2;
                 }
                 $keywords_return = array_unique( $keywords_return );
-                if ( count( $keywords_return ) > 20 )
+                if ( sizeof( $keywords_return ) > 20 )
                 {
                     break;
                 }

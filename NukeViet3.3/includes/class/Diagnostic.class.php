@@ -184,7 +184,7 @@ class Diagnostic
         global $getContent;
 
         $ch = $this->checkHash( $this->hashURL( $this->currentDomain ) );
-        $host = $this->googleDomains[mt_rand( 0, count( $this->googleDomains ) - 1 )];
+        $host = $this->googleDomains[mt_rand( 0, sizeof( $this->googleDomains ) - 1 )];
         $url = sprintf( $this->pattern['PageRank'], $host, $ch, urlencode( ":" . $this->currentDomain ) );
         $content = $getContent->get( $url );
         unset( $matches );
@@ -328,7 +328,7 @@ class Diagnostic
      */
     public function newGetInfo( $content )
     {
-        $count = count( $content['item'] );
+        $count = sizeof( $content['item'] );
         if ( $count >= $this->max )
         {
             krsort( $content['item'] );
@@ -411,7 +411,7 @@ class Diagnostic
                 }
             }
 
-            $lastProcess = $content['item'][( count( $content['item'] ) - 1 )]['date'];
+            $lastProcess = $content['item'][( sizeof( $content['item'] ) - 1 )]['date'];
             $lastProcess = strtotime( $lastProcess );
         }
 

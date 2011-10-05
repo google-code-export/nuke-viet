@@ -66,7 +66,7 @@ if ( ! empty( $logs ) )
 $array_id = explode( ",", $lid );
 $array_id = array_map( "intval", $array_id );
 $array_id = array_diff( $array_id, array( 0 ) );
-$count = count( $array_id );
+$count = sizeof( $array_id );
 
 $note = "";
 

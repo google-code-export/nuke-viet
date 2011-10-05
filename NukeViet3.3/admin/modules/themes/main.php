@@ -19,7 +19,7 @@ $contents .= "<tbody class=\"second\">";
 $contents .= "<tr>";
 $theme_list = nv_scandir( NV_ROOTDIR . "/themes/", $global_config['check_theme'] );
 $i = 1;
-$number_theme = count( $theme_list );
+$number_theme = sizeof( $theme_list );
 $errorconfig = array();
 foreach ( $theme_list as $value )
 {
@@ -50,8 +50,8 @@ foreach ( $theme_list as $value )
     $position = $xml->xpath( 'positions' ); //array
     $positions = $position[0]->position; //object
     $pos = array();
-    $count = count( $positions );
-    for ( $j = 0; $j < $count; ++$j )
+
+    for ( $j = 0, $count = sizeof( $positions ); $j < $count; ++$j )
     {
         $pos[] = $positions[$j]->name;
     }

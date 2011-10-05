@@ -311,7 +311,7 @@ function viewcat_two_column ( $array_content, $array_catpage )
     
     foreach ( $array_catpage as $key => $array_catpage_i )
     {
-        $number_content = isset( $array_catpage[$key]['content'] ) ? count( $array_catpage[$key]['content'] ) : 0;
+        $number_content = isset( $array_catpage[$key]['content'] ) ? sizeof( $array_catpage[$key]['content'] ) : 0;
         if ( $number_content > 0 )
         {
             $xtpl->assign( 'CAT', $array_catpage_i );
@@ -441,7 +441,7 @@ function detail_theme ( $news_contents, $related_new_array, $related_array, $top
     if ( ! empty( $news_contents['keywords'] ) )
     {
         $news_contents['keywords'] = explode( ',', $news_contents['keywords'] );
-        $count = count( $news_contents['keywords'] );
+        $count = sizeof( $news_contents['keywords'] );
         foreach ( $news_contents['keywords'] as $i => $value )
         {
             $value = trim( $value );

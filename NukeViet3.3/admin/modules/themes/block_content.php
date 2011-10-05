@@ -387,8 +387,8 @@ $contents .= "<tr>\n";
 $contents .= "<td>" . $lang_module['block_pos'] . ":</td>\n";
 $contents .= "<td>";
 $contents .= "<select name='position'>";
-$count = count( $positions );
-for ( $i = 0; $i < $count; ++$i )
+
+for ( $i = 0, $count = sizeof( $positions ); $i < $count; ++$i )
 {
     $sel = ( $row['position'] == $positions[$i]->tag ) ? ' selected="selected"' : '';
     $contents .= "<option value=\"" . $positions[$i]->tag . "\" " . $sel . "> " . $positions[$i]->name . '</option>';
@@ -501,7 +501,7 @@ $sql = "SELECT title, custom_title FROM `" . NV_MODULES_TABLE . "` ORDER BY `wei
 $result = $db->sql_query( $sql );
 while ( list( $m_title, $m_custom_title ) = $db->sql_fetchrow( $result ) )
 {
-    if ( isset( $aray_mod_func[$m_title] ) and count( $aray_mod_func[$m_title] ) > 0 )
+    if ( isset( $aray_mod_func[$m_title] ) and sizeof( $aray_mod_func[$m_title] ) > 0 )
     {
         $contents .= "<tbody class=\"funclist\" id=\"idmodule_$m_title\">\n";
         $contents .= "<tr><td style=\"font-weight:bold\" nowrap=\"nowrap\"> " . $m_custom_title . "</td>";

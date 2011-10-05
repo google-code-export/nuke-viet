@@ -64,7 +64,7 @@ $positions = $content[0]->position; //object
 
 
 $blocks_positions = array();
-$result = $db->sql_query( "SELECT `position`, count(*) FROM `" . NV_BLOCKS_TABLE . "_groups` WHERE theme='" . $selectthemes . "' GROUP BY `position`" );
+$result = $db->sql_query( "SELECT `position`, COUNT(*) FROM `" . NV_BLOCKS_TABLE . "_groups` WHERE theme='" . $selectthemes . "' GROUP BY `position`" );
 while ( list( $position, $numposition ) = $db->sql_fetchrow( $result ) )
 {
     $blocks_positions[$position] = $numposition;
@@ -89,8 +89,8 @@ while ( $row = $db->sql_fetchrow( $result ) )
     
     $contents .= "<td>";
     $contents .= "<select name=\"listpos\" title='" . $row['bid'] . "'>\n";
-    $count = count( $positions );
-    for ( $i = 0; $i < $count; ++$i )
+
+    for ( $i = 0, $count = sizeof( $positions ); $i < $count; ++$i )
     {
         $sel = ( $row['position'] == $positions[$i]->tag ) ? ' selected="selected"' : '';
         $contents .= "<option value=\"" . $positions[$i]->tag . "\" " . $sel . "> " . $positions[$i]->name . '</option>';

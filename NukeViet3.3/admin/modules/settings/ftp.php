@@ -55,7 +55,7 @@ if ( $nv_Request->isset_request( 'ftp_server', 'post' ) )
                     ++$a;
                 }
             }
-            if ( $a == count( $check_files ) )
+            if ( $a == sizeof( $check_files ) )
             {
                 $array_config['ftp_check_login'] = 1;
             }

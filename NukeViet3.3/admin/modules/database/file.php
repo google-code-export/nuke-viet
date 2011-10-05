@@ -40,7 +40,7 @@ foreach ( $files as $file )
 sort( $array_time );
 
 $a = 1;
-$count = count( $array_time ) - 1;
+$count = sizeof( $array_time ) - 1;
 for ( $index = $count; $index >= 0; --$index )
 {
     $filetime = $array_time[$index];

@@ -21,7 +21,7 @@ $group_title = $row['title'];
 if ( ! empty( $row['users'] ) )
 {
     $page = $nv_Request->get_int( 'page', 'get', 0 );
-    $all_page = count( explode( ",", $row['users'] ) );
+    $all_page = sizeof( explode( ",", $row['users'] ) );
     $per_page = 10;
     
     $users_in_group = array();

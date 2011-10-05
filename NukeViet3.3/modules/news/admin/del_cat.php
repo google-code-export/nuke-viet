@@ -18,14 +18,14 @@ if ( $catid > 0 )
     if ( ( defined( 'NV_IS_ADMIN_MODULE' ) or ( $parentid > 0 and isset( $array_cat_admin[$admin_id][$parentid] ) and $array_cat_admin[$admin_id][$parentid]['admin'] == 1 ) ) )
     {
         $delallcheckss = $nv_Request->get_string( 'delallcheckss', 'post', "" );
-        list( $check_parentid ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` WHERE `parentid` = '" . $catid . "'" ) );
+        list( $check_parentid ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` WHERE `parentid` = '" . $catid . "'" ) );
         if ( intval( $check_parentid ) > 0 )
         {
             $contents = "ERR_CAT_" . sprintf( $lang_module['delcat_msg_cat'], $check_parentid );
         }
         else
         {
-            list( $check_rows ) = $db->sql_fetchrow( $db->sql_query( "SELECT count(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "`" ) );
+            list( $check_rows ) = $db->sql_fetchrow( $db->sql_query( "SELECT COUNT(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "`" ) );
             if ( intval( $check_rows ) > 0 )
             {
                 if ( $delallcheckss == md5( $catid . session_id() . $global_config['sitekey'] ) )

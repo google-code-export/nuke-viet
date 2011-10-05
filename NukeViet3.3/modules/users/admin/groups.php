@@ -79,7 +79,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $contents['row'][$row['group_id']]['add_time'] = nv_date( "l, d/m/Y H:i", $row['add_time'] );
     $contents['row'][$row['group_id']]['exp_time'] = ! empty( $row['exp_time'] ) ? nv_date( "l, d/m/Y H:i", $row['exp_time'] ) : $lang_global['unlimited'];
     $contents['row'][$row['group_id']]['public'] = $row['public'] == 1 ? $lang_global['yes'] : $lang_global['no'];
-    $contents['row'][$row['group_id']]['users'] = ! empty( $row['users'] ) ? count( explode( ",", $row['users'] ) ) : 0;
+    $contents['row'][$row['group_id']]['users'] = ! empty( $row['users'] ) ? sizeof( explode( ",", $row['users'] ) ) : 0;
     $contents['row'][$row['group_id']]['weight'] = $row['weight'];
     $contents['row'][$row['group_id']]['act'] = $row['act'];    
     $contents['row'][$row['group_id']]['actions'] = array( 

@@ -32,7 +32,7 @@ if ( ! nv_function_exists( 'nv_message_about' ) )
         
         $cache_files = nv_scandir( NV_ROOTDIR . "/" . NV_CACHEDIR, $pattern );
         
-        if ( ( $count = count( $cache_files ) ) >= 1 )
+        if ( ( $count = sizeof( $cache_files ) ) >= 1 )
         {
             $num = rand( 1, $count );
             --$num;

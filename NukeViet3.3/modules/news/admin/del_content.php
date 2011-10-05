@@ -62,11 +62,11 @@ if ( ! empty( $del_array ) )
                     }
                 }
             }
-            if ( $check_edit == count( $arr_catid ) )
+            if ( $check_edit == sizeof( $arr_catid ) )
             {
                 $check_permission_edit = true;
             }
-            if ( $check_del == count( $arr_catid ) )
+            if ( $check_del == sizeof( $arr_catid ) )
             {
                 $check_permission = true;
             }
@@ -83,8 +83,8 @@ if ( ! empty( $del_array ) )
             $no_del_array[] = $id;
         }
     }
-    $count = count( $del_array );
-    if ( $count > 0 )
+    $count = sizeof( $del_array );
+    if ( $count )
     {
         nv_insert_logs( NV_LANG_DATA, $module_name, $lang_module['comment_delete'] .' ' .$lang_module['comment_topic'], " " . implode( ", ", $artitle ), $admin_info['userid'] );
     }

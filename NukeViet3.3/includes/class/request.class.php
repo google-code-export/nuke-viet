@@ -251,7 +251,7 @@ class Request
      */
     private function Initialize ( $my_domains )
     {
-        if ( count( $_GET ) )
+        if ( sizeof( $_GET ) )
         {
             foreach ( array_keys( $_GET ) as $k )
             {
@@ -270,7 +270,7 @@ class Request
             }
             $this->fixQuery( $_GET, 'get' );
         }
-        if ( count( $_POST ) )
+        if ( sizeof( $_POST ) )
         {
             foreach ( array_keys( $_POST ) as $k )
             {
@@ -289,7 +289,7 @@ class Request
             }
             $this->fixQuery( $_POST, 'post' );
         }
-        if ( count( $_COOKIE ) )
+        if ( sizeof( $_COOKIE ) )
         {
             foreach ( array_keys( $_COOKIE ) as $k )
             {
@@ -309,7 +309,7 @@ class Request
             }
             $this->fixQuery( $_COOKIE, 'cookie' );
         }
-        if ( count( $_FILES ) && strtoupper( substr( PHP_OS, 0, 3 ) ) !== 'WIN' )
+        if ( sizeof( $_FILES ) && strtoupper( substr( PHP_OS, 0, 3 ) ) !== 'WIN' )
         {
             foreach ( array_keys( $_FILES ) as $k )
             {
@@ -481,7 +481,7 @@ class Request
             header( "Location: " . $this->site_url );
             exit();
         }
-        if ( count( $_POST ) and $this->referer_key !== 1 )
+        if ( sizeof( $_POST ) and $this->referer_key !== 1 )
         {
             header( "Location: " . $this->site_url );
             exit();
@@ -582,7 +582,7 @@ class Request
             trigger_error( Request::INCORRECT_SESSION_ID, 256 );
         }
         $_SESSION = ( isset( $_SESSION ) and is_array( $_SESSION ) ) ? $_SESSION : array();
-        if ( count( $_SESSION ) )
+        if ( sizeof( $_SESSION ) )
         {
             foreach ( array_keys( $_SESSION ) as $k )
             {
@@ -640,8 +640,8 @@ class Request
     private function filterAttr ( $attrSet )
     {
         $newSet = array();
-        $count = count( $attrSet );
-        for ( $i = 0; $i < $count; ++$i )
+
+        for ( $i = 0, $count = sizeof( $attrSet ); $i < $count; ++$i )
         {
             if ( ! $attrSet[$i] ) continue;
             $attrSubSet = array_map( "trim", explode( '=', trim( $attrSet[$i] ), 2 ) );

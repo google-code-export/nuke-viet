@@ -122,7 +122,7 @@ if ( $row['is_download_allow'] )
         $row['fileupload'] = array();
         
         $a = 1;
-        $count_file = count( $fileupload );
+        $count_file = sizeof( $fileupload );
         foreach ( $fileupload as $file )
         {
             if ( ! empty( $file ) )

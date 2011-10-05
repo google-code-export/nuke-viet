@@ -200,7 +200,7 @@ function nv_admin_theme ( $contents, $head_site = 1 )
         $xtpl->assign( 'NV_SHOW_QUERIES', $lang_global['show_queries'] );
     }
     $xtpl->assign( 'NV_DB_NUM_QUERIES', $lang_global['db_num_queries'] );
-    $xtpl->assign( 'COUNT_QUERY_STRS', count( $db->query_strs ) );
+    $xtpl->assign( 'COUNT_QUERY_STRS', sizeof( $db->query_strs ) );
     $xtpl->assign( 'NV_COPYRIGHT', sprintf( $lang_global['copyright'], $global_config['site_name'] ) );
     if ( defined( "NV_IS_SPADMIN" ) )
     {

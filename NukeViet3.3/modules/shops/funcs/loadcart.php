@@ -21,7 +21,7 @@ if ( ! function_exists( 'FormatNumber' ) )
         ) );
     }
 }
-$num = isset( $_SESSION[$module_data . '_cart'] ) ? count( $_SESSION[$module_data . '_cart'] ) : 0;
+$num = isset( $_SESSION[$module_data . '_cart'] ) ? sizeof( $_SESSION[$module_data . '_cart'] ) : 0;
 $total = 0;
 if ( ! empty( $_SESSION[$module_data . '_cart'] ) )
 {

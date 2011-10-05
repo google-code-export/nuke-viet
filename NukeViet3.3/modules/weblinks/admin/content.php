@@ -11,7 +11,7 @@ if ( ! defined( 'NV_IS_FILE_ADMIN' ) ) die( 'Stop!!!' );
 function check_url ( $id, $url )
 {
     global $db, $module_data;
-    $sql = "SELECT count(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `id` != '" . $id . "' AND `url` = '" . $url . "'";
+    $sql = "SELECT COUNT(*) FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `id` != '" . $id . "' AND `url` = '" . $url . "'";
     list( $numurl ) = $db->sql_fetchrow( $db->sql_query( $sql ) );
     $msg = ( $numurl > 0 ) ? false : true;
     return $msg;
