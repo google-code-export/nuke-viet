@@ -292,7 +292,7 @@ function nv_func_update_data ( )
     	nv_save_file_config_global();
 	}
     
-	if ( $global_config['revision'] < 1306 )
+	if ( $global_config['revision'] < 1305 )
     {
         $db->sql_query( "DELETE FROM `" . NV_CONFIG_GLOBALTABLE . "` WHERE `lang`='sys' AND `module`='global' AND `config_name`='update_revision_lang_mode'");
         nv_deletefile(NV_ROOTDIR . '/includes/phpsvnclient', true);
