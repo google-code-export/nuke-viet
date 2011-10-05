@@ -15,7 +15,7 @@ if ( ! defined( 'NV_IS_MOD_NEWS' ) )
 $channel = array();
 $items = array();
 
-$channel['title'] = $global_config['site_name'] . ' RSS: ' . $module_info['custom_title'];
+$channel['title'] = $global_config['site_name'] . ': ' . $module_info['custom_title'];
 $channel['link'] = NV_MY_DOMAIN . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name;
 $channel['atomlink'] = NV_MY_DOMAIN . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=rss";
 $channel['description'] = $global_config['site_description'];
@@ -36,8 +36,8 @@ if ( isset( $array_op[1] ) )
 }
 if ( ! empty( $catid ) )
 {
-    $channel['title'] = $global_config['site_name'] . ' RSS: ' . $module_info['custom_title'] . ' - ' . $global_array_cat[$catid]['title'];
-    $channel['link'] = NV_MY_DOMAIN . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=rss/" . $alias_cat_url;
+    $channel['title'] = $global_config['site_name'] . ': ' . $module_info['custom_title'] . ' - ' . $global_array_cat[$catid]['title'];
+    $channel['link'] = NV_MY_DOMAIN . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $alias_cat_url;
     $channel['description'] = $global_array_cat[$catid]['description'];
     
     $sql = "SELECT id, catid, publtime, title, alias, hometext, homeimgthumb, homeimgfile FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `status`=1 ORDER BY `publtime` DESC LIMIT 30";
