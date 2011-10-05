@@ -14,7 +14,6 @@ $submenu['siteDiagnostic'] = $lang_module['siteDiagnostic'];
 $submenu['keywordRank'] = $lang_module['keywordRank'];
 $submenu['sitemapPing'] = $lang_module['sitemapPing'];
 $submenu['checkupdate'] = $lang_module['checkupdate'];
-$submenu['revision'] = $lang_module['revision'];
 $submenu['config'] = $lang_module['config'];
 
 if ( $module_name == "webtools" )
@@ -31,13 +30,9 @@ if ( $module_name == "webtools" )
     {
         $new_version = array();
     }
-	if ( $op=="autoupdate" or (!empty($new_version) and nv_version_compare( $global_config['version'], $new_version->version ) < 0))
-    {
-        $submenu['autoupdate'] = $lang_module['autoupdate_system'];
-    }
     
     $allow_func = array( 
-        'main', 'clearsystem', 'sitemapPing', 'checkupdate', 'revision', 'siteDiagnostic', 'keywordRank', 'autoupdate', 'config' 
+        'main', 'clearsystem', 'sitemapPing', 'checkupdate', 'siteDiagnostic', 'keywordRank', 'config' 
     );
     $menu_top = array( 
         "title" => $module_name, "module_file" => "", "custom_title" => $lang_global['mod_webtools'] 
