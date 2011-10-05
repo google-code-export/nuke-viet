@@ -207,7 +207,7 @@ if ( file_exists( $filename ) )
 				$xtpl->assign( 'FILENAME', $tmp );
 				$xtpl->assign( 'CLASS', ( $i % 2 == 0 ) ? " class=\"second\"" : "" );
 				$xtpl->parse( 'complete.no_extract.loop' );
-				$i ++;
+				++$i;
 			}
 			$xtpl->parse( 'complete.no_extract' );
 		}
@@ -220,7 +220,7 @@ if ( file_exists( $filename ) )
 				$xtpl->assign( 'FILENAME', $tmp );
 				$xtpl->assign( 'CLASS', ( $i % 2 == 0 ) ? " class=\"second\"" : "" );
 				$xtpl->parse( 'complete.error_create_folder.loop' );
-				$i ++;
+				++$i;
 			}
 			$xtpl->parse( 'complete.error_create_folder' );
 		}
@@ -233,7 +233,7 @@ if ( file_exists( $filename ) )
 				$xtpl->assign( 'FILENAME', $tmp );
 				$xtpl->assign( 'CLASS', ( $i % 2 == 0 ) ? " class=\"second\"" : "" );
 				$xtpl->parse( 'complete.error_move_folder.loop' );
-				$i ++;
+				++$i;
 			}
 			$xtpl->parse( 'complete.error_move_folder' );
 		}
@@ -286,7 +286,7 @@ if( ! empty( $info_error['errorfile'] ) )
 		$xtpl->assign( 'FILENAME', $tmp );
 		$xtpl->assign( 'CLASS', ( $i % 2 == 0 ) ? " class=\"second\"" : "" );
 		$xtpl->parse( 'main.errorfile.loop' );
-		$i ++;
+		++$i;
 	}
 	$xtpl->parse( 'main.errorfile' );
 }
@@ -299,7 +299,7 @@ if( ! empty( $info_error['errorfolder'] ) )
 		$xtpl->assign( 'FILENAME', $tmp );
 		$xtpl->assign( 'CLASS', ( $i % 2 == 0 ) ? " class=\"second\"" : "" );
 		$xtpl->parse( 'main.errorfolder.loop' );
-		$i ++;
+		++$i;
 	}
 	$xtpl->parse( 'main.errorfolder' );
 }

@@ -130,7 +130,7 @@ if ( $nv_Request->isset_request( 'changequestion', 'get' ) )
             {
                 $step = 2;
                 
-                if ( strlen( $array_data['nv_password'] ) < 32 )
+                if ( ! isset( $array_data['nv_password']{31} ) )
                 {
                     $array_data['nv_password'] = md5( $crypt->hash( $array_data['nv_password'] ) );
                 }

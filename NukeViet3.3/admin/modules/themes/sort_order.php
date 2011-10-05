@@ -33,7 +33,7 @@ if ( ! empty( $array_bid ) && ! empty( $position ) )
             $weight = 0;
             while ( list( $bid_i ) = $db->sql_fetchrow( $result ) )
             {
-                $weight ++;
+                ++$weight;
                 $db->sql_query( "UPDATE `" . NV_BLOCKS_TABLE . "_groups` SET `weight`=" . $weight . " WHERE `bid`=" . $bid_i );
             }
             
@@ -43,7 +43,7 @@ if ( ! empty( $array_bid ) && ! empty( $position ) )
             {
                 if ( $func_id_i == $func_id_old )
                 {
-                    $weight ++;
+                    ++$weight;
                 }
                 else
                 {
@@ -61,7 +61,7 @@ if ( ! empty( $array_bid ) && ! empty( $position ) )
             $weight = 0;
             while ( list( $bid_i ) = $db->sql_fetchrow( $result ) )
             {
-                $weight ++;
+                ++$weight;
                 $db->sql_query( "UPDATE `" . NV_BLOCKS_TABLE . "_groups` SET `weight`=" . $weight . " WHERE `bid`=" . $bid_i );
             }
             
@@ -71,7 +71,7 @@ if ( ! empty( $array_bid ) && ! empty( $position ) )
             {
                 if ( $func_id_i == $func_id_old )
                 {
-                    $weight ++;
+                    ++$weight;
                 }
                 else
                 {
@@ -91,7 +91,7 @@ if ( ! empty( $array_bid ) and $func_id > 0 )
     foreach ( $array_bid as $bid )
     {
         $db->sql_query( "UPDATE `" . NV_BLOCKS_TABLE . "_weight` SET weight = " . $weight . " WHERE bid = " . $bid . " AND func_id=" . $func_id );
-        $weight ++;
+        ++$weight;
     }
 }
 nv_del_moduleCache( 'themes' );

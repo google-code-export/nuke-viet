@@ -316,7 +316,7 @@ foreach ( $data as $data_i )
     $xtpl->assign( 'DEL_URL', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=log&amp;" . NV_OP_VARIABLE . "=logs_del&amp;id=" . $data_i['id'] );
     $xtpl->assign( 'BACK_URL', $base_url );
     $xtpl->parse( 'main.row' );
-    $a ++;
+    ++$a;
 }
 
 $generate_page = nv_generate_page( $base_url, $all_page, $per_page, $page );

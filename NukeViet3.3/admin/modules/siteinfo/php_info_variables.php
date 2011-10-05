@@ -41,7 +41,7 @@ if ( ! empty( $array['PHP Variables'] ) )
             $xtpl->assign( 'KEY', $key );
             $xtpl->assign( 'VALUE', $value );
             $xtpl->parse( 'main.loop' );
-            $a ++;
+            ++$a;
         }
     }
     $xtpl->parse( 'main' );

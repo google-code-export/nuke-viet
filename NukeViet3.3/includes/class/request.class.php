@@ -358,7 +358,7 @@ class Request
         {
             $doc_root = NV_ROOTDIR;
             $count = substr_count( $base_siteurl, '/' );
-            for ( $i = 0; $i < $count; $i ++ )
+            for ( $i = 0; $i < $count; ++$i )
             {
                 $doc_root = preg_replace( "#\/[^\/]+$#", "", $doc_root );
             }
@@ -640,7 +640,8 @@ class Request
     private function filterAttr ( $attrSet )
     {
         $newSet = array();
-        for ( $i = 0; $i < count( $attrSet ); $i ++ )
+        $count = count( $attrSet );
+        for ( $i = 0; $i < $count; ++$i )
         {
             if ( ! $attrSet[$i] ) continue;
             $attrSubSet = array_map( "trim", explode( '=', trim( $attrSet[$i] ), 2 ) );
@@ -936,7 +937,8 @@ class Request
     private function encodeCookie ( $string )
     {
         $result = '';
-        for ( $i = 0; $i < strlen( $string ); $i ++ )
+        $strlen = strlen( $string );
+        for ( $i = 0; $i < $strlen; ++$i )
         {
             $char = substr( $string, $i, 1 );
             $keychar = substr( $this->cookie_key, ( $i % 32 ) - 1, 1 );
@@ -955,7 +957,8 @@ class Request
     {
         $result = '';
         $string = $this->base64Decode( $string );
-        for ( $i = 0; $i < strlen( $string ); $i ++ )
+        $strlen = strlen( $string );
+        for ( $i = 0; $i < $strlen; ++$i )
         {
             $char = substr( $string, $i, 1 );
             $keychar = substr( $this->cookie_key, ( $i % 32 ) - 1, 1 );

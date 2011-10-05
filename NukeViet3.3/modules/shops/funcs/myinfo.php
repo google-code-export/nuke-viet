@@ -61,7 +61,7 @@ if ( $ac == 0 )
             {
                 $_SESSION[$module_data . '_cart'][$id]['num'] = $_SESSION[$module_data . '_cart'][$id]['num'] + $num;
             }
-            $i ++;
+            ++$i;
         }
         $contents = sprintf( $lang_module['set_cart_success'], ( $i ) );
         echo 'OK_' . $contents;

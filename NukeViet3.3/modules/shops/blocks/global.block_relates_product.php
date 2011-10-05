@@ -112,7 +112,7 @@ if ( ! function_exists( 'nv_relates_product' ) )
             $bg = ( $i % 2 == 0 ) ? "bg" : "";
             $xtpl->assign( "bg", $bg );
             $xtpl->parse( 'main.loop' );
-            $i ++;
+            ++$i;
         }
         ///////////////////////////////////////////////////////////////////////////////////
         $xtpl->parse( 'main' );

@@ -181,7 +181,7 @@ elseif ( $step == 4 )
                     $filename = basename( $filename );
                     if ( in_array( $filename, $check_files ) )
                     {
-                        $a ++;
+                        ++$a;
                     }
                 }
                 if ( $a == count( $check_files ) )
@@ -452,7 +452,7 @@ elseif ( $step == 5 )
                         $db->sql_freeresult();
                     }
                     
-                    $step ++;
+                    ++$step;
                     $nv_Request->set_Session( 'maxstep', $step );
                     
                     Header( "Location: " . NV_BASE_SITEURL . "install/index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&step=" . $step );
@@ -574,7 +574,7 @@ elseif ( $step == 6 )
                 nv_save_file_config();
                 if ( nv_save_file_config_global() )
                 {
-                    $step ++;
+                    ++$step;
                     $nv_Request->set_Session( 'maxstep', $step );
                     nv_save_file_config();
                     nv_rewrite_change( $array_config_rewrite );

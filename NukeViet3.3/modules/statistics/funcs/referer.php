@@ -66,7 +66,7 @@ foreach($cts['rows'] as $key => $month)
 	{
 		$total = $total + $month['count'];
 	}
-	$a++;
+	++$a;
 }
 
 if($total)

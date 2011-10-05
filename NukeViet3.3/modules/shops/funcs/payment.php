@@ -35,7 +35,7 @@ if ( $order_id > 0 and $checkss == md5( $order_id . $global_config['sitekey'] . 
             "price" => $listprice[$i], "num" => $listnum[$i] 
         );
         $arrayid[] = $proid;
-        $i ++;
+        ++$i;
     }
     
     if ( ! empty( $arrayid ) )

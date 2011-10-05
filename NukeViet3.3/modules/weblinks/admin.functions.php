@@ -26,7 +26,7 @@ function nv_fix_cat ( $parentid )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
+        ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_cat` SET `weight`=" . $weight . " WHERE `catid`=" . intval( $row['catid'] );
         $db->sql_query( $sql );
     }
@@ -37,7 +37,7 @@ function nv_fix_cat ( $parentid )
 function drawselect_number ( $select_name = "", $number_start = 0, $number_end = 1, $number_curent = 0, $func_onchange = "" )
 {
     $html = "<select name=\"" . $select_name . "\" onchange=\"" . $func_onchange . "\">";
-    for ( $i = $number_start; $i <= $number_end; $i ++ )
+    for ( $i = $number_start; $i <= $number_end; ++$i )
     {
         $select = ( $i == $number_curent ) ? "selected=\"selected\"" : "";
         $html .= "<option value=\"" . $i . "\"" . $select . ">" . $i . "</option>";
@@ -49,7 +49,7 @@ function drawselect_number ( $select_name = "", $number_start = 0, $number_end =
 function getlevel ( $pid, $array_cat, $numxtitle = 5, $xkey = "&nbsp;" )
 {
     $html = "";
-    for ( $i = 0; $i < $numxtitle; $i ++ )
+    for ( $i = 0; $i < $numxtitle; ++$i )
     {
         $html .= $xkey;
     }

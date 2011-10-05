@@ -110,7 +110,7 @@ function clinfo_theme( $contents,$manament )
 		$xtpl->set_autoreset();
 		$xtpl->parse( 'clinfo.name_value' );
 
-		$a++;
+		++$a;
 	}
 	$xtpl->assign( 'EDIT_ONCLICK', $contents['edit_onclick'] );
 	$xtpl->assign( 'EDIT_NAME', $contents['edit_name'] );

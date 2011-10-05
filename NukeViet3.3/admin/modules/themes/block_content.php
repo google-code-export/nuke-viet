@@ -387,7 +387,8 @@ $contents .= "<tr>\n";
 $contents .= "<td>" . $lang_module['block_pos'] . ":</td>\n";
 $contents .= "<td>";
 $contents .= "<select name='position'>";
-for ( $i = 0; $i < count( $positions ); $i ++ )
+$count = count( $positions );
+for ( $i = 0; $i < $count; ++$i )
 {
     $sel = ( $row['position'] == $positions[$i]->tag ) ? ' selected="selected"' : '';
     $contents .= "<option value=\"" . $positions[$i]->tag . "\" " . $sel . "> " . $positions[$i]->name . '</option>';
@@ -475,7 +476,7 @@ foreach ( $add_block_module as $b_key => $b_value )
     
     $showsdisplay = ( ! preg_match( $global_config['check_block_global'], $row['file_name'] ) and $b_key == 1 ) ? " style='display:none'" : "";
     $contents .= "<label id='labelmoduletype" . $i . "' " . $showsdisplay . "><input type=\"radio\" name=\"all_func\" class='moduletype" . $i . "' value=\"" . $b_key . "\" " . $ck . " />  " . $b_value . "</label> ";
-    $i ++;
+    ++$i;
 }
 $contents .= "</td>\n";
 $contents .= "</tr>\n";

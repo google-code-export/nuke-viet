@@ -161,7 +161,7 @@ else
 			$item = "";
 		}
 		
-		$a ++;
+		++$a;
 		$array[$row['id']] = array(
 			'id' => ( int )$row['id'], //
 			'nb'=>(int)$a,

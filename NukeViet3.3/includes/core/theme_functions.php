@@ -71,7 +71,7 @@ E_USER_DEPRECATED => array( $lang_global['error_warning'], "warning.png" ) );
         $xtpl->assign( 'TPL_E_MESS', $value['info'] );
         $xtpl->set_autoreset();
         $xtpl->parse( 'error_info.error_item' );
-        $a ++;
+        ++$a;
     }
     $xtpl->parse( 'error_info' );
     return $xtpl->text( 'error_info' );

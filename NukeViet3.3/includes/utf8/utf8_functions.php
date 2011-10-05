@@ -20,8 +20,9 @@ function utf8_to_unicode( $str )
     $unicode = array();
     $values = array();
     $lookingFor = 1;
+    $strlen = strlen( $str );
 
-    for ( $i = 0; $i < strlen( $str ); $i++ )
+    for ( $i = 0; $i < $strlen; ++$i )
     {
         $thisValue = ord( $str[$i] );
 

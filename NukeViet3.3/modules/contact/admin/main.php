@@ -95,7 +95,7 @@ if ( ! empty( $contact_allowed['view'] ) )
             $contents .= "<td" . $style . " " . $onclick . " style=\"text-align:right\">" . ( $row['send_time'] >= $currday ? nv_date( "H:i", $row['send_time'] ) : nv_date( "d/m", $row['send_time'] ) ) . "</td>\n";
             $contents .= "</tr>\n";
             $contents .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         
         $contents .= "</table>\n";

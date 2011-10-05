@@ -39,7 +39,7 @@ function viewcat_grid_new ( $array_catpage, $catid )
         }
         $xtpl->set_autoreset();
         $xtpl->parse( 'main.viewcatloop' );
-        $a ++;
+        ++$a;
     }
     $xtpl->parse( 'main' );
     return $xtpl->text( 'main' );
@@ -101,7 +101,7 @@ function viewcat_page_new ( $array_catpage, $array_cat_other )
             $xtpl->assign( 'CAT', $listcat );
             ( ( $n < $num_cat ) ? $xtpl->parse( 'main.viewcatloop.cat.comma' ) : '' );
             $xtpl->parse( 'main.viewcatloop.cat' );
-            $n ++;
+            ++$n;
         }
         $xtpl->clear_autoreset();
         $xtpl->assign( 'CONTENT', $array_row_i );
@@ -118,7 +118,7 @@ function viewcat_page_new ( $array_catpage, $array_cat_other )
         }
         $xtpl->set_autoreset();
         $xtpl->parse( 'main.viewcatloop' );
-        $a ++;
+        ++$a;
     }
     if ( ! empty( $array_cat_other ) )
     {
@@ -212,7 +212,7 @@ function viewsubcat_main ( $viewcat, $array_cat )
                             $xtpl->set_autoreset();
                             break;
                         }
-                        $exl ++;
+                        ++$exl;
                     }
                 }
             }
@@ -221,7 +221,7 @@ function viewsubcat_main ( $viewcat, $array_cat )
             foreach ( $array_cat[$key]['content'] as $array_row_i )
             {
                 $array_row_i['publtime'] = nv_date( 'd-m-Y h:i:s A', $array_row_i['publtime'] );
-                $a ++;
+                ++$a;
                 if ( $a == 1 )
                 {
                     $xtpl->assign( 'CONTENT', $array_row_i );
@@ -346,7 +346,7 @@ function viewcat_two_column ( $array_content, $array_catpage )
             $xtpl->parse( 'main.loopcat.content' );
             if ( $number_content > 1 )
             {
-                for ( $index = 1; $index < $number_content; $index ++ )
+                for ( $index = 1; $index < $number_content; ++$index )
                 {
                     $xtpl->assign( 'CONTENT', $array_catpage_i['content'][$index] );
                     $xtpl->parse( 'main.loopcat.other' );
@@ -358,7 +358,7 @@ function viewcat_two_column ( $array_content, $array_catpage )
                 $xtpl->parse( 'main.loopcat.clear' );
             }
             $xtpl->parse( 'main.loopcat' );
-            $a ++;
+            ++$a;
         }
     }
     //Theo chu de
@@ -641,7 +641,7 @@ function comment_theme ( $comment_array )
             $xtpl->parse( 'main.detail.emailcomm' );
         }
         $xtpl->parse( 'main.detail' );
-        $k ++;
+        ++$k;
     }
     if ( ! empty( $comment_array['page'] ) )
     {
@@ -762,7 +762,7 @@ function search_theme ( $key, $check_num, $date_array, $array_cat_search )
         $xtpl->assign( 'SEARCH_CAT', $search_cat );
         $xtpl->parse( 'main.search_cat' );
     }
-    for ( $i = 0; $i <= 3; $i ++ )
+    for ( $i = 0; $i <= 3; ++$i )
     {
         if ( $check_num == $i ) $xtpl->assign( 'CHECK' . $i, "selected=\"selected\"" );
         else $xtpl->assign( 'CHECK' . $i, "" );

@@ -106,7 +106,7 @@ if ( ! nv_function_exists( 'nv_news_block_tophits' ) )
             }
             $xtpl->parse( 'main.newloop' );
             $xtpl->assign( 'BACKGROUND', ( $a % 2 ) ? 'bg ' : '' );
-            $a ++;
+            ++$a;
         }
         $xtpl->parse( 'main' );
         return $xtpl->text( 'main' );

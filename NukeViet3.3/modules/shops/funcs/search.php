@@ -42,7 +42,7 @@ foreach ( $global_array_cat as $arr_cat_i )
     $xtitle = "";
     if ( $arr_cat_i['lev'] > 0 )
     {
-        for ( $i = 1; $i <= $arr_cat_i['lev']; $i ++ )
+        for ( $i = 1; $i <= $arr_cat_i['lev']; ++$i )
         {
             $xtitle .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
         }
@@ -55,7 +55,7 @@ foreach ( $global_array_cat as $arr_cat_i )
 $contents = call_user_func( "search_theme", $key, $check_num, $date_array, $array_cat_search );
 $where = "";
 $tbl_src = "";
-if ( strlen( $key ) >= NV_MIN_SEARCH_LENGTH )
+if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
 {
     $dbkey = $db->dblikeescape( $key );
     $where = "AND ( " . NV_LANG_DATA . "_title LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_bodytext LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_keywords LIKE '%" . $dbkey . "%' ) ";

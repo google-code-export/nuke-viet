@@ -57,7 +57,7 @@ if( $post['mid'] != 0 )
 		if( $row['parentid'] > 0 )
 		{
 			$sp_title .= '&nbsp;&nbsp;&nbsp;';
-			for( $i=1; $i <= $row['parentid']; $i++ )
+			for( $i=1; $i <= $row['parentid']; ++$i )
 			{
 				$sp_title .= '&nbsp;';
 			}
@@ -382,7 +382,7 @@ if( ! empty( $arr_table ) )
 	{
 		$xtpl->assign( 'ROW', $rows );
 
-		for ( $i = 1; $i <= $num; $i ++ )
+		for ( $i = 1; $i <= $num; ++$i )
 		{
 			$xtpl->assign( 'stt', $i );
 			if ( $i == $rows['weight'] )
@@ -420,7 +420,7 @@ if ( $nv_Request->isset_request( 'item', 'post' ) )
 		if ( $row['parentid'] > 0 )
 		{
 			$sp_title .= '&nbsp;&nbsp;&nbsp;';
-			for( $i = 1; $i <= $row['parentid']; $i++ )
+			for( $i = 1; $i <= $row['parentid']; ++$i )
 			{
 				$sp_title .= '&nbsp;';
 			}

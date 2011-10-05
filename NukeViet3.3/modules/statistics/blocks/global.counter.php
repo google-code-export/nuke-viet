@@ -58,21 +58,21 @@ if ( ! nv_function_exists( 'nv_block_counter' ) )
         $count_online = $users = $bots = $guests = 0;
         while ( $row = $db->sql_fetchrow( $query ) )
         {
-            $count_online ++;
+            ++$count_online;
             
             if ( $row['uid'] != 0 )
             {
-                $users ++;
+                ++$users;
             }
             else
             {
                 if ( preg_match( "/^bot\:/", $row['full_name'] ) )
                 {
-                    $bots ++;
+                    ++$bots;
                 }
                 else
                 {
-                    $guests ++;
+                    ++$guests;
                 }
             }
         }

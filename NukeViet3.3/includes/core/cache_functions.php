@@ -113,7 +113,7 @@ function nv_db_cache( $sql, $key = '', $modname = '' )
             {
                 $key2 = ( ! empty( $key ) and isset( $row[$key] ) ) ? $row[$key] : $a;
                 $list[$key2] = $row;
-                $a++;
+                ++$a;
             }
 
             $db->sql_freeresult( $result );

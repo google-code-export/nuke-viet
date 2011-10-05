@@ -138,7 +138,7 @@ if ( empty( $contents ) )
                     $item['link'] = $array_cat_i['link'] . "/" . $item['alias'] . "-" . $item['id'];
                     $array_cat[$key]['content'][] = $item;
                 }
-                $key ++;
+                ++$key;
             }
         }
         $contents = viewsubcat_main( $viewcat, $array_cat );
@@ -191,7 +191,7 @@ if ( empty( $contents ) )
                     $array_catpage[$key]['content'][] = $item;
                 }
             }
-            $key ++;
+            ++$key;
         }
         unset( $sql, $result );
         //Het cac bai viet cua cac chu de con

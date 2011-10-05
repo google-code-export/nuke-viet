@@ -33,7 +33,7 @@ function nv_block_headline ( )
         $result = $db->sql_query( $sql );
         while ( list( $bid, $titlebid, $numberbid ) = $db->sql_fetchrow( $result ) )
         {
-            $id ++;
+            ++$id;
             $array_bid_content[$id] = array( "id" => $id, "bid" => $bid, "title" => $titlebid, "number" => $numberbid );
         }
         
@@ -82,7 +82,7 @@ function nv_block_headline ( )
                 
                 $xtpl->assign( 'HOTSNEWS', $hot_news_i );
                 $xtpl->parse( 'main.hots_news_img.loop' );
-                $a ++;
+                ++$a;
             }
         }
         $xtpl->parse( 'main.hots_news_img' );

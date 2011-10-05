@@ -30,7 +30,7 @@ if ( ! function_exists( 'array_intersect_key' ) )
 		$c = func_num_args();
 		if ( $c > 2 )
 		{
-			for ( $d = 1; ! empty( $a ) && $d < $c; $d++ )
+			for ( $d = 1; ! empty( $a ) && $d < $c; ++$d )
 			{
 				$e = func_get_arg( $d );
 				foreach ( array_keys( $a ) as $f )
@@ -356,7 +356,7 @@ function nv_convertfromBytes( $size )
 	while ( ( $size / 1024 ) > 1 )
 	{
 		$size = $size / 1024;
-		$i++;
+		++$i;
 	}
 	return number_format( $size, 2 ) . ' ' . $iec[$i];
 }
@@ -474,9 +474,9 @@ function nv_check_valid_login( $login, $max, $min )
 	$login = strip_tags( trim( $login ) );
 	if ( empty( $login ) )
 		return $lang_global['username_empty'];
-	if ( strlen( $login ) > $max )
+	if ( isset( $login{$max} ) )
 		return sprintf( $lang_global['usernamelong'], $login, $max );
-	if ( strlen( $login ) < $min )
+	if ( ! isset( $login{$min - 1} ) )
 		return sprintf( $lang_global['usernameadjective'], $login, $min );
 	return "";
 }
@@ -496,9 +496,9 @@ function nv_check_valid_pass( $pass, $max, $min )
 	$pass = strip_tags( trim( $pass ) );
 	if ( empty( $pass ) )
 		return $lang_global['password_empty'];
-	if ( strlen( $pass ) > $max )
+	if ( isset( $pass{$max} ) )
 		return sprintf( $lang_global['passwordlong'], $pass, $max );
-	if ( strlen( $pass ) < $min )
+	if ( ! isset( $pass{$min-1} ) )
 		return sprintf( $lang_global['passwordadjective'], $pass, $min );
 	return "";
 }
@@ -569,7 +569,7 @@ function nv_capcha_txt( $seccode, $scaptcha = "captcha" )
 function nv_genpass( $length = 8 )
 {
 	$pass = chr( mt_rand( 65, 90 ) );
-	for ( $k = 0; $k < $length - 1; $k++ )
+	for ( $k = 0; $k < $length - 1; ++$k )
 	{
 		$probab = mt_rand( 1, 10 );
 		$pass .= ( $probab <= 8 ) ? chr( mt_rand( 97, 122 ) ) : chr( mt_rand( 48, 57 ) );
@@ -589,11 +589,14 @@ function nv_EncodeEmail( $strEmail, $strDisplay = '', $blnCreateLink = true )
 {
 	$strMailto = "&#109;&#097;&#105;&#108;&#116;&#111;&#058;";
 	$strEncodedEmail = "";
-	for ( $i = 0; $i < strlen( $strEmail ); $i++ )
+    $strlen = strlen( $strEmail );
+	for ( $i = 0; $i < $strlen; ++$i )
 	{
 		$strEncodedEmail .= "&#" . ord( substr( $strEmail, $i ) ) . ";";
 	}
-	$strDisplay = ( strlen( trim( $strDisplay ) ) > 0 ) ? $strDisplay : $strEncodedEmail;
+    
+    $strDisplay = trim( $strDisplay );
+	$strDisplay = ! empty ($strDisplay) ? $strDisplay : $strEncodedEmail;
 	if ( $blnCreateLink )
 		return "<a href=\"" . $strMailto . $strEncodedEmail . "\">" . $strDisplay . "</a>";
 	return $strDisplay;
@@ -695,7 +698,7 @@ function nv_monthname( $i )
 {
 	global $lang_global;
 
-	$i--;
+	--$i;
 	$month_names = array( $lang_global['january'], $lang_global['february'], $lang_global['march'], $lang_global['april'], $lang_global['may'], $lang_global['june'], $lang_global['july'], $lang_global['august'], $lang_global['september'], $lang_global['october'], $lang_global['november'], $lang_global['december'] );
 
 	return ( isset( $month_names[$i] ) ? $month_names[$i] : "" );
@@ -1160,7 +1163,7 @@ function nv_generate_page( $base_url, $num_items, $per_page, $start_item, $add_p
 	if ( $total_pages > 10 )
 	{
 		$init_page_max = ( $total_pages > 3 ) ? 3 : $total_pages;
-		for ( $i = 1; $i <= $init_page_max; $i++ )
+		for ( $i = 1; $i <= $init_page_max; ++$i )
 		{
 			$href = ! $onclick ? "href=\"" . $base_url . $amp . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
 			$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -1174,7 +1177,7 @@ function nv_generate_page( $base_url, $num_items, $per_page, $start_item, $add_p
 				$page_string .= ( $on_page > 5 ) ? " ... " : ", ";
 				$init_page_min = ( $on_page > 4 ) ? $on_page : 5;
 				$init_page_max = ( $on_page < $total_pages - 4 ) ? $on_page : $total_pages - 4;
-				for ( $i = $init_page_min - 1; $i < $init_page_max + 2; $i++ )
+				for ( $i = $init_page_min - 1; $i < $init_page_max + 2; ++$i )
 				{
 					$href = ! $onclick ? "href=\"" . $base_url . $amp . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
 					$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -1190,7 +1193,7 @@ function nv_generate_page( $base_url, $num_items, $per_page, $start_item, $add_p
 				$page_string .= " ... ";
 			}
 
-			for ( $i = $total_pages - 2; $i < $total_pages + 1; $i++ )
+			for ( $i = $total_pages - 2; $i < $total_pages + 1; ++$i )
 			{
 				$href = ! $onclick ? "href=\"" . $base_url . $amp . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
 				$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -1203,7 +1206,7 @@ function nv_generate_page( $base_url, $num_items, $per_page, $start_item, $add_p
 	}
 	else
 	{
-		for ( $i = 1; $i < $total_pages + 1; $i++ )
+		for ( $i = 1; $i < $total_pages + 1; ++$i )
 		{
 			$href = ! $onclick ? "href=\"" . $base_url . $amp . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
 			$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -1385,7 +1388,7 @@ function nv_check_url( $url, $is_200 = 0 )
 			unset( $matches );
 			if ( preg_match( "/location:\s(.*?)$/is", $v, $matches ) )
 			{
-				$is_200++;
+				++$is_200;
 				$location = trim( $matches[1] );
 				return nv_check_url( $location, $is_200 );
 			}

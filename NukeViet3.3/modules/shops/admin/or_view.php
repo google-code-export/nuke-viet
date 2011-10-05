@@ -51,7 +51,7 @@ foreach ( $listid as $id )
     $data_pro[] = array( 
         "id" => $id, "publtime" => $publtime, "title" => $title, "alias" => $alias, "product_price" => $listprice[$i], "product_unit" => $unit, "link_pro" => $link . "detail/" . $id . "/" . $alias, "product_number" => $listnum[$i] 
     );
-    $i ++;
+    ++$i;
 }
 
 $xtpl = new XTemplate( "or_view.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file );
@@ -74,7 +74,7 @@ foreach ( $data_pro as $pdata )
     $xtpl->assign( 'bg', $bg );
     ;
     $xtpl->parse( 'main.loop' );
-    $i ++;
+    ++$i;
 }
 if ( ! empty( $data_content['order_note'] ) )
 {
@@ -177,7 +177,7 @@ if ( $db->sql_numrows( $re ) )
     $array_payment = array();
     while ( $row = $db->sql_fetchrow( $re ) )
     {
-        $row['a'] = $a ++;
+        $row['a'] = ++$a;
         $row['transaction_time'] = nv_date( "H:i:s d/m/y", $row['transaction_time'] );
         $row['order_id'] = ( ! empty( $row['order_id'] ) ) ? $row['order_id'] : "";
         $row['payment_time'] = ( ! empty( $row['payment_time'] ) ) ? nv_date( "H:i:s d/m/y", $row['payment_time'] ) : "";

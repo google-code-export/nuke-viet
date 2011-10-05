@@ -118,7 +118,7 @@ while ( list( $catid_i, $title_i, $lev_i, $numsubcat_i ) = $db->sql_fetchrow( $r
     $xtitle_i = "";
     if ( $lev_i > 0 )
     {
-        for ( $i = 1; $i <= $lev_i; $i ++ )
+        for ( $i = 1; $i <= $lev_i; ++$i )
         {
             $xtitle_i .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
         }

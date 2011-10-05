@@ -122,21 +122,21 @@
 					{
 						if ($array_cat_admin[$admin_id][$catid_i]['admin'] == 1)
 						{
-							$check_edit++;
+							++$check_edit;
 						}
 						else
 						{
 							if ($array_cat_admin[$admin_id][$catid_i]['edit_content'] == 1)
 							{
-								$check_edit++;
+								++$check_edit;
 							}
 							elseif ($array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and ($status == 0 or $status = 2))
 							{
-								$check_edit++;
+								++$check_edit;
 							}
 							elseif ($status == 0 and $rowcontent['admin_id'] == $admin_id)
 							{
-								$check_edit++;
+								++$check_edit;
 							}
 						}
 					}
@@ -431,7 +431,7 @@
 				while (file_exists(NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_name . '/thumb/' . $thumb_basename))
 				{
 					$thumb_basename = preg_replace('/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $basename);
-					$i++;
+					++$i;
 				}
 
 				$image->resizeXY($module_config[$module_name]['homewidth'], $module_config[$module_name]['homeheight']);
@@ -444,7 +444,7 @@
 				while (file_exists(NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_name . '/block/' . $block_basename))
 				{
 					$block_basename = preg_replace('/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $basename);
-					$i++;
+					++$i;
 				}
 				$image->resizeXY($module_config[$module_name]['blockwidth'], $module_config[$module_name]['blockheight']);
 				$image->save(NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_name . '/block', $block_basename);
@@ -737,13 +737,13 @@
 	///////////time update////////////
 	$xtpl->assign('publ_date', $publ_date);
 	$select = "";
-	for ($i = 0; $i <= 23; $i++)
+	for ($i = 0; $i <= 23; ++$i)
 	{
 		$select .= "<option value=\"" . $i . "\"" . (($i == $phour) ? " selected=\"selected\"" : "") . ">" . str_pad($i, 2, "0", STR_PAD_LEFT) . "</option>\n";
 	}
 	$xtpl->assign('phour', $select);
 	$select = "";
-	for ($i = 0; $i < 60; $i++)
+	for ($i = 0; $i < 60; ++$i)
 	{
 		$select .= "<option value=\"" . $i . "\"" . (($i == $pmin) ? " selected=\"selected\"" : "") . ">" . str_pad($i, 2, "0", STR_PAD_LEFT) . "</option>\n";
 	}
@@ -751,13 +751,13 @@
 	/////////// time exp //////////////////////////////////////////
 	$xtpl->assign('publ_date', $publ_date);
 	$select = "";
-	for ($i = 0; $i <= 23; $i++)
+	for ($i = 0; $i <= 23; ++$i)
 	{
 		$select .= "<option value=\"" . $i . "\"" . (($i == $ehour) ? " selected=\"selected\"" : "") . ">" . str_pad($i, 2, "0", STR_PAD_LEFT) . "</option>\n";
 	}
 	$xtpl->assign('ehour', $select);
 	$select = "";
-	for ($i = 0; $i < 60; $i++)
+	for ($i = 0; $i < 60; ++$i)
 	{
 		$select .= "<option value=\"" . $i . "\"" . (($i == $emin) ? " selected=\"selected\"" : "") . ">" . str_pad($i, 2, "0", STR_PAD_LEFT) . "</option>\n";
 	}

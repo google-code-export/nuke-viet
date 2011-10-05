@@ -153,7 +153,7 @@ while ( list( $catid_i, $title_i, $lev_i ) = $db->sql_fetchrow( $result ) )
     if ( $lev_i > 0 )
     {
         $xtitle_i .= "&nbsp;";
-        for ( $i = 1; $i <= $lev_i; $i ++ )
+        for ( $i = 1; $i <= $lev_i; ++$i )
         {
             $xtitle_i .= "---";
         }

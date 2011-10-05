@@ -9,7 +9,8 @@ if (! defined ( 'NV_IS_FILE_ADMIN' ))
 	die ( 'Stop!!!' );
 $id = $nv_Request->get_array( 'idcheck', 'post');
 $msg ="";
-for ( $i=0;$i<sizeof($id);$i++ )
+$sizeof = sizeof($id);
+for ( $i=0;$i<$sizeof;++$i )
 {
 	$query = "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE id=" . intval($id[$i]) . "";
 	if ($db->sql_query ( $query ))

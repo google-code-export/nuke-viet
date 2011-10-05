@@ -31,7 +31,7 @@ function nv_fix_question ( )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
+        ++$weight;
         $sql = "UPDATE `" . NV_USERS_GLOBALTABLE . "_question` SET `weight`=" . $weight . " WHERE `qid`=" . $row['qid'];
         $db->sql_query( $sql );
     }
@@ -70,12 +70,12 @@ function nv_groups_add_theme ( $contents )
     $return .= "<input name=\"exp_time\" id=\"exp_time\" value=\"" . $exp_time . "\" style=\"width: 90px;\" maxlength=\"10\" readonly=\"readonly\" type=\"text\" />\n";
     $return .= "<img src=\"" . NV_BASE_SITEURL . "images/calendar.jpg\" width=\"18\" style=\"cursor: pointer; vertical-align: middle;\" onclick=\"popCalendar.show(this, 'exp_time', 'dd.mm.yyyy', false);\" alt=\"\" height=\"17\" />\n";
     $return .= " " . $contents['exp_time'][9] . ": <select name=\"hour\">\n";
-    for ( $i = 0; $i <= 23; $i ++ )
+    for ( $i = 0; $i <= 23; ++$i )
     {
         $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['exp_time'][4] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
     }
     $return .= "</select> " . $contents['exp_time'][10] . ": <select name=\"min\">\n";
-    for ( $i = 0; $i <= 59; $i ++ )
+    for ( $i = 0; $i <= 59; ++$i )
     {
         $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['exp_time'][5] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
     }
@@ -158,12 +158,12 @@ function nv_admin_edit_theme ( $contents )
     $return .= "<input name=\"exp_time\" id=\"exp_time\" value=\"" . $exp_time . "\" style=\"width: 90px;\" maxlength=\"10\" readonly=\"readonly\" type=\"text\" />\n";
     $return .= "<img src=\"" . NV_BASE_SITEURL . "images/calendar.jpg\" width=\"18\" style=\"cursor: pointer; vertical-align: middle;\" onclick=\"popCalendar.show(this, 'exp_time', 'dd.mm.yyyy', false);\" alt=\"\" height=\"17\">\n";
     $return .= $contents['exp_time'][9] . ": <select name=\"hour\">\n";
-    for ( $i = 0; $i <= 23; $i ++ )
+    for ( $i = 0; $i <= 23; ++$i )
     {
         $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['exp_time'][4] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
     }
     $return .= "</select> " . $contents['exp_time'][10] . ": <select name=\"min\">\n";
-    for ( $i = 0; $i <= 59; $i ++ )
+    for ( $i = 0; $i <= 59; ++$i )
     {
         $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['exp_time'][5] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
     }
@@ -228,7 +228,7 @@ function main_theme ( $contents )
         $return .= "<tr>\n";
         $return .= "<td>\n";
         $return .= "<select id=\"change_weight_" . $id . "\" onchange=\"nv_chang_group('" . $id . "','weight');\">\n";
-        for ( $i = 1; $i <= $num; $i ++ )
+        for ( $i = 1; $i <= $num; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $values['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
@@ -244,7 +244,7 @@ function main_theme ( $contents )
         $return .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_group_del(" . $id . ")\">" . $values['actions'][2] . "</a></span></td>\n";
         $return .= "</tr>\n";
         $return .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     $return .= "</table>\n";
     
@@ -311,7 +311,7 @@ function main_list_users_theme ( $contents )
         $return .= "<td><input name=\"exclude_user_" . $id . "\" id=\"exclude_user_" . $id . "\" type=\"checkbox\" value=\"1\" title=\"" . $values['onclick'][1] . "\" onclick=\"" . $values['onclick'][0] . "\" /></td>\n";
         $return .= "</tr>\n";
         $return .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     $return .= "</table>\n";
     if ( ! empty( $contents['generate_page'] ) )
@@ -353,7 +353,7 @@ function nv_admin_search_users_theme ( $contents )
         $return .= "<td><input name=\"user_" . $id . "\" id=\"user_" . $id . "\" type=\"checkbox\" value=\"1\" title=\"" . $values['onclick'][1] . "\" onclick=\"" . $values['onclick'][0] . "\" /></td>\n";
         $return .= "</tr>\n";
         $return .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     $return .= "</table>\n";
     if ( ! empty( $contents['generate_page'] ) )

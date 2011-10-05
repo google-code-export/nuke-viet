@@ -27,7 +27,7 @@ if ( $db->sql_affectedrows() > 0 )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
+        ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "` SET `weight`=" . $weight . " WHERE `id`=" . $row['id'];
         $db->sql_query( $sql );
     }

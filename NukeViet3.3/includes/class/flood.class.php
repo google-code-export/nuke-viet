@@ -86,7 +86,7 @@ class FloodBlocker
 				$info[$interval]['count'] = 0;
 			}
 
-			$info[$interval]['count']++;
+			++$info[$interval]['count'];
 
 			if (NV_CURRENTTIME - $info[$interval]['time'] > $interval)
 			{

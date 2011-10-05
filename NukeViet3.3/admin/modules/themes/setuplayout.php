@@ -40,13 +40,15 @@ $xml = simplexml_load_file( NV_ROOTDIR . '/themes/' . $selectthemes . '/config.i
 $layoutdefault = ( string )$xml->layoutdefault;
 $layout = $xml->xpath( 'setlayout/layout' );
 
-for ( $i = 0; $i < count( $layout ); $i ++ )
+$count = count( $layout );
+for ( $i = 0; $i < $count; ++$i )
 {
     $layout_name = ( string )$layout[$i]->name;
     if ( in_array( $layout_name, $layout_array ) )
     {
         $layout_funcs = $layout[$i]->xpath( 'funcs' );
-        for ( $j = 0; $j < count( $layout_funcs ); $j ++ )
+        $count = count( $layout_funcs );
+        for ( $j = 0; $j < $count; ++$j )
         {
             $mo_funcs = ( string )$layout_funcs[$j];
             $mo_funcs = explode( ":", $mo_funcs );
@@ -163,14 +165,14 @@ while ( list( $mod_name, $mod_name_title ) = $db->sql_fetchrow( $result ) )
         {
             $contents .= "</td>\n";
         }
-        $i ++;
+        ++$i;
     }
 }
-$i --;
+--$i;
 if ( $i % 3 != 0 )
 {
     $i = $i % 3;
-    for ( $j = $i; $j < 3; $j ++ )
+    for ( $j = $i; $j < 3; ++$j )
     {
         $contents .= "<td>&nbsp;</td>\n";
     }

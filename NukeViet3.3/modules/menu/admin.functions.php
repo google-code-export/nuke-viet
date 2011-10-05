@@ -102,7 +102,7 @@ function nv_fix_cat_order( $mid, $parentid = 0, $order = 0, $lev = 0 )
     $weight = 0;
     if ( $parentid > 0 )
     {
-        $lev ++;
+        ++$lev;
     }
     else
     {
@@ -111,8 +111,8 @@ function nv_fix_cat_order( $mid, $parentid = 0, $order = 0, $lev = 0 )
    
     foreach ( $array_cat_order as $catid_i )
     {
-        $order ++;
-        $weight ++;        
+        ++$order;
+        ++$weight;        
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_rows` SET `weight`=" . $weight . ", `order`=" . $order . ", `lev`='" . $lev . "' WHERE `id`=" . intval( $catid_i );
         $db->sql_query( $sql );         
         $order = nv_fix_cat_order( $mid, $catid_i, $order, $lev );

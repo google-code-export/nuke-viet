@@ -87,7 +87,7 @@ if ( $nv_Request->isset_request( 'i', 'get' ) )
             }
             $xtpl->assign( 'CLASS', ( $a % 2 ) ? " class=\"second\"" : "" );
             $xtpl->parse( 'scontent.loop' );
-            $a++;
+            ++$a;
         }
 
         $today = mktime( 0, 0, 0, date( "m", NV_CURRENTTIME ), date( "d", NV_CURRENTTIME ), date( "Y", NV_CURRENTTIME ) );

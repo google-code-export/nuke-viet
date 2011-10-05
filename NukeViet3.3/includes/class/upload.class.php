@@ -705,7 +705,7 @@ class upload
             while ( file_exists( $savepath . $filename2 ) )
             {
                 $filename2 = preg_replace( '/(.*)(\.[a-zA-Z0-9]+)$/', '\1_' . $i . '\2', $filename );
-                $i++;
+                ++$i;
             }
             $filename = $filename2;
         }
@@ -945,7 +945,7 @@ class upload
             {
                 unset( $matches );
                 if ( preg_match( "/location:\s(.*?)$/is", $v, $matches ) ){
-                	$is_200 ++;
+                	++$is_200;
                     $location = trim( $matches[1] );
                     if ( substr( $location, 0, 1 ) == "/" )
                     {
@@ -1279,7 +1279,7 @@ class upload
             while ( file_exists( $savepath . $filename2 ) )
             {
                 $filename2 = preg_replace( '/(.*)(\.[a-zA-Z0-9]+)$/', '\1_' . $i . '\2', $filename );
-                $i++;
+                ++$i;
             }
             $filename = $filename2;
         }

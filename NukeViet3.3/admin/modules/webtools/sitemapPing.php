@@ -219,7 +219,7 @@ if ( ! empty( $searchEngines['searchEngine'] ) )
     }
 }
 
-for ( $i = 0; $i < 3; $i++ )
+for ( $i = 0; $i < 3; ++$i )
 {
     $data = array( 'name' => '', 'value' => '', 'checked' => '' );
     $xtpl->assign( 'DATA', $data );

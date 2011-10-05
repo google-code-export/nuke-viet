@@ -42,7 +42,7 @@ if ( $catid > 0 )
                         if ( $lev_i > 0 )
                         {
                             $xtitle_i .= "&nbsp;&nbsp;&nbsp;|";
-                            for ( $i = 1; $i <= $lev_i; $i ++ )
+                            for ( $i = 1; $i <= $lev_i; ++$i )
                             {
                                 $xtitle_i .= "---";
                             }

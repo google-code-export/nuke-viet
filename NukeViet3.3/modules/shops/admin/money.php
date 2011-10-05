@@ -105,7 +105,7 @@ while ( $row = $db->sql_fetchrow( $re ) )
     }
     $xtpl->assign( 'ROW', $row );
     $xtpl->parse( 'main.data.row' );
-    $count ++;
+    ++$count;
 }
 $xtpl->assign( 'URL_DEL', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=delmoney" );
 $xtpl->assign( 'URL_DEL_BACK', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=" . $op );

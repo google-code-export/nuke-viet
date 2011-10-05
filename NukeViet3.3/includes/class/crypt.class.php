@@ -39,13 +39,12 @@ class nv_Crypt
      */
     function __construct ( $key, $method )
     {
-        $strlen_key = strlen( $key );
-        $this->_otk = ( $strlen_key ) ? true : false;
+        $this->_otk = ! empty ( $key ) ? true : false;
         $this->_func = $method != 'md5' ? 'sha1' : 'md5';
         
-        if ( $strlen_key > 64 ) $key = pack( 'H32', call_user_func( $this->_func, $key ) );
+        if ( isset( $key{64} ) ) $key = pack( 'H32', call_user_func( $this->_func, $key ) );
         
-        if ( $strlen_key < 64 ) $key = str_pad( $key, 64, chr( 0 ) );
+        if ( ! isset ($key{63}) ) $key = str_pad( $key, 64, chr( 0 ) );
         
         $this->_ipad = substr( $key, 0, 64 ) ^ str_repeat( chr( 0x36 ), 64 );
         $this->_opad = substr( $key, 0, 64 ) ^ str_repeat( chr( 0x5C ), 64 );

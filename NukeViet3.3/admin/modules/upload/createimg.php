@@ -24,7 +24,7 @@ $i = 1;
 while ( file_exists( NV_ROOTDIR . '/' . $path . '/' . $file ) )
 {
     $file = preg_replace( '/^(.*)(\.[a-zA-Z]+)$/', '\1_' . $width . '_' . $height . '_' . $i . '\2', $imagename );
-    $i++;
+    ++$i;
 }
 
 require_once ( NV_ROOTDIR . "/includes/class/image.class.php" );

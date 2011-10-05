@@ -43,7 +43,7 @@ $sql = "SELECT `group_id` FROM `" . NV_GROUPS_GLOBALTABLE . "` ORDER BY `weight`
 $result = $db->sql_query( $sql );
 while ( $row = $db->sql_fetchrow( $result ) )
 {
-    $weight ++;
+    ++$weight;
     $sql1 = "UPDATE `" . NV_GROUPS_GLOBALTABLE. "` SET `weight`=" . $weight . " WHERE `group_id`=" . intval( $row['group_id'] );
     $db->sql_query( $sql1 );
 

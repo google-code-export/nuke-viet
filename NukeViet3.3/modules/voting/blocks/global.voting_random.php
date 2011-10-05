@@ -48,7 +48,7 @@ if ( ! nv_function_exists( 'nv_block_voting' ) )
                 if ( nv_set_allow( $row['who_view'], $row['groups_view'] ) )
                 {
                     $allowed[$a] = $row;
-                    $a ++;
+                    ++$a;
                 }
             }
         }
@@ -66,7 +66,7 @@ if ( ! nv_function_exists( 'nv_block_voting' ) )
         
         if ( $allowed )
         {
-            $a --;
+            --$a;
             $rand = rand( 0, $a );
             $current_voting = $allowed[$rand];
             

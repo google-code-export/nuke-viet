@@ -24,7 +24,7 @@ function nv_FixWeight( $catid )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight++;
+        ++$weight;
         $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "` SET `weight`=" . $weight . " WHERE `id`=" . $row['id'] );
     }
 }
@@ -127,7 +127,7 @@ if ( $nv_Request->isset_request( 'add', 'get' ) or $nv_Request->isset_request( '
                     $result = $db->sql_query( $sql );
                     list( $new_weight ) = $db->sql_fetchrow( $result );
                     $new_weight = ( int )$new_weight;
-                    $new_weight++;
+                    ++$new_weight;
                 }
                 else
                 {
@@ -168,7 +168,7 @@ if ( $nv_Request->isset_request( 'add', 'get' ) or $nv_Request->isset_request( '
                 $result = $db->sql_query( $sql );
                 list( $new_weight ) = $db->sql_fetchrow( $result );
                 $new_weight = ( int )$new_weight;
-                $new_weight++;
+                ++$new_weight;
 
                 $sql = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "` VALUES (
                 NULL, 
@@ -297,8 +297,8 @@ if ( $nv_Request->isset_request( 'changeweight', 'post' ) )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight++;
-        if ( $weight == $new ) $weight++;
+        ++$weight;
+        if ( $weight == $new ) ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "` SET `weight`=" . $weight . " WHERE `id`=" . $row['id'];
         $db->sql_query( $sql );
     }
@@ -446,7 +446,7 @@ while ( $row = $db->sql_fetchrow( $query ) )
     if ( defined( 'NV_IS_CAT' ) )
     {
         $weight = array();
-        for ( $i = 1; $i <= $all_page; $i++ )
+        for ( $i = 1; $i <= $all_page; ++$i )
         {
             $weight[$i]['title'] = $i;
             $weight[$i]['pos'] = $i;
@@ -490,7 +490,7 @@ if ( ! empty( $array ) )
 
         $xtpl->assign( 'EDIT_URL', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;edit=1&amp;id=" . $row['id'] );
         $xtpl->parse( 'main.row' );
-        $a++;
+        ++$a;
     }
 }
 

@@ -156,7 +156,7 @@ foreach ( $global_array_cat as $catid_i => $array_value )
         if ( $lev_i > 0 )
         {
             $xtitle_i .= "&nbsp;&nbsp;&nbsp;|";
-            for ( $i = 1; $i <= $lev_i; $i ++ )
+            for ( $i = 1; $i <= $lev_i; ++$i )
             {
                 $xtitle_i .= "---";
             }

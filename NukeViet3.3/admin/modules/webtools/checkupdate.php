@@ -239,7 +239,7 @@ if ( $nv_Request->isset_request( 'i', 'get' ) )
                 $xtpl->assign( 'MODCL', $cl );
                 $xtpl->assign( 'MODNOTE', $note );
                 $xtpl->parse( 'modUpd.loop' );
-                $a++;
+                ++$a;
             }
 
             $xtpl->assign( 'MODUPDDATE', nv_date( "d-m-Y H:i", $modUpdDate ) );
@@ -308,7 +308,7 @@ if ( $nv_Request->isset_request( 'i', 'get' ) )
                 }
 
                 $xtpl->parse( 'modsNew.loop' );
-                $a++;
+                ++$a;
             }
             $xtpl->parse( 'modsNew' );
             echo $xtpl->text( 'modsNew' );

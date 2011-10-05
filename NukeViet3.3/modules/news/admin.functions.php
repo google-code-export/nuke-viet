@@ -131,7 +131,7 @@ function nv_fix_cat_order ( $parentid = 0, $order = 0, $lev = 0 )
     $weight = 0;
     if ( $parentid > 0 )
     {
-        $lev ++;
+        ++$lev;
     }
     else
     {
@@ -139,8 +139,8 @@ function nv_fix_cat_order ( $parentid = 0, $order = 0, $lev = 0 )
     }
     foreach ( $array_cat_order as $catid_i )
     {
-        $order ++;
-        $weight ++;
+        ++$order;
+        ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_cat` SET `weight`=" . $weight . ", `order`=" . $order . ", `lev`='" . $lev . "' WHERE `catid`=" . intval( $catid_i );
         $db->sql_query( $sql );
         $order = nv_fix_cat_order( $catid_i, $order, $lev );
@@ -186,7 +186,7 @@ function nv_fix_topic ( )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
+        ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_topics` SET `weight`=" . $weight . " WHERE `topicid`=" . intval( $row['topicid'] );
         $db->sql_query( $sql );
     }
@@ -201,7 +201,7 @@ function nv_fix_block_cat ( )
     $result = $db->sql_query( $query );
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
+        ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_block_cat` SET `weight`=" . $weight . " WHERE `bid`=" . intval( $row['bid'] );
         $db->sql_query( $sql );
     }
@@ -216,7 +216,7 @@ function nv_fix_source ( )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
+        ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_sources` SET `weight`=" . $weight . " WHERE `sourceid`=" . intval( $row['sourceid'] );
         $db->sql_query( $sql );
     }
@@ -234,7 +234,7 @@ function nv_news_fix_block ( $bid, $repairtable = true )
         $weight = 0;
         while ( $row = $db->sql_fetchrow( $result ) )
         {
-            $weight ++;
+            ++$weight;
             if ( $weight <= 100 )
             {
                 $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_block` SET `weight`=" . $weight . " WHERE `bid`='" . $bid . "' AND `id`=" . intval( $row['id'] );
@@ -379,7 +379,7 @@ function nv_show_cat_list ( $parentid = 0 )
                 else
                 {
                     $contents .= "<select id=\"id_weight_" . $catid . "\" onchange=\"nv_chang_cat('" . $catid . "','weight');\">\n";
-                    for ( $i = 1; $i <= $num; $i ++ )
+                    for ( $i = 1; $i <= $num; ++$i )
                     {
                         $contents .= "<option value=\"" . $i . "\"" . ( $i == $weight ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
                     }
@@ -428,7 +428,7 @@ function nv_show_cat_list ( $parentid = 0 )
                 else
                 {
                     $contents .= "<select id=\"id_numlinks_" . $catid . "\" onchange=\"nv_chang_cat('" . $catid . "','numlinks');\">\n";
-                    for ( $i = 0; $i <= 10; $i ++ )
+                    for ( $i = 0; $i <= 10; ++$i )
                     {
                         $contents .= "<option value=\"" . $i . "\"" . ( $i == $numlinks ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
                     }
@@ -440,7 +440,7 @@ function nv_show_cat_list ( $parentid = 0 )
                 $contents .= "</td>\n";
                 $contents .= "</tr>\n";
                 $contents .= "</tbody>\n";
-                $a ++;
+                ++$a;
             }
         }
         $contents .= "</table>\n";
@@ -481,7 +481,7 @@ function nv_show_topics_list ( )
             $contents .= "<tbody" . $class . ">\n";
             $contents .= "<tr>\n";
             $contents .= "<td align=\"center\"><select id=\"id_weight_" . $row['topicid'] . "\" onchange=\"nv_chang_topic('" . $row['topicid'] . "','weight');\">\n";
-            for ( $i = 1; $i <= $num; $i ++ )
+            for ( $i = 1; $i <= $num; ++$i )
             {
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $row['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
@@ -493,7 +493,7 @@ function nv_show_topics_list ( )
             $contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_del_topic(" . $row['topicid'] . ")\">" . $lang_global['delete'] . "</a></span></td>\n";
             $contents .= "</tr>\n";
             $contents .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $contents .= "</table>\n";
     }
@@ -534,7 +534,7 @@ function nv_show_block_cat_list ( )
             $contents .= "<tbody" . $class . ">\n";
             $contents .= "<tr>\n";
             $contents .= "<td align=\"center\"><select id=\"id_weight_" . $row['bid'] . "\" onchange=\"nv_chang_block_cat('" . $row['bid'] . "','weight');\">\n";
-            for ( $i = 1; $i <= $num; $i ++ )
+            for ( $i = 1; $i <= $num; ++$i )
             {
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $row['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
@@ -557,7 +557,7 @@ function nv_show_block_cat_list ( )
             }
             $contents .= "</select></td>\n";
             $contents .= "<td align=\"center\"><select id=\"id_numlinks_" . $row['bid'] . "\" onchange=\"nv_chang_block_cat('" . $row['bid'] . "','numlinks');\">\n";
-            for ( $i = 1; $i <= 30; $i ++ )
+            for ( $i = 1; $i <= 30; ++$i )
             {
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $row['number'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
@@ -566,7 +566,7 @@ function nv_show_block_cat_list ( )
             $contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_del_block_cat(" . $row['bid'] . ")\">" . $lang_global['delete'] . "</a></span></td>\n";
             $contents .= "</tr>\n";
             $contents .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $contents .= "</table>\n";
     }
@@ -605,7 +605,7 @@ function nv_show_sources_list ( )
             $contents .= "<tbody" . $class . ">\n";
             $contents .= "<tr>\n";
             $contents .= "<td align=\"center\"><select id=\"id_weight_" . $row['sourceid'] . "\" onchange=\"nv_chang_sources('" . $row['sourceid'] . "','weight');\">\n";
-            for ( $i = 1; $i <= $num; $i ++ )
+            for ( $i = 1; $i <= $num; ++$i )
             {
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $row['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
@@ -616,7 +616,7 @@ function nv_show_sources_list ( )
             $contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_del_source(" . $row['sourceid'] . ")\">" . $lang_global['delete'] . "</a></span></td>\n";
             $contents .= "</tr>\n";
             $contents .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $contents .= "</table>\n";
         $contents .= nv_generate_page( $base_url, $all_page, $per_page, $page );
@@ -656,7 +656,7 @@ function nv_content_keywords ( $content )
             $content_array = explode( " ", $content );
             $a = 0;
             $b = count( $content_array );
-            for ( $i = 0; $i < $b - 3; $i ++ )
+            for ( $i = 0; $i < $b - 3; ++$i )
             {
                 $key3 = $content_array[$i] . " " . $content_array[$i + 1] . " " . $content_array[$i + 2];
                 $key2 = $content_array[$i] . " " . $content_array[$i + 1];
@@ -728,7 +728,7 @@ function nv_show_block_list ( $bid )
             $contents .= "<tr>\n";
             $contents .= "<td align=\"center\"><input type=\"checkbox\" onclick=\"nv_UncheckAll(this.form, 'idcheck[]', 'check_all[]', this.checked);\" value=\"" . $id . "\" name=\"idcheck[]\" /></td>\n";
             $contents .= "<td align=\"center\"><select id=\"id_weight_" . $id . "\" onchange=\"nv_chang_block(" . $bid . ", " . $id . ",'weight');\">\n";
-            for ( $i = 1; $i <= $num; $i ++ )
+            for ( $i = 1; $i <= $num; ++$i )
             {
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $weight ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
@@ -740,7 +740,7 @@ function nv_show_block_list ( $bid )
             $contents .= "</td>\n";
             $contents .= "</tr>\n";
             $contents .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $contents .= "</table>\n";
         $contents .= "</form>\n";

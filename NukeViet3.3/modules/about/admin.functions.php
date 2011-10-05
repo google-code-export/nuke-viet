@@ -40,7 +40,7 @@ function nv_show_list ( )
             $contents .= "<tbody" . $class . ">\n";
             $contents .= "<tr>\n";
             $contents .= "<td><select id=\"change_weight_" . $row ['id'] . "\" onchange=\"nv_chang_weight('" . $row ['id'] . "');\">\n";
-            for ( $i = 1; $i <= $num; $i ++ )
+            for ( $i = 1; $i <= $num; ++$i )
             {
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $row ['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
@@ -60,7 +60,7 @@ function nv_show_list ( )
             $contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_module_del(" . $row ['id'] . ")\">" . $lang_global ['delete'] . "</a></span></td>\n";
             $contents .= "</tr>\n";
             $contents .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $contents .= "</table>\n";
     }

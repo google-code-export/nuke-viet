@@ -166,7 +166,7 @@ while ( list( $key, $value ) = each( $language_array ) )
     $contents .= "<td style=\"text-align: center\">" . implode( " - ", $arr_lang_func ) . "</td>";
     $contents .= "</tr>";
     $contents .= "</tbody>";
-    $a ++;
+    ++$a;
 }
 $contents .= "</table>";
 $contents .= "</div>";

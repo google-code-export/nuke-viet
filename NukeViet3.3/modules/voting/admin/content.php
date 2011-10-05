@@ -64,7 +64,7 @@ if ( ! empty( $submit ) )
         $title = trim( strip_tags( $title ) );
         if ( $title != "" )
         {
-            $number_answer++;
+            ++$number_answer;
         }
     }
     foreach ( $answervotenews as $title )
@@ -72,7 +72,7 @@ if ( ! empty( $submit ) )
         $title = trim( strip_tags( $title ) );
         if ( $title != "" )
         {
-            $number_answer++;
+            ++$number_answer;
         }
     }
     $rowvote = array( "who_view" => 0, "groups_view" => "", "publ_time" => $begindate, "exp_time" => $enddate, "acceptcm" => $maxoption, "question" => $question );
@@ -105,7 +105,7 @@ if ( ! empty( $submit ) )
                 if ( $title != "" )
                 {
                     $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_rows` SET `title` = " . $db->dbescape( $title ) . " WHERE `id` ='" . intval( $id ) . "' AND `vid` =" . $vid . "" );
-                    $maxoption_data++;
+                    ++$maxoption_data;
                 }
                 else
                 {
@@ -121,7 +121,7 @@ if ( ! empty( $submit ) )
                     $query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_rows` (`id`, `vid`, `title`, `hitstotal`) VALUES (NULL, " . $db->dbescape( $vid ) . ", " . $db->dbescape( $title ) . ", '0')";
                     if ( $db->sql_query_insert_id( $query ) )
                     {
-                        $maxoption_data++;
+                        ++$maxoption_data;
                     }
                 }
             }
@@ -199,7 +199,7 @@ if ( $error != "" )
 $j = 0;
 $contents .= "<form id=\"votingcontent\" method=\"post\" action=\"" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $op . "&amp;vid=" . $vid . "\">";
 $contents .= "<table class=\"tab1\" id=\"items\">\n";
-$j++;
+++$j;
 $class = ( $j % 2 == 0 ) ? " class=\"second\"" : "";
 $contents .= "<tbody" . $class . ">\n";
 $contents .= "<tr>\n";
@@ -243,7 +243,7 @@ $contents .= "</td>\n";
 $contents .= "</tr>\n";
 $contents .= "</tbody>\n";
 
-$j++;
+++$j;
 $class = ( $j % 2 == 0 ) ? " class=\"second\"" : "";
 $contents .= "<tbody" . $class . ">\n";
 $contents .= "<tr>\n";
@@ -258,12 +258,12 @@ list( $phour, $pmin ) = explode( "|", $tdate );
 $contents .= "<input name=\"publ_date\" id=\"publ_date\" value=\"" . $publ_date . "\" style=\"width: 90px;\" maxlength=\"10\" readonly=\"readonly\" type=\"text\" />\n";
 $contents .= "<img src=\"" . NV_BASE_SITEURL . "images/calendar.jpg\" width=\"18\" style=\"cursor: pointer; vertical-align: middle;\" onclick=\"popCalendar.show(this, 'publ_date', 'dd.mm.yyyy', false);\" alt=\"\" height=\"17\" />\n";
 $contents .= "<select name=\"phour\">\n";
-for ( $i = 0; $i < 23; $i++ )
+for ( $i = 0; $i < 23; ++$i )
 {
     $contents .= "<option value=\"" . $i . "\"" . ( ( $i == $phour ) ? " selected=\"selected\"" : "" ) . ">" . str_pad( $i, 2, "0", STR_PAD_LEFT ) . "</option>\n";
 }
 $contents .= "</select>:<select name=\"pmin\">\n";
-for ( $i = 0; $i < 60; $i++ )
+for ( $i = 0; $i < 60; ++$i )
 {
     $contents .= "<option value=\"" . $i . "\"" . ( ( $i == $pmin ) ? " selected=\"selected\"" : "" ) . ">" . str_pad( $i, 2, "0", STR_PAD_LEFT ) . "</option>\n";
 }
@@ -273,7 +273,7 @@ $contents .= "</td>\n";
 $contents .= "</tr>\n";
 $contents .= "</tbody>\n";
 
-$j++;
+++$j;
 $class = ( $j % 2 == 0 ) ? " class=\"second\"" : "";
 $contents .= "<tbody" . $class . ">\n";
 $contents .= "<tr>\n";
@@ -295,12 +295,12 @@ else
 $contents .= "<input name=\"exp_date\" id=\"exp_date\" value=\"" . $exp_date . "\" style=\"width: 90px;\" maxlength=\"10\" readonly=\"readonly\" type=\"text\" />\n";
 $contents .= "<img src=\"" . NV_BASE_SITEURL . "images/calendar.jpg\" width=\"18\" style=\"cursor: pointer; vertical-align: middle;\" onclick=\"popCalendar.show(this, 'exp_date', 'dd.mm.yyyy', false);\" alt=\"\" height=\"17\" />\n";
 $contents .= "<select name=\"ehour\">\n";
-for ( $i = 0; $i < 23; $i++ )
+for ( $i = 0; $i < 23; ++$i )
 {
     $contents .= "<option value=\"" . $i . "\"" . ( ( $i == $ehour ) ? " selected=\"selected\"" : "" ) . ">" . str_pad( $i, 2, "0", STR_PAD_LEFT ) . "</option>\n";
 }
 $contents .= "</select>:<select name=\"emin\">\n";
-for ( $i = 0; $i < 60; $i++ )
+for ( $i = 0; $i < 60; ++$i )
 {
     $contents .= "<option value=\"" . $i . "\"" . ( ( $i == $emin ) ? " selected=\"selected\"" : "" ) . ">" . str_pad( $i, 2, "0", STR_PAD_LEFT ) . "</option>\n";
 }
@@ -309,7 +309,7 @@ $contents .= "</select>\n";
 $contents .= "</td>\n";
 $contents .= "</tr>\n";
 $contents .= "</tbody>\n";
-$j++;
+++$j;
 $class = ( $j % 2 == 0 ) ? " class=\"second\"" : "";
 $contents .= "<tbody" . $class . ">\n";
 $contents .= "<tr>\n";
@@ -326,7 +326,7 @@ $contents .= "</tbody>\n";
 $items = 0;
 foreach ( $array_answervote as $id => $title )
 {
-    $j++;
+    ++$j;
     $class = ( $j % 2 == 0 ) ? " class=\"second\"" : "";
     $contents .= "<tbody" . $class . ">\n";
     $contents .= "<tr>\n";
@@ -335,7 +335,7 @@ foreach ( $array_answervote as $id => $title )
     $contents .= "</tr>\n";
     $contents .= "</tbody>\n";
 }
-$j++;
+++$j;
 $class = ( $j % 2 == 0 ) ? " class=\"second additem\"" : " class=\"additem\"";
 
 $contents .= "<tbody " . $class . ">\n";

@@ -70,7 +70,7 @@ function set_reg_attribs ( $attribs )
     $username = str_pad( $username, NV_UNICKMIN, "0", STR_PAD_RIGHT );
     $username = substr( $username, 0, ( NV_UNICKMAX - 2 ) );
     $username2 = $username;
-    for ( $i = 0; $i < 100; $i ++ )
+    for ( $i = 0; $i < 100; ++$i )
     {
         if ( $i > 0 )
         {

@@ -41,7 +41,7 @@ if ( ! empty( $array ) )
                 $xtpl->parse( 'main.loop.else' );
             }
             $xtpl->parse( 'main.loop' );
-            $a ++;
+            ++$a;
         }
         $xtpl->parse( 'main' );
         $contents = $xtpl->text( 'main' );

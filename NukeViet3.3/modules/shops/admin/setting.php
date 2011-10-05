@@ -172,7 +172,7 @@ if ( ! empty( $array_setting_payment ) )
         $value['slect_weight'] = drawselect_number( $value['payment'], 1, $all_page + 1, $value['weight'], "nv_chang_pays('" . $value['payment'] . "',this,url_change_weight,url_back);" );
         $xtpl->assign( 'DATA_PM', $value );
         $xtpl->parse( 'main.payment.paymentloop' );
-        $a ++;
+        ++$a;
     }
     $xtpl->assign( 'url_back', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=" . $op );
     $xtpl->assign( 'url_change', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=changepay" );

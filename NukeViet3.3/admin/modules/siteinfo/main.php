@@ -72,7 +72,7 @@ if ( ! empty( $info ) )
             $xtpl->assign( 'VALUE', $field['value'] );
             $xtpl->assign( 'MODULE', $if['caption'] );
             $xtpl->parse( 'main.main1.loop' );
-            $a ++;
+            ++$a;
         }
     }
     $xtpl->parse( 'main.main1' );

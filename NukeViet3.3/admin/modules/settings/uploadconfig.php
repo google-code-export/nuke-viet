@@ -99,7 +99,7 @@ $contents .= "<td>";
 $contents .= "<select name=\"nv_max_size\">\n";
 $sys_max_size = min( nv_converttoBytes( ini_get( 'upload_max_filesize' ) ), nv_converttoBytes( ini_get( 'post_max_size' ) ) );
 $p_size = $sys_max_size / 100;
-for ( $index = 100; $index > 0; $index-- )
+for ( $index = 100; $index > 0; --$index )
 {
     $size = floor( $index * $p_size );
     $sl = ( $size == $global_config['nv_max_size'] ) ? " selected=\"selected\"" : "";

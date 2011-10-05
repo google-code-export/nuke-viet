@@ -84,7 +84,7 @@ if ( ! nv_function_exists( 'nv_news_blocks' ) )
                 if ( ! empty( $l['thumb'] ) ) $xtpl->parse( 'main.loop.img' );
                 $bg = ( $i % 2 == 0 ) ? "bg" : "";
                 $xtpl->assign( 'bg', $bg );
-                $i ++;
+                ++$i;
                 $xtpl->parse( 'main.loop' );
             }
             $xtpl->assign( 'HTML_CONTENT', $html );

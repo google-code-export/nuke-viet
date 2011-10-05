@@ -113,7 +113,7 @@ class keywordRank
         }
 
         $url = sprintf( $this->pattern['googleByAll'], $key, $lang );
-        for ( $i = 0; $i < 5; $i++ )
+        for ( $i = 0; $i < 5; ++$i )
         {
             $start = $i * 10;
             if ( $start != 0 ) $url .= "&start=" . $start;

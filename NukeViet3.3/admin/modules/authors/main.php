@@ -253,7 +253,7 @@ if ( ! empty( $admins ) )
                     $xtpl->assign( 'CLASS', ( $a % 2 ) ? " class=\"second\"" : "" );
                     $xtpl->assign( 'VALUE0', $value[0] );
                     $xtpl->assign( 'VALUE1', $value[1] );
-                    $a ++;
+                    ++$a;
                     $xtpl->parse( 'main.loop.option_loop' );
                 }
             }
@@ -299,7 +299,7 @@ if ( ! empty( $admins ) )
             $xtpl->assign( 'DATA', $data_row );
             $xtpl->assign( 'CLASS', ( $a % 2 ) ? " class=\"second\"" : "" );
             $xtpl->parse( 'main.loop' );
-            $a ++;
+            ++$a;
         }
     }
     $xtpl->parse( 'main' );

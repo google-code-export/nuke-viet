@@ -133,7 +133,7 @@ while ( $row = $db->sql_fetchrow ( $result ) ) {
 	elseif ($data_ext == 'os' and empty ( $replacement ))
 		$replacement = $row ['click_os_name'];
 	
-	$a ++;
+	++$a;
 }
 
 if (! empty ( $replacement )) {

@@ -109,7 +109,7 @@ $contents .= "</select></td>
 <tr>
     <td><strong>" . $lang_module['setting_per_page'] . "</strong></td>
     <td><select name=\"per_page\">";
-for ( $i = 5; $i <= 30; $i ++ )
+for ( $i = 5; $i <= 30; ++$i )
 {
     $sl = "";
     if ( $i == $module_config[$module_name]['per_page'] )
@@ -126,7 +126,7 @@ $contents .= "</select></td>
 <tr>
     <td><strong>" . $lang_module['setting_st_links'] . "</strong></td>
     <td><select name=\"st_links\">";
-for ( $i = 0; $i <= 20; $i ++ )
+for ( $i = 0; $i <= 20; ++$i )
 {
     $sl = "";
     if ( $i == $module_config[$module_name]['st_links'] )
@@ -328,7 +328,7 @@ if ( defined( 'NV_IS_ADMIN_FULL_MODULE' ) or ! in_array( 'admins', $allow_func )
     {
         foreach ( $array_post_1 as $group_id => $array_post_2 )
         {
-            $a ++;
+            ++$a;
             $class = ( $a % 2 == 0 ) ? "" : " class=\"second\"";
             $pid = ( isset( $array_post_member[$member][$group_id] ) ) ? $array_post_member[$member][$group_id] : 0;
             if ( $pid > 0 )

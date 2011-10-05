@@ -226,10 +226,9 @@ function nv_getFileInfo( $pathimg, $file )
 
     $info = array();
     $info[0] = $file;
-    $max = 16;
-    if ( strlen( $file ) > $max )
+    if ( isset( $file{17} ) )
     {
-        $info[0] = substr( $matches[1], 0, ( $max - 3 - strlen( $matches[2] ) ) ) . "..." . $matches[2];
+        $info[0] = substr( $matches[1], 0, ( 13 - strlen( $matches[2] ) ) ) . "..." . $matches[2];
     }
 
     $info[1] = $matches[2];

@@ -17,7 +17,7 @@ if ( ! nv_function_exists( 'nv_news_category' ) )
         global $db, $language_array;
         $html = "<select name=\"config_title_length\">\n";
         $html .= "<option value=\"\">" . $lang_block['title_length'] . "</option>\n";
-        for ( $i = 0; $i < 100; $i ++ )
+        for ( $i = 0; $i < 100; ++$i )
         {
             $sel = ( $data_block['title_length'] == $i ) ? ' selected' : '';
             

@@ -20,7 +20,7 @@ $numcat = 0;
 while ( $row = $db->sql_fetchrow( $querysubcat,2 ) )
 {
     $array_cat[$row['catid']] = $row;
-    if ( $row['parentid'] ==  $pid ) $numcat++;
+    if ( $row['parentid'] ==  $pid ) ++$numcat;
 }
 if ($pid > 0 ) $page_title = $lang_module['categories']." : ".$array_cat[$pid]['title'];
 //post data

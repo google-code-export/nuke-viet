@@ -75,7 +75,7 @@ foreach ( $array_block_news as $array_news )
     }
     $xtpl->parse( 'main.newloop' );
     $xtpl->assign( 'BACKGROUND', ( $a % 2 ) ? 'bg ' : '' );
-    $a ++;
+    ++$a;
 }
 
 $xtpl->parse( 'main' );

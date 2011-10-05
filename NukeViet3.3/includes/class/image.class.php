@@ -732,9 +732,9 @@ class image
             imagecopy( $workingImage, $this->createImage, 0, 0, 0, 0, $this->create_Image_info['width'], $this->create_Image_info['height'] );
             $reflection_height = $this->create_Image_info['height'] / 2;
             $alpha_step = 80 / $reflection_height;
-            for ( $y = 1; $y <= $reflection_height; $y++ )
+            for ( $y = 1; $y <= $reflection_height; ++$y )
             {
-                for ( $x = 0; $x < $newwidth; $x++ )
+                for ( $x = 0; $x < $newwidth; ++$x )
                 {
                     $rgba = imagecolorat( $this->createImage, $x, $this->create_Image_info['height'] - $y );
                     $alpha = ( $rgba & 0x7F000000 ) >> 24;

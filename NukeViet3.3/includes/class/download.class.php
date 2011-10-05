@@ -438,7 +438,7 @@ class download
 
         if ( ( $http_range = nv_getenv( 'HTTP_RANGE' ) ) != "" )
         {
-            $seek_range = substr( $http_range, strlen( 'bytes=' ) );
+            $seek_range = substr( $http_range, 6 );
 
             $range = explode( '-', $seek_range );
 

@@ -281,7 +281,7 @@ foreach ( $global_config['allow_adminlangs'] as $keylang )
     $contents .= "      <td>" . $setup . "</td>";
     $contents .= "  </tr>";
     $contents .= "  </tbody>\n";
-    $a ++;
+    ++$a;
 }
 $contents .= "  </table>\n";
 

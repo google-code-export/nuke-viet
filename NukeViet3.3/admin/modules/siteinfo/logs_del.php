@@ -17,7 +17,7 @@ if ( $id > 0 )
     {
         $db->sql_freeresult();
         $contents = "OK_" . $lang_module['log_del_ok'];
-        $number_del ++;
+        ++$number_del;
     }
 }
 else
@@ -32,7 +32,7 @@ else
         {
             $sql = "DELETE FROM `" . $db_config['prefix'] . "_logs` WHERE `id`=" . $id . "";
             $result = $db->sql_query( $sql );
-            $number_del ++;
+            ++$number_del;
         }
     }
     $contents = "OK_" . $lang_module['log_del_ok'];

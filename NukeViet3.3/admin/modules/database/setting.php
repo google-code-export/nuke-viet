@@ -49,7 +49,7 @@ foreach ( $array_sql_ext as $ext_i )
     $xtpl->assign( 'BACKUPEXTVALUE', $ext_i );
     $xtpl->parse( 'main.dump_backup_ext' );
 }
-for ( $index = 10; $index < 100; $index ++ )
+for ( $index = 10; $index < 100; ++$index )
 {
     $xtpl->assign( 'BACKUPDAYSELECTED', ( $index == $array_config_global['dump_backup_day'] ) ? "selected='selected'" : "" );
     $xtpl->assign( 'BACKUPDAYVALUE', $index );

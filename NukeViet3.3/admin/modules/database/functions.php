@@ -51,7 +51,7 @@ if ( $module_name == "database" )
             $tables[$item['Name']]['table_update_time'] = ! empty( $item['Update_time'] ) ? strftime( "%H:%M %d/%m/%Y", strtotime( $item['Update_time'] ) ) : "n/a";
             $db_size += $tables_size;
             $db_totalfree += floatval( $item['Data_free'] );
-            $db_tables_count ++;
+            ++$db_tables_count;
         }
         $db->sql_freeresult( $result );
         $db_size = ! empty( $db_size ) ? nv_convertfromBytes( $db_size ) : 0;
@@ -220,7 +220,7 @@ if ( $module_name == "database" )
             $return .= "<td>" . $value . "</td>\n";
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $return .= "</table>\n";
         
@@ -292,7 +292,7 @@ if ( $module_name == "database" )
             }
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $return .= "<tbody class=\"third\">\n";
         $return .= "<tr>\n";
@@ -325,7 +325,7 @@ if ( $module_name == "database" )
             $return .= "<td>" . $value[1] . "</td>\n";
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $return .= "</table>\n";
         $return .= "</div>\n";
@@ -364,7 +364,7 @@ if ( $module_name == "database" )
             }
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
         $return .= "</table>\n";
         $return .= "<br /><br />\n";

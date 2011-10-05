@@ -119,7 +119,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $contents .= "<td>";
     $contents .= '<select class="order" title="' . $row['bid'] . '">';
     $numposition = $blocks_positions[$row['position']];
-    for ( $i = 1; $i <= $numposition; $i ++ )
+    for ( $i = 1; $i <= $numposition; ++$i )
     {
         $sel = ( $row['bweight'] == $i ) ? ' selected="selected"' : '';
         $contents .= '<option value="' . $i . '" ' . $sel . '>' . $i . '</option>';
@@ -128,7 +128,8 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $contents .= "</td>\n";
     $contents .= "<td>";
     $contents .= "<select name=\"listpos\" title='" . $row['bid'] . "'>\n";
-    for ( $i = 0; $i < count( $positions ); $i ++ )
+    $count = count( $positions );
+    for ( $i = 0; $i < $count; ++$i )
     {
         $sel = ( $row['position'] == $positions[$i]->tag ) ? ' selected="selected"' : '';
         $contents .= "<option value=\"" . $positions[$i]->tag . "\" " . $sel . "> " . $positions[$i]->name . '</option>';
@@ -143,7 +144,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $contents .= "<td><label><input type='checkbox' name='idlist' value='" . $row['bid'] . "'/></label></td>\n";
     $contents .= "</tr>\n";
     $contents .= "</tbody>\n";
-    $a ++;
+    ++$a;
 }
 $contents .= "</table>\n";
 $contents .= '

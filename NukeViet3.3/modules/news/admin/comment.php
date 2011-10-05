@@ -57,7 +57,7 @@ $array = array();
 $a = 0;
 while ( list( $cid, $content, $email, $status, $id, $title, $listcatid, $alias, $userid, $user_email ) = $db->sql_fetchrow( $result ) )
 {
-    $a ++;
+    ++$a;
     $arr_listcatid = explode( ",", $listcatid );
     $catid_i = end( $arr_listcatid );
 	

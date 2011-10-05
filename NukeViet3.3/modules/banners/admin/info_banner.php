@@ -67,7 +67,7 @@ $current_year = date( "Y" );
 $publ_month = date( "n", $row['publ_time'] );
 $publ_year = date( "Y", $row['publ_time'] );
 $bymonth = array();
-for ( $i = $current_month; $i > 0; $i-- )
+for ( $i = $current_month; $i > 0; --$i )
 {
 	if ( $i < $publ_month and $current_year == $publ_year ) break;
 	$bymonth[$i] = nv_monthname( $i ) . " " . date( "Y" );

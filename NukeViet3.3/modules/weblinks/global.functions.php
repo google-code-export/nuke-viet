@@ -19,13 +19,13 @@ function _substr($str, $length, $minword = 3)
         $sub .= $part;
         $len += strlen($part);
        
-        if (strlen($word) > $minword && strlen($sub) >= $length)
+        if (isset($word{$minword}) && isset($sub{$length-1}))
         {
             break;
         }
     }
    
-    return $sub . (($len < strlen($str)) ? '...' : '');
+    return $sub . ((isset($str{$len})) ? '...' : '');
 }
 
 function nv_news_page( $base_url, $num_items, $per_page, $start_item, $add_prevnext_text = true )
@@ -38,7 +38,7 @@ function nv_news_page( $base_url, $num_items, $per_page, $start_item, $add_prevn
 	if ( $total_pages > 10 )
 	{
 		$init_page_max = ( $total_pages > 3 ) ? 3 : $total_pages;
-		for ( $i = 1; $i <= $init_page_max; $i++ )
+		for ( $i = 1; $i <= $init_page_max; ++$i )
 		{
 			$href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
 			$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -51,7 +51,7 @@ function nv_news_page( $base_url, $num_items, $per_page, $start_item, $add_prevn
 				$page_string .= ( $on_page > 5 ) ? " ... " : ", ";
 				$init_page_min = ( $on_page > 4 ) ? $on_page : 5;
 				$init_page_max = ( $on_page < $total_pages - 4 ) ? $on_page : $total_pages - 4;
-				for ( $i = $init_page_min - 1; $i < $init_page_max + 2; $i++ )
+				for ( $i = $init_page_min - 1; $i < $init_page_max + 2; ++$i )
 				{
 					$href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
 					$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -67,7 +67,7 @@ function nv_news_page( $base_url, $num_items, $per_page, $start_item, $add_prevn
 				$page_string .= " ... ";
 			}
 
-			for ( $i = $total_pages - 2; $i < $total_pages + 1; $i++ )
+			for ( $i = $total_pages - 2; $i < $total_pages + 1; ++$i )
 			{
 				$href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
 				$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -80,7 +80,7 @@ function nv_news_page( $base_url, $num_items, $per_page, $start_item, $add_prevn
 	}
 	else
 	{
-		for ( $i = 1; $i < $total_pages + 1; $i++ )
+		for ( $i = 1; $i < $total_pages + 1; ++$i )
 		{
 			$href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
 			$page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";

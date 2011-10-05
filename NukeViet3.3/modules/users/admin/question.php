@@ -75,8 +75,8 @@ if ( $nv_Request->isset_request( 'changeweight', 'post' ) )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight++;
-        if ( $weight == $new_vid ) $weight++;
+        ++$weight;
+        if ( $weight == $new_vid ) ++$weight;
         $sql = "UPDATE `" . NV_USERS_GLOBALTABLE . "_question` SET `weight`=" . $weight . " WHERE `qid`=" . $row['qid'];
         $db->sql_query( $sql );
     }
@@ -136,7 +136,7 @@ if ( $nv_Request->isset_request( 'qlist', 'post' ) )
             $contents .= "<tbody" . $class . ">\n";
             $contents .= "<tr>\n";
             $contents .= "<td align=\"center\"><select id=\"id_weight_" . $row['qid'] . "\" onchange=\"nv_chang_question(" . $row['qid'] . ");\">\n";
-            for ( $i = 1; $i <= $num; $i++ )
+            for ( $i = 1; $i <= $num; ++$i )
             {
                 $contents .= "<option value=\"" . $i . "\"" . ( $i == $row['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
             }
@@ -147,7 +147,7 @@ if ( $nv_Request->isset_request( 'qlist', 'post' ) )
             $contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_del_question(" . $row['qid'] . ")\">" . $lang_global['delete'] . "</a></span></td>\n";
             $contents .= "</tr>\n";
             $contents .= "</tbody>\n";
-            $a++;
+            ++$a;
         }
 
         $contents .= "</table>\n";

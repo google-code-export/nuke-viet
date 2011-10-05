@@ -237,7 +237,7 @@ class optimezer
     private function conditionCallback( $matches )
     {
         $num = $this->_condCount;
-        $this->_condCount++;
+        ++$this->_condCount;
         return "{|condition_" . $num . "|}";
     }
 
@@ -250,7 +250,7 @@ class optimezer
     private function jsCallback( $matches )
     {
         $num = $this->_jsCount;
-        $this->_jsCount++;
+        ++$this->_jsCount;
         return "{|js_" . $num . "|}";
     }
 

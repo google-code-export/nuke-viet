@@ -90,7 +90,7 @@ while ( list( $idfile, $module, $admin_file, $langtype, $author_lang ) = $db->sq
         eval( '$array_translator = ' . $author_lang . ';' );
     }
     $class = ( $a % 2 ) ? " class=\"second\"" : "";
-    $a ++;
+    ++$a;
     $contents .= "<tbody" . $class . ">\n";
     $contents .= "<tr>";
     $contents .= " <td align=\"center\">" . $a . "</td>";

@@ -30,7 +30,7 @@ if ( ! empty( $array['Environment'] ) )
         $xtpl->assign( 'KEY', $key );
         $xtpl->assign( 'VALUE', $value );
         $xtpl->parse( 'main.loop' );
-        $a ++;
+        ++$a;
     }
 }
 include ( NV_ROOTDIR . "/includes/header.php" );

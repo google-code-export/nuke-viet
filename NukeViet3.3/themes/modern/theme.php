@@ -110,7 +110,7 @@ function nv_site_theme ( $contents )
                 $xtpl->parse( 'main.bottom_menu' );
             }
         }
-        $a ++;
+        ++$a;
     }
     
     //Breakcolumn

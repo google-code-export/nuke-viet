@@ -40,7 +40,8 @@ foreach ( $files as $file )
 sort( $array_time );
 
 $a = 1;
-for ( $index = count( $array_time ) - 1; $index >= 0; $index -- )
+$count = count( $array_time ) - 1;
+for ( $index = $count; $index >= 0; --$index )
 {
     $filetime = $array_time[$index];
     $value = $array_content[$filetime];
@@ -53,7 +54,7 @@ for ( $index = count( $array_time ) - 1; $index >= 0; $index -- )
     $class = ( $a % 2 == 0 ) ? "" : " class=\"second\"";
     $contents .= "<tbody" . $class . ">";
     $contents .= "<tr>\n";
-    $contents .= "<td align=\"center\">" . $a ++ . "</td>\n";
+    $contents .= "<td align=\"center\">" . ++$a . "</td>\n";
     $contents .= "<td>" . $mc[2] . "." . $mc[3] . "</td>\n";
     $contents .= "<td align=\"right\">" . nv_convertfromBytes( $value['filesize'] ) . "</td>\n";
     $contents .= "<td align=\"right\">" . nv_date( "l d-m-Y h:i:s A", $filetime ) . "</td>\n";

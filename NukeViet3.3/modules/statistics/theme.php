@@ -90,7 +90,7 @@ function allreferers()
 					$xtpl->parse('main.loop.img');
 				}
 
-				$a++;
+				++$a;
 
 				$xtpl->parse('main.loop');
 			}
@@ -136,7 +136,7 @@ function allbots()
 
 					$xtpl->parse('main.loop.img');
 				}
-				$a++;
+				++$a;
 
 				$xtpl->parse('main.loop');
 			}
@@ -182,7 +182,7 @@ function allos()
 
 					$xtpl->parse('main.loop.img');
 				}
-				$a++;
+				++$a;
 
 				$xtpl->parse('main.loop');
 
@@ -229,7 +229,7 @@ function allbrowsers()
 
 					$xtpl->parse('main.loop.img');
 				}
-				$a++;
+				++$a;
 
 				$xtpl->parse('main.loop');
 			}
@@ -276,7 +276,7 @@ function allcountries()
 					$xtpl->parse('main.loop.img');
 				}
 
-				$a++;
+				++$a;
 
 				$xtpl->parse('main.loop');
 			}
@@ -517,7 +517,7 @@ function main()
 			$xtpl->parse('main.ct.loop.img');
 		}
 
-		$a++;
+		++$a;
 		$xtpl->parse('main.ct.loop');
 	}
 
@@ -555,7 +555,7 @@ function main()
 		}
 
 		$xtpl->parse('main.br.loop');
-		$a++;
+		++$a;
 	}
 
 	if($ctsb['others'][1])
@@ -594,7 +594,7 @@ function main()
 			$xtpl->parse('main.os.loop.img');
 		}
 		$xtpl->parse('main.os.loop');
-		$a++;
+		++$a;
 	}
 
 	if($ctso['others'][1])

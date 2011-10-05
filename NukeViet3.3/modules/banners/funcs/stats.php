@@ -29,7 +29,7 @@ if ( defined( 'NV_IS_BANNER_CLIENT' ) )
         $xtpl->assign( 'ads', $row );
         $xtpl->parse( 'main.ads' );
     }
-    for ( $i = 1; $i <= 12; $i ++ )
+    for ( $i = 1; $i <= 12; ++$i )
     {
         $xtpl->assign( 'month', $i );
         $xtpl->parse( 'main.month' );

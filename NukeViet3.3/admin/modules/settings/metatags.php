@@ -79,7 +79,7 @@ if ( ! empty( $metatags['meta'] ) )
     }
 }
 
-for ( $i = 0; $i < 3; $i++ )
+for ( $i = 0; $i < 3; ++$i )
 {
     $data = array( 'content' => '', 'value' => '', 'h_selected' => '', 'n_selected' => '' );
     $xtpl->assign( 'DATA', $data );

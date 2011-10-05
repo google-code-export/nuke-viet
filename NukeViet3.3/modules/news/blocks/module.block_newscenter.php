@@ -63,7 +63,7 @@ foreach ( $list as $row )
             $row['imgsource'] = NV_BASE_SITEURL . 'themes/' . $global_config['site_theme'] . '/images/no_image.gif';
         }
         $xtpl->assign( 'main', $row );
-        $i ++;
+        ++$i;
     }
     else
     {

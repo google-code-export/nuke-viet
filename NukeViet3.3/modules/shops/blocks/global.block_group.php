@@ -48,7 +48,7 @@ if ( ! function_exists( 'nv_pro_group' ) )
                 $group_info['xtitle'] = "";
                 if ( $group_info['lev'] > 0 )
                 {
-                    for ( $i = 1; $i <= $group_info['lev']; $i ++ )
+                    for ( $i = 1; $i <= $group_info['lev']; ++$i )
                     {
                         $group_info['xtitle'] .= "&nbsp;&nbsp;&nbsp;&nbsp;";
                     }

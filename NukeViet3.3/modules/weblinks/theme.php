@@ -32,7 +32,7 @@ function main_theme ( $array_cat, $array_cat_content )
                     $xtpl->parse( 'main.loop_tab_cate.next' );
                     break;
                 }
-                $i ++;
+                ++$i;
             }
             if ( ! empty( $array_cat_content[$catid] ) )
             {
@@ -112,7 +112,7 @@ function viewcat ( $array_subcat, $array_cat, $items )
                 $xtpl->assign( "IMG", "" . NV_BASE_SITEURL . "themes/" . $module_info['template'] . "/images/" . $module_file . "/no_image.gif" );
             }
             $xtpl->parse( 'main.sub.loop' );
-            $a ++;
+            ++$a;
         }
         $xtpl->parse( 'main.sub' );
     }

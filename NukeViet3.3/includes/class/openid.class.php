@@ -83,7 +83,8 @@ class LightOpenID
         switch ( $name )
         {
             case 'identity':
-                if ( strlen( $value = trim( ( string )$value ) ) )
+                $value = trim( ( string )$value );
+                if ( ! empty ( $value ) )
                 {
                     if ( preg_match( '#^xri:/*#i', $value, $m ) )
                     {
@@ -339,7 +340,7 @@ class LightOpenID
         $yadis = true;
 
         # We'll jump a maximum of 5 times, to avoid endless redirections.
-        for ( $i = 0; $i < 5; $i++ )
+        for ( $i = 0; $i < 5; ++$i )
         {
             if ( $yadis )
             {
@@ -674,9 +675,9 @@ class LightOpenID
             # so we search for another prefix
             foreach ( $this->data as $key => $val )
             {
-                if ( substr( $key, 0, strlen( 'openid_ns_' ) ) == 'openid_ns_' && $val == 'http://openid.net/srv/ax/1.0' )
+                if ( substr( $key, 0, 10 ) == 'openid_ns_' && $val == 'http://openid.net/srv/ax/1.0' )
                 {
-                    $alias = substr( $key, strlen( 'openid_ns_' ) );
+                    $alias = substr( $key, 10 );
                     break;
                 }
             }
@@ -704,7 +705,7 @@ class LightOpenID
                 # to check, than cause an E_NOTICE.
                 continue;
             }
-            $key = substr( $this->data['openid_' . $alias . '_type_' . $key], strlen( 'http://axschema.org/' ) );
+            $key = substr( $this->data['openid_' . $alias . '_type_' . $key], 20 );
             $attributes[$key] = $value;
         }
         return $attributes;
@@ -717,11 +718,11 @@ class LightOpenID
         foreach ( $this->data as $key => $value )
         {
             $keyMatch = 'openid_sreg_';
-            if ( substr( $key, 0, strlen( $keyMatch ) ) != $keyMatch )
+            if ( substr( $key, 0, 12 ) != $keyMatch )
             {
                 continue;
             }
-            $key = substr( $key, strlen( $keyMatch ) );
+            $key = substr( $key, 12 );
             if ( ! isset( $sreg_to_ax[$key] ) )
             {
                 # The field name isn't part of the SREG spec, so we ignore it.

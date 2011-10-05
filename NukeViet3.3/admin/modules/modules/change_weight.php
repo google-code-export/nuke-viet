@@ -26,8 +26,8 @@ $result = $db->sql_query( $query );
 $weight = 0;
 while ( $row = $db->sql_fetchrow( $result ) )
 {
-	$weight++;
-	if ( $weight == $new_weight ) $weight++;
+	++$weight;
+	if ( $weight == $new_weight ) ++$weight;
 	$sql = "UPDATE `" . NV_MODULES_TABLE . "` SET `weight`=" . $weight . " WHERE `title`=" . $db->dbescape( $row['title'] );
 	$db->sql_query( $sql );
 }

@@ -29,7 +29,7 @@ imagefilledrectangle( $image, 0, 0, NV_GFX_WIDTH, NV_GFX_HEIGHT, $bgc );
 
 $text_color = ImageColorAllocate( $image, 50, 50, 50 );
 /* output each character */
-for ( $l = 0; $l < 5; $l ++ )
+for ( $l = 0; $l < 5; ++$l )
 {
     $r = mt_rand( 120, 255 );
     $g = mt_rand( 120, 255 );
@@ -64,4 +64,4 @@ ImageJPEG( $image, '', 90 );
 ImageDestroy( $image );
 die();
 
-?>;
+?>

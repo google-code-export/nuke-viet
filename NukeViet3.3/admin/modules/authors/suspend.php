@@ -256,7 +256,7 @@ else
         $xtpl->assign( 'VALUE1', $value[1] );
         $xtpl->assign( 'VALUE2', $value[2] );
         $xtpl->parse( 'suspend.suspend_info1.loop' );
-        $a ++;
+        ++$a;
     }
     $xtpl->parse( 'suspend.suspend_info1' );
 }

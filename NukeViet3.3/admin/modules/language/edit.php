@@ -43,7 +43,8 @@ if ( $nv_Request->isset_request( 'idfile,savedata', 'post' ) and $nv_Request->ge
     $pozlangkey = $nv_Request->get_array( 'pozlangkey', 'post', array() );
     $pozlangval = $nv_Request->get_array( 'pozlangval', 'post', array() );
     
-    for ( $i = 1; $i <= sizeof( $pozlangkey ); ++ $i )
+    $sizeof = sizeof( $pozlangkey );
+    for ( $i = 1; $i <= $sizeof; ++$i )
     {
         $lang_key = strip_tags( $pozlangkey[$i] );
         $lang_value = strip_tags( $pozlangval[$i], NV_ALLOWED_HTML_LANG );
@@ -102,7 +103,7 @@ if ( $nv_Request->isset_request( 'idfile,checksess', 'get' ) and $nv_Request->ge
         {
             if ( $lang_key != "langtype" )
             {
-                $i ++;
+                ++$i;
                 $class = ( $i % 2 ) ? " class=\"second\"" : "";
                 $contents .= "<tbody" . $class . ">\n";
                 $contents .= "<tr>";
@@ -113,9 +114,9 @@ if ( $nv_Request->isset_request( 'idfile,checksess', 'get' ) and $nv_Request->ge
                 $contents .= "</tbody>";
             }
         }
-        for ( $a = 1; $a <= 2; $a ++ )
+        for ( $a = 1; $a <= 2; ++$a )
         {
-            $i ++;
+            ++$i;
             $class = ( $i % 2 ) ? " class=\"second\"" : "";
             $contents .= "<tbody" . $class . ">\n";
             $contents .= "<tr>";
@@ -130,7 +131,7 @@ if ( $nv_Request->isset_request( 'idfile,checksess', 'get' ) and $nv_Request->ge
         $result = $db->sql_query( $query );
         while ( list( $id, $lang_key, $lang_value ) = $db->sql_fetchrow( $result ) )
         {
-            $i ++;
+            ++$i;
             $class = ( $i % 2 ) ? " class=\"second\"" : "";
             $contents .= "<tbody" . $class . ">\n";
             $contents .= "<tr>";
@@ -139,7 +140,7 @@ if ( $nv_Request->isset_request( 'idfile,checksess', 'get' ) and $nv_Request->ge
             $contents .= "<td align=\"left\"><input type=\"text\" value=\"" . nv_htmlspecialchars( $lang_value ) . "\" name=\"pozlang[" . $id . "]\" size=\"90\" /></td>";
             $contents .= "</tr>";
             $contents .= "</tbody>";
-            $a ++;
+            ++$a;
         }
         $contents .= "</table>";
         $contents .= "<br />";

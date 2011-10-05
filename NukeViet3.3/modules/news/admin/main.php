@@ -73,7 +73,7 @@ foreach ( $global_array_cat as $catid_i => $array_value )
         if ( $lev_i > 0 )
         {
             $xtitle_i .= "&nbsp;&nbsp;&nbsp;|";
-            for ( $i = 1; $i <= $lev_i; $i ++ )
+            for ( $i = 1; $i <= $lev_i; ++$i )
             {
                 $xtitle_i .= "---";
             }
@@ -258,31 +258,31 @@ while ( list( $id, $catid_i, $listcatid, $post_id, $title, $alias, $status, $pub
             {
                 if ( $array_cat_admin[$admin_id][$catid_i]['admin'] == 1 )
                 {
-                    $check_edit ++;
-                    $check_del ++;
+                    ++$check_edit;
+                    ++$check_del;
                 }
                 else
                 {
                     if ( $array_cat_admin[$admin_id][$catid_i]['edit_content'] == 1 )
                     {
-                        $check_edit ++;
+                        ++$check_edit;
                     }
                     elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and $status == 0 )
                     {
-                        $check_edit ++;
+                        ++$check_edit;
                     }
                     elseif ( $status == 0 and $post_id == $admin_id )
                     {
-                        $check_edit ++;
+                        ++$check_edit;
                     }
                     
                     if ( $array_cat_admin[$admin_id][$catid_i]['del_content'] == 1 )
                     {
-                        $check_del ++;
+                        ++$check_del;
                     }
                     elseif ( $status == 0 and $post_id == $admin_id )
                     {
-                        $check_del ++;
+                        ++$check_del;
                     }
                 }
             }
@@ -314,7 +314,7 @@ while ( list( $id, $catid_i, $listcatid, $post_id, $title, $alias, $status, $pub
 		"feature" => implode( "&nbsp;-&nbsp;", $admin_funcs )
 	);
 		
-    $a ++;
+    ++$a;
 }
 
 $array_list_action = array( 

@@ -21,7 +21,7 @@ if ( intval( $bid ) > 0 )
     $result = $db->sql_query( "SELECT bid FROM `" . NV_BLOCKS_TABLE . "_groups` WHERE theme='" . $theme . "' AND position='$position' ORDER BY weight ASC" );
     while ( list( $bid_i ) = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
+        ++$weight;
         $db->sql_query( "UPDATE `" . NV_BLOCKS_TABLE . "_groups` SET `weight`=" . $weight . " WHERE `bid`=" . $bid_i );
     }
     
@@ -31,7 +31,7 @@ if ( intval( $bid ) > 0 )
     {
         if ( $func_id_i == $func_id_old )
         {
-            $weight ++;
+            ++$weight;
         }
         else
         {

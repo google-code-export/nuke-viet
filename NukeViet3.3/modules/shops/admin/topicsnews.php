@@ -53,7 +53,7 @@ if ( $num > 0 )
         $contents .= "     </td>\n";
         $contents .= "</tr>\n";
         $contents .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     $contents .= "<tfoot>\n";
     $contents .= "<tr>\n";

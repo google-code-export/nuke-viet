@@ -278,7 +278,7 @@ while ( $row = $db->sql_fetchrow( $query2 ) )
     $edit_href = NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=comment&amp;edit=1&amp;id=" . $row['id'];
 
     $st = array();
-    for ( $i = 0; $i <= 2; $i++ )
+    for ( $i = 0; $i <= 2; ++$i )
     {
         if ( ( $i == 0 and $row['status'] ) or ( $i == 2 and ! $row['status'] ) )
         {
@@ -365,7 +365,7 @@ if ( ! empty( $array ) )
         }
 
         $xtpl->parse( 'main.row' );
-        $a++;
+        ++$a;
     }
 }
 

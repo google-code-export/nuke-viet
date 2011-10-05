@@ -69,7 +69,7 @@ while ( list( $cid, $post_time, $post_name, $post_id, $post_email, $post_ip, $st
     $data_comment[] = array( 
         "cid" => $cid, "post_time" => $post_time, "post_name" => $post_name, "post_id" => $post_id, "post_email" => $post_email, "post_ip" => $post_ip, "status" => $status, "content" => $content, "photo" => $photo 
     );
-    $num_com ++;
+    ++$num_com;
 }
 
 $s = "SELECT id, " . NV_LANG_DATA . "_title," . NV_LANG_DATA . "_alias, homeimgthumb,addtime, product_price,product_discounts, money_unit,showprice  FROM `" . $db_config['prefix'] . "_" . $module_data . "_rows` WHERE id!= ".$id." AND listcatid = " . $data_content['listcatid'] . " AND inhome=1 AND status=1 AND publtime < " . NV_CURRENTTIME . " AND (exptime=0 OR exptime>" . NV_CURRENTTIME . ") ORDER BY ID DESC LIMIT ".($pro_config['per_row']*2);

@@ -35,7 +35,7 @@ if ( ! nv_function_exists( 'nv_message_about' ) )
         if ( ( $count = count( $cache_files ) ) >= 1 )
         {
             $num = rand( 1, $count );
-            $num --;
+            --$num;
             $cache_file = $cache_files[$num];
             
             if ( ( $cache = nv_get_cache( $cache_file ) ) != false )

@@ -43,7 +43,8 @@ if ( $nv_Request->isset_request( NV_OP_VARIABLE, 'post' ) )
 
                 // Show file and folder
                 $list = $zip->listContent();
-                for ( $i = 0, $j = 1; $i < sizeof( $list ); $i ++, $j ++ )
+                $sizeof = sizeof( $list );
+                for ( $i = 0, $j = 1; $i < $sizeof; ++$i, ++$j )
                 {
                     if ( ! $list[$i]['folder'] )
                     {
@@ -97,7 +98,7 @@ if ( $nv_Request->isset_request( NV_OP_VARIABLE, 'post' ) )
 				$xtpl->assign( 'FILE', $file );
 				$xtpl->assign( 'CLASS', ( $i % 2 == 0 ) ? " class=\"second\"" : "" );
 				$xtpl->parse( 'info.fileinfo.file.loop' );
-				$i ++;
+				++$i;
 			}
 			
 			$xtpl->parse( 'info.fileinfo.file' );

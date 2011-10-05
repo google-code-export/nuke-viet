@@ -65,7 +65,7 @@ if ( $nv_Request->isset_request( 'rating', 'post' ) )
                     $nv_Request->set_Session( 'flrt', $flrt );
                     
                     $total = $total + $point;
-                    $click ++;
+                    ++$click;
                     
                     $rating_detail = $total . "|" . $click;
                     

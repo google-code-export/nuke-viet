@@ -24,7 +24,7 @@ function nv_FixWeightCat( $parentid = 0 )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight++;
+        ++$weight;
         $db->sql_query( "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_categories` SET `weight`=" . $weight . " WHERE `id`=" . $row['id'] );
     }
 }
@@ -127,7 +127,7 @@ if ( $nv_Request->isset_request( 'add', 'get' ) )
             $result = $db->sql_query( $sql );
             list( $new_weight ) = $db->sql_fetchrow( $result );
             $new_weight = ( int )$new_weight;
-            $new_weight++;
+            ++$new_weight;
 
             $sql = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_categories` VALUES (
             NULL, 
@@ -321,7 +321,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
                 $result = $db->sql_query( $sql );
                 list( $new_weight ) = $db->sql_fetchrow( $result );
                 $new_weight = ( int )$new_weight;
-                $new_weight++;
+                ++$new_weight;
             }
             else
             {
@@ -484,8 +484,8 @@ if ( $nv_Request->isset_request( 'changeweight', 'post' ) )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight++;
-        if ( $weight == $new ) $weight++;
+        ++$weight;
+        if ( $weight == $new ) ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_categories` SET `weight`=" . $weight . " WHERE `id`=" . $row['id'];
         $db->sql_query( $sql );
     }
@@ -568,7 +568,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     }
 
     $weight = array();
-    for ( $i = 1; $i <= $num; $i++ )
+    for ( $i = 1; $i <= $num; ++$i )
     {
         $weight[$i]['title'] = $i;
         $weight[$i]['pos'] = $i;
@@ -588,7 +588,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
         'class' => $class //
         );
 
-    $a++;
+    ++$a;
 }
 
 $xtpl = new XTemplate( "cat_list.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file );

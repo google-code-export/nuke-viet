@@ -44,7 +44,7 @@ if ( $numcat > 0 )
         $contents .= "<td><span class=\"edit_icon\"><a href=\"" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=content&amp;id=" . $rowcat['id'] . "\">" . $lang_module['weblink_method_edit'] . "</a></span></td>\n";
         $contents .= "</tr>\n";
         $contents .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     $contents .= "<tr><td colspan='8'>";
     $contents .= '<input type="submit" value="' . $lang_module['link_broken_out'] . '"></td></tr>';

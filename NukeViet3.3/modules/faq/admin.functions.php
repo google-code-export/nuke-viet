@@ -28,9 +28,9 @@ define( 'NV_IS_FILE_ADMIN', true );
  */
 function nv_setcats( $list2, $id, $list, $m = 0, $num = 0 )
 {
-    $num++;
+    ++$num;
     $defis = "";
-    for ( $i = 0; $i < $num; $i++ )
+    for ( $i = 0; $i < $num; ++$i )
     {
         $defis .= "--";
     }

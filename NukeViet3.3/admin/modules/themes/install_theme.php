@@ -27,7 +27,7 @@ if ( $nv_Request->isset_request( 'op', 'post' ) )
                 {
                     if ( $file_i['filename'] == $theme . "theme.php" or $file_i['filename'] == $theme . "config.ini" )
                     {
-                        $check_number ++;
+                        ++$check_number;
                     }
                 }
             }
@@ -41,7 +41,8 @@ if ( $nv_Request->isset_request( 'op', 'post' ) )
                 $contents .= $lang_module['autoinstall_theme_uploadedfile'] . '<span style="color:red;font-weight:bold">' . $_FILES['themefile']['name'] . '</span> - ' . $lang_module['autoinstall_theme_uploadedfilesize'] . '<span style="color:red;font-weight:bold">' . $filesize . '</span><br />';
                 #show file and folder
                 $contents .= "<br /><b>" . $lang_module['autoinstall_theme_uploaded_filenum'] . $status['nb'] . "</b><br />";
-                for ( $i = 0, $j = 1; $i < sizeof( $list ); $i ++, $j ++ )
+                $sizeof = sizeof( $list );
+                for ( $i = 0, $j = 1; $i < $sizeof; ++$i, ++$j )
                 {
                     if ( ! $list[$i]['folder'] )
                     {

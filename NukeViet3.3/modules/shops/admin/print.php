@@ -40,7 +40,7 @@ foreach ( $listid as $id )
     $xtpl->assign( 'product_unit', $money_unit );
     $xtpl->assign( 'tt', $i + 1 );
     $xtpl->parse( 'main.loop' );
-    $i ++;
+    ++$i;
 }
 $xtpl->assign( 'order_total', FormatNumber( $data['order_total'], 2, '.', ',' ) );
 $xtpl->assign( 'unit', $data['unit_total'] );

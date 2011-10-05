@@ -41,7 +41,7 @@ $result = $db->sql_query( $sql );
 $is_delCache = false;
 while ( $row = $db->sql_fetchrow( $result ) )
 {
-    $iw ++;
+    ++$iw;
     if ( $iw != $row['weight'] )
     {
         $row['weight'] = $iw;

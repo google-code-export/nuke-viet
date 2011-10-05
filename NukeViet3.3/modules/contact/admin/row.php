@@ -298,7 +298,7 @@ foreach ( $adms as $admid => $values )
     $contents .= "<td><input type=\"checkbox\" name=\"obt_level[]\" value=\"" . $admid . "\"" . ( ( ! empty( $obt_level ) and in_array( $admid, $obt_level ) ) ? " checked=\"checked\"" : "" ) . " /></td>\n";
     $contents .= "</tr>\n";
     $contents .= "</tbody>\n";
-    $a++;
+    ++$a;
 }
 
 $contents .= "</table>\n";

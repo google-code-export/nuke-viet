@@ -47,17 +47,17 @@ if ( ! empty( $del_array ) )
                 {
                     if ( $array_cat_admin[$admin_id][$catid_i]['admin'] == 1 )
                     {
-                        $check_del ++;
+                        ++$check_del;
                     }
                     else
                     {
                         if ( $array_cat_admin[$admin_id][$catid_i]['del_content'] == 1 )
                         {
-                            $check_del ++;
+                            ++$check_del;
                         }
                         elseif ( $status == 0 and $post_id == $admin_id )
                         {
-                            $check_del ++;
+                            ++$check_del;
                         }
                     }
                 }

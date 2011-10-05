@@ -175,7 +175,7 @@ if ( ! empty( $array ) )
         $xtpl->assign( 'ROW', $row );
         $xtpl->assign( 'EDIT_URL', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;edit=1&amp;id=" . $row['id'] );
         $xtpl->parse( 'main.row' );
-        $a++;
+        ++$a;
     }
 }
 

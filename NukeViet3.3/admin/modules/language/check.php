@@ -193,7 +193,7 @@ if ( $submit > 0 and in_array( $sourcelang, $array_lang_exit ) and in_array( $ty
             $contents .= "</thead>";
             foreach ( $array_lang_file as $id => $row )
             {
-                $i ++;
+                ++$i;
                 $class = ( $i % 2 ) ? " class=\"second\"" : "";
                 $contents .= "<tbody" . $class . ">\n";
                 $contents .= "<tr>";

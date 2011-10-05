@@ -97,7 +97,7 @@ function nv_del_content_module ( $id )
             if ( ! $db->sql_affectedrows() )
             {
                 {
-                    $number_no_del ++;
+                    ++$number_no_del;
                 }
                 $db->sql_freeresult();
             }
@@ -155,7 +155,7 @@ function nv_products_page ( $base_url, $num_items, $per_page, $start_item, $add_
     if ( $total_pages > 10 )
     {
         $init_page_max = ( $total_pages > 3 ) ? 3 : $total_pages;
-        for ( $i = 1; $i <= $init_page_max; $i ++ )
+        for ( $i = 1; $i <= $init_page_max; ++$i )
         {
             $href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
             $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -168,7 +168,7 @@ function nv_products_page ( $base_url, $num_items, $per_page, $start_item, $add_
                 $page_string .= ( $on_page > 5 ) ? " ... " : ", ";
                 $init_page_min = ( $on_page > 4 ) ? $on_page : 5;
                 $init_page_max = ( $on_page < $total_pages - 4 ) ? $on_page : $total_pages - 4;
-                for ( $i = $init_page_min - 1; $i < $init_page_max + 2; $i ++ )
+                for ( $i = $init_page_min - 1; $i < $init_page_max + 2; ++$i )
                 {
                     $href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
                     $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -184,7 +184,7 @@ function nv_products_page ( $base_url, $num_items, $per_page, $start_item, $add_
                 $page_string .= " ... ";
             }
             
-            for ( $i = $total_pages - 2; $i < $total_pages + 1; $i ++ )
+            for ( $i = $total_pages - 2; $i < $total_pages + 1; ++$i )
             {
                 $href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
                 $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -197,7 +197,7 @@ function nv_products_page ( $base_url, $num_items, $per_page, $start_item, $add_
     }
     else
     {
-        for ( $i = 1; $i < $total_pages + 1; $i ++ )
+        for ( $i = 1; $i < $total_pages + 1; ++$i )
         {
             $href = "href=\"" . $base_url . "/page-" . ( ( $i - 1 ) * $per_page ) . "\"";
             $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -290,7 +290,7 @@ function product_number_order ( $listid, $listnum, $type = "-" )
                       `product_number` = `product_number` ".$type." ". intval( $arraynum[$i] ) . " WHERE `id` =" . $id . "";
             $db->sql_query( $query );
     	}
-        $i++;
+        ++$i;
     }
 }
 

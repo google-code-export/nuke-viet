@@ -75,7 +75,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $xtpl->assign( 'bg', $bg );
     $xtpl->assign( 'bgview', $bgview );
     $xtpl->parse( 'main.data.row' );
-    $count ++;
+    ++$count;
 }
 
 $xtpl->assign( 'URL_CHECK_PAYMENT', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=checkpayment" );

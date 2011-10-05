@@ -17,7 +17,7 @@ if ( defined( "NV_IS_ADMIN" ) )
         {
             $redirect = $nv_Request->get_string( 'admin_relogin_redirect', 'session' );
             $check_hits = $admin_info['checkhits'];
-            $check_hits ++;
+            ++$check_hits;
             $nv_Request->set_Session( 'online', '0|' . $admin_info['last_online'] . '|' . NV_CURRENTTIME . '|' . $check_hits );
             
             $error = "";

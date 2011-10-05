@@ -317,7 +317,8 @@ E_USER_DEPRECATED => "User-generated warning message"
         }
         
         $strEncodedEmail = "";
-        for ( $i = 0; $i < strlen( $this->error_send_mail ); $i ++ )
+        $strlen = strlen($this->error_send_mail);
+        for ( $i = 0; $i < $strlen; ++$i )
         {
             $strEncodedEmail .= "&#" . ord( substr( $this->error_send_mail, $i ) ) . ";";
         }

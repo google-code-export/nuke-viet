@@ -28,8 +28,8 @@ if ( $mod == "weight" and $new_vid > 0 )
 	$weight = 0;
 	while ( $row = $db->sql_fetchrow( $result ) )
 	{
-		$weight++;
-		if ( $weight == $new_vid ) $weight++;
+		++$weight;
+		if ( $weight == $new_vid ) ++$weight;
 		$sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_topics` SET `weight`=" . $weight . " WHERE `topicid`=" . intval( $row['topicid'] );
 		$db->sql_query( $sql );
 	}

@@ -48,7 +48,7 @@ function voting_result( $voting )
 
             if ( $width )
             {
-                $b++;
+                ++$b;
             }
 
             $xtpl->assign( 'VOTING', $voting_i );
@@ -60,7 +60,7 @@ function voting_result( $voting )
             {
                 $xtpl->parse( 'main.result' );
             }
-            $a++;
+            ++$a;
         }
     }
     $xtpl->parse( 'main' );

@@ -50,7 +50,8 @@ foreach ( $theme_list as $value )
     $position = $xml->xpath( 'positions' ); //array
     $positions = $position[0]->position; //object
     $pos = array();
-    for ( $j = 0; $j < count( $positions ); $j ++ )
+    $count = count( $positions );
+    for ( $j = 0; $j < $count; ++$j )
     {
         $pos[] = $positions[$j]->name;
     }
@@ -64,7 +65,7 @@ foreach ( $theme_list as $value )
     {
         $contents .= "</td>\n";
     }
-    $i ++;
+    ++$i;
 
 }
 $contents .= "</tr></tbody>";

@@ -255,7 +255,7 @@ if ($ext == 'country') {
 		}
 	}
 	#end edit
-	/*	for($i = $day_max; $i >= $day_min; $i --) {
+	/*	for($i = $day_max; $i >= $day_min; --$i) {
 		$c = isset ( $bd [$i] ) ? $bd [$i] : 0;
 		$key = isset ( $bd [$i] ) ? "nv_show_list_stat(" . $id . "," . $data_month . ",'day','" . $i . "','statistic',0);" : $i;
 		$cts [$key] [0] = str_pad ( $i, 2, "0", STR_PAD_LEFT ) . " " . nv_date ( "F Y", $time );
@@ -263,7 +263,7 @@ if ($ext == 'country') {
 		$cts [$key] [2] = $c;
 	}*/
 	#begin edit
-	for($i = $day_max; $i >= $day_min; $i --) {
+	for($i = $day_max; $i >= $day_min; --$i) {
 		$c = isset ( $bd [$i] ) ? $bd [$i] : 0;
 		$key = isset ( $bd [$i] ) ? "nv_show_list_stat(" . $id . "," . $data_month . ",'day','" . $i . "','statistic',0);" : $i;
 		$cts [$key] [0] = str_pad ( $i, 2, "0", STR_PAD_LEFT ) . " " . nv_date ( "F Y", $time );

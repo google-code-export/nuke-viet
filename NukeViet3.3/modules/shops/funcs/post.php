@@ -188,7 +188,7 @@ if ( $nv_Request->get_int( 'save', 'post' ) == 1 )
             while ( file_exists( NV_UPLOADS_REAL_DIR . '/' . $module_name . '/thumb/' . $thumb_basename ) )
             {
                 $thumb_basename = preg_replace( '/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $basename );
-                $i ++;
+                ++$i;
             }
             $image->resizeXY( $pro_config['homewidth'], $pro_config['homeheight'] );
             $image->save( NV_UPLOADS_REAL_DIR . '/' . $module_name . '/thumb', $thumb_basename );
@@ -199,7 +199,7 @@ if ( $nv_Request->get_int( 'save', 'post' ) == 1 )
             while ( file_exists( NV_UPLOADS_REAL_DIR . '/' . $module_name . '/block/' . $block_basename ) )
             {
                 $block_basename = preg_replace( '/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $basename );
-                $i ++;
+                ++$i;
             }
             $image->resizeXY( $pro_config['blockwidth'], $pro_config['blockheight'] );
             $image->save( NV_UPLOADS_REAL_DIR . '/' . $module_name . '/block', $block_basename );
@@ -395,7 +395,7 @@ while ( list( $catid_i, $title_i, $lev_i, $numsubcat_i ) = $db->sql_fetchrow( $r
     $xtitle_i = "";
     if ( $lev_i > 0 )
     {
-        for ( $i = 1; $i <= $lev_i; $i ++ )
+        for ( $i = 1; $i <= $lev_i; ++$i )
         {
             $xtitle_i .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
         }

@@ -132,7 +132,7 @@ function nv_func_update_data ( )
         $weight = 0;
         while ( $row = $db->sql_fetchrow( $result ) )
         {
-            $weight ++;
+            ++$weight;
             $db->sql_query( "UPDATA `" . NV_GROUPS_GLOBALTABLE . "` SET `weight` =" . $weight . " WHERE `group_id`= " . $row['group_id'] );
         }
         

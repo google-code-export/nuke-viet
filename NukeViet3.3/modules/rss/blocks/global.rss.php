@@ -21,7 +21,7 @@ if ( ! nv_function_exists( 'nv_block_data_config_rss' ) )
         $return .= '<tr><td>' . $lang_block['url'] . '</td><td>' . $html . '</td></tr>';
         
         $html = "<select name=\"config_number\">\n";
-        for ( $index = 1; $index <= 50; $index ++ )
+        for ( $index = 1; $index <= 50; ++$index )
         {
             $sel = ( $index == $data_block['number'] ) ? ' selected' : '';
             $html .= "<option value=\"" . $index . "\" " . $sel . ">" . $index . "</option>\n";
@@ -31,7 +31,7 @@ if ( ! nv_function_exists( 'nv_block_data_config_rss' ) )
         
         $data_block['title_length'] = isset( $data_block['title_length'] ) ? intval( $data_block['title_length'] ) : 0;
         $html = "<select name=\"config_title_length\">\n";
-        for ( $index = 0; $index <= 255; $index ++ )
+        for ( $index = 0; $index <= 255; ++$index )
         {
             $sel = ( $index == $data_block['title_length'] ) ? ' selected' : '';
             $html .= "<option value=\"" . $index . "\" " . $sel . ">" . $index . "</option>\n";
@@ -109,7 +109,7 @@ if ( ! nv_function_exists( 'nv_block_data_config_rss' ) )
                         $array_data[$a]['description'] = strip_tags( $item->description, $allowed_html_tags );
                         $array_data[$a]['link'] = strip_tags( $item->link );
                         $array_data[$a]['pubDate'] = nv_date( "l - d/m/Y  H:i", strtotime( $item->pubDate ) );
-                        $a ++;
+                        ++$a;
                     }
                 }
                 elseif ( isset( $xml->entry ) )
@@ -122,7 +122,7 @@ if ( ! nv_function_exists( 'nv_block_data_config_rss' ) )
                         $array_data[$a]['description'] = strip_tags( $item->content, $allowed_html_tags );
                         $array_data[$a]['link'] = strip_tags( $urlAtt['href'] );
                         $array_data[$a]['pubDate'] = nv_date( "l - d/m/Y  H:i", strtotime( $item->updated ) );
-                        $a ++;
+                        ++$a;
                     }
                 }
             }
@@ -177,7 +177,7 @@ if ( ! nv_function_exists( 'nv_block_data_config_rss' ) )
                     $xtpl->parse( 'main.loop.pubDate' );
                 }
                 $xtpl->parse( 'main.loop' );
-                $a ++;
+                ++$a;
             }
             else
             {

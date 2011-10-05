@@ -112,7 +112,7 @@ if ( $global_config['openid_mode'] )
 }
 
 require_once ( NV_ROOTDIR . '/includes/timezone.php' );
-define( 'NV_CURRENTTIME', time() );
+define( 'NV_CURRENTTIME', isset( $_SERVER['REQUEST_TIME'] ) ? $_SERVER['REQUEST_TIME'] : time() );
 define( 'NV_CURRENTYEAR_FNUM', date( 'Y', NV_CURRENTTIME ) ); //2009
 define( 'NV_CURRENTYEAR_2NUM', date( 'y', NV_CURRENTTIME ) ); //09
 define( 'NV_CURRENTMONTH_NUM', date( 'm', NV_CURRENTTIME ) ); //01-12

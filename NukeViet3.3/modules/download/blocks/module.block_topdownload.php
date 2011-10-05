@@ -29,7 +29,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $row['order'] = $i;
     $xtpl->assign( 'loop', $row );
     $xtpl->parse( 'main.loop' );
-    $i ++;
+    ++$i;
 }
 
 $xtpl->parse( 'main' );

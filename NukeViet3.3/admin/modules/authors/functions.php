@@ -101,7 +101,7 @@ if ( $module_name == "authors" )
                 $xtpl->assign( 'VALUE0', $value[0] );
                 $xtpl->assign( 'VALUE1', $value[1] );
                 $xtpl->parse( 'add_result.loop' );
-                $a ++;
+                ++$a;
             }
         }
         $xtpl->assign( 'ACTION', $contents['action'] );
@@ -160,7 +160,7 @@ if ( $module_name == "authors" )
             $xtpl->assign( 'VALUE1', $value[1] );
             $xtpl->assign( 'VALUE2', $value[2] );
             $xtpl->parse( 'edit_resuilt.loop' );
-            $a ++;
+            ++$a;
         }
         $xtpl->assign( 'ACTION', $contents['action'] );
         foreach ( $contents['change'] as $key => $values )

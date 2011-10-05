@@ -92,8 +92,8 @@ if ( defined( 'NV_BANNER_WEIGHT' ) )
         $weight = 0;
         while ( $row = $db->sql_fetchrow( $result ) )
         {
-            $weight ++;
-            if ( $weight == $new_weight ) $weight ++;
+            ++$weight;
+            if ( $weight == $new_weight ) ++$weight;
             $sql = "UPDATE `" . NV_BANNERS_ROWS_GLOBALTABLE . "` SET `weight`=" . $weight . " WHERE `id`=" . $row['id'];
             $db->sql_query( $sql );
         }
@@ -117,7 +117,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     {
         $weight_banner = "";
         $weight_banner .= "<select id=\"id_weight_" . $row['id'] . "\" onchange=\"nv_chang_weight_banners('banners_list',0,'" . $pid . "',0,'" . $row['id'] . "');\">\n";
-        for ( $i = 1; $i <= $num; $i ++ )
+        for ( $i = 1; $i <= $num; ++$i )
         {
             $weight_banner .= "<option value=\"" . $i . "\"" . ( $i == $row['weight'] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }

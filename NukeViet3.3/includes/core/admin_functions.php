@@ -118,7 +118,7 @@ function nv_save_file_config_global ( )
     $result = $db->sql_query( $sql );
     while ( list( $c_config_name, $c_config_value ) = $db->sql_fetchrow( $result ) )
     {
-        if ( ! is_numeric( $c_config_value ) || ( strlen( $c_config_value ) > 1 and $c_config_value{0} == '0' ) )
+        if ( ! is_numeric( $c_config_value ) || ( isset( $c_config_value{1} ) and $c_config_value{0} == '0' ) )
         {
             $content_config .= "\$global_config['" . $c_config_name . "'] = \"" . nv_unhtmlspecialchars( $c_config_value ) . "\";\n";
         }
@@ -268,28 +268,28 @@ function nv_rewrite_change ( $array_config_global )
         $filename = NV_ROOTDIR . "/web.config";
         $rulename = 1;
         $rewrite_rule .= "\n";
-        $rewrite_rule .= "                <rule name=\"nv_rule_" . $rulename ++ . "\">\n";
+        $rewrite_rule .= "                <rule name=\"nv_rule_" . ++$rulename . "\">\n";
         $rewrite_rule .= "                    <match url=\"^\" ignoreCase=\"false\" />\n";
         $rewrite_rule .= "                    <conditions>\n";
         $rewrite_rule .= "                    		<add input=\"{REQUEST_FILENAME}\" pattern=\"/robots.txt$\" />\n";
         $rewrite_rule .= "                    </conditions>\n";
         $rewrite_rule .= "                    <action type=\"Rewrite\" url=\"robots.php?action={HTTP_HOST}\" appendQueryString=\"false\" />\n";
         $rewrite_rule .= "                </rule>\n";
-        $rewrite_rule .= "                <rule name=\"nv_rule_" . $rulename ++ . "\">\n";
+        $rewrite_rule .= "                <rule name=\"nv_rule_" . ++$rulename . "\">\n";
         $rewrite_rule .= "                    <match url=\"^(.*?)Sitemap\.xml$\" ignoreCase=\"false\" />\n";
         $rewrite_rule .= "                    <action type=\"Rewrite\" url=\"index.php?" . NV_NAME_VARIABLE . "=SitemapIndex\" appendQueryString=\"false\" />\n";
         $rewrite_rule .= "                </rule>\n";
-        $rewrite_rule .= "                <rule name=\"nv_rule_" . $rulename ++ . "\">\n";
+        $rewrite_rule .= "                <rule name=\"nv_rule_" . ++$rulename . "\">\n";
         $rewrite_rule .= "                    <match url=\"^(.*?)Sitemap\-([a-z]{2})\.xml$\" ignoreCase=\"false\" />\n";
         $rewrite_rule .= "                    <action type=\"Rewrite\" url=\"index.php?" . NV_LANG_VARIABLE . "={R:2}&amp;" . NV_NAME_VARIABLE . "=SitemapIndex\" appendQueryString=\"false\" />\n";
         $rewrite_rule .= "                </rule>\n";
-        $rewrite_rule .= "                <rule name=\"nv_rule_" . $rulename ++ . "\">\n";
+        $rewrite_rule .= "                <rule name=\"nv_rule_" . ++$rulename . "\">\n";
         $rewrite_rule .= "                    <match url=\"^(.*?)Sitemap\-([a-z]{2})\.([a-zA-Z0-9-]+)\.xml$\" ignoreCase=\"false\" />\n";
         $rewrite_rule .= "                    <action type=\"Rewrite\" url=\"index.php?" . NV_LANG_VARIABLE . "={R:2}&amp;" . NV_NAME_VARIABLE . "={R:3}&amp;" . NV_OP_VARIABLE . "=Sitemap\" appendQueryString=\"false\" />\n";
         $rewrite_rule .= "                </rule>\n";
         if ( $sys_info['zlib_support'] )
         {
-            $rewrite_rule .= "                <rule name=\"nv_rule_" . $rulename ++ . "\">\n";
+            $rewrite_rule .= "                <rule name=\"nv_rule_" . ++$rulename . "\">\n";
             $rewrite_rule .= "                    <match url=\"^((?!http(s?)|ftp\:\/\/).*)\.(css|js)$\" ignoreCase=\"false\" />\n";
             $rewrite_rule .= "                    <action type=\"Rewrite\" url=\"CJzip.php?file={R:1}.{R:3}\" appendQueryString=\"false\" />\n";
             $rewrite_rule .= "                </rule>\n";

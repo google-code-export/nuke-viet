@@ -56,7 +56,7 @@ if ( ! function_exists( 'nv_others_product' ) )
 			$bg = ($i%2 == 0) ? "bg" : "";
 			$xtpl->assign( "bg", $bg );
 			$xtpl->parse( 'main.loop' );
-			$i++;
+			++$i;
 		}
 		///////////////////////////////////////////////////////////////////////////////////
 	    $xtpl->parse( 'main' );

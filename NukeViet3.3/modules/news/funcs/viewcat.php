@@ -190,7 +190,7 @@ if ( empty( $contents ) )
                     $array_cat_other[$key]['content'][] = $item;
                 }
                 unset( $sql, $result );
-                $key ++;
+                ++$key;
             }
             unset( $array_catid );
         }
@@ -280,7 +280,7 @@ if ( empty( $contents ) )
                 $item['link'] = $global_array_cat[$catid_i]['link'] . "/" . $item['alias'] . "-" . $item['id'];
                 $array_cat_other[$key]['content'][] = $item;
             }
-            $key ++;
+            ++$key;
         }
         unset( $sql, $result );
         //Het cac bai viet cua cac chu de con

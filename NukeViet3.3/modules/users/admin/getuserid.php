@@ -274,7 +274,7 @@ if ( $nv_Request->isset_request( 'submit', 'get' ) )
             $xtpl->assign( 'CLASS', ( $a % 2 == 1 ) ? " class=\"second\"" : "" );
             $xtpl->assign( 'ROW', $row );
             $xtpl->parse( 'resultdata.data.row' );
-            $a++;
+            ++$a;
         }
 
         if ( ! empty( $generate_page ) )

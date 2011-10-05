@@ -139,7 +139,7 @@ function nv_dump_save ( $params )
             $tables[$a]['numrow'] = $item['Rows'];
             $tables[$a]['charset'] = ( preg_match( "/^([a-z0-9]+)_/i", $item['Collation'], $m ) ) ? $m[1] : "";
             $tables[$a]['type'] = isset( $item['Engine'] ) ? $item['Engine'] : $item['Type'];
-            $a ++;
+            ++$a;
             $dbsize += intval( $item['Data_length'] ) + intval( $item['Index_length'] );
         }
     }
@@ -232,7 +232,7 @@ function nv_dump_save ( $params )
             $maxi = ceil( $table['numrow'] / $table['limit'] );
             $from = 0;
             $a = 0;
-            for ( $i = 0; $i < $maxi; $i ++ )
+            for ( $i = 0; $i < $maxi; ++$i )
             {
                 $result = $db->sql_query( "SELECT * FROM `" . $table['name'] . "` LIMIT " . $from . ", " . $table['limit'] . "" );
                 while ( $row = $db->sql_fetchrow( $result ) )
@@ -244,7 +244,7 @@ function nv_dump_save ( $params )
                     }
                     $row2 = NV_EOL . "(" . implode( ", ", $row2 ) . ")";
                     
-                    $a ++;
+                    ++$a;
                     if ( $a < $table['numrow'] )
                     {
                         if ( ! $dumpsave->write( $row2 . ", " ) )

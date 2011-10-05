@@ -16,7 +16,7 @@ While($row=$db->sql_fetchrow($result))
 	if($row['parentid']>0)
 	{
 		$t_sp .='&nbsp;&nbsp;&nbsp;';
-		for($i=1;$i<=$row['parentid'];$i++)
+		for($i=1;$i<=$row['parentid'];++$i)
 		{
 			$t_sp .= '&nbsp;';
 		}

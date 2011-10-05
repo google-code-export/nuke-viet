@@ -409,7 +409,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
             'value' => $file, 'key' => $a 
         ) );
         $xtpl->parse( 'main.fileupload' );
-        $a ++;
+        ++$a;
     }
     
     $a = 0;
@@ -419,7 +419,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
             'value' => $link, 'key' => $a 
         ) );
         $xtpl->parse( 'main.linkdirect' );
-        $a ++;
+        ++$a;
     }
     
     foreach ( $array['who_comment'] as $who )
@@ -610,7 +610,7 @@ if ( ! empty( $array ) )
         $xtpl->assign( 'ROW', $row );
         $xtpl->assign( 'EDIT_URL', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;edit=1&amp;id=" . $row['id'] );
         $xtpl->parse( 'main.row' );
-        $a ++;
+        ++$a;
     }
 }
 

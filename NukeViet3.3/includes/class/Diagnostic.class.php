@@ -97,7 +97,7 @@ class Diagnostic
         $Int32Unit = 4294967296;
 
         $length = strlen( $Str );
-        for ( $i = 0; $i < $length; $i++ )
+        for ( $i = 0; $i < $length; ++$i )
         {
             $Check *= $Magic;
 
@@ -146,7 +146,7 @@ class Diagnostic
         $HashStr = sprintf( '%u', $Hashnum );
         $length = strlen( $HashStr );
 
-        for ( $i = $length - 1; $i >= 0; $i-- )
+        for ( $i = $length - 1; $i >= 0; --$i )
         {
             $Re = $HashStr{$i};
             if ( 1 === ( $Flag % 2 ) )
@@ -155,7 +155,7 @@ class Diagnostic
                 $Re = ( int )( $Re / 10 ) + ( $Re % 10 );
             }
             $CheckByte += $Re;
-            $Flag++;
+            ++$Flag;
         }
 
         $CheckByte %= 10;

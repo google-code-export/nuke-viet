@@ -52,7 +52,7 @@ if ( $nv_Request->isset_request( 'ftp_server', 'post' ) )
                 $filename = basename( $filename );
                 if ( in_array( $filename, $check_files ) )
                 {
-                    $a ++;
+                    ++$a;
                 }
             }
             if ( $a == count( $check_files ) )

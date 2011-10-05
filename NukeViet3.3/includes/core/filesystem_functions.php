@@ -555,7 +555,8 @@ function nv_ftp_del_dir ( $conn_id, $dst_dir )
     $ar_files = ftp_nlist( $conn_id, $dst_dir );
     if ( is_array( $ar_files ) )
     { // makes sure there are files
-        for ( $i = 0; $i < sizeof( $ar_files ); $i ++ )
+        $sizeof = sizeof( $ar_files );
+        for ( $i = 0; $i < $sizeof; ++$i )
         { // for each file
             $st_file = basename( $ar_files[$i] );
             if ( $st_file == '.' || $st_file == '..' ) continue;

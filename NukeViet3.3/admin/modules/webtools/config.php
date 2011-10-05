@@ -32,7 +32,7 @@ $xtpl = new XTemplate( "config.tpl", NV_ROOTDIR . "/themes/" . $global_config['m
 $xtpl->assign( 'LANG', $lang_module );
 $xtpl->assign( 'AUTOCHECKUPDATE', ( $global_config['autocheckupdate'] ) ? ' checked="checked"' : '' );
 
-for ( $i = 1; $i <= 100; $i ++ )
+for ( $i = 1; $i <= 100; ++$i )
 {
     $xtpl->assign( 'VALUE', $i );
     $xtpl->assign( 'TEXT', $i );

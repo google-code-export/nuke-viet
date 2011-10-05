@@ -98,7 +98,7 @@ function nv_strpos( $haystack, $needle, $offset = 0 )
             $bvalue = decbin( ord( $haystack[$i] ) );
             $i = $i + strlen( preg_replace( '/^(1+)(.+)$/', '\1', $bvalue ) );
         }
-        $r++;
+        ++$r;
     }
 
     return $r;

@@ -43,7 +43,7 @@ if ( $module_name == "modules" )
         $weight = 0;
         while ( $row = $db->sql_fetchrow( $result ) )
         {
-            $weight ++;
+            ++$weight;
             $sql = "UPDATE `" . NV_MODULES_TABLE . "` SET `weight`=" . $weight . " WHERE `title`=" . $db->dbescape( $row['title'] );
             $db->sql_query( $sql );
         }
@@ -59,7 +59,7 @@ if ( $module_name == "modules" )
         $subweight = 0;
         while ( $row = $db->sql_fetchrow( $result ) )
         {
-            $subweight ++;
+            ++$subweight;
             $sql = "UPDATE `" . NV_MODFUNCS_TABLE . "` SET `subweight`=" . $subweight . " WHERE `func_id`=" . $row['func_id'];
             $db->sql_query( $sql );
             nv_del_moduleCache( 'modules' );
@@ -95,7 +95,7 @@ if ( $module_name == "modules" )
         {
             if ( $old_theme == $row['theme'] and $old_position == $row['position'] )
             {
-                $weight ++;
+                ++$weight;
             }
             else
             {
@@ -174,13 +174,15 @@ if ( $module_name == "modules" )
                 $layout = $xml->xpath( 'setlayout/layout' );
                 
                 $array_layout_func_default = array();
-                for ( $i = 0; $i < count( $layout ); $i ++ )
+                $count = count( $layout );
+                for ( $i = 0; $i < $count; ++$i )
                 {
                     $layout_name = ( string )$layout[$i]->name;
                     if ( in_array( $layout_name, $layout_array ) )
                     {
                         $layout_funcs = $layout[$i]->xpath( 'funcs' );
-                        for ( $j = 0; $j < count( $layout_funcs ); $j ++ )
+                        $count = count( $layout_funcs );
+                        for ( $j = 0; $j < $count; ++$j )
                         {
                             $mo_funcs = ( string )$layout_funcs[$j];
                             $mo_funcs = explode( ":", $mo_funcs );
@@ -230,7 +232,7 @@ if ( $module_name == "modules" )
                         $func_id = $arr_func_id[$func];
                         $arr_show_func[] = $func_id;
                         $show_func = 1;
-                        $subweight ++;
+                        ++$subweight;
                         $sql = "UPDATE `" . $db_config['prefix'] . "_" . $lang . "_modfuncs` SET `subweight`=" . $subweight . ", show_func=" . $show_func . " WHERE `func_id`=" . $db->dbescape( $func_id );
                         $db->sql_query( $sql );
                     }
@@ -343,7 +345,7 @@ if ( $module_name == "modules" )
                 $return .= "</td>\n";
                 $return .= "</tr>\n";
                 $return .= "</tbody>\n";
-                $a ++;
+                ++$a;
             }
             $return .= "</table>\n";
         }
@@ -389,7 +391,7 @@ if ( $module_name == "modules" )
                 $return .= "</td>\n";
                 $return .= "</tr>\n";
                 $return .= "</tbody>\n";
-                $a ++;
+                ++$a;
             }
             $return .= "</table>\n";
         }
@@ -435,7 +437,7 @@ if ( $module_name == "modules" )
                 $return .= "</td>\n";
                 $return .= "</tr>\n";
                 $return .= "</tbody>\n";
-                $a ++;
+                ++$a;
             }
             $return .= "</table>\n";
         }
@@ -595,7 +597,7 @@ if ( $module_name == "modules" )
                 $return .= "<td>" . $values['layout'][0] . "</td>\n";
                 $return .= "</tr>\n";
                 $return .= "</tbody>\n";
-                $a ++;
+                ++$a;
             }
         }
         $return .= "</table>\n";
@@ -646,7 +648,7 @@ if ( $module_name == "modules" )
         foreach ( $array_modules as $mod => $values )
         {
             $class = ( $a % 2 ) ? " class=\"second\"" : "";
-            $a ++;
+            ++$a;
             $return .= "<tbody" . $class . ">\n";
             $return .= "<tr>\n";
             $return .= "<td>" . $a . "</td>\n";
@@ -676,7 +678,7 @@ if ( $module_name == "modules" )
             foreach ( $array_virtual_modules as $mod => $values )
             {
                 $class = ( $a % 2 ) ? " class=\"second\"" : "";
-                $a ++;
+                ++$a;
                 
                 $return .= "<tbody" . $class . ">\n";
                 $return .= "<tr>\n";

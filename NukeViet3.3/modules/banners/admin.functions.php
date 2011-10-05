@@ -105,7 +105,7 @@ function nv_fix_banner_weight ( $pid )
         $weight = 0;
         while ( $row = $db->sql_fetchrow( $result ) )
         {
-            $weight ++;
+            ++$weight;
             $sql = "UPDATE `" . NV_BANNERS_ROWS_GLOBALTABLE . "` SET `weight`=" . $weight . " WHERE `id`=" . $row['id'];
             $db->sql_query( $sql );
         }
@@ -437,7 +437,7 @@ function nv_cl_list_theme ( $contents )
             $return .= "<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"" . $values['del'] . "\">" . $contents['del'] . "</a></span></td>\n";
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
     }
     
@@ -479,7 +479,7 @@ function nv_info_cl_theme ( $contents )
         $return .= "<td>" . $row[1] . "</td>\n";
         $return .= "</tr>\n";
         $return .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     
     $return .= "</table>\n";
@@ -723,7 +723,7 @@ function nv_plist_theme ( $contents )
             $return .= "<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"" . $values['del'] . "\">" . $contents['del'] . "</a></span></td>\n";
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
     }
     
@@ -772,7 +772,7 @@ function nv_info_pl_theme ( $contents )
         }
         $return .= "</tr>\n";
         $return .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     $return .= "</table>\n";
     
@@ -1083,7 +1083,7 @@ function nv_b_list_theme ( $contents )
             $return .= "<span class=\"delete_icon\"><a class='delfile' href=\"" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=del_banner&amp;id=" . $b_id . "\">" . $contents['del'] . "</a></span></td>\n";
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
     }
     
@@ -1135,7 +1135,7 @@ function nv_info_b_theme ( $contents )
         $return .= "<td>" . $row[1] . "</td>\n";
         $return .= "</tr>\n";
         $return .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     
     $return .= "</table>\n";
@@ -1226,7 +1226,7 @@ function nv_show_stat_theme ( $contents )
             $return .= "<td style=\"width:100px;text-align:right;\">" . $value[2] . "</td>\n";
             $return .= "</tr>\n";
             $return .= "</tbody>\n";
-            $a ++;
+            ++$a;
         }
     }
     $return .= "</table>\n";
@@ -1263,7 +1263,7 @@ function nv_show_list_stat_theme ( $contents )
         }
         $return .= "</tr>\n";
         $return .= "</tbody>\n";
-        $a ++;
+        ++$a;
     }
     
     $return .= "</table>\n";

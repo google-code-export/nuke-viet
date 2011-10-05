@@ -21,7 +21,7 @@ function x_generate_page ( $base_url, $num_items, $per_page, $start_item, $add_p
     if ( $total_pages > 10 )
     {
         $init_page_max = ( $total_pages > 3 ) ? 3 : $total_pages;
-        for ( $i = 1; $i <= $init_page_max; $i ++ )
+        for ( $i = 1; $i <= $init_page_max; ++$i )
         {
             $href = ! $onclick ? "href=\"" . $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
             $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -34,7 +34,7 @@ function x_generate_page ( $base_url, $num_items, $per_page, $start_item, $add_p
                 $page_string .= ( $on_page > 5 ) ? " ... " : ", ";
                 $init_page_min = ( $on_page > 4 ) ? $on_page : 5;
                 $init_page_max = ( $on_page < $total_pages - 4 ) ? $on_page : $total_pages - 4;
-                for ( $i = $init_page_min - 1; $i < $init_page_max + 2; $i ++ )
+                for ( $i = $init_page_min - 1; $i < $init_page_max + 2; ++$i )
                 {
                     $href = ! $onclick ? "href=\"" . $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
                     $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -50,7 +50,7 @@ function x_generate_page ( $base_url, $num_items, $per_page, $start_item, $add_p
                 $page_string .= " ... ";
             }
             
-            for ( $i = $total_pages - 2; $i < $total_pages + 1; $i ++ )
+            for ( $i = $total_pages - 2; $i < $total_pages + 1; ++$i )
             {
                 $href = ! $onclick ? "href=\"" . $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
                 $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -63,7 +63,7 @@ function x_generate_page ( $base_url, $num_items, $per_page, $start_item, $add_p
     }
     else
     {
-        for ( $i = 1; $i < $total_pages + 1; $i ++ )
+        for ( $i = 1; $i < $total_pages + 1; ++$i )
         {
             $href = ! $onclick ? "href=\"" . $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) . "\"" : "href=\"javascript:void(0)\" onclick=\"" . $js_func_name . "('" . rawurlencode( nv_unhtmlspecialchars( $base_url . $amp . "page=" . ( ( $i - 1 ) * $per_page ) ) ) . "','" . $containerid . "')\"";
             $page_string .= ( $i == $on_page ) ? "<strong>" . $i . "</strong>" : "<a " . $href . ">" . $i . "</a>";
@@ -338,7 +338,7 @@ function view_file ( $row, $download_config )
                 $fileupload['key'] = $a;
                 $xtpl->assign( 'FILEUPLOAD', $fileupload );
                 $xtpl->parse( 'main.download_allow.fileupload.row' );
-                $a ++;
+                ++$a;
             }
             
             $xtpl->parse( 'main.download_allow.fileupload' );

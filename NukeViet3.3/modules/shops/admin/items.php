@@ -128,7 +128,7 @@ while ( list( $catid_i, $parentid_i, $title_i, $alias_i, $viewcat_i, $subcatid_i
     if ( $lev_i > 0 )
     {
         $xtitle_i .= "&nbsp;&nbsp;&nbsp;|";
-        for ( $i = 1; $i <= $lev_i; $i ++ )
+        for ( $i = 1; $i <= $lev_i; ++$i )
         {
             $xtitle_i .= "---";
         }
@@ -240,7 +240,7 @@ while ( list( $id, $listcatid, $admin_id, $title, $alias, $status, $publtime, $e
     $contents .= "     " . nv_link_delete_page( $id ) . "\n";
     $contents .= "     </td>\n";
     $contents .= "</tbody>";
-    $a ++;
+    ++$a;
 }
 $contents .= "<tfoot>\n";
 $contents .= "<tr align=\"left\">\n";

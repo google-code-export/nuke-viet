@@ -356,7 +356,7 @@ foreach ( $array['fileupload'] as $file )
 {
     $xtpl->assign( 'FILEUPLOAD', array( 'value' => $file, 'key' => $a ) );
     $xtpl->parse( 'main.fileupload' );
-    $a ++;
+    ++$a;
 }
 
 $a = 0;
@@ -364,7 +364,7 @@ foreach ( $array['linkdirect'] as $link )
 {
     $xtpl->assign( 'LINKDIRECT', array( 'value' => $link, 'key' => $a ) );
     $xtpl->parse( 'main.linkdirect' );
-    $a ++;
+    ++$a;
 }
 
 foreach ( $array['who_comment'] as $who )

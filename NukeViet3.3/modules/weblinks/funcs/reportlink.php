@@ -39,7 +39,7 @@ if ( $id )
             $row['error'] = $lang_module['error'];
         
         }
-        elseif ( ! empty( $report_note ) && strlen( $report_note ) < 10 )
+        elseif ( ! empty( $report_note ) && ! isset( $report_note{9} ) )
         {
             $row['error'] = $lang_module['error_word_min'];
         }

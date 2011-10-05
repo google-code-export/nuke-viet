@@ -60,7 +60,7 @@ $array_cat_search [0] ['title'] = $lang_module ['search_all'];
 $contents = call_user_func( "search_theme", $key, $check_num, $date_array, $array_cat_search );
 $where = "";
 $tbl_src = "";
-if ( strlen( $key ) >= NV_MIN_SEARCH_LENGTH )
+if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
 {
     $dbkey = $db->dblikeescape( $key );
     if ( $check_num == 1 )

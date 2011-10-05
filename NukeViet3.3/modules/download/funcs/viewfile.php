@@ -134,7 +134,7 @@ if ( $row['is_download_allow'] )
                     $row['fileupload'][] = array( 'link' => '#', 'title' => $new_name );
                     $session_files['fileupload'][$new_name] = array( 'src' => NV_ROOTDIR . '/' . $file2, 'id' => $row['id'] );
                     
-                    $a ++;
+                    ++$a;
                 }
             }
         }
@@ -173,7 +173,7 @@ if ( $row['is_download_allow'] )
                         }
                         
                         $code = md5( $link );
-                        $row['linkdirect'][$host][] = array( 'link' => $link, 'code' => $code, 'name' => strlen( $link ) > 70 ? $scheme . "://" . $host . "..." . substr( $link, - ( 70 - strlen( $scheme . "://" . $host ) ) ) : $link )//
+                        $row['linkdirect'][$host][] = array( 'link' => $link, 'code' => $code, 'name' => isset( $link{70} ) ? $scheme . "://" . $host . "..." . substr( $link, - ( 70 - strlen( $scheme . "://" . $host ) ) ) : $link )//
 ;
                         $session_files['linkdirect'][$code] = array( 'link' => $link, 'id' => $row['id'] );
                     }
@@ -224,7 +224,7 @@ if ( ! in_array( $row['id'], $dfile ) )
     
     $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "` SET `view_hits`=view_hits+1 WHERE `id`=" . $row['id'];
     $db->sql_query( $sql );
-    $row['view_hits'] ++;
+    ++$row['view_hits'];
 }
 
 $row['is_comment_allow'] = $row['comment_allow'] ? nv_set_allow( $row['who_comment'], $row['groups_comment'] ) : false;

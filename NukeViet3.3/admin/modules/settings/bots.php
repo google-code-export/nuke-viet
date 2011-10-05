@@ -52,7 +52,7 @@ foreach ( $bots as $name => $values )
 {
     $array_data = array();
     $array_data['class'] = ( $a % 2 == 0 ) ? "second" : "";
-    $array_data['id'] = $a ++;
+    $array_data['id'] = ++$a;
     $array_data['name'] = $name;
     $array_data['agent'] = $values['agent'];
     $array_data['ips'] = $values['ips'];
@@ -62,11 +62,11 @@ foreach ( $bots as $name => $values )
     $xtpl->parse( 'main.loop' );
 }
 
-for ( $index = 0; $index < 3; $index ++ )
+for ( $index = 0; $index < 3; ++$index )
 {
     $array_data = array();
     $array_data['class'] = ( $a % 2 == 0 ) ? "second" : "";
-    $array_data['id'] = $a ++;
+    $array_data['id'] = ++$a;
     $array_data['name'] = "";
     $array_data['agent'] = "";
     $array_data['ips'] = "";

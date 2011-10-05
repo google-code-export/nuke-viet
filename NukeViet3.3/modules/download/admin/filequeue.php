@@ -280,7 +280,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
                     while ( file_exists( NV_UPLOADS_REAL_DIR . '/' . $module_name . '/' . $upload_dir . '/' . $newfile2 ) )
                     {
                         $newfile2 = preg_replace( '/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $newfile );
-                        $i++;
+                        ++$i;
                     }
 
                     if ( @nv_copyfile( NV_ROOTDIR . '/' . $file, NV_UPLOADS_REAL_DIR . '/' . $module_name . '/' . $upload_dir . '/' . $newfile2 ) )
@@ -324,7 +324,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
                     while ( file_exists( NV_UPLOADS_REAL_DIR . '/' . $module_name . '/images/' . $newfile2 ) )
                     {
                         $newfile2 = preg_replace( '/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $newfile );
-                        $i++;
+                        ++$i;
                     }
 
                     if ( @nv_copyfile( NV_ROOTDIR . '/' . $fileimage, NV_UPLOADS_REAL_DIR . '/' . $module_name . '/images/' . $newfile2 ) )
@@ -568,7 +568,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
         {
             $xtpl->assign( 'FILEUPLOAD', array( 'value' => $file, 'key' => $a ) );
             $xtpl->parse( 'main.fileupload' );
-            $a++;
+            ++$a;
         }
 
         $xtpl->parse( 'main.if_fileupload' );
@@ -579,7 +579,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
     {
         $xtpl->assign( 'FILEUPLOAD2', array( 'value' => $file, 'key' => $a ) );
         $xtpl->parse( 'main.fileupload2' );
-        $a++;
+        ++$a;
     }
 
     $a = 0;
@@ -587,7 +587,7 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
     {
         $xtpl->assign( 'LINKDIRECT', array( 'value' => $link, 'key' => $a ) );
         $xtpl->parse( 'main.linkdirect' );
-        $a++;
+        ++$a;
     }
 
     if ( ! empty( $array['fileimage'] ) )
@@ -774,7 +774,7 @@ if ( ! empty( $array ) )
         $xtpl->assign( 'ROW', $row );
         $xtpl->assign( 'EDIT_URL', NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=filequeue&amp;edit=1&amp;id=" . $row['id'] );
         $xtpl->parse( 'main.row' );
-        $a++;
+        ++$a;
     }
 }
 

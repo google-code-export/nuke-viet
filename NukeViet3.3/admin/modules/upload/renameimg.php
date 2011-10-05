@@ -29,7 +29,7 @@ $i = 1;
 while ( file_exists( NV_ROOTDIR . '/' . $path . '/' . $newname2 ) )
 {
     $newname2 = preg_replace( '/(.*)(\.[a-zA-Z0-9]+)$/', '\1_' . $i . '\2', $newname );
-    $i++;
+    ++$i;
 }
 $newname = $newname2;
 if ( ! @rename( NV_ROOTDIR . '/' . $path . '/' . $file, NV_ROOTDIR . '/' . $path . '/' . $newname ) ) die( "ERROR_" . $lang_module['errorNotRenameFile'] );

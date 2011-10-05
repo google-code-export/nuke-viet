@@ -28,7 +28,7 @@ $i = 1;
 while ( file_exists( NV_ROOTDIR . '/' . $newfolder . '/' . $file ) )
 {
     $file = preg_replace( '/(.*)(\.[a-zA-Z0-9]+)$/', '\1_' . $i . '\2', $image );
-    $i++;
+    ++$i;
 }
 
 if ( ! nv_copyfile( NV_ROOTDIR . '/' . $path . '/' . $image, NV_ROOTDIR . '/' . $newfolder . '/' . $file ) ) die( "ERROR_" . $lang_module['errorNotCopyFile'] );

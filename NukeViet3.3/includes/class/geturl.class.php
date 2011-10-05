@@ -216,7 +216,7 @@ class UrlGetContents
                 unset( $matches );
                 if ( preg_match( "/location:\s(.*?)$/is", $v, $matches ) )
                 {
-                    $is_200 ++;
+                    ++$is_200;
                     $location = trim( $matches[1] );
                     if ( substr( $location, 0, 1 ) == "/" )
                     {
@@ -324,7 +324,7 @@ class UrlGetContents
                 unset( $matches );
                 if ( preg_match( '/^(Location:|URI:)[\s]*(.*?)$/m', $header, $matches ) and $this->redirectCount <= 5 )
                 {
-                    $this->redirectCount++;
+                    ++$this->redirectCount;
 
                     $newurl = $this->generate_newUrl( $matches[2] );
 
@@ -353,7 +353,7 @@ class UrlGetContents
         unset( $matches );
         if ( preg_match( '/(<meta http-equiv=)(.*?)(refresh)(.*?)(url=)([^\'\"]+)[\'|"]\s*[\/]*>/is', $result, $matches ) and $this->redirectCount <= 5 )
         {
-            $this->redirectCount++;
+            ++$this->redirectCount;
 
             $newurl = $this->generate_newUrl( $matches[6] );
 
@@ -469,7 +469,7 @@ class UrlGetContents
         unset( $matches );
         if ( preg_match( '/^(Location:|URI:)[\s]*(.*?)$/m', $header, $matches ) and $this->redirectCount <= 5 )
         {
-            $this->redirectCount++;
+            ++$this->redirectCount;
 
             $newurl = $this->generate_newUrl( $matches[2] );
 
@@ -491,7 +491,7 @@ class UrlGetContents
         unset( $matches );
         if ( preg_match( '/(<meta http-equiv=)(.*?)(refresh)(.*?)(url=)([^\'\"]+)[\'|"]\s*[\/]*>/is', $result, $matches ) and $this->redirectCount <= 5 )
         {
-            $this->redirectCount++;
+            ++$this->redirectCount;
 
             $newurl = $this->generate_newUrl( $matches[6] );
 

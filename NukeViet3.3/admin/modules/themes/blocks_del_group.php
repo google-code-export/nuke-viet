@@ -30,7 +30,7 @@ if ( ! empty( $array_expression ) )
             $result = $db->sql_query( "SELECT bid FROM `" . NV_BLOCKS_TABLE . "_groups` WHERE theme='" . $theme_i . "' AND position='$position' ORDER BY weight ASC" );
             while ( list( $bid_i ) = $db->sql_fetchrow( $result ) )
             {
-                $weight ++;
+                ++$weight;
                 $db->sql_query( "UPDATE `" . NV_BLOCKS_TABLE . "_groups` SET `weight`=" . $weight . " WHERE `bid`=" . $bid_i );
             }
             
@@ -40,7 +40,7 @@ if ( ! empty( $array_expression ) )
             {
                 if ( $func_id_i == $func_id_old )
                 {
-                    $weight ++;
+                    ++$weight;
                 }
                 else
                 {

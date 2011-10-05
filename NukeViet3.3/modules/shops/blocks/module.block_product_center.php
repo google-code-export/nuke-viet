@@ -45,10 +45,10 @@ if ( ! function_exists( 'nv_product_center' ) )
             if ($i%$num_view == 0){ 
             	
             	$page_i .= "<li><a href=\"#\">".$j."</a></li>";
-            	$j++;
+            	++$j;
             	$xtpl->parse( 'main.loop' );
             }
-            $i++;
+            ++$i;
         }
 		if ($i> $num_view && ($i-1)%$num_view != 0 ) {
 			$page_i .= "<li><a href=\"#\">".$j."</a></li>";

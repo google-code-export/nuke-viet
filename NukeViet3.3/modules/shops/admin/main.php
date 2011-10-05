@@ -71,7 +71,7 @@ foreach ( $array_info as $info)
 	$bg = ($i % 2 == 0) ? "class=\"second\"" : "" ;
 	$xtpl->assign("bg",$bg);
 	$xtpl->parse( 'main.loop' );
-	$i++;
+	++$i;
 }
 $info = array("sitename" => $global_config ['site_name'], "url" =>$global_config ['site_url'] );
 $data = array(

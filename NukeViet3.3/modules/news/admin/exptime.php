@@ -37,25 +37,25 @@ if ( $nv_Request->isset_request( 'checkss', 'get' ) and $nv_Request->get_string(
                     {
                         if ( $array_cat_admin[$admin_id][$catid_i]['admin'] == 1 )
                         {
-                            $check_edit ++;
+                            ++$check_edit;
                         }
                         else
                         {
                             if ( $array_cat_admin[$admin_id][$catid_i]['edit_content'] == 1 )
                             {
-                                $check_edit ++;
+                                ++$check_edit;
                             }
                             elseif ( $array_cat_admin[$admin_id][$catid_i]['pub_content'] == 1 and ( $status == 0 or $status = 2 ) )
                             {
-                                $check_edit ++;
+                                ++$check_edit;
                             }
                             elseif ( $status == 0 and $post_id == $admin_id )
                             {
-                                $check_edit ++;
+                                ++$check_edit;
                             }
 							elseif ( $status == 2 )
                             {
-                                $check_edit ++;
+                                ++$check_edit;
                             }
                         }
                     }

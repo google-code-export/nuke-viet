@@ -250,7 +250,7 @@ foreach ( $timezone_array as $site_timezone_i )
     $xtpl->parse( 'main.opsite_timezone' );
 }
 
-for ( $i = 0; $i < 3; $i ++ )
+for ( $i = 0; $i < 3; ++$i )
 {
     $xtpl->assign( 'GOOGLEANALYTICSSETDOMAINNAME_SELECTED', ( $global_config['googleAnalyticsSetDomainName'] == $i ) ? ' selected="selected"' : '' );
     $xtpl->assign( 'GOOGLEANALYTICSSETDOMAINNAME_VALUE', $i );

@@ -58,7 +58,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     $contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_row_del(" . $row['id'] . ")\">" . $lang_global['delete'] . "</a></span></td>\n";
     $contents .= "</tr>\n";
     $contents .= "</tbody>\n";
-    $a++;
+    ++$a;
 }
 
 $contents .= "</table>\n";

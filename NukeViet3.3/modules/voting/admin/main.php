@@ -44,7 +44,7 @@ if ( $num > 0 )
         $contents .= "&nbsp;-&nbsp;<span class=\"delete_icon\"><a href=\"javascript:void(0);\" onclick=\"nv_del_content(" . $row['vid'] . ", '" . md5( $row['vid'] . session_id() ) . "')\">" . $lang_global['delete'] . "</a></span></td>\n";
         $contents .= "</tr>\n";
         $contents .= "</tbody>\n";
-        $a++;
+        ++$a;
     }
     $contents .= "</table>\n";
     include ( NV_ROOTDIR . "/includes/header.php" );

@@ -109,17 +109,17 @@ if ( $module_name == "settings" )
         $return .= "<td>" . $contents['start_time'] . ":</td>\n";
         $return .= "<td></td>\n";
         $return .= "<td>" . $contents['year'][0] . ": <select name=\"year\">\n";
-        for ( $i = 2010; $i < 2030; $i ++ )
+        for ( $i = 2010; $i < 2030; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['year'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
         $return .= "</select> " . $contents['month'][0] . ": <select name=\"month\">\n";
-        for ( $i = 1; $i < 13; $i ++ )
+        for ( $i = 1; $i < 13; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['month'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
         $return .= "</select> " . $contents['day'][0] . ": <select name=\"day\">\n";
-        for ( $i = 1; $i < 31; $i ++ )
+        for ( $i = 1; $i < 31; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['day'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
@@ -130,12 +130,12 @@ if ( $module_name == "settings" )
         $return .= "<td></td>\n";
         $return .= "<td></td>\n";
         $return .= "<td>" . $contents['hour'][0] . ": <select name=\"hour\">\n";
-        for ( $i = 0; $i < 24; $i ++ )
+        for ( $i = 0; $i < 24; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['hour'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
         $return .= "</select> " . $contents['min'][0] . ": <select name=\"min\">\n";
-        for ( $i = 0; $i < 60; $i ++ )
+        for ( $i = 0; $i < 60; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['min'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
@@ -259,17 +259,17 @@ if ( $module_name == "settings" )
         $return .= "<td>" . $contents['start_time'] . ":</td>\n";
         $return .= "<td></td>\n";
         $return .= "<td>" . $contents['year'][0] . ": <select name=\"year\">\n";
-        for ( $i = 2010; $i < 2030; $i ++ )
+        for ( $i = 2010; $i < 2030; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['year'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
         $return .= "</select> " . $contents['month'][0] . ": <select name=\"month\">\n";
-        for ( $i = 1; $i < 13; $i ++ )
+        for ( $i = 1; $i < 13; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['month'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
         $return .= "</select> " . $contents['day'][0] . ": <select name=\"day\">\n";
-        for ( $i = 1; $i < 31; $i ++ )
+        for ( $i = 1; $i < 31; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['day'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
@@ -280,12 +280,12 @@ if ( $module_name == "settings" )
         $return .= "<td></td>\n";
         $return .= "<td></td>\n";
         $return .= "<td>" . $contents['hour'][0] . ": <select name=\"hour\">\n";
-        for ( $i = 0; $i < 24; $i ++ )
+        for ( $i = 0; $i < 24; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['hour'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
         $return .= "</select> " . $contents['min'][0] . ": <select name=\"min\">\n";
-        for ( $i = 0; $i < 60; $i ++ )
+        for ( $i = 0; $i < 60; ++$i )
         {
             $return .= "<option value=\"" . $i . "\"" . ( $i == $contents['min'][1] ? " selected=\"selected\"" : "" ) . ">" . $i . "</option>\n";
         }
@@ -371,7 +371,7 @@ if ( $module_name == "settings" )
                     $return .= "<td>" . $value . "</td>\n";
                     $return .= "</tr>\n";
                     $return .= "</tbody>\n";
-                    $a ++;
+                    ++$a;
                 }
                 $return .= "</table>\n";
             }

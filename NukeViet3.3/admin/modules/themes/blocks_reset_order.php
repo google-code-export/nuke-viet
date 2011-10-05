@@ -30,7 +30,7 @@ if ( ! empty( $theme ) and $checkss == md5( $theme . $global_config['sitekey'] .
         {
             if ( $func_id_i == $func_id_old )
             {
-                $weight ++;
+                ++$weight;
             }
             else
             {

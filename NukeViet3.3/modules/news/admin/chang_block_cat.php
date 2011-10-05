@@ -27,8 +27,8 @@ if ( $mod == "weight" and $new_vid > 0 )
     $weight = 0;
     while ( $row = $db->sql_fetchrow( $result ) )
     {
-        $weight ++;
-        if ( $weight == $new_vid ) $weight ++;
+        ++$weight;
+        if ( $weight == $new_vid ) ++$weight;
         $sql = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_block_cat` SET `weight`=" . $weight . " WHERE `bid`=" . intval( $row['bid'] );
         $db->sql_query( $sql );
     }

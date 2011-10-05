@@ -301,7 +301,7 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
             while ( file_exists( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_name . '/thumb/' . $thumb_basename ) )
             {
                 $thumb_basename = preg_replace( '/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $basename );
-                $i ++;
+                ++$i;
             }
             
             $image->resizeXY( $module_config[$module_name]['homewidth'], $module_config[$module_name]['homeheight'] );
@@ -314,7 +314,7 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
             while ( file_exists( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_name . '/block/' . $block_basename ) )
             {
                 $block_basename = preg_replace( '/(.*)(\.[a-zA-Z]+)$/', '\1_' . $i . '\2', $basename );
-                $i ++;
+                ++$i;
             }
             $image->resizeXY( $module_config[$module_name]['blockwidth'], $module_config[$module_name]['blockheight'] );
             $image->save( NV_ROOTDIR . '/' . NV_FILES_DIR . '/' . $module_name . '/block', $block_basename );
@@ -590,7 +590,7 @@ if ( $nv_Request->isset_request( 'contentid', 'get,post' ) and $fcheckss == $che
         $xtitle_i = "";
         if ( $value['lev'] > 0 )
         {
-            for ( $i = 1; $i <= $value['lev']; $i ++ )
+            for ( $i = 1; $i <= $value['lev']; ++$i )
             {
                 $xtitle_i .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
             }
@@ -744,10 +744,10 @@ elseif ( defined( 'NV_IS_USER' ) )
                 }
                 $xtpl->parse( 'main.viewcatloop.cat' );
             }
-            $n ++;
+            ++$n;
         }
         $xtpl->parse( 'main.viewcatloop' );
-        $a ++;
+        ++$a;
     }
     $xtpl->parse( 'main' );
     

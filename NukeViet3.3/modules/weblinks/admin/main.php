@@ -53,7 +53,7 @@ while ( $rowcat = $db->sql_fetchrow( $resultcat ) )
     $contents .= "&nbsp;-&nbsp;<a href=\"" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=del_link&amp;id=" . $rowcat['id'] . "\">" . $lang_module['weblink_method_del'] . "</a></span></td>\n";
     $contents .= "</tr>\n";
     $contents .= "</tbody>\n";
-    $a ++;
+    ++$a;
 }
 $contents .= "<tr><td colspan='8'>";
 $contents .= "<input type=\"submit\" value=\"" . $lang_module['weblink_method_del'] . "\"></td></tr>";

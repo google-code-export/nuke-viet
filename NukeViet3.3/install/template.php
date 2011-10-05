@@ -132,7 +132,7 @@ function nv_step_4 ( $array_dir_check, $array_ftp_data, $nextstep )
             "dir" => $dir, "check" => $check, "class" => $class 
         ) );
         $xtpl->parse( 'step.loopdir' );
-        $a ++;
+        ++$a;
     }
     if ( $nextstep )
     {
