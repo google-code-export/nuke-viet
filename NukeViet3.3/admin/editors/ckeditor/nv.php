@@ -9,7 +9,7 @@
 
 if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
-@require_once ( str_replace( '\\\\', '/', dirname( __file__ ) ) . '/ckeditor_php5.php' );
+@require_once ( str_replace( DIRECTORY_SEPARATOR, '/', dirname( __file__ ) ) . '/ckeditor_php5.php' );
 
 /**
  * nv_aleditor()

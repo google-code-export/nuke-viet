@@ -9,8 +9,8 @@
 
 define( 'NV_SYSTEM', true );
 
-require_once ( str_replace( '\\\\', '/', dirname( __file__ ) ) . '/mainfile.php' );
-require_once ( NV_ROOTDIR . "/includes/core/user_functions.php" );
+require ( str_replace( DIRECTORY_SEPARATOR, '/', dirname( __file__ ) ) . '/mainfile.php' );
+require ( NV_ROOTDIR . "/includes/core/user_functions.php" );
 
 //Google Sitemap
 if ( $nv_Request->isset_request( NV_NAME_VARIABLE, 'get' ) and $nv_Request->get_string( NV_NAME_VARIABLE, 'get' ) == "SitemapIndex" )
@@ -21,12 +21,12 @@ if ( $nv_Request->isset_request( NV_NAME_VARIABLE, 'get' ) and $nv_Request->get_
 
 //Check user
 if ( defined( 'NV_IS_USER' ) ) trigger_error( 'Hacking attempt', 256 );
-require_once ( NV_ROOTDIR . "/includes/core/is_user.php" );
+require ( NV_ROOTDIR . "/includes/core/is_user.php" );
 
 //Cap nhat trang thai online
 if ( $global_config['online_upd'] and ! defined( 'NV_IS_AJAX' ) and ! defined( 'NV_IS_MY_USER_AGENT' ) )
 {
-    require_once ( NV_ROOTDIR . "/includes/core/online.php" );
+    require ( NV_ROOTDIR . "/includes/core/online.php" );
 }
 
 //Thong ke
@@ -34,14 +34,14 @@ if ( $global_config['statistic'] and ! defined( 'NV_IS_AJAX' ) and ! defined( 'N
 {
     if ( ! $nv_Request->isset_request( 'statistic_' . NV_LANG_DATA, 'session' ) )
     {
-        require_once ( NV_ROOTDIR . "/includes/core/stat.php" );
+        require ( NV_ROOTDIR . "/includes/core/stat.php" );
     }
 }
 
 //Referer + Gqueries
 if ( $client_info['is_myreferer'] === 0 and ! defined( 'NV_IS_MY_USER_AGENT' ) )
 {
-    require_once ( NV_ROOTDIR . "/includes/core/referer.php" );
+    require ( NV_ROOTDIR . "/includes/core/referer.php" );
 }
 
 if ( ! isset( $global_config['site_home_module'] ) or empty( $global_config['site_home_module'] ) ) $global_config['site_home_module'] = "news";
@@ -114,11 +114,11 @@ if ( preg_match( $global_config['check_module'], $module_name ) )
             //Ket noi ngon ngu cua module
             if ( file_exists( NV_ROOTDIR . "/modules/" . $module_file . "/language/" . NV_LANG_INTERFACE . ".php" ) )
             {
-                require_once ( NV_ROOTDIR . "/modules/" . $module_file . "/language/" . NV_LANG_INTERFACE . ".php" );
+                require ( NV_ROOTDIR . "/modules/" . $module_file . "/language/" . NV_LANG_INTERFACE . ".php" );
             }
             elseif ( file_exists( NV_ROOTDIR . "/modules/" . $module_file . "/language/en.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/modules/" . $module_file . "/language/en.php" );
+                require ( NV_ROOTDIR . "/modules/" . $module_file . "/language/en.php" );
             }
             
             //Ket noi giao dien chung
@@ -138,22 +138,22 @@ if ( preg_match( $global_config['check_module'], $module_name ) )
             {
                 trigger_error( "Error!  Does not exist themes default", 256 );
             }
-            require_once ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/theme.php" );
+            require ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/theme.php" );
             
             //ket noi ngon ngu theo theme
             if ( file_exists( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/" . NV_LANG_INTERFACE . ".php" ) )
             {
-                require_once ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/" . NV_LANG_INTERFACE . ".php" );
+                require ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/" . NV_LANG_INTERFACE . ".php" );
             }
 			elseif( file_exists( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/en.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/en.php" );
+                require ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/language/en.php" );
             }		
             
             //Ket noi voi file functions.php, file chua cac function dung chung cho ca module
             if ( file_exists( NV_ROOTDIR . "/modules/" . $module_file . "/functions.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/modules/" . $module_file . "/functions.php" );
+                require ( NV_ROOTDIR . "/modules/" . $module_file . "/functions.php" );
             }
             
             //Xac dinh template module
@@ -168,11 +168,11 @@ if ( preg_match( $global_config['check_module'], $module_name ) )
             
             if ( file_exists( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file . "/theme.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file . "/theme.php" );
+                require ( NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file . "/theme.php" );
             }
             elseif ( file_exists( NV_ROOTDIR . "/modules/" . $module_file . "/theme.php" ) )
             {
-                require_once ( NV_ROOTDIR . "/modules/" . $module_file . "/theme.php" );
+                require ( NV_ROOTDIR . "/modules/" . $module_file . "/theme.php" );
             }
             
             if ( ! defined( 'NV_IS_AJAX' ) )
@@ -181,7 +181,7 @@ if ( preg_match( $global_config['check_module'], $module_name ) )
             }
             
             //Ket noi voi cac op cua module de thuc hien
-            require_once ( NV_ROOTDIR . "/modules/" . $module_file . "/funcs/" . $op . ".php" );
+            require ( NV_ROOTDIR . "/modules/" . $module_file . "/funcs/" . $op . ".php" );
             exit();
         }
         elseif (isset( $module_info['funcs']['main'] )) 

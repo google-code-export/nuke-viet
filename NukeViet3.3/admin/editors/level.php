@@ -12,7 +12,7 @@
 define( 'NV_WYSIWYG', true );
 if ( ! defined( 'NV_MAINFILE' ) )
 {
-    $temp_dir = str_replace( '\\\\', '/', dirname( __file__ ) );
+    $temp_dir = str_replace( DIRECTORY_SEPARATOR, '/', dirname( __file__ ) );
     $temp_path = "/../";
     for ( $i = 0; $i < 10; ++$i )
     {

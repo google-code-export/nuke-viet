@@ -114,7 +114,7 @@ function nv_strpos( $haystack, $needle, $offset = 0 )
  */
 function nv_strrpos( $haystack, $needle, $offset = null )
 {
-    if ( is_null( $offset ) )
+    if ( $offset === null )
     {
 
         $ar = explode( $needle, $haystack );

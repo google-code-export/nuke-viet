@@ -17,7 +17,7 @@ if ( ! nv_function_exists( 'nv_block_data_config_html' ) )
         
         if ( defined( 'NV_EDITOR' ) )
         {
-            require_once ( NV_ROOTDIR . '/' . NV_EDITORSDIR . '/' . NV_EDITOR . '/nv.php' );
+            require ( NV_ROOTDIR . '/' . NV_EDITORSDIR . '/' . NV_EDITOR . '/nv.php' );
         }
         
         $htmlcontent = ( defined( 'NV_EDITOR' ) ) ? nv_editor_br2nl( $data_block['htmlcontent'] ) : nv_br2nl( $data_block['htmlcontent'] );

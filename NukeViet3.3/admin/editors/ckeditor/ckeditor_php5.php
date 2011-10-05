@@ -523,7 +523,7 @@ class CKEditor
 	 */
 	private function jsEncode($val)
 	{
-		if (is_null($val)) {
+		if ($val === null) {
 			return 'null';
 		}
 		if (is_bool($val)) {
