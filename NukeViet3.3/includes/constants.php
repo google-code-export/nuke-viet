@@ -18,7 +18,7 @@ define( "NV_CONFIG_FILENAME", "config.php" );
 define( "NV_ADMINDIR", "admin" );
 
 //Ten thu muc editors
-define( "NV_EDITORSDIR", "admin/editors" );
+define( "NV_EDITORSDIR", "editors" );
 
 //Thu muc chua dien dan
 define( "DIR_FORUM", "forum" );

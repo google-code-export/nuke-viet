@@ -1489,7 +1489,7 @@ function nv_getCountry( $ip )
 	{
 		$code = strtoupper( $arr[1] );
 		$countries = array();
-		include ( NV_ROOTDIR . "/includes/ip_files/countries.php" );
+		include ( NV_ROOTDIR . "/includes/countries.php" );
 
 		if ( isset( $countries[$code] ) and ! empty( $countries[$code] ) )
 		{
@@ -1512,7 +1512,7 @@ function nv_getCountry_from_file( $ip )
 	$ranges = $countries = array();
 	$two_letter_country_code = $three_letter_country_code = $country_name = "";
 
-	include ( NV_ROOTDIR . "/includes/ip_files/" . $numbers[0] . ".php" );
+	include (NV_ROOTDIR . '/' . NV_DATADIR . '/ip_files/' . $numbers[0] . '.php');
 	$code = ( $numbers[0] * 16777216 ) + ( $numbers[1] * 65536 ) + ( $numbers[2] * 256 ) + ( $numbers[3] );
 	if ( ! empty( $ranges ) )
 	{
@@ -1535,10 +1535,9 @@ function nv_getCountry_from_file( $ip )
 	}
 	else
 	{
-		include ( NV_ROOTDIR . "/includes/ip_files/countries.php" );
+		include ( NV_ROOTDIR . "/includes/countries.php" );
 		$three_letter_country_code = $countries[$two_letter_country_code][0];
 		$country_name = $countries[$two_letter_country_code][1];
-
 	}
 	return array( $two_letter_country_code, $three_letter_country_code, $country_name );
 }
