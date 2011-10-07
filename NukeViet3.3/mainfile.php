@@ -19,33 +19,16 @@ define( 'NV_MAINFILE', true );
 define( 'NV_START_TIME', array_sum( explode( " ", microtime() ) ) );
 
 //Khong cho xac dinh tu do cac variables
-$db_config = array();
-$global_config = array();
-$module_config = array();
-$client_info = array();
-$user_info = array();
-$admin_info = array();
-$sys_info = array();
-$lang_global = array();
-$lang_ = array();
-$rss = array();
-$nv_vertical_menu = array();
-$array_mod_title = array();
-$content_type = array();
-$blocks = array();
-$contents = "";
-$submenu = array();
-$select_options = array();
-$error_info = array();
-$rewrite = array();
-$page_title = $key_words = $canonicalUrl = $mod_title = $editor_password = $my_head = $my_footer = $description = "";
+$db_config = $global_config = $module_config = $client_info = $user_info = $admin_info = $sys_info = $lang_global = $lang_module = $rss = $nv_vertical_menu = $array_mod_title = $content_type = $blocks = $submenu = $select_options = $error_info = $rewrite = array();
+$page_title = $key_words = $canonicalUrl = $mod_title = $editor_password = $my_head = $my_footer = $description = $contents = "";
 $editor = $rewrite = false;
 
 //Xac dinh thu muc goc cua site
 define( 'NV_ROOTDIR', pathinfo( str_replace( DIRECTORY_SEPARATOR, '/', __file__ ), PATHINFO_DIRNAME ) );
 
-$sys_info['disable_classes'] = ( ini_get( "disable_classes" ) != "" and ini_get( "disable_classes" ) != false ) ? array_map( 'trim', preg_split( "/[\s,]+/", ini_get( "disable_classes" ) ) ) : array();
-$sys_info['disable_functions'] = ( ini_get( "disable_functions" ) != "" and ini_get( "disable_functions" ) != false ) ? array_map( 'trim', preg_split( "/[\s,]+/", ini_get( "disable_functions" ) ) ) : array();
+$sys_info['disable_classes'] = ( ( $disable_classes = ini_get( "disable_classes" ) ) != "" and $disable_classes != false ) ? array_map( 'trim', preg_split( "/[\s,]+/", $disable_classes ) ) : array();
+$sys_info['disable_functions'] = ( ( $disable_functions = ini_get( "disable_functions" ) ) != "" and $disable_functions != false ) ? array_map( 'trim', preg_split( "/[\s,]+/", $disable_functions ) ) : array();
+
 if ( extension_loaded( 'suhosin' ) )
 {
     $sys_info['disable_functions'] = array_merge( $sys_info['disable_functions'], array_map( 'trim', preg_split( "/[\s,]+/", ini_get( "suhosin.executor.func.blacklist" ) ) ) );
@@ -63,8 +46,8 @@ else
     if ( file_exists( NV_ROOTDIR . '/install/index.php' ) )
     {
         $base_siteurl = pathinfo( $_SERVER['PHP_SELF'], PATHINFO_DIRNAME );
-        if ( $base_siteurl == '\\' or $base_siteurl == '/' ) $base_siteurl = '';
-        if ( ! empty( $base_siteurl ) ) $base_siteurl = str_replace( '\\', '/', $base_siteurl );
+        if ( $base_siteurl == DIRECTORY_SEPARATOR ) $base_siteurl = '';
+        if ( ! empty( $base_siteurl ) ) $base_siteurl = str_replace( DIRECTORY_SEPARATOR, '/', $base_siteurl );
         if ( ! empty( $base_siteurl ) ) $base_siteurl = preg_replace( "/[\/]+$/", '', $base_siteurl );
         if ( ! empty( $base_siteurl ) ) $base_siteurl = preg_replace( "/^[\/]*(.*)$/", '/\\1', $base_siteurl );
         if ( defined( 'NV_ADMIN' ) )
