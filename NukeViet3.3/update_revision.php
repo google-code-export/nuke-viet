@@ -299,6 +299,37 @@ function nv_func_update_data ( )
         nv_save_file_config_global();
     }
 	
+	if ($global_config['revision'] < 1313)
+	{
+		$sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
+		$result = $db->sql_query($sql);
+		while (list($lang_i) = $db->sql_fetchrow($result))
+		{
+			$sql = "SELECT title, module_data FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `module_file`='news'";
+			$result_mod = $db->sql_query($sql);
+			while (list($mod, $mod_data) = $db->sql_fetchrow($result_mod))
+			{
+				$result_config = $db->sql_query("SELECT `config_name`, `config_value` FROM `" . NV_CONFIG_GLOBALTABLE . "` WHERE `lang`='" . $lang_i . "' AND `module`='".$mod."'");
+				$mod_config = array(); 
+				while (list($config_name, $config_value) = $db->sql_fetchrow($result_config, 1))
+				{
+					$mod_config[$config_name] = $config_value;
+				}
+
+				$homeheight = $mod_config['homeheight'];
+				$homewidth = $mod_config['homewidth'];
+				if ($homewidth > $homeheight)
+				{
+					$homeheight = round($homewidth*1.5);
+					$blockheight = round($mod_config['blockwidth']*1.5);
+					$db->sql_query( "REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang_i . "', '" . $mod . "', 'homeheight', ".$homeheight.")");
+					$db->sql_query( "REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang_i . "', '" . $mod . "', 'blockheight', ".$blockheight.")");
+				}
+			}
+		}
+    	nv_save_file_config_global();
+	}	
+	
     // End date data
     if ( empty( $error_contents ) )
     {
