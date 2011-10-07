@@ -67,8 +67,7 @@ else
                     `last_openid` AS `current_openid`, `password`, `question`, `answer` 
                     FROM `" . NV_USERS_GLOBALTABLE . "` WHERE `userid` = " . $user['userid'] . " AND `active`=1 LIMIT 1";
 					$result = $db->sql_query( $query );
-					$numrows = $db->sql_numrows( $result );
-					if ( $numrows == 1 )
+					if ( $db->sql_numrows( $result ) == 1 )
 					{
 						$user_info = $db->sql_fetch_assoc( $result );
 						$db->sql_freeresult( $result );
@@ -96,18 +95,15 @@ else
 							{
 								$query = "SELECT `openid`, `email` FROM `" . NV_USERS_GLOBALTABLE . "_openid` WHERE `opid`=" . $db->dbescape( $user_info['current_openid'] ) . " LIMIT 1";
 								$result = $db->sql_query( $query );
-								$numrows = $db->sql_numrows( $result );
-								if ( $numrows != 1 )
+								if ( $db->sql_numrows( $result ) != 1 )
 								{
 									$user_info = array();
 								}
 								else
 								{
-									$row = $db->sql_fetchrow( $result );
+									list( $user_info['openid_id'], $user_info['openid_email'] ) = $db->sql_fetchrow( $result );
 									$db->sql_freeresult( $result );
-									$user_info['openid_id'] = $row['openid'];
-									$user_info['openid_email'] = $row['email'];
-									$user_info['openid_server'] = parse_url( $row['openid'] );
+									$user_info['openid_server'] = parse_url( $user_info['openid_id'] );
 									$user_info['openid_server'] = preg_replace( "/^([w]{3})\./", "", $user_info['openid_server']['host'] );
 								}
 							}
@@ -128,7 +124,7 @@ else
 		}
 	}
 
-	unset( $user, $strlen, $query, $result, $numrows, $row );
+	unset( $user, $strlen, $query, $result );
 }
 
 ?>

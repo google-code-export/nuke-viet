@@ -12,7 +12,7 @@ define( 'NV_CLASS_REQUEST', true );
 
 if ( ! defined( 'NV_CURRENTTIME' ) ) define( 'NV_CURRENTTIME', time() );
 if ( ! defined( 'NV_LIVE_SESSION_TIME' ) ) define( 'NV_LIVE_SESSION_TIME', 0 );
-if ( ! defined( 'NV_ROOTDIR' ) ) define( 'NV_ROOTDIR', preg_replace( "/[\/]+$/", '', str_replace( '\\', '/', realpath( dirname( __file__ ) . '/../../' ) ) ) );
+if ( ! defined( 'NV_ROOTDIR' ) ) define( 'NV_ROOTDIR', preg_replace( "/[\/]+$/", '', str_replace( DIRECTORY_SEPARATOR, '/', realpath( dirname( __file__ ) . '/../../' ) ) ) );
 if ( ! defined( 'NV_ADMINDIR' ) ) define( 'NV_ADMINDIR', 'admin' );
 if ( ! defined( 'NV_EDITORSDIR' ) ) define( 'NV_EDITORSDIR', 'admin/editors' );
 
@@ -135,9 +135,6 @@ class Request
         "applet", "body", "basefont", "head", "html", "id", "meta", "xml", "blink", "link", "style", "script", "iframe", "frame", "frameset", "ilayer", "layer", "bgsound", "title", "base" 
     );
 
-    /*  private $disabletags = array(
-	"applet", "body", "basefont", "head", "html", "id", "meta", "xml", "blink", "link", "style", "script", "embed", "object", "iframe", "frame", "frameset", "ilayer", "layer", "bgsound", "title", "base" 
-	);*/
     private $disabledattributes = array( 
         'action', 'background', 'codebase', 'dynsrc', 'lowsrc' 
     );
@@ -339,11 +336,11 @@ class Request
         );
         $this->request_uri = ( empty( $_SERVER['REQUEST_URI'] ) ) ? $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] : $_SERVER['REQUEST_URI'];
         $doc_root = isset( $_SERVER['DOCUMENT_ROOT'] ) ? $_SERVER['DOCUMENT_ROOT'] : '';
-        if ( ! empty( $doc_root ) ) $doc_root = str_replace( '\\', '/', $doc_root );
+        if ( ! empty( $doc_root ) ) $doc_root = str_replace( DIRECTORY_SEPARATOR, '/', $doc_root );
         if ( ! empty( $doc_root ) ) $doc_root = preg_replace( "/[\/]+$/", '', $doc_root );
         $base_siteurl = pathinfo( $_SERVER['PHP_SELF'], PATHINFO_DIRNAME );
-        if ( $base_siteurl == '\\' or $base_siteurl == '/' ) $base_siteurl = '';
-        if ( ! empty( $base_siteurl ) ) $base_siteurl = str_replace( '\\', '/', $base_siteurl );
+        if ( $base_siteurl == DIRECTORY_SEPARATOR ) $base_siteurl = '';
+        if ( ! empty( $base_siteurl ) ) $base_siteurl = str_replace( DIRECTORY_SEPARATOR, '/', $base_siteurl );
         if ( ! empty( $base_siteurl ) ) $base_siteurl = preg_replace( "/[\/]+$/", '', $base_siteurl );
         if ( ! empty( $base_siteurl ) ) $base_siteurl = preg_replace( "/^[\/]*(.*)$/", '/\\1', $base_siteurl );
         if ( defined( 'NV_WYSIWYG' ) and ! defined( 'NV_ADMIN' ) )
@@ -492,8 +489,7 @@ class Request
         }
         $user_agent = $this->get_Env( "HTTP_USER_AGENT" );
         $user_agent = htmlspecialchars( substr( $user_agent, 0, 255 ) );
-        $user_agent = str_replace( ",", "-", $user_agent );
-        $user_agent = str_replace( "<", "(", $user_agent );
+        $user_agent = str_replace( array(",","<"), array("-","("), $user_agent );
         if ( empty( $user_agent ) or $user_agent == "-" ) $user_agent = "none";
         $this->user_agent = $user_agent;
         $_SERVER['HTTP_USER_AGENT'] = $user_agent;
@@ -698,7 +694,7 @@ class Request
 				$height = intval(preg_replace("/^(.*)height\=\"([\d]+)\"(.*)$/isU", "\\2", $_m));
 
 				$width = ($width > 0) ? $width : 480;
-				$height = ($height > 0) ? $width : 360;
+				$height = ($height > 0) ? $height : 360;
 
 				$ojwplayer = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" height="' . $height . '" width="' . $width . '"><param name="movie" value="' . NV_BASE_SITEURL . 'images/jwplayer/player.swf" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="flashvars" value="file=http://www.youtube.com/watch?v=' . $vid . '" /><embed allowfullscreen="true" allowscriptaccess="always" flashvars="file=http://www.youtube.com/watch?v=' . $vid . '" height="' . $height . '" width="' . $width . '" src="' . NV_BASE_SITEURL . 'images/jwplayer/player.swf"></embed></object>';
 				$source = str_replace($_m, $ojwplayer, $source);
