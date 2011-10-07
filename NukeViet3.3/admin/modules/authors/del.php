@@ -73,7 +73,8 @@ if ( $nv_Request->get_int( 'ok', 'post', 0 ) )
         if ( $row['lev'] == 3 )
         {
             $is_delCache = false;
-            foreach ( array_keys( $site_mods ) as $mod )
+            $array_keys = array_keys( $site_mods );
+            foreach ( $array_keys as $mod )
             {
                 if ( ! empty( $mod ) )
                 {

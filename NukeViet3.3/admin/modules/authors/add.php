@@ -22,24 +22,23 @@ if ( empty( $userid ) )
     die();
 }
 
-$sql = "SELECT * FROM `" . NV_AUTHORS_GLOBALTABLE . "` WHERE `admin_id`=" . $userid;
+$sql = "SELECT COUNT(*) FROM `" . NV_AUTHORS_GLOBALTABLE . "` WHERE `admin_id`=" . $userid;
 $result = $db->sql_query( $sql );
-$numrows = $db->sql_numrows( $result );
-if ( $numrows )
+list( $count ) = $db->sql_fetchrow( $result );
+if ( $count != 0 )
 {
-    Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
-    die();
+	Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
+	die();
 }
 
-$sql = "SELECT * FROM `" . NV_USERS_GLOBALTABLE . "` WHERE `userid`=" . $userid;
+$sql = "SELECT COUNT(*) as `count`, `username` FROM `" . NV_USERS_GLOBALTABLE . "` WHERE `userid`=" . $userid . " LIMIT 1";
 $result = $db->sql_query( $sql );
-$numrows = $db->sql_numrows( $result );
-if ( $numrows != 1 )
+list( $count, $username ) = $db->sql_fetchrow( $result );
+if ( $count != 1 )
 {
-    Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
-    die();
+	Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
+	die();
 }
-$row = $db->sql_fetchrow( $result );
 
 $error = "";
 if ( $nv_Request->get_int( 'save', 'post', 0 ) )
@@ -63,26 +62,29 @@ if ( $nv_Request->get_int( 'save', 'post', 0 ) )
         $mds = array();
         if ( $lev == 3 and ! empty( $modules ) )
         {
-            $is_delCache = false;
-            foreach ( array_keys( $site_mods ) as $mod )
-            {
-                if ( ! empty( $mod ) and in_array( $mod, $modules ) )
-                {
-                    $site_mods_admins = $site_mods[$mod]['admins'] . ( ( ! empty( $site_mods[$mod]['admins'] ) ) ? "," : "" ) . $userid;
-                    $site_mods_admins = explode( ",", $site_mods_admins );
-                    $site_mods_admins = array_unique( $site_mods_admins );
-                    $site_mods_admins = implode( ",", $site_mods_admins );
-                    $sql = "UPDATE `" . NV_MODULES_TABLE . "` SET `admins`=" . $db->dbescape( $site_mods_admins ) . " WHERE `title`=" . $db->dbescape( $mod );
-                    $db->sql_query( $sql );
-                    $is_delCache = true;
-                    $mds[] = $site_mods[$mod]['custom_title'];
-                }
-            }
-            
-            if ( $is_delCache )
-            {
-                nv_del_moduleCache( 'modules' );
-            }
+            $update = "UPDATE `" . NV_MODULES_TABLE . "` SET `admins`= CASE ";
+			$titles = array();
+			$array_keys = array_keys( $site_mods );
+			foreach ( $array_keys as $i => $mod )
+			{
+				if ( ! empty( $mod ) and in_array( $mod, $modules ) )
+				{
+					$site_mods_admins = ( ( ! empty( $site_mods[$mod]['admins'] ) ) ? $site_mods[$mod]['admins'] . "," : "" ) . $userid;
+					$site_mods_admins = explode( ",", $site_mods_admins );
+					$site_mods_admins = array_unique( $site_mods_admins );
+					$site_mods_admins = implode( ",", $site_mods_admins );
+					$titles[$i] = $db->dbescape( $mod );
+					$mds[$i] = $site_mods[$mod]['custom_title'];
+					$update .= "WHEN `title` = " . $titles[$i] . " THEN " . $db->dbescape( $site_mods_admins ) . " ";
+				}
+			}
+
+			if ( ! empty( $titles ) )
+			{
+				$update .= "END WHERE `title` IN (" . implode( ",", $titles ) . ")";
+				$db->sql_query( $update );
+				nv_del_moduleCache( 'modules' );
+			}
         }
         
         $allow_files_type = array_values( array_intersect( $global_config['file_allowed_ext'], $allow_files_type ) );
@@ -102,7 +104,7 @@ if ( $nv_Request->get_int( 'save', 'post', 0 ) )
             $result = array( 
                 'admin_id' => $userid, 'editor' => $editor, 'lev' => $lev, 'allow_files_type' => $allow_files_type, 'allow_modify_files' => $allow_modify_files, 'allow_create_subdirectories' => $allow_create_subdirectories, 'allow_modify_subdirectories' => $allow_modify_subdirectories, 'position' => $position, 'modules' => ( ! empty( $mds ) ) ? implode( ", ", $mds ) : "" 
             );
-            nv_insert_logs( NV_LANG_DATA, $module_name, $lang_module['menuadd'], "Username: " . $row['username'], $admin_info['userid'] );
+            nv_insert_logs( NV_LANG_DATA, $module_name, $lang_module['menuadd'], "Username: " . $username, $admin_info['userid'] );
             nv_admin_add_result( $result );
         }
         exit();
@@ -122,11 +124,12 @@ else
 
 $page_title = $lang_module['nv_admin_add'];
 
-$info = ( ! empty( $error ) ) ? $error : sprintf( $lang_module['nv_admin_add_info'], $row['username'] );
+$info = ( ! empty( $error ) ) ? $error : sprintf( $lang_module['nv_admin_add_info'], $username );
 $is_error = ( ! empty( $error ) ) ? 1 : 0;
 
 $mods = array();
-foreach ( array_keys( $site_mods ) as $mod )
+$array_keys = array_keys( $site_mods );
+foreach ( $array_keys as $mod )
 {
     $mods[$mod]['checked'] = in_array( $mod, $modules ) ? 1 : 0;
     $mods[$mod]['custom_title'] = $site_mods[$mod]['custom_title'];

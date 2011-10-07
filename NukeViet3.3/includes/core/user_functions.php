@@ -283,7 +283,8 @@ function nv_blocks_content( $sitecontent )
 
     if ( defined( 'NV_IS_DRAG_BLOCK' ) )
     {
-        foreach ( array_keys( $_posReal ) as $__pos )
+        $array_keys = array_keys( $_posReal );
+        foreach ( $array_keys as $__pos )
         {
             $_posReal[$__pos] = '<div class="column" id="' . ( preg_replace( '#\[|\]#', '', $__pos ) ) . '">' . $_posReal[$__pos];
             $_posReal[$__pos] .= '	<span><a class="block_content" id="' . $__pos . '" href="javascript:void(0)"><img style="border:none" src="' . NV_BASE_SITEURL . 'images/add.png" alt="' . $lang_global['add_block'] . '"/> ' . $lang_global['add_block'] . '</a></span>';

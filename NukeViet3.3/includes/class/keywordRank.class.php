@@ -138,7 +138,8 @@ class keywordRank
         {
             $fl_array = preg_grep( "/^http(s?)\:\/\/[(www.)]*" . preg_quote( $this->currentDomain, "/" ) . "/", $result['top50AllPages'] );
             $result['rank'] = array();
-            foreach ( array_keys( $fl_array ) as $k )
+            $array_keys = array_keys( $fl_array );
+            foreach ( $array_keys as $k )
             {
                 $result['rank'][$k] = $k + 1;
             }

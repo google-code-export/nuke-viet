@@ -132,7 +132,8 @@ function nv_show_funcs ( )
         $xml = simplexml_load_file( NV_ROOTDIR . '/themes/' . $mod_theme . '/config.ini' );
         $layoutdefault = ( string )$xml->layoutdefault;
         
-        foreach ( array_keys( $new_funcs ) as $func )
+        $array_keys = array_keys( $new_funcs );
+        foreach ( $array_keys as $func )
         {
             $show_func = in_array( $func, $modfuncs ) ? 1 : 0;
             $sql = "INSERT INTO `" . NV_MODFUNCS_TABLE . "` (`func_id`, `func_name`, `func_custom_name`, `in_module`, `show_func`, `in_submenu`, `subweight`, `layout`, `setting`) VALUES (NULL, " . $db->dbescape( $func ) . ", " . $db->dbescape( ucfirst( $func ) ) . ", " . $db->dbescape( $mod ) . ", " . $show_func . ", 0, 0, " . $db->dbescape( $layoutdefault ) . ", '')";

@@ -97,7 +97,8 @@ $array_config['openid_servers'] = array();
 
 if ( ! empty( $openid_servers ) )
 {
-    foreach ( array_keys( $openid_servers ) as $server )
+    $array_keys = array_keys( $openid_servers );
+    foreach ( $array_keys as $server )
     {
         $checked = ( ! empty( $servers ) and in_array( $server, $servers ) ) ? " checked=\"checked\"" : "";
         $array_config['openid_servers'][] = array( 

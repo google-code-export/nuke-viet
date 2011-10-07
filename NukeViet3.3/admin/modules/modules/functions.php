@@ -206,7 +206,8 @@ if ( $module_name == "modules" )
                 
                 $new_funcs = preg_replace( $global_config['check_op_file'], "\\1", $new_funcs );
                 $new_funcs = array_flip( $new_funcs );
-                foreach ( array_keys( $new_funcs ) as $func )
+                $array_keys = array_keys( $new_funcs );
+                foreach ( $array_keys as $func )
                 {
                     $show_func = 0;
                     $weight = 0;

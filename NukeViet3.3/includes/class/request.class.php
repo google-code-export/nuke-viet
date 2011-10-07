@@ -253,7 +253,8 @@ class Request
     {
         if ( sizeof( $_GET ) )
         {
-            foreach ( array_keys( $_GET ) as $k )
+            $array_keys = array_keys( $_GET );
+            foreach ( $array_keys as $k )
             {
                 if ( $this->is_register_globals )
                 {
@@ -272,7 +273,8 @@ class Request
         }
         if ( sizeof( $_POST ) )
         {
-            foreach ( array_keys( $_POST ) as $k )
+            $array_keys = array_keys( $_POST );
+            foreach ( $array_keys as $k )
             {
                 if ( $this->is_register_globals )
                 {
@@ -291,7 +293,8 @@ class Request
         }
         if ( sizeof( $_COOKIE ) )
         {
-            foreach ( array_keys( $_COOKIE ) as $k )
+            $array_keys = array_keys( $_COOKIE );
+            foreach ( $array_keys as $k )
             {
                 if ( $this->is_register_globals )
                 {
@@ -311,7 +314,8 @@ class Request
         }
         if ( sizeof( $_FILES ) && strtoupper( substr( PHP_OS, 0, 3 ) ) !== 'WIN' )
         {
-            foreach ( array_keys( $_FILES ) as $k )
+            $array_keys = array_keys( $_FILES );
+            foreach ( $array_keys as $k )
             {
                 if ( $this->is_register_globals )
                 {
@@ -584,7 +588,8 @@ class Request
         $_SESSION = ( isset( $_SESSION ) and is_array( $_SESSION ) ) ? $_SESSION : array();
         if ( sizeof( $_SESSION ) )
         {
-            foreach ( array_keys( $_SESSION ) as $k )
+            $array_keys = array_keys( $_SESSION );
+            foreach ( $array_keys as $k )
             {
                 if ( $this->is_register_globals )
                 {
@@ -1184,7 +1189,8 @@ class Request
         {
             if ( $arr == 'cookie' )
             {
-                foreach ( array_keys( $names ) as $name )
+                $array_keys = array_keys( $names );
+                foreach ( $array_keys as $name )
                 {
                     if ( isset( $_COOKIE[$this->cookie_prefix . '_' . $name] ) )
                     {
@@ -1196,7 +1202,8 @@ class Request
             elseif ( $arr == 'session' )
             {
                 if ( ! $this->is_session_start ) $this->sessionStart();
-                foreach ( array_keys( $names ) as $name )
+                $array_keys = array_keys( $names );
+                foreach ( $array_keys as $name )
                 {
                     if ( isset( $_SESSION[$this->session_prefix . '_' . $name] ) )
                     {
@@ -1207,7 +1214,8 @@ class Request
             }
             else
             {
-                foreach ( array_keys( $names ) as $name )
+                $array_keys = array_keys( $names );
+                foreach ( $array_keys as $name )
                 {
                     $eval = "if (isset(\$_" . strtoupper( $arr ) . "['" . $name . "']))\n";
                     $eval .= "{\n";
@@ -1304,7 +1312,8 @@ class Request
     public function get_typed_array ( $name, $mode = null, $type = null, $default = null )
     {
         $arr = $this->get_array( $name, $mode, $default );
-        foreach ( array_keys( $arr ) as $key )
+        $array_keys = array_keys( $arr );
+        foreach ( $array_keys as $key )
         {
             switch ( $type )
             {

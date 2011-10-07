@@ -33,7 +33,8 @@ if ( ! function_exists( 'array_intersect_key' ) )
 			for ( $d = 1; ! empty( $a ) && $d < $c; ++$d )
 			{
 				$e = func_get_arg( $d );
-				foreach ( array_keys( $a ) as $f )
+                $array_keys = array_keys( $a );
+				foreach ( $array_keys as $f )
 				{
 					if ( ! isset( $e[$f] ) )
 						unset( $a[$f] );
@@ -42,7 +43,8 @@ if ( ! function_exists( 'array_intersect_key' ) )
 			return $a;
 		}
 		$g = array();
-		foreach ( array_keys( $a ) as $f )
+        $array_keys = array_keys( $a );
+		foreach ( $array_keys as $f )
 		{
 			if ( isset( $b[$f] ) )
 				$g[$f] = $a[$f];
@@ -717,7 +719,8 @@ function nv_unhtmlspecialchars( $string )
 
 	if ( is_array( $string ) )
 	{
-		foreach ( array_keys( $string ) as $key )
+		$array_keys = array_keys( $string );
+		foreach ( $array_keys as $key )
 		{
 			$string[$key] = nv_unhtmlspecialchars( $string[$key] );
 		}
@@ -745,7 +748,8 @@ function nv_htmlspecialchars( $string )
 
 	if ( is_array( $string ) )
 	{
-		foreach ( array_keys( $string ) as $key )
+		$array_keys = array_keys( $string );
+		foreach ( $array_keys as $key )
 		{
 			$string[$key] = nv_htmlspecialchars( $string[$key] );
 		}

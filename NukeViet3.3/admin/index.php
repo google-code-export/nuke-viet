@@ -104,7 +104,7 @@ if ( ! empty( $module_name ) )
     if ( empty( $site_mods ) and $module_name != "language" )
     {
         
-        $sql = "SELECT `setup` FROM `" . $db_config['prefix'] . "_setup_language` WHERE `lang`='" . NV_LANG_DATA . "'";
+        $sql = "SELECT `setup` FROM `" . $db_config['prefix'] . "_setup_language` WHERE `lang`='" . NV_LANG_DATA . "' LIMIT 1";
         $result = $db->sql_query( $sql );
         list( $setup ) = $db->sql_fetchrow( $result );
         if ( empty( $setup ) )

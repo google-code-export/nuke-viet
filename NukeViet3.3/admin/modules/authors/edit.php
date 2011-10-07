@@ -54,7 +54,8 @@ if ( empty( $allowed ) )
 $old_modules = array();
 if ( $row['lev'] == 3 )
 {
-    foreach ( array_keys( $site_mods ) as $mod )
+    $array_keys = array_keys( $site_mods );
+    foreach ( $array_keys as $mod )
     {
         if ( ! empty( $mod ) )
         {
@@ -289,7 +290,8 @@ $contents['action'] = NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" .
 if ( defined( "NV_IS_SPADMIN" ) and $row['admin_id'] != $admin_info['admin_id'] )
 {
     $mods = array();
-    foreach ( array_keys( $site_mods ) as $mod )
+    $array_keys = array_keys( $site_mods );
+    foreach ( $array_keys as $mod )
     {
         $mods[$mod]['checked'] = in_array( $mod, $modules ) ? 1 : 0;
         $mods[$mod]['custom_title'] = $site_mods[$mod]['custom_title'];
