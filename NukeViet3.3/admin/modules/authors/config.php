@@ -18,7 +18,8 @@ function nv_save_file_admin_config ( )
 {
     global $db, $db_config;
     $content_config_ip = $content_config_user = "";
-    $sql = "SELECT keyname, mask, begintime, endtime, notice FROM `" . NV_AUTHORS_GLOBALTABLE . "_config`";
+    
+    $sql = "SELECT `keyname`, `mask`, `begintime`, `endtime`, `notice` FROM `" . NV_AUTHORS_GLOBALTABLE . "_config`";
     $result = $db->sql_query( $sql );
     while ( list( $keyname, $dbmask, $dbbegintime, $dbendtime, $dbnotice ) = $db->sql_fetchrow( $result ) )
     {
@@ -69,8 +70,10 @@ function nv_save_file_admin_config ( )
 $delid = $nv_Request->get_int( 'delid', 'get' );
 if ( ! empty( $delid ) )
 {
-    list( $keyname ) = $db->sql_fetchrow( $db->sql_query( "SELECT keyname FROM `" . NV_AUTHORS_GLOBALTABLE . "_config` WHERE id=" . $delid ) );
-    $db->sql_query( "DELETE FROM `" . NV_AUTHORS_GLOBALTABLE . "_config` WHERE id=$delid" );
+    $sql = "SELECT `keyname` FROM `" . NV_AUTHORS_GLOBALTABLE . "_config` WHERE id=" . $delid . " LIMIT 1";
+    $res = $db->sql_query( $sql );
+    list( $keyname ) = $db->sql_fetchrow( $res );
+    $db->sql_query( "DELETE FROM `" . NV_AUTHORS_GLOBALTABLE . "_config` WHERE id=" . $delid . " LIMIT 1" );
     nv_save_file_admin_config();
     nv_insert_logs( NV_LANG_DATA, $module_name, $lang_module['adminip_delete'] . " " . $lang_module['config'], " keyname : " . $keyname, $admin_info['userid'] );
     Header( 'Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op . '&rand=' . nv_genpass() );
