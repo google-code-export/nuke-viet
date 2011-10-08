@@ -22,6 +22,8 @@ $row = $db->sql_fetchrow( $result );
 $act = $row['act'] ? 0 : 1;
 $sql = "UPDATE `" . NV_GROUPS_GLOBALTABLE . "` SET `act`=" . $act . " WHERE `group_id`=" . $group_id;
 $db->sql_query( $sql );
+nv_del_moduleCache( $module_name );
+
 include ( NV_ROOTDIR . "/includes/header.php" );
 echo 'OK_' . $group_id;
 include ( NV_ROOTDIR . "/includes/footer.php" );

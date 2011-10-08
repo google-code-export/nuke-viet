@@ -53,6 +53,8 @@ $db->sql_query( "REPAIR TABLE " . NV_GROUPS_GLOBALTABLE );
 $db->sql_query( "OPTIMIZE TABLE " . NV_GROUPS_GLOBALTABLE );
 $db->sql_query( "UNLOCK TABLE " . NV_GROUPS_GLOBALTABLE );
 
+nv_del_moduleCache( $module_name );
+
 include ( NV_ROOTDIR . "/includes/header.php" );
 echo 'OK_' . $group_id;
 include ( NV_ROOTDIR . "/includes/footer.php" );

@@ -62,6 +62,8 @@ if ( $nv_Request->get_int( 'save', 'post' ) == 1)
             SET `title`=" . $db->dbescape( $title ) . ", `content`=" . $db->dbescape( $content ) . ", `exp_time`=" . $exp_time . ", `public`=" . $public . " 
             WHERE `group_id`=" . $group_id;
         $db->sql_query( $sql );
+        nv_del_moduleCache( $module_name );
+        
         Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=groups" );
         exit();
     }

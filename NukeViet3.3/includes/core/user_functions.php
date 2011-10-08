@@ -37,7 +37,6 @@ function nv_site_mods ( )
     }
     
     $sql = "SELECT * FROM  `" . NV_MODULES_TABLE . "` AS m LEFT JOIN `" . NV_MODFUNCS_TABLE . "` AS f ON m.title=f.in_module WHERE m.act = 1 ORDER BY m.weight, f.subweight";
-    
     $list = nv_db_cache( $sql, '', 'modules' );
     
     if ( empty( $list ) ) return array();
@@ -47,11 +46,12 @@ function nv_site_mods ( )
     {
         $allowed = false;
         $is_modadmin = false;
+        $m_title = $row['title'];
         $groups_view = ( string )$row['groups_view'];
-        if ( isset( $site_mods[$row['title']] ) )
+        if ( isset( $site_mods[$m_title] ) )
         {
             $allowed = true;
-            $is_modadmin = $site_mods[$row['title']]['is_modadmin'];
+            $is_modadmin = $site_mods[$m_title]['is_modadmin'];
         }
         elseif ( defined( 'NV_IS_SPADMIN' ) )
         {
@@ -63,7 +63,7 @@ function nv_site_mods ( )
             $allowed = true;
             $is_modadmin = true;
         }
-        elseif ( $row['title'] == $global_config['site_home_module'] )
+        elseif ( $m_title == $global_config['site_home_module'] )
         {
             $allowed = true;
         }
@@ -86,7 +86,6 @@ function nv_site_mods ( )
         
         if ( $allowed )
         {
-            $m_title = $row['title'];
             if ( ! isset( $site_mods[$m_title] ) )
             {
                 $site_mods[$m_title]['module_file'] = $row['module_file'];
@@ -112,7 +111,7 @@ function nv_site_mods ( )
             }
         }
     }
-    unset( $row, $allowed, $m_title, $func_name );
+
     return $site_mods;
 }
 
@@ -628,17 +627,38 @@ function nv_admin_menu()
  * 
  * @return
  */
-function nv_groups_list_pub ( )
+function nv_groups_list_pub()
 {
-    global $db;
-    $query = "SELECT `group_id`, `title` FROM `" . NV_GROUPS_GLOBALTABLE . "` WHERE `public`=1 AND `act`=1 AND (`exp_time` =0 OR `exp_time` >". NV_CURRENTTIME.") ORDER BY `weight`";
-    $result = $db->sql_query( $query );
-    $groups = array();
-    while ( $row = $db->sql_fetchrow( $result ) )
-    {
-        $groups[$row['group_id']] = $row['title'];
-    }   
-    return $groups;
-    
+	global $db;
+
+	$query = "SELECT `group_id`, `title`, `exp_time` FROM `" . NV_GROUPS_GLOBALTABLE . "` WHERE `public`=1 AND `act`=1 ORDER BY `weight`";
+	$list = nv_db_cache( $query, '', 'users' );
+
+	if ( empty( $list ) )
+		return array();
+
+	$groups = array();
+	$reload = array();
+	for ( $i = 0, $count = sizeof( $list ); $i < $count; ++$i )
+	{
+		if ( $list[$i]['exp_time'] != 0 and $list[$i]['exp_time'] <= NV_CURRENTTIME )
+		{
+			$reload[] = $list[$i]['group_id'];
+		}
+		else
+		{
+			$groups[$list[$i]['group_id']] = $list[$i]['title'];
+		}
+	}
+
+	if ( $reload )
+	{
+		$sql = "UPDATE `" . NV_GROUPS_GLOBALTABLE . "` SET `act`='0' WHERE `group_id` IN (" . implode( ",", $reload ) . ")";
+		$db->sql_query( $sql );
+		nv_del_moduleCache( 'users' );
+	}
+
+	return $groups;
 }
+
 ?>

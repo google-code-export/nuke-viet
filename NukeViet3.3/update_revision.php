@@ -133,7 +133,7 @@ function nv_func_update_data ( )
         while ( $row = $db->sql_fetchrow( $result ) )
         {
             ++$weight;
-            $db->sql_query( "UPDATA `" . NV_GROUPS_GLOBALTABLE . "` SET `weight` =" . $weight . " WHERE `group_id`= " . $row['group_id'] );
+            $db->sql_query( "UPDATE `" . NV_GROUPS_GLOBALTABLE . "` SET `weight` =" . $weight . " WHERE `group_id`= " . $row['group_id'] );
         }
         
         $sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
@@ -152,6 +152,8 @@ function nv_func_update_data ( )
         }
         
         $db->sql_query( "ALTER TABLE `" . NV_LANGUAGE_GLOBALTABLE . "_file` CHANGE `admin_file` `admin_file` VARCHAR( 255 ) NOT NULL DEFAULT '0'" );
+        
+        nv_delete_all_cache();
     }
 	
     if ( $global_config['revision'] < 1209 )
