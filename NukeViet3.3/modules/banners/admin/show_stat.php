@@ -76,7 +76,7 @@ if ($ext == 'country') {
 	$unknown = 0;
 	if (! empty ( $result )) {
 		$countries = array ();
-		include (NV_ROOTDIR . "/includes/ip_files/countries.php");
+		include (NV_ROOTDIR . "/includes/countries.php");
 		#begin edit
 		$result = $db->sql_query ( $query );
 		$bd = array ();

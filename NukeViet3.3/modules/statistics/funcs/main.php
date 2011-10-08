@@ -182,7 +182,7 @@ $result = $db->sql_query($sql);
 $total = 0;
 $countries_list = array();
 $countries = array();
-include (NV_ROOTDIR . "/includes/ip_files/countries.php");
+include (NV_ROOTDIR . "/includes/countries.php");
 while(list($country, $count, $last_visit) = $db->sql_fetchrow($result))
 {
 	$fullname = isset($countries[$country]) ? $countries[$country][1] : $lang_module['unknown'];

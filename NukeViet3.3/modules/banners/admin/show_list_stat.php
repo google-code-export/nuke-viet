@@ -57,7 +57,7 @@ $caption = sprintf ( $lang_module ['show_list_stat1'], nv_monthname ( $data_mont
 $data_ext = $data_val = "";
 
 $countries = array ();
-include (NV_ROOTDIR . "/includes/ip_files/countries.php");
+include (NV_ROOTDIR . "/includes/countries.php");
 
 if (in_array ( $nv_Request->get_string ( 'ext', 'get', 'no' ), array ('day', 'country', 'browse', 'os' ) )) {
 	switch ($nv_Request->get_string ( 'ext', 'get' )) {
