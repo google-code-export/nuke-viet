@@ -14,7 +14,7 @@ $module_version = array(
 	"modfuncs" => "main,viewcat,topic,detail,search,content", // Cac function co block
 	"is_sysmod" => 0, // 1:0 => Co phai la module he thong hay khong
 	"virtual" => 1, // 1:0 => Co cho phep ao hao module hay khong
-	"version" => "3.0.01", // Phien ban cua modle
+	"version" => "3.3.00", // Phien ban cua modle
 	"date" => "Wed, 20 Oct 2010 00:00:00 GMT", // Ngay phat hanh phien ban
 	"author" => "VINADES (contact@vinades.vn)", // Tac gia
 	"note" => "", // Ghi chu

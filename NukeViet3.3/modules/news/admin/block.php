@@ -55,7 +55,7 @@ if ( $nv_Request->isset_request( 'checkss,idcheck', 'post' ) and $nv_Request->ge
     }
     nv_news_fix_block( $bid );
     nv_del_moduleCache( $module_name );
-    Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=" . $op . "&bid=" . $bid . "" );
+    Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=" . $op . "&bid=" . $bid);
     die();
 }
 

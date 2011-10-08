@@ -65,7 +65,8 @@ if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
     $dbkey = $db->dblikeescape( $key );
     if ( $check_num == 1 )
     {
-        $where = "AND ( tb1.title LIKE '%" . $dbkey . "%' OR tb1.bodytext LIKE '%" . $dbkey . "%' OR tb1.keywords LIKE '%" . $dbkey . "%' ) ";
+        $tbl_src = " LEFT JOIN `" . NV_PREFIXLANG . "_" . $module_data . "_bodytext` as tb2 ON ( tb1.id =  tb2.id ) ";
+        $where = "AND ( tb1.title LIKE '%" . $dbkey . "%' OR tb1.keywords LIKE '%" . $dbkey . "%' OR tb2.bodytext LIKE '%" . $dbkey . "%' ) ";
     }
     elseif ( $check_num == 2 )
     {
@@ -73,14 +74,13 @@ if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
     }
     elseif ( $check_num == 3 )
     {
-        $tbl_src = " LEFT JOIN `" . NV_PREFIXLANG . "_" . $module_data . "_sources` as tb2 ON ( tb1.sourceid =  tb2.sourceid ) ";
-        $where = "AND (tb2.title LIKE '%" . $dbkey . "%')";
+        $where = "AND (tb1.sourcetext LIKE '%" . $dbkey . "%')";
     }
     else
     {
-        $tbl_src = " LEFT JOIN `" . NV_PREFIXLANG . "_" . $module_data . "_sources` as tb2 ON ( tb1.sourceid =  tb2.sourceid )";
-        $where = " AND ( tb1.title LIKE '%" . $dbkey . "%' OR tb1.bodytext LIKE '%" . $dbkey . "%' OR tb1.keywords LIKE '%" . $dbkey . "%' ";
-        $where .= " OR tb1.author LIKE '%" . $dbkey . "%' OR tb2.title LIKE '%" . $dbkey . "%' )";
+        $tbl_src = " LEFT JOIN `" . NV_PREFIXLANG . "_" . $module_data . "_bodytext` as tb2 ON ( tb1.id =  tb2.id )";
+        $where = " AND ( tb1.title LIKE '%" . $dbkey . "%' OR tb1.keywords LIKE '%" . $dbkey . "%' ";
+        $where .= " OR tb1.author LIKE '%" . $dbkey . "%' OR tb1.sourcetext LIKE '%" . $dbkey . "%' OR tb2.bodytext LIKE '%" . $dbkey . "%')";
     }
     if ( $to_date != "" )
     {
@@ -99,7 +99,7 @@ if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
         $table_search = NV_PREFIXLANG . "_" . $module_data . "_rows";
     }
     
-    $sql = " SELECT SQL_CALC_FOUND_ROWS tb1.id,tb1.title,tb1.alias,tb1.listcatid,tb1.hometext,tb1.author,tb1.publtime,tb1.homeimgfile, tb1.homeimgthumb,tb1.sourceid
+    $sql = " SELECT SQL_CALC_FOUND_ROWS tb1.id,tb1.title,tb1.alias,tb1.catid,tb1.hometext,tb1.author,tb1.publtime,tb1.homeimgfile, tb1.homeimgthumb,tb1.sourceid
 	FROM `" . $table_search . "` as tb1 " . $tbl_src . " 
 	WHERE tb1.status=1 " . $where . " ORDER BY tb1.id DESC LIMIT " . $pages . "," . $per_pages;
     
@@ -109,7 +109,7 @@ if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
     
     $array_content = array();
     $url_link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=";
-    while ( list( $id, $title, $alias, $listcatid, $hometext, $author, $publtime, $homeimgfile, $homeimgthumb, $sourceid ) = $db->sql_fetchrow( $result ) )
+    while ( list( $id, $title, $alias, $catid, $hometext, $author, $publtime, $homeimgfile, $homeimgthumb, $sourceid ) = $db->sql_fetchrow( $result ) )
     {
         if ( ! empty( $homeimgthumb ) )
         {
@@ -137,7 +137,7 @@ if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
         }
         
         $array_content [] = array( 
-            "id" => $id, "title" => $title, "alias" => $alias, "listcatid" => $listcatid, "hometext" => $hometext, "author" => $author, "publtime" => $publtime, "homeimgfile" => $img_src, "sourceid" => $sourceid 
+            "id" => $id, "title" => $title, "alias" => $alias, "catid" => $catid, "hometext" => $hometext, "author" => $author, "publtime" => $publtime, "homeimgfile" => $img_src, "sourceid" => $sourceid 
         );
     }
     $contents .= call_user_func( "search_result_theme", $key, $numRecord, $per_pages, $pages, $array_content, $url_link, $catid );

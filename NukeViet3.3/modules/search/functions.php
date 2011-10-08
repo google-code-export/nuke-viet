@@ -156,11 +156,11 @@ function nv_like_logic( $field, $dbkeyword, $logic )
 {
     if ( $logic == 'AND' )
     {
-        $return = "`" . $field . "` LIKE '%" . $dbkeyword . "%'";
+        $return = $field . " LIKE '%" . $dbkeyword . "%'";
     }
     else
     {
-        $return = "`" . $field . "` LIKE '%" . str_replace( " ", "%' OR `" . $field . "` LIKE '%", $dbkeyword ) . "%'";
+        $return = $field . " LIKE '%" . str_replace( " ", "%' OR " . $field . " LIKE '%", $dbkeyword ) . "%'";
     }
     return $return;
 }

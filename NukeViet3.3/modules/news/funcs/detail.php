@@ -32,7 +32,7 @@ elseif ( $func_who_view == 3 and defined( 'NV_IS_USER' ) and nv_is_in_groups( $u
 if ( $allowed )
 {
     $query = $db->sql_query( "SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `id` = " . $id . "" );
-    $news_contents = $db->sql_fetchrow( $query );
+    $news_contents = $db->sql_fetchrow( $query, 2);
     if ( $news_contents['id'] > 0 )
     {
         if ( defined( 'NV_IS_MODADMIN' ) or ( $news_contents['status'] == 1 and $news_contents['publtime'] < NV_CURRENTTIME and ( $news_contents['exptime'] == 0 or $news_contents['exptime'] > NV_CURRENTTIME ) ) )
@@ -200,6 +200,8 @@ if ( $allowed )
         $news_contents['numberrating'] = round( $news_contents['total_rating'] / $news_contents['click_rating'] ) - 1;
         $news_contents['langstar'] = array( "note" => $lang_module['star_note'], "verypoor" => $lang_module['star_verypoor'], "poor" => $lang_module['star_poor'], "ok" => $lang_module['star_ok'], "good" => $lang_module['star_good}'], "verygood" => $lang_module['star_verygood'] );
     }
+
+	list($news_contents['bodytext']) = $db->sql_fetchrow($db->sql_query("SELECT `bodyhtml` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_bodyhtml_".ceil($news_contents['id'] / 2000)."` where `id`=" . $news_contents['id']), 1);
     
     $page_title = $news_contents['title'];
     $key_words = $news_contents['keywords'];

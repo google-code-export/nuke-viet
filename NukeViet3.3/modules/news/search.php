@@ -9,12 +9,13 @@
 
 if ( ! defined( 'NV_IS_MOD_SEARCH' ) ) die( 'Stop!!!' );
 
-$sql = "SELECT SQL_CALC_FOUND_ROWS `id`,`title`,`alias`,`catid`,`hometext`,`bodytext` 
-FROM `" . NV_PREFIXLANG . "_" . $m_values['module_data'] . "_rows` 
-WHERE (" . nv_like_logic( 'title', $dbkeyword, $logic ) . " 
-OR " . nv_like_logic( 'bodytext', $dbkeyword, $logic ) . " 
-OR " . nv_like_logic( 'hometext', $dbkeyword, $logic ) . ") 
-AND `status`= 1 
+$sql = "SELECT SQL_CALC_FOUND_ROWS r.id, r.title, r.alias, r.catid, r.hometext, c.bodytext  
+FROM `" . NV_PREFIXLANG . "_" . $m_values['module_data'] . "_rows` as r 
+INNER JOIN `" . NV_PREFIXLANG . "_" . $m_values['module_data'] . "_bodytext` as c ON (r.id=c.id) 
+WHERE (" . nv_like_logic( 'r.title', $dbkeyword, $logic ) . " 
+OR " . nv_like_logic( 'r.hometext', $dbkeyword, $logic ) . ") 
+OR " . nv_like_logic( 'c.bodytext', $dbkeyword, $logic ) . " 
+AND r.status= 1 
 LIMIT " . $pages . "," . $limit;
 
 $tmp_re = $db->sql_query( $sql );

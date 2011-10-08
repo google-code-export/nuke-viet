@@ -24,7 +24,7 @@ if ( $bid > 0 )
         {
             if ( $id > 0 )
             {
-                $db->sql_query( "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_block` WHERE `bid`=" . $bid . " AND `id`=" . $id . "" );
+                $db->sql_query( "DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_block` WHERE `bid`=" . $bid . " AND `id`=" . $id );
             }
         }
         nv_news_fix_block( $bid );
