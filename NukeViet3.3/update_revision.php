@@ -299,7 +299,7 @@ function nv_func_update_data ( )
         nv_save_file_config_global();
     }
 	
-	if ($global_config['revision'] < 1313)
+	if ($global_config['revision'] < 1325)
 	{
 		$sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
 		$result = $db->sql_query($sql);
@@ -309,25 +309,91 @@ function nv_func_update_data ( )
 			$result_mod = $db->sql_query($sql);
 			while (list($mod, $mod_data) = $db->sql_fetchrow($result_mod))
 			{
-				$result_config = $db->sql_query("SELECT `config_name`, `config_value` FROM `" . NV_CONFIG_GLOBALTABLE . "` WHERE `lang`='" . $lang_i . "' AND `module`='".$mod."'");
-				$mod_config = array(); 
+				$result_config = $db->sql_query("SELECT `config_name`, `config_value` FROM `" . NV_CONFIG_GLOBALTABLE . "` WHERE `lang`='" . $lang_i . "' AND `module`='" . $mod . "'");
+				$mod_config = array();
 				while (list($config_name, $config_value) = $db->sql_fetchrow($result_config, 1))
 				{
 					$mod_config[$config_name] = $config_value;
 				}
-
+	
 				$homeheight = $mod_config['homeheight'];
 				$homewidth = $mod_config['homewidth'];
 				if ($homewidth > $homeheight)
 				{
-					$homeheight = round($homewidth*1.5);
-					$blockheight = round($mod_config['blockwidth']*1.5);
-					$db->sql_query( "REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang_i . "', '" . $mod . "', 'homeheight', ".$homeheight.")");
-					$db->sql_query( "REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang_i . "', '" . $mod . "', 'blockheight', ".$blockheight.")");
+					$homeheight = round($homewidth * 1.5);
+					$blockheight = round($mod_config['blockwidth'] * 1.5);
+					$db->sql_query("REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang_i . "', '" . $mod . "', 'homeheight', " . $homeheight . ")");
+					$db->sql_query("REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang_i . "', '" . $mod . "', 'blockheight', " . $blockheight . ")");
 				}
+	
+				$result = $db->sql_query("SELECT `catid` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat`");
+				while (list($catid_i) = $db->sql_fetchrow($result))
+				{
+					$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "`  DROP `bodytext`");
+					$db->sql_query("OPTIMIZE TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "`");
+				}
+	
+				$db->sql_query("DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodytext`");
+				$db->sql_query("CREATE TABLE IF NOT EXISTS `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodytext` (
+					  `id` int(11) unsigned NOT NULL,
+					  `bodytext` mediumtext NOT NULL,
+					  PRIMARY KEY  (`id`)
+					) ENGINE=MyISAM");
+	
+				list($maxid) = $db->sql_fetchrow($db->sql_query("SELECT max(`id`) FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows`"));
+				$i1 = 1;
+				while ($i1 <= $maxid)
+				{
+					$tb = ceil($i1 / 2000);
+					$i2 = $i1 + 1999;
+	
+					$db->sql_query("DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodyhtml_" . $tb . "`");
+					$db->sql_query("CREATE TABLE IF NOT EXISTS `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodyhtml_" . $tb . "` (
+					  `id` int(11) unsigned NOT NULL,
+					  `bodyhtml` mediumtext NOT NULL,
+					  PRIMARY KEY  (`id`)
+					) ENGINE=MyISAM");
+	
+					$db->sql_query("INSERT INTO `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodyhtml_" . $tb . "` SELECT `id`, `bodytext` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows` WHERE `id` BETWEEN " . $i1 . " AND " . $i2 . "	ORDER BY `id` ASC");
+	
+					$result_rows = $db->sql_query("SELECT `id`, `bodyhtml` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodyhtml_" . $tb . "`");
+					while (list($id, $bodyhtml) = $db->sql_fetchrow($result_rows))
+					{
+						$bodytext = $bodyhtml;
+						// Get image tags
+						if (preg_match_all("/\<img[^\>]*src=\"([^\"]*)\"[^\>]*\>/is", $bodytext, $match))
+						{
+							foreach ($match[0] as $key => $_m)
+							{
+								$textimg = " " . $match[1][$key];
+								if (preg_match_all("/\<img[^\>]*alt=\"([^\"]+)\"[^\>]*\>/is", $_m, $m_alt))
+								{
+									$textimg .= " " . $m_alt[1][0];
+								}
+								$bodytext = str_replace($_m, $textimg, $bodytext);
+							}
+						}
+						// Get link tags
+						if (preg_match_all("/\<a[^\>]*href=\"([^\"]+)\"[^\>]*\>(.*)\<\/a\>/isU", $bodytext, $match))
+						{
+							foreach ($match[0] as $key => $_m)
+							{
+								$bodytext = str_replace($_m, $match[1][$key]." ".$match[2][$key], $bodytext);
+							}
+						}
+						$bodytext = nv_unhtmlspecialchars(strip_tags($bodytext));
+						$bodytext = strip_punctuation(str_replace("&nbsp;", " ", $bodytext));
+						$bodytext = preg_replace("/[ ]+/", " ", $bodytext);
+						$db->sql_query("INSERT INTO `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodytext` VALUES ('" . $id . "', " . $db->dbescape($bodytext) . ")");
+					}
+					$i1 = $i2 + 1;
+				}
+	
+				$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows`  DROP `bodytext`");
+				$db->sql_query("OPTIMIZE TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows`");
 			}
 		}
-    	nv_save_file_config_global();
+		nv_save_file_config_global();
 	}	
 	
     // End date data
