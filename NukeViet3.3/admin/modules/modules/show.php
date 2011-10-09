@@ -115,6 +115,7 @@ function nv_show_funcs ( )
         }
         $db->sql_query( "OPTIMIZE TABLE `" . NV_BLOCKS_TABLE . "_weight`" );
         $db->sql_query( "OPTIMIZE TABLE `" . NV_MODFUNCS_TABLE . "`" );
+
         $is_refresh = true;
     }
     

@@ -270,7 +270,6 @@ if ( $nv_Request->isset_request( 'confirm', 'post' ) )
             nv_del_moduleCache( 'themes' );
         }
     }
-
 }
 if ( $row['bid'] > 0 and $submit == 0 )
 {

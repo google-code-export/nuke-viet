@@ -47,6 +47,8 @@ if ( ! empty( $modname ) and preg_match( $global_config['check_module'], $modnam
             die( 'NO_' . $modname );
         }
         
+        nv_del_moduleCache( "themes" );
+        
         $sql = "DELETE FROM `" . NV_PREFIXLANG . "_modthemes` WHERE `func_id` in (SELECT `func_id` FROM `" . NV_MODFUNCS_TABLE . "` WHERE `in_module`=" . $db->dbescape( $modname ) . ")";
         if ( ! $db->sql_query( $sql ) )
         {

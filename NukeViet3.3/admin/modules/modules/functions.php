@@ -108,6 +108,8 @@ if ( $module_name == "modules" )
                 $db->sql_query( "INSERT INTO `" . NV_BLOCKS_TABLE . "_weight` (`bid`, `func_id`, `weight`) VALUES ('" . $row['bid'] . "', '" . $func_id . "', '" . $weight . "')" );
             }
         }
+        
+        nv_del_moduleCache( "themes" );
     }
 
     function nv_setup_data_module ( $lang, $module_name )
