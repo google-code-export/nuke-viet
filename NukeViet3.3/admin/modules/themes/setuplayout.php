@@ -47,7 +47,7 @@ for ( $i = 0, $count = sizeof( $layout ); $i < $count; ++$i )
     {
         $layout_funcs = $layout[$i]->xpath( 'funcs' );
 
-        for ( $j = 0, $count = sizeof( $layout_funcs ); $j < $count; ++$j )
+        for ( $j = 0, $sizeof = sizeof( $layout_funcs ); $j < $sizeof; ++$j )
         {
             $mo_funcs = ( string )$layout_funcs[$j];
             $mo_funcs = explode( ":", $mo_funcs );
