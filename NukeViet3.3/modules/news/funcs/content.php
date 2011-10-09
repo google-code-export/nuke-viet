@@ -1,4 +1,4 @@
-bodytext<?php
+<?php
 
 	/**
 	 * @Project NUKEVIET 3.0
