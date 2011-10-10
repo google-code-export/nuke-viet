@@ -203,12 +203,14 @@ function nv_blocks_content( $sitecontent )
         $cache = array();
 
         $in = array();
-        foreach ( $module_info['funcs'] as $vals )
+        $sql = "SELECT * FROM  `" . NV_MODULES_TABLE . "` AS m LEFT JOIN `" . NV_MODFUNCS_TABLE . "` AS f ON m.title=f.in_module WHERE m.act = 1 ORDER BY m.weight, f.subweight";
+        $list = nv_db_cache( $sql, '', 'modules' );
+        foreach ( $list as $row )
         {
-            if($vals['show_func'])
+            if ( $row['title'] == $module_name and $row['show_func'] )
             {
-            	$in[] = $vals['func_id'];
-			}
+                $in[] = $row['func_id'];
+            }
         }
 
         $_result = $db->sql_query( "SELECT t1.*, t2.func_id FROM `" . NV_BLOCKS_TABLE . "_groups` AS t1 
