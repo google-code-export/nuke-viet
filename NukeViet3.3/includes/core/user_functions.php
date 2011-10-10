@@ -205,7 +205,10 @@ function nv_blocks_content( $sitecontent )
         $in = array();
         foreach ( $module_info['funcs'] as $vals )
         {
-            $in[] = $vals['func_id'];
+            if($vals['show_func'])
+            {
+            	$in[] = $vals['func_id'];
+			}
         }
 
         $_result = $db->sql_query( "SELECT t1.*, t2.func_id FROM `" . NV_BLOCKS_TABLE . "_groups` AS t1 
