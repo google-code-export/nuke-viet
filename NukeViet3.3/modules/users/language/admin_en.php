@@ -146,12 +146,12 @@ $lang_module['add_time'] = "Start date";
 $lang_module['exp_time'] = "Expire date";
 $lang_module['public'] = "Public";
 $lang_module['users'] = "User";
-$lang_module['error_title_exists'] = "Group name &ldquo;%s&rdquo; already exist";
-$lang_module['users_in_group_caption'] = "Member list in group &ldquo;%s&rdquo; (%d group)";
+$lang_module['error_title_exists'] = "Group name \"%s\" already exist";
+$lang_module['users_in_group_caption'] = "Member list in group \"%s\" (%d group)";
 $lang_module['error_group_not_found'] = "Error: Can't find group";
 $lang_module['error_users_not_found'] = "Group has not member";
 $lang_module['error_not_groups'] = "There are no groups to be established. Click here <a href=\"%s\">enter</a> to create a group";
-$lang_module['add_users'] = "Member  &ldquo;%s&rdquo;";
+$lang_module['add_users'] = "Add new Member";
 $lang_module['form_search_label0'] = "Search members by";
 $lang_module['form_search_label1'] = "Keyword (Null = all member)";
 $lang_module['form_search_select0'] = "Name";
@@ -165,5 +165,20 @@ $lang_module['add_user'] = "Member %1\$s group %2\$s";
 $lang_module['exclude_user'] = "Delete member %1\$s in group %2\$s";
 $lang_module['siteinfo_user'] = "Members";
 $lang_module['siteinfo_waiting'] = "Unactive members";
+
+$lang_module['changeGroupWeight'] = "Change group weight";
+$lang_module['ChangeGroupAct'] = "Change group status";
+$lang_module['delGroup'] = "Delete group";
+$lang_module['ChangeGroupPublic'] = "change group type";
+$lang_module['emptyIsUnlimited'] = "Empty is Unlimited";
+$lang_module['dateError'] = "Error! Date format error";
+$lang_module['delConfirm'] = "Do you realy want to delete";
+$lang_module['errorChangeWeight'] = "Error! Do not change the position";
+$lang_module['choiceUserID'] = "Please declare member ID";
+$lang_module['UserInGroup'] = "This ID is already in the members list of this group";
+$lang_module['UserNotInGroup'] = "This member not in the members list of this group";
+$lang_module['addMemberToGroup'] = "Add member to group";
+$lang_module['detail'] = "Detail";
+$lang_module['exclude_user2'] = "Exclude";
 
 ?>

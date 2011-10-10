@@ -612,24 +612,39 @@ function nv_EncodeEmail( $strEmail, $strDisplay = '', $blnCreateLink = true )
  */
 function nv_user_groups( $in_groups )
 {
-	global $db;
+    global $db;
 
-	if ( empty( $in_groups ) )
-		return "";
+    if ( empty( $in_groups ) ) return "";
 
-	$groups = array();
+    $query = "SELECT `group_id`, `title`, `exp_time`, `public` FROM `" . NV_GROUPS_GLOBALTABLE . "` WHERE `act`=1 ORDER BY `weight`";
+    $list = nv_db_cache( $query, '', 'users' );
 
-	$sql = "SELECT `group_id` FROM `" . NV_GROUPS_GLOBALTABLE . "` WHERE `group_id` IN (" . $in_groups . ") AND `act`=1 AND (`exp_time`=0 OR `exp_time` >= " . NV_CURRENTTIME . ")";
-	$result = $db->sql_query( $sql );
-	while ( $row = $db->sql_fetchrow( $result ) )
-	{
-		$groups[] = $row['group_id'];
-	}
+    if ( empty( $list ) ) return "";
 
-	if ( empty( $groups ) )
-		return "";
+    $in_groups = explode( ",", $in_groups );
+    $groups = array();
+    $reload = array();
+    for ( $i = 0, $count = sizeof( $list ); $i < $count; ++$i )
+    {
+        if ( $list[$i]['exp_time'] != 0 and $list[$i]['exp_time'] <= NV_CURRENTTIME )
+        {
+            $reload[] = $list[$i]['group_id'];
+        } elseif ( in_array( $list[$i]['group_id'], $in_groups ) )
+        {
+            $groups[] = $list[$i]['group_id'];
+        }
+    }
 
-	return implode( ",", $groups );
+    if ( $reload )
+    {
+        $sql = "UPDATE `" . NV_GROUPS_GLOBALTABLE . "` SET `act`='0' WHERE `group_id` IN (" . implode( ",", $reload ) . ")";
+        $db->sql_query( $sql );
+        nv_del_moduleCache( 'users' );
+    }
+
+    if ( empty( $groups ) ) return "";
+
+    return implode( ",", $groups );
 }
 
 /**

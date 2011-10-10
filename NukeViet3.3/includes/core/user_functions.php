@@ -201,18 +201,17 @@ function nv_blocks_content( $sitecontent )
     else
     {
         $cache = array();
-        
+
         $in = array();
         foreach ( $module_info['funcs'] as $vals )
         {
             $in[] = $vals['func_id'];
         }
 
-        $in = implode( ",", $in );
         $_result = $db->sql_query( "SELECT t1.*, t2.func_id FROM `" . NV_BLOCKS_TABLE . "_groups` AS t1 
 		    INNER JOIN `" . NV_BLOCKS_TABLE . "_weight` AS t2 
 		    ON t1.bid = t2.bid 
-		    WHERE t2.func_id IN (" . $in . ") 
+		    WHERE t2.func_id IN (" . implode( ",", $in ) . ") 
 		    AND t1.theme ='" . $global_config['module_theme'] . "' 
 		    AND t1.active=1 
 		    ORDER BY t2.weight ASC" );
@@ -229,6 +228,7 @@ function nv_blocks_content( $sitecontent )
             //tieu de block
             $blockTitle = ( ! empty( $_row['title'] ) and ! empty( $_row['link'] ) ) ? "<a href=\"" . $_row['link'] . "\">" . $_row['title'] . "</a>" : $_row['title'];
 
+            if ( ! isset( $cache[$_row['func_id']] ) ) $cache[$_row['func_id']] = array();
             $cache[$_row['func_id']][] = array( 'bid' => $_row['bid'], 'position' => $_row['position'], 'module' => $_row['module'], 'blockTitle' => $blockTitle, 'file_name' => $_row['file_name'], 'template' => $_row['template'], 'exp_time' => $_row['exp_time'], 'groups_view' => $_row['groups_view'], 'all_func' => $_row['all_func'], 'block_config' => $block_config );
         }
 
@@ -317,7 +317,7 @@ function nv_blocks_content( $sitecontent )
 
     if ( ! empty( $unact ) )
     {
-        $sql = "UPDATE `" . NV_BLOCKS_TABLE . "_groups` SET `active`='0' WHERE `bid`IN (" . implode( ",", $unact ) . ") LIMIT " . sizeof( $unact ) . "";
+        $sql = "UPDATE `" . NV_BLOCKS_TABLE . "_groups` SET `active`='0' WHERE `bid`IN (" . implode( ",", $unact ) . ") LIMIT " . sizeof( $unact );
         $db->sql_query( $sql );
         unlink( $cache_file );
     }
@@ -673,7 +673,7 @@ function nv_groups_list_pub()
 {
 	global $db;
 
-	$query = "SELECT `group_id`, `title`, `exp_time` FROM `" . NV_GROUPS_GLOBALTABLE . "` WHERE `public`=1 AND `act`=1 ORDER BY `weight`";
+	$query = "SELECT `group_id`, `title`, `exp_time`, `public` FROM `" . NV_GROUPS_GLOBALTABLE . "` WHERE `act`=1 ORDER BY `weight`";
 	$list = nv_db_cache( $query, '', 'users' );
 
 	if ( empty( $list ) )
@@ -687,7 +687,7 @@ function nv_groups_list_pub()
 		{
 			$reload[] = $list[$i]['group_id'];
 		}
-		else
+		elseif( $list[$i]['public'] )
 		{
 			$groups[$list[$i]['group_id']] = $list[$i]['title'];
 		}

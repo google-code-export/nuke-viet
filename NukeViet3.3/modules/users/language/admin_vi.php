@@ -146,12 +146,12 @@ $lang_module['add_time'] = "Bắt đầu vào";
 $lang_module['exp_time'] = "Hiệu lực đến";
 $lang_module['public'] = "Công cộng";
 $lang_module['users'] = "Thành viên";
-$lang_module['error_title_exists'] = "Tên nhóm &ldquo;%s&rdquo; đã tồn tại";
-$lang_module['users_in_group_caption'] = "Danh sách thành viên của nhóm &ldquo;%s&rdquo; (%d thành viên)";
+$lang_module['error_title_exists'] = "Tên nhóm \"%s\" đã tồn tại";
+$lang_module['users_in_group_caption'] = "Danh sách thành viên của nhóm \"%s\" (%d thành viên)";
 $lang_module['error_group_not_found'] = "Lỗi: Không tìm thấy nhóm";
 $lang_module['error_users_not_found'] = "Hiện nhóm này chưa có thành viên";
 $lang_module['error_not_groups'] = "Hiện chưa có nhóm nào được thành lập. Hãy click <a href=\"%s\">vào đây</a> để bắt đầu tạo nhóm";
-$lang_module['add_users'] = "Thêm thành viên vào nhóm &ldquo;%s&rdquo;";
+$lang_module['add_users'] = "Thêm thành viên";
 $lang_module['form_search_label0'] = "Tìm kiếm thành viên theo tiêu chí";
 $lang_module['form_search_label1'] = "Hãy nhập Từ khóa (Để trống = tất cả)";
 $lang_module['form_search_select0'] = "Họ tên";
@@ -194,5 +194,20 @@ $lang_module['mobile'] = "Di động";
 $lang_module['select_gender'] = "Chọn giới tính";
 $lang_module['select_gender_male'] = "Nam";
 $lang_module['select_gender_female'] = "Nữ";
+
+$lang_module['changeGroupWeight'] = "Thay đổi thứ tự nhóm";
+$lang_module['ChangeGroupAct'] = "Thay đổi tình trạng nhóm";
+$lang_module['delGroup'] = "Xóa nhóm";
+$lang_module['ChangeGroupPublic'] = "Thay đổi thể loại của nhóm";
+$lang_module['emptyIsUnlimited'] = "Để trống bằng vô hạn";
+$lang_module['dateError'] = "Lỗi! Bạn đã nhập sai ngày tháng";
+$lang_module['delConfirm'] = "Bạn chắc chắn muốn xóa";
+$lang_module['errorChangeWeight'] = "Lỗi! Không thay đổi được vị trí";
+$lang_module['choiceUserID'] = "Vui lòng khai báo ID thành viên";
+$lang_module['UserInGroup'] = "Thành viên mà bạn chọn đã có trong danh sách thành viên của nhóm";
+$lang_module['UserNotInGroup'] = "Thành viên mà bạn chọn không có trong danh sách thành viên của nhóm";
+$lang_module['addMemberToGroup'] = "Thêm thành viên vào nhóm";
+$lang_module['detail'] = "Chi tiết";
+$lang_module['exclude_user2'] = "Loại khỏi nhóm";
 
 ?>
