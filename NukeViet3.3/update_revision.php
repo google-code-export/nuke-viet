@@ -328,8 +328,8 @@ function nv_func_update_data ( )
 					$db->sql_query("REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES ('" . $lang_i . "', '" . $mod . "', 'blockheight', " . $blockheight . ")");
 				}
 	
-				$result = $db->sql_query("SELECT `catid` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat`");
-				while (list($catid_i) = $db->sql_fetchrow($result))
+				$result_cat = $db->sql_query("SELECT `catid` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat`");
+				while (list($catid_i) = $db->sql_fetchrow($result_cat))
 				{
 					$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "`  DROP `bodytext`");
 					$db->sql_query("OPTIMIZE TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "`");
