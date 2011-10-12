@@ -508,10 +508,9 @@
 
 					$tbhtml = NV_PREFIXLANG . "_" . $module_data . "_bodyhtml_" . ceil($rowcontent['id'] / 2000);
 					$db->sql_query("CREATE TABLE IF NOT EXISTS `" . $tbhtml . "` (`id` int(11) unsigned NOT NULL, `bodyhtml` longtext NOT NULL, `sourcetext` varchar(255) NOT NULL default '', `imgposition` tinyint(1) NOT NULL default '1', `copyright` tinyint(1) NOT NULL default '0', `allowed_send` tinyint(1) NOT NULL default '0', `allowed_print` tinyint(1) NOT NULL default '0', `allowed_save` tinyint(1) NOT NULL default '0', PRIMARY KEY  (`id`)) ENGINE=MyISAM");
-					$db->sql_query("INSERT INTO `" . $tbhtml . "` VALUES (" . $rowcontent['id'] . ", " . $db->dbescape_string($rowcontent['bodyhtml']) . ")");
-					$db->sql_query("INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_bodytext` VALUES 
+					$db->sql_query("INSERT INTO `" . $tbhtml . "` VALUES 
 					(" . $rowcontent['id'] . ", 
-					" . $db->dbescape_string($rowcontent['bodytext']) . ", 
+					" . $db->dbescape_string($rowcontent['bodyhtml']) . ", 
 	                " . $db->dbescape_string($rowcontent['sourcetext']) . ",
 					" . intval($rowcontent['imgposition']) . ",
 	                " . intval($rowcontent['copyright']) . ",  
@@ -519,7 +518,8 @@
 	                " . intval($rowcontent['allowed_print']) . ",  
 	                " . intval($rowcontent['allowed_save']) . "					
 					)");
-				}
+					$db->sql_query("INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_bodytext` VALUES (" . $rowcontent['id'] . ", " . $db->dbescape_string($rowcontent['bodytext']) . ")");
+					}
 				else
 				{
 					$error[] = $lang_module['errorsave'];

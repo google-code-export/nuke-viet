@@ -25,9 +25,7 @@ $xtpl->assign( 'LANG', $lang_module );
 
 $sql = "SELECT id, catid, publtime, exptime, title, alias FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`= 1 ORDER BY `hitstotal` DESC LIMIT 0 , 5";
 $result = $db->sql_query( $sql );
-$chk_topview = $db->sql_numrows( $result );
-
-if ( $chk_topview )
+if ( $db->sql_numrows( $result ) )
 {
     $i = 1;
     while ( $row = $db->sql_fetchrow( $result ) )
@@ -42,9 +40,7 @@ if ( $chk_topview )
 
 $sql = "SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_data . "_comments` WHERE `status`= 1 ORDER BY `cid` DESC LIMIT 0 , 5";
 $result = $db->sql_query( $sql );
-$chk_cm = $db->sql_numrows( $result );
-
-if ( $chk_cm )
+if ( $db->sql_numrows( $result ) )
 {
     $i = 1;
     while ( $row = $db->sql_fetchrow( $result ) )

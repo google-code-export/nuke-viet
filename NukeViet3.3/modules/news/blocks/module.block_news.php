@@ -9,8 +9,6 @@
 
 if ( ! defined( 'NV_IS_MOD_NEWS' ) ) die( 'Stop!!!' );
 
-$blocknewsid = 2;
-
 global $global_config, $module_name, $module_data, $module_file, $global_array_cat, $module_config, $module_info;
 
 $blockwidth = $module_config[$module_name]['blockwidth'];
