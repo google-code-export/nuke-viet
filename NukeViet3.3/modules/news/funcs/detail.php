@@ -32,9 +32,13 @@ elseif ( $func_who_view == 3 and defined( 'NV_IS_USER' ) and nv_is_in_groups( $u
 if ( $allowed )
 {
     $query = $db->sql_query( "SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `id` = " . $id . "" );
-    $news_contents = $db->sql_fetchrow( $query, 2);
+    $news_contents = $db->sql_fetch_assoc( $query );
     if ( $news_contents['id'] > 0 )
     {
+		$body_contents= $db->sql_fetch_assoc($db->sql_query("SELECT bodyhtml as bodytext, sourcetext, imgposition, copyright, allowed_send, allowed_print, allowed_save FROM `" . NV_PREFIXLANG . "_" . $module_data . "_bodyhtml_".ceil($news_contents['id'] / 2000)."` where `id`=" . $news_contents['id']));
+    	$news_contents = array_merge($news_contents, $body_contents);
+		unset($body_contents);
+
         if ( defined( 'NV_IS_MODADMIN' ) or ( $news_contents['status'] == 1 and $news_contents['publtime'] < NV_CURRENTTIME and ( $news_contents['exptime'] == 0 or $news_contents['exptime'] > NV_CURRENTTIME ) ) )
         {
             $time_set = $nv_Request->get_int( $module_name . '_' . $op . '_' . $id, 'session' );
@@ -128,7 +132,7 @@ if ( $allowed )
     
     $related_new_array = array();
     $related_new = $db->sql_query( "SELECT `id`, `title`, `alias`,`publtime` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `status`=1 AND `publtime` > " . $publtime . " AND `publtime` < " . NV_CURRENTTIME . " ORDER BY `id` ASC LIMIT 0, " . $st_links . "" );
-    while ( $row = $db->sql_fetchrow( $related_new ) )
+    while ( $row = $db->sql_fetch_assoc( $related_new ) )
     {
         $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $row['alias'] . "-" . $row['id'];
         $related_new_array[] = array( "title" => $row['title'], "time" => nv_date( "d/m/Y", $row['publtime'] ), "link" => $link );
@@ -140,7 +144,7 @@ if ( $allowed )
     
     $related_array = array();
     $related = $db->sql_query( "SELECT `id`, `title`, `alias`,`publtime` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `status`=1 AND `publtime` < " . $publtime . " AND `publtime` < " . NV_CURRENTTIME . " ORDER BY `id` DESC LIMIT 0, " . $st_links . "" );
-    while ( $row = $db->sql_fetchrow( $related ) )
+    while ( $row = $db->sql_fetch_assoc( $related ) )
     {
         $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $row['alias'] . "-" . $row['id'];
         $related_array[] = array( "title" => $row['title'], "time" => nv_date( "d/m/Y", $row['publtime'] ), "link" => $link );
@@ -154,7 +158,7 @@ if ( $allowed )
     {
         list( $topic_title, $topic_alias ) = $db->sql_fetchrow( $db->sql_query( "SELECT `title`,`alias` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_topics` WHERE `topicid` = '" . $news_contents['topicid'] . "'" ) );
         $topic = $db->sql_query( "SELECT `id`, `catid`, `title`, `alias`,`publtime` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_rows` WHERE `status`=1 AND `topicid` = '" . $news_contents['topicid'] . "' AND `id` != ".$id." ORDER BY `id` DESC  LIMIT 0, " . $st_links . "" );
-        while ( $row = $db->sql_fetchrow( $topic ) )
+        while ( $row = $db->sql_fetch_assoc( $topic ) )
         {
             $topiclink = "" . NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=topic/" . $topic_alias;
             $link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$row['catid']]['alias'] . "/" . $row['alias'] . "-" . $row['id'];
@@ -201,8 +205,6 @@ if ( $allowed )
         $news_contents['langstar'] = array( "note" => $lang_module['star_note'], "verypoor" => $lang_module['star_verypoor'], "poor" => $lang_module['star_poor'], "ok" => $lang_module['star_ok'], "good" => $lang_module['star_good}'], "verygood" => $lang_module['star_verygood'] );
     }
 
-	list($news_contents['bodytext']) = $db->sql_fetchrow($db->sql_query("SELECT `bodyhtml` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_bodyhtml_".ceil($news_contents['id'] / 2000)."` where `id`=" . $news_contents['id']), 1);
-    
     $page_title = $news_contents['title'];
     $key_words = $news_contents['keywords'];
     $description = $news_contents['hometext'];

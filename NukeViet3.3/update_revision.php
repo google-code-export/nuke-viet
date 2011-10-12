@@ -395,9 +395,75 @@ function nv_func_update_data ( )
 				$db->sql_query("OPTIMIZE TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows`");
 			}
 		}
-		nv_save_file_config_global();
-	}	
+	}
+
+	if ($global_config['revision'] < 1336)
+	{
+		$sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
+		$result = $db->sql_query($sql);
+		while (list($lang_i) = $db->sql_fetchrow($result))
+		{
+			$sql = "SELECT title, module_data FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `module_file`='news'";
+			$result_mod = $db->sql_query($sql);
+			while (list($mod, $mod_data) = $db->sql_fetchrow($result_mod))
+			{
+				list($maxid) = $db->sql_fetchrow($db->sql_query("SELECT max(`id`) FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows`"));
+				$i1 = 1;
+				while ($i1 <= $maxid)
+				{
+					$tb = ceil($i1 / 2000);
+					$i2 = $i1 + 1999;
 	
+					$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodyhtml_" . $tb . "`  
+						ADD `sourcetext` VARCHAR(255) NOT NULL DEFAULT '' AFTER `bodyhtml`,
+						ADD `imgposition` TINYINT(1) NOT NULL DEFAULT '1' AFTER `sourcetext`,  
+						ADD `copyright` TINYINT(1) NOT NULL DEFAULT '0' AFTER `imgposition`,  
+						ADD `allowed_send` TINYINT(1) NOT NULL DEFAULT '0' AFTER `copyright`,  
+						ADD `allowed_print` TINYINT(1) NOT NULL DEFAULT '0' AFTER `allowed_send`,  
+						ADD `allowed_save` TINYINT(1) NOT NULL DEFAULT '0' AFTER `allowed_print`
+					");
+					$i1 = $i2 + 1;
+				}
+				$result_rows = $db->sql_query("SELECT `id`, `sourcetext`, `imgposition`, `copyright`, `allowed_send`, `allowed_print`, `allowed_save` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows`");
+				while ($row = $db->sql_fetchrow($result_rows))
+				{
+					$db->sql_query("UPDATE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_bodyhtml_" . ceil($row['id'] / 2000) . "` SET 
+					`sourcetext` = " . $db->dbescape($row['sourcetext']) . ", 
+					`imgposition` = '" . $row['imgposition'] . "', 
+					`copyright` = '" . $row['copyright'] . "', 
+					`allowed_send` = '" . $row['allowed_send'] . "', 
+					`allowed_print` = '" . $row['allowed_print'] . "', 
+					`allowed_save` = '" . $row['allowed_save'] . "' 
+					WHERE `id` = " . $row['id']);
+				}
+	
+				$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows` 
+					DROP `imgposition`, 
+					DROP `sourcetext`, 
+					DROP `copyright`, 
+					DROP `allowed_send`, 
+					DROP `allowed_print`, 
+					DROP `allowed_save`
+				");
+				$db->sql_query("OPTIMIZE TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_rows`");
+	
+				$result_cat = $db->sql_query("SELECT `catid` FROM `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_cat`");
+				while (list($catid_i) = $db->sql_fetchrow($result_cat))
+				{
+					$db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "` 
+						DROP `imgposition`, 
+						DROP `sourcetext`, 
+						DROP `copyright`, 
+						DROP `allowed_send`, 
+						DROP `allowed_print`, 
+						DROP `allowed_save`
+					");
+					$db->sql_query("OPTIMIZE TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_" . $mod_data . "_" . $catid_i . "`");
+				}
+			}
+		}
+	}
+	nv_save_file_config_global();
     // End date data
     if ( empty( $error_contents ) )
     {

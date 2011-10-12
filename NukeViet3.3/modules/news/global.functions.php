@@ -86,7 +86,6 @@
 		$comment = $db->sql_query($sql);
 		$result_all = $db->sql_query("SELECT FOUND_ROWS()");
 		list($all_page) = $db->sql_fetchrow($result_all);
-		$all_page = ($all_page) ? $all_page : 1;
 
 		while (list($content, $post_time, $post_name, $post_email, $userid, $user_email, $user_full_name, $photo, $view_mail) = $db->sql_fetchrow($comment))
 		{

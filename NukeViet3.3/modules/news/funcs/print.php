@@ -27,25 +27,26 @@ if ( $id > 0 and $catid > 0 )
 {
     $sql = "SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_data . "_" . $catid . "` WHERE `id` ='" . $id . "' AND `status`=1";
     $result = $db->sql_query( $sql );
-    $content = $db->sql_fetchrow( $result, 2 );
-    unset( $sql, $result );
-    $sql = "SELECT `title` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_sources` WHERE `sourceid` = '" . $content['sourceid'] . "'";
-    $result = $db->sql_query( $sql );
-    list( $sourcetext ) = $db->sql_fetchrow( $result );
-    unset( $sql, $result );
-    $result = "";
-    $img = "";
+    $content = $db->sql_fetch_assoc( $result);
+	
+	$body_contents= $db->sql_fetch_assoc($db->sql_query("SELECT bodyhtml as bodytext, sourcetext, imgposition, copyright, allowed_send, allowed_print, allowed_save FROM `" . NV_PREFIXLANG . "_" . $module_data . "_bodyhtml_".ceil($content['id'] / 2000)."` where `id`=" . $content['id']));
+	$content = array_merge($content, $body_contents);
+    unset( $sql, $result, $body_contents );
+
     if ( $content['allowed_print'] == 1 )
     {
+	    $sql = "SELECT `title` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_sources` WHERE `sourceid` = '" . $content['sourceid'] . "'";
+	    $result = $db->sql_query( $sql );
+	    list( $sourcetext ) = $db->sql_fetchrow( $result );
+	    unset( $sql, $result );
+        
         $url_page = $global_config['site_url'] . "/index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid]['alias'] . "/" . $content['alias'] . "-" . $id;
         $link = "<a href=\"" . $url_page . "\" title=\"" . $content['title'] . "\">" . $url_page . "</a>\n";
         
         $canonicalUrl = $global_config['site_url'] . "/index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$content['catid']]['alias'] . "/" . $content['alias'] . "-" . $id;
         $meta_tags = nv_html_meta_tags();
 
-        list($content['bodytext']) = $db->sql_fetchrow($db->sql_query("SELECT `bodyhtml` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_bodyhtml_".ceil($content['id'] / 2000)."` where `id`=" . $content['id']), 1);
-        
-        $result = array( "url" => $global_config['site_url'], "meta_tags" => $meta_tags, "sitename" => $global_config['site_name'], "title" => $content['title'], "alias" => $content['alias'], "image" => $img, "position" => $content['imgposition'], "time" => nv_date( "l - d/m/Y  H:i", $content['publtime'] ), "hometext" => $content['hometext'], "bodytext" => $content['bodytext'], "copyright" => $content['copyright'], "copyvalue" => $module_config[$module_name]['copyright'], "link" => $link, "contact" => $global_config['site_email'], "author" => $content['author'], "source" => $sourcetext );
+        $result = array( "url" => $global_config['site_url'], "meta_tags" => $meta_tags, "sitename" => $global_config['site_name'], "title" => $content['title'], "alias" => $content['alias'], "image" => "", "position" => $content['imgposition'], "time" => nv_date( "l - d/m/Y  H:i", $content['publtime'] ), "hometext" => $content['hometext'], "bodytext" => $content['bodytext'], "copyright" => $content['copyright'], "copyvalue" => $module_config[$module_name]['copyright'], "link" => $link, "contact" => $global_config['site_email'], "author" => $content['author'], "source" => $sourcetext );
         
         if ( ! empty( $content['homeimgfile'] ) and $content['imgposition'] > 0 )
         {

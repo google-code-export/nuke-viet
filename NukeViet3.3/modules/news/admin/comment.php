@@ -51,7 +51,6 @@ $result = $db->sql_query( $sql );
 
 $result_all = $db->sql_query( "SELECT FOUND_ROWS()" );
 list( $all_page ) = $db->sql_fetchrow( $result_all );
-$all_page = ( $all_page ) ? $all_page : 1;
 
 $array = array();
 $a = 0;

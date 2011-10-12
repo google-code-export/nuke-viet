@@ -31,7 +31,11 @@
 	$order = $nv_Request->get_string('order', 'get') == "asc" ? 'asc' : 'desc';
 
 	$val_cat_content = array();
-	$val_cat_content[] = array("value" => 0, "selected" => ($catid == 0) ? " selected=\"selected\"" : "", "title" => $lang_module['search_cat_all']);
+	$val_cat_content[] = array(
+			"value" => 0,
+			"selected" => ($catid == 0) ? " selected=\"selected\"" : "",
+			"title" => $lang_module['search_cat_all']
+	);
 
 	$array_cat_view = array();
 	foreach ($global_array_cat as $catid_i => $array_value)
@@ -86,7 +90,11 @@
 				$sl = " selected=\"selected\"";
 			}
 
-			$val_cat_content[] = array("value" => $catid_i, "selected" => $sl, "title" => $xtitle_i);
+			$val_cat_content[] = array(
+					"value" => $catid_i,
+					"selected" => $sl,
+					"title" => $xtitle_i
+			);
 			$array_cat_view[] = $catid_i;
 		}
 	}
@@ -97,11 +105,27 @@
 		die();
 	}
 
-	$array_search = array("-" => "---", "title" => $lang_module['search_title'], "bodytext" => $lang_module['search_bodytext'], "author" => $lang_module['search_author'], "admin_id" => $lang_module['search_admin'], "sourcetext" => $lang_module['sources']);
+	$array_search = array(
+			"-" => "---",
+			"title" => $lang_module['search_title'],
+			"bodytext" => $lang_module['search_bodytext'],
+			"author" => $lang_module['search_author'],
+			"admin_id" => $lang_module['search_admin'],
+			"sourcetext" => $lang_module['sources']
+	);
 
-	$array_in_rows = array("title", "bodytext", "author", "sourcetext");
+	$array_in_rows = array(
+			"title",
+			"bodytext",
+			"author",
+			"sourcetext"
+	);
 
-	$array_in_ordername = array("title", "publtime", "exptime");
+	$array_in_ordername = array(
+			"title",
+			"publtime",
+			"exptime"
+	);
 
 	if (!in_array($stype, array_keys($array_search)))
 	{
@@ -139,7 +163,13 @@
 		}
 		elseif ($stype == "sourcetext")
 		{
-			$where = " WHERE r.sourcetext LIKE '%" . $db->dblikeescape($q) . "%'";
+			$qurl = $q;
+			$url_info = @parse_url($qurl);
+			if (isset($url_info['scheme']) and isset($url_info['host']))
+			{
+				$qurl = $url_info['scheme'] . "://" . $url_info['host'];
+			}
+			$where = " WHERE r.	sourceid IN (SELECT `sourceid` FROM `" . NV_PREFIXLANG . "_" . $module_data . "_sources` WHERE `title` like '%" . $db->dblikeescape($q) . "%' OR `link` like '%" . $db->dblikeescape($qurl) . "%')";
 		}
 		elseif ($stype == "admin_id")
 		{
@@ -156,7 +186,6 @@
 			}
 			$where = " WHERE r.author LIKE '%" . $db->dblikeescape($qhtml) . "%' 
 			OR r.title LIKE '%" . $db->dblikeescape($qhtml) . "%' 
-			OR r.sourcetext LIKE '%" . $db->dblikeescape($q) . "%' 
 			OR c.bodytext LIKE '%" . $db->dblikeescape($q) . "%'
 			OR u.username LIKE '%" . $db->dblikeescape($qhtml) . "%' 
 			OR  u.full_name LIKE '%" . $db->dblikeescape($qhtml) . "%'";
@@ -179,19 +208,37 @@
 
 	$link_i = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=Other";
 
-	$global_array_cat[0] = array("catid" => 0, "parentid" => 0, "title" => "Other", "alias" => "Other", "link" => $link_i, "viewcat" => "viewcat_page_new", "subcatid" => 0, "numlinks" => 3, "description" => "", "keywords" => "");
+	$global_array_cat[0] = array(
+			"catid" => 0,
+			"parentid" => 0,
+			"title" => "Other",
+			"alias" => "Other",
+			"link" => $link_i,
+			"viewcat" => "viewcat_page_new",
+			"subcatid" => 0,
+			"numlinks" => 3,
+			"description" => "",
+			"keywords" => ""
+	);
 
 	$search_type = array();
 	foreach ($array_search as $key => $val)
 	{
-		$search_type[] = array("key" => $key, "value" => $val, "selected" => ($key == $stype) ? " selected=\"selected\"" : "");
+		$search_type[] = array(
+				"key" => $key,
+				"value" => $val,
+				"selected" => ($key == $stype) ? " selected=\"selected\"" : ""
+		);
 	}
 
 	$i = 5;
 	$search_per_page = array();
 	while ($i <= 1000)
 	{
-		$search_per_page[] = array("page" => $i, "selected" => ($i == $per_page) ? " selected=\"selected\"" : "");
+		$search_per_page[] = array(
+				"page" => $i,
+				"selected" => ($i == $per_page) ? " selected=\"selected\"" : ""
+		);
 		$i = $i + 5;
 	}
 
@@ -210,8 +257,7 @@
 	$result = $db->sql_query($sql);
 
 	$result_all = $db->sql_query("SELECT FOUND_ROWS()");
-	list($numf) = $db->sql_fetchrow($result_all);
-	$all_page = ($numf) ? $numf : 1;
+	list($all_page) = $db->sql_fetchrow($result_all);
 
 	$data = array();
 	while (list($id, $catid_i, $listcatid, $post_id, $title, $alias, $status, $publtime, $exptime, $username) = $db->sql_fetchrow($result))
@@ -285,12 +331,25 @@
 
 		$link = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $global_array_cat[$catid_i]['alias'] . "/" . $alias . "-" . $id;
 
-		$data[] = array("class" => $class, "id" => $id, "link" => $link, "title" => $title, "publtime" => $publtime, "status" => $lang_module['status_' . $status], "username" => $username, "feature" => implode("&nbsp;-&nbsp;", $admin_funcs));
+		$data[] = array(
+				"class" => $class,
+				"id" => $id,
+				"link" => $link,
+				"title" => $title,
+				"publtime" => $publtime,
+				"status" => $lang_module['status_' . $status],
+				"username" => $username,
+				"feature" => implode("&nbsp;-&nbsp;", $admin_funcs)
+		);
 
 		++$a;
 	}
 
-	$array_list_action = array('delete' => $lang_global['delete'], 'publtime' => $lang_module['publtime'], 'exptime' => $lang_module['exptime']);
+	$array_list_action = array(
+			'delete' => $lang_global['delete'],
+			'publtime' => $lang_module['publtime'],
+			'exptime' => $lang_module['exptime']
+	);
 	if (defined('NV_IS_ADMIN_MODULE'))
 	{
 		$array_list_action['addtoblock'] = $lang_module['addtoblock'];
@@ -300,7 +359,10 @@
 	$action = array();
 	while (list($catid_i, $title_i) = each($array_list_action))
 	{
-		$action[] = array("value" => $catid_i, "title" => $title_i);
+		$action[] = array(
+				"value" => $catid_i,
+				"title" => $title_i
+		);
 	}
 
 	$generate_page = nv_generate_page($base_url, $all_page, $per_page, $page);
