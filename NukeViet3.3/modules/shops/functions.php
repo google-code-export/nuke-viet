@@ -210,19 +210,33 @@ function CurrencyConversion ( $price, $currency_curent, $currency_convert )
     $str = number_format( $price, 0, '.', ' ' );
     if ( ! empty( $money_config ) )
     {
-        if ( $currency_curent == $pro_config['money_unit'] )
-        {
-            $value = doubleval( $money_config[$currency_convert]['exchange'] );
-            $price = doubleval( $price * $value );
+		if( $currency_curent != $currency_convert ){
+			// Chuyen tien hien tai sang tien goc la lay so hien tai nhan cho ti gia
+			if( isset( $money_config[$currency_curent]['exchange'] ) )
+			{
+				$value = doubleval( $money_config[$currency_curent]['exchange'] );
+				$price = doubleval( $price * $value );
+			}
+			else
+			{
+				return "N/A";
+			}
+			
+			// Neu tien can chuen khong phai là tien goc tien chuyen tu tien goc sang tien can chuyen (lay tien goc chia cho ti gia)
+			if( $currency_convert != $pro_config['money_unit'] )
+			{
+				if( isset( $money_config[$currency_convert]['exchange'] ) )
+				{
+					$value = doubleval( $money_config[$currency_convert]['exchange'] );
+					$price = doubleval( $price / $value );
+				}
+				else
+				{
+					return "N/A";
+				}
+			}
             $str = number_format( $price, 0, '.', ' ' );
-            $ss = "~";
-        }
-        elseif ( $currency_convert == $pro_config['money_unit'] )
-        {
-            $value = doubleval( $money_config[$currency_curent]['exchange'] );
-            $price = doubleval( $price / $value );
-            $str = number_format( $price, 0, '.', ' ' );
-        }
+		}
     }
     $ss = ( $currency_curent == $currency_convert ) ? "" : "~";
     return $ss . $str;
@@ -235,16 +249,32 @@ function CurrencyConversionToNumber ( $price, $currency_curent, $currency_conver
     global $money_config, $pro_config;
     if ( ! empty( $money_config ) )
     {
-        if ( $currency_curent == $pro_config['money_unit'] )
-        {
-            $value = doubleval( $money_config[$currency_convert]['exchange'] );
-            $price = doubleval( $price * $value );
-        }
-        elseif ( $currency_convert == $pro_config['money_unit'] )
-        {
-            $value = doubleval( $money_config[$currency_curent]['exchange'] );
-            $price = doubleval( $price / $value );
-        }
+		if( $currency_curent != $currency_convert ){
+			// Chuyen tien hien tai sang tien goc la lay so hien tai nhan cho ti gia
+			if( isset( $money_config[$currency_curent]['exchange'] ) )
+			{
+				$value = doubleval( $money_config[$currency_curent]['exchange'] );
+				$price = doubleval( $price * $value );
+			}
+			else
+			{
+				return false;
+			}
+			
+			// Neu tien can chuen khong phai là tien goc tien chuyen tu tien goc sang tien can chuyen (lay tien goc chia cho ti gia)
+			if( $currency_convert != $pro_config['money_unit'] )
+			{
+				if( isset( $money_config[$currency_convert]['exchange'] ) )
+				{
+					$value = doubleval( $money_config[$currency_convert]['exchange'] );
+					$price = doubleval( $price / $value );
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
     }
     return $price;
 }
