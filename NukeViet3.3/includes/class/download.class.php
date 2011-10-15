@@ -117,13 +117,14 @@ class download
             "path" => $path, //
             "name" => ( $name == "" ) ? substr( strrchr( "/" . $path, "/" ), 1 ) : $name, //
             "extension" => $extension, //
-            "type" => $this->my_mime_content_type( $path ), //
+            "type" => "", //
             "size" => intval( sprintf( "%u", filesize( $path ) ) ), //
             "mtime" => ( $mtime = filemtime( $path ) ) > 0 ? $mtime : time(), //
             "resume" => $resume, //
             "max_speed" => $max_speed, //
             "directory" => $directory //
             );
+        $this->properties['type'] =$this->my_mime_content_type( $path );
         $this->magic_path = $magic_path;
     }
 
