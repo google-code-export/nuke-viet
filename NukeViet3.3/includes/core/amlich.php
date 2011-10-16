@@ -1,6 +1,13 @@
 <?php
 
-if ( ! defined( 'NV_SYSTEM' ) or ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
+/**
+ * @Project NUKEVIET
+ * @Author VINADES.,JSC (contact@vinades.vn)
+ * @Copyright (C) 2011 VINADES.,JSC. All rights reserved
+ * @Createdate 16/10/2011, 20:36
+ */
+
+if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
 /**
  * jdFromDate()
