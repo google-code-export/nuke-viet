@@ -202,6 +202,11 @@ define( 'NV_CACHE_PREFIX', md5( $global_config['sitekey'] . NV_BASE_SITEURL ) );
 require ( NV_ROOTDIR . '/includes/language.php' );
 require ( NV_ROOTDIR . "/language/" . NV_LANG_INTERFACE . "/global.php" );
 
+if( NV_LANG_DATA == "vi" )
+{
+    require_once ( NV_ROOTDIR . '/includes/core/amlich.php' );
+}
+
 $global_config['cookie_path'] = $nv_Request->cookie_path; //vd: /ten_thu_muc_chua_site/
 $global_config['cookie_domain'] = $nv_Request->cookie_domain; //vd: .mydomain1.com
 $global_config['site_url'] = $nv_Request->site_url; //vd: http://mydomain1.com/ten_thu_muc_chua_site
