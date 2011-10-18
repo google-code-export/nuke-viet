@@ -4,7 +4,7 @@
  * @Project NUKEVIET
  * @Author VINADES.,JSC (contact@vinades.vn)
  * @Copyright (C) 2011 VINADES.,JSC. All rights reserved
- * @Createdate 16/10/2011, 20:36
+ * @Createdate 18/10/2011, 9:45
  */
 
 if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
@@ -302,4 +302,4 @@ function alhn()
     return "Âm lịch: ngày " . $arr[0] . " tháng " . $arr[1] . " năm " . $arr[2];
 }
 
-?> 
+?>
