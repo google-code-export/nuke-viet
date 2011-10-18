@@ -102,7 +102,6 @@ class keywordRank
         $result['top50AllPages'] = array();
         $result['rank'] = array();
 
-        unset( $match );
         if ( preg_match( "/\<div\s+id\=resultStats\>[^\d]*([0-9\,]+)[^\<]*\</is", $content, $match ) )
         {
             $bl = preg_replace( "/\,/", "", $match[1] );
@@ -121,7 +120,6 @@ class keywordRank
 
             if ( $start == 0 )
             {
-                unset( $match );
                 if ( preg_match( "/\<div\s+id\=resultStats\>[^\d]*([0-9\,]+)[^\<]*\</is", $content, $match ) )
                 {
                     $bl = preg_replace( "/\,/", "", $match[1] );

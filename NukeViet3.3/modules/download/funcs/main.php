@@ -32,7 +32,6 @@ if ( $nv_Request->isset_request( 'rating', 'post' ) )
     
     $rating = $nv_Request->get_string( 'rating', 'post', '' );
     
-    unset( $m );
     if ( preg_match( "/^([0-9]+)\_([1-5]+)$/", $rating, $m ) )
     {
         $id = ( int )$m[1];

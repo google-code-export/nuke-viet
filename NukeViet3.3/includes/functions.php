@@ -302,7 +302,6 @@ function nv_getBrowser( $agent, $brinifile )
 	$browsers = nv_parse_ini_file( $brinifile, true );
 	foreach ( $browsers as $key => $info )
 	{
-		unset( $results );
 		if ( preg_match( "#" . $info['rule'] . "#i", $agent, $results ) )
 		{
 			if ( isset( $results[1] ) )
@@ -325,7 +324,6 @@ function nv_getOs( $agent, $osinifile )
 	$os = nv_parse_ini_file( $osinifile, true );
 	foreach ( $os as $key => $info )
 	{
-		unset( $results );
 		if ( preg_match( "#" . $info['rule'] . "#i", $agent, $results ) )
 		{
 			if ( strstr( $key, "win" ) )
@@ -1017,7 +1015,6 @@ function nv_get_keywords( $content = "" )
 
 	foreach ( $pattern_word as $pattern )
 	{
-		unset( $matches );
 		while ( preg_match( $pattern, $content, $matches ) )
 		{
 			$keywords[] = $matches[1];
@@ -1404,7 +1401,6 @@ function nv_check_url( $url, $is_200 = 0 )
 	{
 		foreach ( $res as $k => $v )
 		{
-			unset( $matches );
 			if ( preg_match( "/location:\s(.*?)$/is", $v, $matches ) )
 			{
 				++$is_200;
@@ -1503,7 +1499,6 @@ function nv_getCountry( $ip )
 		return array( "unkown", "", "" );
 	}
 
-	unset( $arr );
 	if ( preg_match( '/^\x20*country\x20*:\x20*([A-Z]{2})/im', $result, $arr ) )
 	{
 		$code = strtoupper( $arr[1] );

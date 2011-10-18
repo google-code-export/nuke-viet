@@ -247,10 +247,8 @@ if ( $checkss == $array_data['checkss'] )
     
     if ( $array_data['gender'] != "M" and $array_data['gender'] != "F" ) $array_data['gender'] = "";
     
-    if ( preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $array_data['birthday'] ) )
+    if ( preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $array_data['birthday'], $m ) )
     {
-        unset( $m );
-        preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $array_data['birthday'], $m );
         $array_data['birthday'] = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
     }
     else

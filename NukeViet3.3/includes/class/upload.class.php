@@ -193,7 +193,6 @@ class upload
             $line = trim( $line );
             if ( empty( $line ) || preg_match( "/^;/", $line ) ) continue;
 
-            unset( $match );
             if ( preg_match( "/^\[(.*?)\]$/", $line, $match ) )
             {
                 $section = $match[1];
@@ -207,7 +206,6 @@ class upload
             $value = trim( $value );
             $value = str_replace( array( '"', "'" ), array( "", "" ), $value );
 
-            unset( $match );
             if ( preg_match( "/^(.*?)\[\]$/", $key, $match ) )
             {
                 $all_ini[$section][$match[1]][] = $value;
@@ -918,7 +916,6 @@ class upload
             $ContentType = "";
         	foreach ( $res as $k => $v )
             {
-                unset( $matches );
                 if ( preg_match( "/content-type:\s(.*?)$/is", $v, $matches ) ){
                     $ContentType = trim( $matches[1] );
                 }
@@ -943,7 +940,6 @@ class upload
         {
             foreach ( $res as $k => $v )
             {
-                unset( $matches );
                 if ( preg_match( "/location:\s(.*?)$/is", $v, $matches ) ){
                 	++$is_200;
                     $location = trim( $matches[1] );

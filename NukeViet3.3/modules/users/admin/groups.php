@@ -305,7 +305,7 @@ if ( $nv_Request->isset_request( 'add', 'get' ) or $nv_Request->isset_request( '
         $post['content'] = ! empty( $test_content ) ? nv_editor_nl2br( $post['content'] ) : "";
 
         $post['exp_time'] = filter_text_input( 'exp_time', 'post', '' );
-        unset( $matches );
+
         if ( preg_match( "/^([\d]{1,2})\.([\d]{1,2})\.([\d]{4})$/", $post['exp_time'], $matches ) )
         {
             $post['exp_time'] = mktime( 23, 59, 59, $matches[2], $matches[1], $matches[3] );

@@ -168,7 +168,6 @@ class CJzip
 
         if ( $encoding != 'none' )
         {
-            unset( $matches );
             if ( ! strstr( $_SERVER['HTTP_USER_AGENT'], 'Opera' ) && preg_match( '/^Mozilla\/4\.0 \(compatible; MSIE ([0-9]\.[0-9])/i', $_SERVER['HTTP_USER_AGENT'], $matches ) )
             {
                 $version = floatval( $matches[1] );

@@ -187,7 +187,6 @@ class Diagnostic
         $host = $this->googleDomains[mt_rand( 0, sizeof( $this->googleDomains ) - 1 )];
         $url = sprintf( $this->pattern['PageRank'], $host, $ch, urlencode( ":" . $this->currentDomain ) );
         $content = $getContent->get( $url );
-        unset( $matches );
         if ( preg_match( "/^Rank\_(\d+)\:(\d+)\:(\d+)$/", $content, $matches ) )
         {
             return ( int )$matches[3];
@@ -236,7 +235,6 @@ class Diagnostic
 
         $url = sprintf( $this->pattern['YahooBackLink'], urlencode( $this->currentDomain ) );
         $content = $getContent->get( $url );
-        unset( $match );
         if ( preg_match( "|>Inlinks \(([^\)]*?)\)<|im", $content, $match ) )
         {
             $bl = preg_replace( "/\,/", "", $match[1] );
@@ -260,7 +258,6 @@ class Diagnostic
         $url = sprintf( $this->pattern['YahooIndexed'], urlencode( $this->currentDomain ) );
         $content = $getContent->get( $url );
 
-        unset( $match );
         if ( preg_match( "|>Inlinks \(([^\)]*?)\)<|im", $content, $match ) )
         {
             $bl = preg_replace( "/\,/", "", $match[1] );
@@ -284,7 +281,6 @@ class Diagnostic
         $url = sprintf( $this->pattern['GoogleBackLink'], urlencode( ":" . $this->currentDomain ) );
         $content = $getContent->get( $url );
 
-        unset( $match );
         if ( preg_match( "/\<div\s+id\=resultStats\>[^\d]*([0-9\,]+)[^\<]*\</is", $content, $match ) )
         {
             $bl = preg_replace( "/\,/", "", $match[1] );
@@ -308,7 +304,6 @@ class Diagnostic
         $url = sprintf( $this->pattern['GoogleIndexed'], urlencode( ":" . $this->currentDomain ) );
         $content = $getContent->get( $url );
 
-        unset( $match );
         if ( preg_match( "/\<div\s+id\=resultStats\>[^\d]*([0-9\,]+)[^\<]*\</is", $content, $match ) )
         {
             $bl = preg_replace( "/\,/", "", $match[1] );

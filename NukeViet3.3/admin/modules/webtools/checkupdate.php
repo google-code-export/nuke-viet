@@ -110,7 +110,6 @@ if ( $nv_Request->isset_request( 'i', 'get' ) )
             $userModules[$module_file] = array();
             $v = "";
             $p = 0;
-            unset( $matches );
             if ( preg_match( "/^([^\s]+)\s+([\d]+)$/", $mod_version, $matches ) )
             {
                 $v = ( string )$matches[1];

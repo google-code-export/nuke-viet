@@ -528,7 +528,6 @@ $contents .= "<br />\n";
 
 $load_block_config = false;
 
-unset( $matches );
 if ( preg_match( $global_config['check_block_module'], $row['file_name'], $matches ) )
 {
     if ( $row['module'] == 'global' and file_exists( NV_ROOTDIR . '/includes/blocks/' . $row['file_name'] ) and file_exists( NV_ROOTDIR . '/includes/blocks/' . $matches[1] . '.' . $matches[2] . '.ini' ) )

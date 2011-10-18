@@ -213,7 +213,6 @@ class UrlGetContents
         {
             foreach ( $res as $k => $v )
             {
-                unset( $matches );
                 if ( preg_match( "/location:\s(.*?)$/is", $v, $matches ) )
                 {
                     ++$is_200;
@@ -321,7 +320,6 @@ class UrlGetContents
         {
             if ( $response['http_code'] == 301 || $response['http_code'] == 302 || $response['http_code'] == 303 )
             {
-                unset( $matches );
                 if ( preg_match( '/^(Location:|URI:)[\s]*(.*?)$/m', $header, $matches ) and $this->redirectCount <= 5 )
                 {
                     ++$this->redirectCount;
@@ -350,7 +348,6 @@ class UrlGetContents
 
         curl_close( $curlHandle );
 
-        unset( $matches );
         if ( preg_match( '/(<meta http-equiv=)(.*?)(refresh)(.*?)(url=)([^\'\"]+)[\'|"]\s*[\/]*>/is', $result, $matches ) and $this->redirectCount <= 5 )
         {
             ++$this->redirectCount;
@@ -466,7 +463,6 @@ class UrlGetContents
 
         list( $header, $result ) = preg_split( "/\r?\n\r?\n/", $response, 2 );
 
-        unset( $matches );
         if ( preg_match( '/^(Location:|URI:)[\s]*(.*?)$/m', $header, $matches ) and $this->redirectCount <= 5 )
         {
             ++$this->redirectCount;
@@ -483,12 +479,10 @@ class UrlGetContents
             return $this->fsockopen_Get();
         }
 
-        unset( $matches );
         preg_match( "/^HTTP\/[0-9\.]+\s+(\d+)\s+/", $header, $matches );
         if ( $matches == array() ) return false;
         if ( $matches[1] != 200 ) return false;
 
-        unset( $matches );
         if ( preg_match( '/(<meta http-equiv=)(.*?)(refresh)(.*?)(url=)([^\'\"]+)[\'|"]\s*[\/]*>/is', $result, $matches ) and $this->redirectCount <= 5 )
         {
             ++$this->redirectCount;

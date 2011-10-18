@@ -29,7 +29,6 @@ function nv_parse_ini_file ( $filename, $process_sections = false )
     {
         $line = trim( $line );
         if ( empty( $line ) || preg_match( "/^;/", $line ) ) continue;
-        unset( $match );
         if ( preg_match( "/^\[(.*?)\]$/", $line, $match ) )
         {
             $section = $match[1];
@@ -43,7 +42,6 @@ function nv_parse_ini_file ( $filename, $process_sections = false )
         
         if ( $process_sections && ! empty( $section ) )
         {
-            unset( $match );
             if ( preg_match( "/^(.*?)\[\]$/", $key, $match ) )
             {
                 $ini[$section][$match[1]][] = $value;
@@ -55,7 +53,6 @@ function nv_parse_ini_file ( $filename, $process_sections = false )
         }
         else
         {
-            unset( $match );
             if ( preg_match( "/^(.*?)\[(.*?)\]$/", $key, $match ) )
             {
                 $ini[$match[1]][] = $value;

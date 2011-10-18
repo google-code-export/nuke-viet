@@ -11,19 +11,17 @@ if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 //Xac dinh ten mui gio
 function nv_getTimezoneName_from_cookie ( $cookie )
 {
-    unset( $matches );
     if ( preg_match( "/^([\-]*\d+)\.([\-]*\d+)\.([\-]*\d+)\|(.*)$/", rawurldecode( $cookie ), $matches ) )
     {
         $ini = file( NV_ROOTDIR . '/includes/ini/timezone.ini' );
         $timezones = array();
         foreach ( $ini as $i )
         {
-            unset( $ms );
-            if ( @preg_match( '/\[(.+)\]/', $i, $ms ) )
+            if ( preg_match( '/\[(.+)\]/', $i, $ms ) )
             {
                 $last = trim( $ms[1] );
             }
-            elseif ( @preg_match( '/(.+)[ ]*=[ ]*[\"|\'](.+)[\"|\']/', $i, $ms ) )
+            elseif ( preg_match( '/(.+)[ ]*=[ ]*[\"|\'](.+)[\"|\']/', $i, $ms ) )
             {
                 $timezones[$last][trim( $ms[1] )] = trim( $ms[2] );
             }

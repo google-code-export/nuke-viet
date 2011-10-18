@@ -269,7 +269,6 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
                     $file = NV_UPLOADS_DIR . $file;
                     $newfile = basename( $file );
                     
-                    unset( $m );
                     if ( preg_match( "/(.*)(\.[a-zA-Z0-9]{32})(\.[a-zA-Z]+)$/", $newfile, $m ) )
                     {
                         $newfile = $m[1] . $m[3];
@@ -313,7 +312,6 @@ if ( $nv_Request->isset_request( 'edit', 'get' ) )
                 {
                     $newfile = basename( $fileimage );
                     
-                    unset( $m );
                     if ( preg_match( "/(.*)(\.[a-zA-Z0-9]{32})(\.[a-zA-Z]+)$/", $newfile, $m ) )
                     {
                         $newfile = $m[1] . $m[3];

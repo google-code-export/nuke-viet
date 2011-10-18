@@ -66,7 +66,6 @@ if ( $nv_Request->isset_request( 'submit', 'get' ) )
     $array['gender'] = filter_text_input( 'gender', 'get', '' );
     $array['yim'] = filter_text_input( 'yim', 'get', '' );
 
-    unset( $m );
     if ( preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $array['regdatefrom'], $m ) )
     {
         $array['regdatefrom1'] = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
@@ -76,7 +75,6 @@ if ( $nv_Request->isset_request( 'submit', 'get' ) )
         $array['regdatefrom1'] = "";
     }
 
-    unset( $m );
     if ( preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $array['regdateto'], $m ) )
     {
         $array['regdateto1'] = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
@@ -86,7 +84,6 @@ if ( $nv_Request->isset_request( 'submit', 'get' ) )
         $array['regdateto1'] = "";
     }
 
-    unset( $m );
     if ( preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $array['last_loginfrom'], $m ) )
     {
         $array['last_loginfrom1'] = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
@@ -96,7 +93,6 @@ if ( $nv_Request->isset_request( 'submit', 'get' ) )
         $array['last_loginfrom1'] = "";
     }
 
-    unset( $m );
     if ( preg_match( "/^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]{4})$/", $array['last_loginto'], $m ) )
     {
         $array['last_loginto1'] = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
