@@ -566,6 +566,8 @@ if ($nv_Request->get_int('save', 'post') == 1)
             if ($db->sql_affectedrows() > 0)
             {
                 nv_insert_logs(NV_LANG_DATA, $module_name, $lang_module['content_edit'], $rowcontent['title'], $admin_info['userid']);
+                
+                $ct_query = array();
                 $ct_query[] = (int)$db->sql_query("UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_bodyhtml_" . ceil($rowcontent['id'] / 2000) . "` SET 
 						`bodyhtml`=" . $db->dbescape_string($rowcontent['bodyhtml']) . ", 
                        	`sourcetext`=" . $db->dbescape_string($rowcontent['sourcetext']) . ", 
