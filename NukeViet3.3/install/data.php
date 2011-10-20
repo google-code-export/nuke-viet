@@ -334,7 +334,7 @@ $sql_create_table[] = "INSERT INTO `" . NV_USERS_GLOBALTABLE . "_config` (`confi
 
 $sql_create_table[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES
 ('sys', 'global', 'closed_site', '0'),
-('sys', 'global', 'site_keywords', 'Nukeviet, portal, mysql, php'),
+('sys', 'global', 'site_keywords', 'NukeViet, portal, mysql, php, opensource cms, FOSS Vietnam'),
 ('sys', 'global', 'site_phone', ''),
 ('sys', 'global', 'site_lang', '" . NV_LANG_DATA . "'),
 ('sys', 'global', 'admin_theme', 'admin_full'),
