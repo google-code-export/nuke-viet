@@ -10,7 +10,7 @@ if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
 
 function nv_site_theme ( $step, $titletheme, $contenttheme )
 {
-    global $lang_module, $languageslist, $language_array;
+    global $lang_module, $languageslist, $language_array, $global_config;
     $xtpl = new XTemplate( "theme.tpl", NV_ROOTDIR . "/install/tpl/" );
     $xtpl->assign( 'BASE_SITEURL', NV_BASE_SITEURL );
     $xtpl->assign( 'LANG_VARIABLE', NV_LANG_VARIABLE );
@@ -18,7 +18,8 @@ function nv_site_theme ( $step, $titletheme, $contenttheme )
     $xtpl->assign( 'MAIN_TITLE', $titletheme );
     $xtpl->assign( 'MAIN_STEP', $step );
     $xtpl->assign( 'LANG', $lang_module );
-    
+    $xtpl->assign( 'VERSION', "v".$global_config['version']." r".$global_config['revision'] );
+
     $step_bar = array( 
         $lang_module['select_language'], $lang_module['license'], $lang_module['check_server'], $lang_module['check_chmod'], $lang_module['config_database'], $lang_module['website_info'], $lang_module['done'] 
     );

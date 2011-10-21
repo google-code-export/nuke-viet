@@ -53,7 +53,7 @@ if ( $nv_Request->isset_request( 'idfile,savedata', 'post' ) and $nv_Request->ge
             $lang_value = nv_nl2br( $lang_value );
             $lang_value = str_replace( '<br  />', '<br />', $lang_value );
             $sql = "INSERT INTO `" . NV_LANGUAGE_GLOBALTABLE . "` (`id`, `idfile`, `lang_key`, `lang_" . $dirlang . "`) VALUES (NULL, '" . $idfile . "', '" . mysql_real_escape_string( $lang_key ) . "', '" . mysql_real_escape_string( $lang_value ) . "')";
-            $db->sql_query_insert_id( $sql );
+            $db->sql_query( $sql );
         }
     }
     Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=interface&dirlang=" . $dirlang . "" );

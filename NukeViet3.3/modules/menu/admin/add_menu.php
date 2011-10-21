@@ -188,8 +188,7 @@ if ( $nv_Request->isset_request( 'submit1', 'post' ) )
 				1 
 			)";
 			
-			$newcatid = intval( $db->sql_query_insert_id( $sql ) );
-			if ( $newcatid > 0 )
+			if ($db->sql_query_insert_id( $sql ))
 			{
 				$db->sql_freeresult();
 				

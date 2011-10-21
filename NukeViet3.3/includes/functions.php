@@ -1735,8 +1735,7 @@ function nv_insert_logs( $lang = "", $module_name = "", $name_key = "", $note_ac
 
 	$sql = "INSERT INTO `" . $db_config['prefix'] . "_logs` (`id` ,`lang`,`module_name`,`name_key`,`note_action` ,`link_acess` ,`userid` ,`log_time` ) VALUES ( NULL , " . $db->dbescape( $lang ) . ", " . $db->dbescape( $module_name ) . ", " . $db->dbescape( $name_key ) . ", " . $db->dbescape( $note_action ) . ", " . $db->dbescape( $note_action ) . ", " . intval( $userid ) . ", " . NV_CURRENTTIME . ");";
 
-	$check_insert = $db->sql_query_insert_id( $sql );
-	if ( $check_insert )
+	if ( $db->sql_query_insert_id( $sql ) )
 	{
 		nv_del_moduleCache( 'siteinfo' );
 	}
