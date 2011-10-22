@@ -7,7 +7,7 @@
  * @Createdate 31/05/2010, 00:36
  */
 
-if ( ! defined( 'NV_MAINFILE' ) )
+if (!defined('NV_MAINFILE'))
 {
     die();
 }
@@ -30,6 +30,7 @@ $global_config['sitekey'] = "";
 $global_config['site_timezone'] = "Asia/Bangkok";
 $global_config['gzip_method'] = 1;
 $global_config['is_url_rewrite'] = 1;
+$global_config['rewrite_endurl'] = "/";
 
 $global_config['proxy_blocker'] = 0;
 $global_config['str_referer_blocker'] = 0;
@@ -40,9 +41,8 @@ $global_config['engine_allowed'] = array();
 $global_config['site_theme'] = "modern";
 $global_config['gfx_chk'] = 3;
 
-$array_config_rewrite = array( 'rewrite_optional' => 0 );
+$array_config_rewrite = array('rewrite_optional' => 0);
 
-$global_config['version'] = "3.3.00"; //NUKEVIET 3.3 development. 
-$global_config['revision'] = 1336;
-
+$global_config['version'] = "3.3.00"; //NUKEVIET 3.3 development.
+$global_config['revision'] = 1359;
 ?>

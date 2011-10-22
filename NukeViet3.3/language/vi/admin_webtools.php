@@ -1,22 +1,23 @@
 <?php
 
 /**
-* @Project NUKEVIET 3.0
-* @Author VINADES.,JSC (contact@vinades.vn)
-* @Copyright (C) 2010 VINADES.,JSC. All rights reserved
-* @Language Tiếng Việt
-* @Createdate Jul 06, 2011, 04:38:01 PM
-*/
+ * @Project NUKEVIET 3.0
+ * @Author VINADES.,JSC (contact@vinades.vn)
+ * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
+ * @Language Tiếng Việt
+ * @Createdate Jul 06, 2011, 04:38:01 PM
+ */
 
- if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
- die('Stop!!!');
+if (!defined('NV_ADMIN') or !defined('NV_MAINFILE'))
+{
+    die('Stop!!!');
 }
 
-$lang_translator['author'] ="VINADES.,JSC (contact@vinades.vn)";
-$lang_translator['createdate'] ="04/03/2010, 15:22";
-$lang_translator['copyright'] ="@Copyright (C) 2010 VINADES.,JSC. All rights reserved";
-$lang_translator['info'] ="";
-$lang_translator['langtype'] ="lang_module";
+$lang_translator['author'] = "VINADES.,JSC (contact@vinades.vn)";
+$lang_translator['createdate'] = "04/03/2010, 15:22";
+$lang_translator['copyright'] = "@Copyright (C) 2010 VINADES.,JSC. All rights reserved";
+$lang_translator['info'] = "";
+$lang_translator['langtype'] = "lang_module";
 
 $lang_module['clearsystem'] = "Dọn dẹp hệ thống";
 $lang_module['clearcache'] = "Làm sạch cache";
@@ -116,4 +117,11 @@ $lang_module['autocheckupdate'] = "Bật tính năng kiểm tra phiên bản t�
 $lang_module['updatetime'] = "Thời gian kiểm lại phiên bản sau";
 $lang_module['clearip_logs'] = "Xóa ip logs";
 
+$lang_module['robots'] = "Quản lý file robots.txt";
+$lang_module['robots_number'] = "Số thứ tự";
+$lang_module['robots_filename'] = "Tên file";
+$lang_module['robots_type'] = "Chế độ";
+$lang_module['robots_type_0'] = "Cấm truy cập";
+$lang_module['robots_type_1'] = "Cho phép truy cập";
+$lang_module['robots_error_writable'] = "Lỗi: Hệ thống không ghi được file robots.txt";
 ?>

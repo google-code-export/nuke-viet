@@ -374,7 +374,7 @@ $sql_create_table[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `mod
 ('sys', 'global', 'read_type', '0'),
 ('sys', 'global', 'is_url_rewrite', '" . $global_config['is_url_rewrite'] . "'),
 ('sys', 'global', 'rewrite_optional', '0'),
-('sys', 'global', 'rewrite_endurl', '/'),
+('sys', 'global', 'rewrite_endurl', '".$global_config['rewrite_endurl']."'),
 ('sys', 'global', 'autocheckupdate', '1'),
 ('sys', 'global', 'autoupdatetime', '24'),
 ('sys', 'global', 'gzip_method', '" . $global_config['gzip_method'] . "'),
