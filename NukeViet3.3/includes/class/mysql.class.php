@@ -40,6 +40,8 @@ class sql_db
 
     public $db_charset;
 
+    public $db_set_collation;
+
     public $db_collation;
 
     public $db_time_zone;
@@ -81,7 +83,8 @@ class sql_db
         if ( isset( $db_config['new_link'] ) ) $this->new_link = ( bool )$db_config['new_link'];
         if ( isset( $db_config['create_db'] ) ) $this->create_db = ( bool )$db_config['create_db'];
         if ( isset( $db_config['persistency'] ) ) $this->persistency = ( bool )$db_config['persistency'];
-        
+		$this->db_set_collation = isset( $db_config['collation'] ) ? $db_config['collation'] : 'utf8_general_ci';
+		
         $this->sql_connect( $db_config['dbpass'] );
         
         if ( $this->db_connect_id ) $this->sql_setdb();
@@ -156,9 +159,9 @@ class sql_db
                 $this->db_charset = $row['character_set_database'];
                 $this->db_collation = $row['collation_database'];
                 
-                if ( strcasecmp( $this->db_charset, "utf8" ) != 0 or strcasecmp( $this->db_collation, "utf8_general_ci" ) != 0 )
+                if ( strcasecmp( $this->db_charset, "utf8" ) != 0 or strcasecmp( $this->db_collation, $this->db_set_collation ) != 0 )
                 {
-                    @mysql_query( "ALTER DATABASE `" . $this->dbname . "` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_general_ci`", $this->db_connect_id );
+                    @mysql_query( "ALTER DATABASE `" . $this->dbname . "` DEFAULT CHARACTER SET `utf8` COLLATE `".$this->db_set_collation."`", $this->db_connect_id );
                     $result = @mysql_query( 'SELECT @@session.character_set_database AS `character_set_database`, 
                     @@session.collation_database AS `collation_database`', $this->db_connect_id );
                     $row = @mysql_fetch_assoc( $result );
@@ -167,7 +170,7 @@ class sql_db
                     $this->db_charset = $row['character_set_database'];
                     $this->db_collation = $row['collation_database'];
                 }
-                
+				
                 @mysql_query( "SET NAMES 'utf8'", $this->db_connect_id );
                 
                 if ( version_compare( $this->sql_version, '5.0.2', '>=' ) )
@@ -207,6 +210,31 @@ class sql_db
         }
         return false;
     }
+	
+    /**
+     * sql_db::sql_transaction()
+     * 
+     * @param string $status
+     * @return
+     */	
+	function sql_transaction($status = 'begin')
+	{
+		switch ($status)
+		{
+			case 'begin':
+				return @mysql_query('BEGIN', $this->db_connect_id);
+			break;
+
+			case 'commit':
+				return @mysql_query('COMMIT', $this->db_connect_id);
+			break;
+
+			case 'rollback':
+				return @mysql_query('ROLLBACK', $this->db_connect_id);
+			break;
+		}
+		return true;
+	}	
 
     /**
      * sql_db::sql_query()

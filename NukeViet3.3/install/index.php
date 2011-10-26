@@ -35,6 +35,7 @@ if (is_file(NV_ROOTDIR . '/' . $file_config_temp))
     require_once (NV_ROOTDIR . '/includes/class/mysql.class.php');
     $db_config['new_link'] = NV_MYSQL_NEW_LINK;
     $db_config['persistency'] = NV_MYSQL_PERSISTENCY;
+	$db_config['collation'] = NV_MYSQL_COLLATION;
 }
 
 $contents = "";
