@@ -154,7 +154,7 @@ define( 'NV_MYSQL_NEW_LINK', false );
 define( 'NV_MYSQL_PERSISTENCY', false );
 
 // mysql 5.6 support utf8_general_ci, utf8_vietnamese_ci
-define( 'NV_MYSQL_COLLATION', 'utf8_vietnamese_ci' );
+define( 'NV_MYSQL_COLLATION', 'utf8_general_ci' );
 
 // Thiet lap cho get,post,cookie,session,request,env,server
 define( "NV_COOKIE_SECURE", 0 );
