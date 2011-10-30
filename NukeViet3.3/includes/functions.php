@@ -266,6 +266,18 @@ function nv_checkmobile($inifile)
                 return array('key' => $key, 'name' => $info['name']);
     }
 
+    if (preg_match("/Nokia([^\/]+)\/([^ SP]+)/i", $user_agent, $matches))
+    {
+        if (stripos($user_agent, 'Series60') !== false || strpos($user_agent, 'S60') !== false)
+        {
+            return array('key' => 'nokia', 'name' => 'Nokia S60 V.' . $matches[2]);
+        }
+        else
+        {
+            return array('key' => 'nokia', 'name' => 'Nokia V.' . $matches[2]);
+        }
+    }
+
     if (isset($_SERVER['X-OperaMini-Features']))
         return array('key' => 'opera', 'name' => 'Opera Mini');
 
