@@ -469,6 +469,18 @@ function nv_func_update_data()
         $array_config_rewrite = array('rewrite_optional' => $global_config['rewrite_optional']);
         nv_rewrite_change($array_config_rewrite);
     }
+    
+    if ($global_config['revision'] < 1363)
+    {
+        $sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
+        $result = $db->sql_query($sql);
+        while (list($lang_i) = $db->sql_fetchrow($result))
+        {
+            $db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_modules`  ADD `mobile` VARCHAR(100) NOT NULL DEFAULT '' AFTER `theme`");
+            $db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_modfuncs`  DROP `layout`");
+        }
+    }
+        
     nv_save_file_config_global();
     // End date data
     if (empty($error_contents))

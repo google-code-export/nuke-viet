@@ -10,7 +10,7 @@
 if ( ! defined( 'NV_IS_FILE_THEMES' ) ) die( 'Stop!!!' );
 
 $select_options = array();
-$theme_array = nv_scandir( NV_ROOTDIR . "/themes", $global_config['check_theme'] );
+$theme_array = nv_scandir( NV_ROOTDIR . "/themes", array($global_config['check_theme'], $global_config['check_theme_mobile']) );
 
 foreach ( $theme_array as $themes_i )
 {

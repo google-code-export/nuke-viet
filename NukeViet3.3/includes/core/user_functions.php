@@ -95,6 +95,7 @@ function nv_site_mods()
                 $site_mods[$m_title]['custom_title'] = $row['custom_title'];
                 $site_mods[$m_title]['admin_file'] = $row['admin_file'];
                 $site_mods[$m_title]['theme'] = $row['theme'];
+                $site_mods[$m_title]['mobile'] = $row['mobile'];
                 $site_mods[$m_title]['keywords'] = $row['keywords'];
                 $site_mods[$m_title]['groups_view'] = $row['groups_view'];
                 $site_mods[$m_title]['in_menu'] = $row['in_menu'];
@@ -109,7 +110,6 @@ function nv_site_mods()
                 $site_mods[$m_title]['funcs'][$func_name]['show_func'] = $row['show_func'];
                 $site_mods[$m_title]['funcs'][$func_name]['func_custom_name'] = $row['func_custom_name'];
                 $site_mods[$m_title]['funcs'][$func_name]['in_submenu'] = $row['in_submenu'];
-                $site_mods[$m_title]['funcs'][$func_name]['layout'] = $row['layout'];
             }
         }
     }

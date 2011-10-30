@@ -37,6 +37,7 @@ $lang_module['version'] = "Phiên bản";
 $lang_module['settime'] = "Thời gian cài đặt ";
 $lang_module['author'] = "Tác giả";
 $lang_module['theme'] = "Giao diện";
+$lang_module['mobile'] = "Giao diện cho Mobile";
 $lang_module['theme_default'] = "Mặc định";
 $lang_module['keywords'] = "Từ khóa tìm kiếm";
 $lang_module['keywords_info'] = "Phân cách bởi dấu phẩy";

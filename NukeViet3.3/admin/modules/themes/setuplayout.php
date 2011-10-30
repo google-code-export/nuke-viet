@@ -8,7 +8,7 @@
 if ( ! defined( 'NV_IS_FILE_THEMES' ) ) die( 'Stop!!!' );
 $set_layout_site = false;
 $select_options = array();
-$theme_array = nv_scandir( NV_ROOTDIR . "/themes", $global_config['check_theme'] );
+$theme_array = nv_scandir( NV_ROOTDIR . "/themes", array($global_config['check_theme'], $global_config['check_theme_mobile']) );
 
 foreach ( $theme_array as $themes_i )
 {
@@ -129,7 +129,8 @@ while ( list( $func_id, $func_name, $func_custom_name, $in_module ) = $db->sql_f
 }
 if ( $set_layout_site )
 {
-    nv_set_layout_site();
+    nv_del_moduleCache( 'themes' );
+	nv_del_moduleCache( 'modules' );
 }
 
 $contents .= "<form method='post' action='' name='setuplayout'>";

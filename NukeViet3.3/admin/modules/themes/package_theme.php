@@ -48,7 +48,8 @@ else
     $contents .= "<input type='hidden' name='" . NV_OP_VARIABLE . "' value='" . $op . "'/>";
     $contents .= "<select name=\"themename\">\n";
     $contents .= "<option value=\"0\">" . $lang_module['autoinstall_method_none'] . "</option>\n";
-    $theme_list = nv_scandir( NV_ROOTDIR . "/themes/", $global_config['check_theme'] );
+
+	$theme_list = nv_scandir( NV_ROOTDIR . "/themes", array($global_config['check_theme'], $global_config['check_theme_mobile']) );
     foreach ( $theme_list as $value )
     {
         $contents .= "<option value=\"" . $value . "\">" . $value . "</option>\n";

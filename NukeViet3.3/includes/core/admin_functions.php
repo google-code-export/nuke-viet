@@ -58,52 +58,6 @@ function nv_groups_list()
     return $groups;
 }
 
-function nv_set_layout_site()
-{
-    global $db, $global_config;
-    $array_layout_func_data = array();
-    $fnsql = "SELECT `func_id`, `layout`, `theme` FROM `" . NV_PREFIXLANG . "_modthemes`";
-    $fnresult = $db->sql_query($fnsql);
-    while (list($func_id, $layout, $theme) = $db->sql_fetchrow($fnresult))
-    {
-        $array_layout_func_data[$theme][$func_id] = $layout;
-    }
-
-    $func_id_mods = array();
-
-    $sql = "SELECT `func_id`, `in_module` FROM `" . NV_MODFUNCS_TABLE . "` WHERE `show_func`='1' ORDER BY `in_module` ASC, `subweight` ASC";
-    $result = $db->sql_query($sql);
-    while (list($func_id, $in_module) = $db->sql_fetchrow($result))
-    {
-        $func_id_mods[$in_module][] = $func_id;
-    }
-
-    $sql = "SELECT title, theme FROM `" . NV_MODULES_TABLE . "` ORDER BY `weight` ASC";
-    $result = $db->sql_query($sql);
-    $is_delCache = false;
-    while (list($title, $theme) = $db->sql_fetchrow($result))
-    {
-        if (isset($func_id_mods[$title]))
-        {
-            if (empty($theme))
-            {
-                $theme = $global_config['site_theme'];
-            }
-            foreach ($func_id_mods[$title] as $func_id)
-            {
-                $layout = ( isset($array_layout_func_data[$theme][$func_id])) ? $array_layout_func_data[$theme][$func_id] : $array_layout_func_data[$theme][0];
-                $db->sql_query("UPDATE `" . NV_MODFUNCS_TABLE . "` SET `layout`=" . $db->dbescape($layout) . " WHERE `func_id`=" . $func_id . "");
-                $is_delCache = true;
-            }
-        }
-    }
-
-    if ($is_delCache)
-    {
-        nv_del_moduleCache('modules');
-    }
-}
-
 function nv_save_file_config_global()
 {
     global $db;

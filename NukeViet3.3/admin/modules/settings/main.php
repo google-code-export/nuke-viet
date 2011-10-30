@@ -62,11 +62,6 @@ if ( $submit )
     {
         $db->sql_query( "REPLACE INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `module`, `config_name`, `config_value`) VALUES('" . NV_LANG_DATA . "', 'global', " . $db->dbescape( $config_name ) . ", " . $db->dbescape( $config_value ) . ")" );
     }
-    if ( $array_config['site_theme'] != $global_config['site_theme'] )
-    {
-        $global_config['site_theme'] = $array_config['site_theme'];
-        nv_set_layout_site();
-    }
     nv_save_file_config_global();
     if ( empty( $errormess ) )
     {
