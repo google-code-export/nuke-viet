@@ -11,11 +11,11 @@ if ( ! defined( 'NV_SYSTEM' ) ) die( 'Stop!!!' );
 
 define( 'NV_IS_MOD_RSS', true );
 $img_dir = "default";
-if ( file_exists( NV_BASE_SITEURL . 'themes/' . $global_config['module_theme'] . '/images/' . $module_name ) )
+if ( file_exists( NV_ROOTDIR. '/themes/' . $global_config['module_theme'] . '/images/' . $module_name ) )
 {
     $img_dir = $global_config['module_theme'];
 }
-elseif ( file_exists( NV_BASE_SITEURL . 'themes/' . $global_config['site_theme'] . '/images/' . $module_name ) )
+elseif ( file_exists( NV_ROOTDIR . '/themes/' . $global_config['site_theme'] . '/images/' . $module_name ) )
 {
     $img_dir = $global_config['site_theme'];
 }
