@@ -464,11 +464,6 @@ function nv_func_update_data()
             }
         }
     }
-    if ($global_config['revision'] < 1359)
-    {
-        $array_config_rewrite = array('rewrite_optional' => $global_config['rewrite_optional']);
-        nv_rewrite_change($array_config_rewrite);
-    }
     
     if ($global_config['revision'] < 1363)
     {
@@ -480,6 +475,12 @@ function nv_func_update_data()
             $db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_modfuncs`  DROP `layout`");
         }
     }
+	
+    if ($global_config['revision'] < 1365)
+    {
+        $array_config_rewrite = array('rewrite_optional' => $global_config['rewrite_optional']);
+        nv_rewrite_change($array_config_rewrite);
+    }	
         
     nv_save_file_config_global();
     // End date data

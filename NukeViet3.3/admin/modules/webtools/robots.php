@@ -18,61 +18,55 @@ $cache_file = NV_ROOTDIR . "/" . NV_DATADIR . "/robots.php";
 
 if ($nv_Request->isset_request('submit', 'post'))
 {
-    if (is_writable(NV_ROOTDIR . "/robots.txt"))
+    $robots_data = $nv_Request->get_array('filename', 'post');
+
+    $content_config = "<?php\n\n";
+    $content_config .= NV_FILEHEAD . "\n\n";
+    $content_config .= "if ( ! defined( 'NV_MAINFILE' ) )\n";
+    $content_config .= "{\n";
+    $content_config .= "    die( 'Stop!!!' );\n";
+    $content_config .= "}\n\n";
+    $content_config .= "\$cache='" . serialize($robots_data) . "';\n";
+    $content_config .= "\n\n";
+    $content_config .= "?>";
+
+    file_put_contents($cache_file, $content_config, LOCK_EX);
+
+    $check_rewrite_file = nv_check_rewrite_file();
+    if (!$check_rewrite_file)
     {
-        $robots_data = $nv_Request->get_array('filename', 'post');
-        $contents = array();
-        $contents[] = "User-agent: *";
-
-        foreach ($robots_data as $key => $value)
+        if (is_writable(NV_ROOTDIR . "/robots.txt"))
         {
-            if ($value == 0)
-            {
-                $contents[] = "Disallow: " . $key;
-            }
-        }
+            $contents = array();
+            $contents[] = "User-agent: *";
 
-        if ($global_config['is_url_rewrite'])
-        {
-            $check_rewrite_file = nv_check_rewrite_file();
-            if ($check_rewrite_file)
+            foreach ($robots_data as $key => $value)
             {
-                $contents[] = "Sitemap: " . $global_config['site_url'] . "/Sitemap.xml";
+                if ($value == 0)
+                {
+                    $contents[] = "Disallow: " . $key;
+                }
             }
-            else
+
+            if ($global_config['is_url_rewrite'])
             {
                 $contents[] = "Sitemap: " . $global_config['site_url'] . "/index.php/SitemapIndex" . $global_config['rewrite_endurl'];
             }
+            else
+            {
+                $contents[] = "Sitemap: " . $global_config['site_url'] . "/index.php?" . NV_NAME_VARIABLE . "=SitemapIndex";
+            }
+            $contents = implode("\n", $contents);
+            file_put_contents(NV_ROOTDIR . "/robots.txt", $contents, LOCK_EX);
+            unset($contents);
         }
         else
         {
-            $contents[] = "Sitemap: " . $global_config['site_url'] . "/index.php?" . NV_NAME_VARIABLE . "=SitemapIndex";
+            trigger_error($lang_module['robots_error_writable'], E_USER_WARNING);
         }
-        $contents = implode("\n", $contents);
-        file_put_contents(NV_ROOTDIR . "/robots.txt", $contents, LOCK_EX);
-        unset($contents);
-
-        $cache = serialize($robots_data);
-
-        $content_config = "<?php\n\n";
-        $content_config .= NV_FILEHEAD . "\n\n";
-        $content_config .= "if ( ! defined( 'NV_MAINFILE' ) )\n";
-        $content_config .= "{\n";
-        $content_config .= "    die( 'Stop!!!' );\n";
-        $content_config .= "}\n\n";
-        $content_config .= "\$cache='" . serialize($robots_data) . "';\n";
-        $content_config .= "\n\n";
-        $content_config .= "?>";
-
-        file_put_contents($cache_file, $content_config, LOCK_EX);
-
-        Header('Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op . '&rand=' . nv_genpass());
-        exit();
     }
-    else
-    {
-        trigger_error($lang_module['robots_error_writable'], E_USER_WARNING);
-    }
+    Header('Location: ' . NV_BASE_ADMINURL . 'index.php?' . NV_NAME_VARIABLE . '=' . $module_name . '&' . NV_OP_VARIABLE . '=' . $op . '&rand=' . nv_genpass());
+    exit();
 }
 
 $robots_data = array();
@@ -83,7 +77,6 @@ if (file_exists($cache_file))
 }
 else
 {
-    $robots_data['/' . NV_ADMINDIR . '/'] = 0;
     $robots_data['/' . NV_CACHEDIR . '/'] = 0;
     $robots_data['/' . NV_DATADIR . '/'] = 0;
     $robots_data['/' . NV_EDITORSDIR . '/'] = 0;

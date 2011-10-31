@@ -122,6 +122,6 @@ $lang_module['robots_number'] = "Số thứ tự";
 $lang_module['robots_filename'] = "Tên file";
 $lang_module['robots_type'] = "Chế độ";
 $lang_module['robots_type_0'] = "Cấm truy cập";
-$lang_module['robots_type_1'] = "Cho phép truy cập";
+$lang_module['robots_type_1'] = "Không hiển thị trong file robots.txt";
 $lang_module['robots_error_writable'] = "Lỗi: Hệ thống không ghi được file robots.txt";
 ?>

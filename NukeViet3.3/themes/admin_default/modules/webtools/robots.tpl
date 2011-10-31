@@ -1,7 +1,7 @@
 <!-- BEGIN: main -->
 <form action="" method="post">
 	<center>
-		<table class="tab1" summary="" style="width:auto;">
+		<table class="tab1" summary="" style="width:auto; text-align: left;">
 			<thead>
 				<tr align="center">
 					<td>{LANG.robots_number}</td>

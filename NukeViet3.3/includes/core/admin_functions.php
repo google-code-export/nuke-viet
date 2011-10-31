@@ -224,6 +224,13 @@ function nv_rewrite_change($array_config_global)
         $rulename = 1;
         $rewrite_rule .= "\n";
         $rewrite_rule .= "                <rule name=\"nv_rule_" . ++$rulename . "\">\n";
+        $rewrite_rule .= "                    <match url=\"^\" ignoreCase=\"false\" />\n";
+        $rewrite_rule .= "                    <conditions>\n";
+        $rewrite_rule .= "                    		<add input=\"{REQUEST_FILENAME}\" pattern=\"/robots.txt$\" />\n";
+        $rewrite_rule .= "                    </conditions>\n";
+        $rewrite_rule .= "                    <action type=\"Rewrite\" url=\"robots.php?action={HTTP_HOST}\" appendQueryString=\"false\" />\n";
+        $rewrite_rule .= "                </rule>\n";
+        $rewrite_rule .= "                <rule name=\"nv_rule_" . ++$rulename . "\">\n";
         $rewrite_rule .= "                    <match url=\"^(.*?)Sitemap\.xml$\" ignoreCase=\"false\" />\n";
         $rewrite_rule .= "                    <action type=\"Rewrite\" url=\"index.php?" . NV_NAME_VARIABLE . "=SitemapIndex\" appendQueryString=\"false\" />\n";
         $rewrite_rule .= "                </rule>\n";
@@ -264,6 +271,8 @@ function nv_rewrite_change($array_config_global)
         $rewrite_rule .= "<IfModule mod_rewrite.c>\n";
         $rewrite_rule .= "RewriteEngine On\n";
         $rewrite_rule .= "#RewriteBase " . NV_BASE_SITEURL . "\n";
+        $rewrite_rule .= "RewriteCond %{REQUEST_FILENAME} /robots.txt$ [NC]\n";
+        $rewrite_rule .= "RewriteRule ^ robots.php?action=%{HTTP_HOST} [L]\n";
         $rewrite_rule .= "RewriteRule ^(.*?)Sitemap\.xml$ index.php?" . NV_NAME_VARIABLE . "=SitemapIndex [L]\n";
         $rewrite_rule .= "RewriteRule ^(.*?)Sitemap\-([a-z]{2})\.xml$ index.php?" . NV_LANG_VARIABLE . "=$2&" . NV_NAME_VARIABLE . "=SitemapIndex [L]\n";
         $rewrite_rule .= "RewriteRule ^(.*?)Sitemap\-([a-z]{2})\.([a-zA-Z0-9-]+)\.xml$ index.php?" . NV_LANG_VARIABLE . "=$2&" . NV_NAME_VARIABLE . "=$3&" . NV_OP_VARIABLE . "=Sitemap [L]\n";
