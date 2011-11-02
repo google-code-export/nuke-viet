@@ -327,6 +327,15 @@ $sql_create_table[] = "CREATE TABLE `" . $db_config['prefix'] . "_logs` (
 	PRIMARY KEY (`id`)
 ) ENGINE=MyISAM";
 
+$sql_create_table[] = "CREATE TABLE `" . $db_config['prefix'] . "_ipcountry` (
+  `ip_from` int(11) unsigned NOT NULL,
+  `ip_to` int(11) unsigned NOT NULL,
+  `country` char(2) NOT NULL,
+  `ip_file` smallint(5) unsigned NOT NULL,
+  UNIQUE KEY `ip_from` (`ip_from`,`ip_to`),
+  KEY `ip_file` (`ip_file`)
+) ENGINE=MyISAM";
+
 $sql_create_table[] = "INSERT INTO `" . NV_USERS_GLOBALTABLE . "_config` (`config`, `content`, `edit_time`) VALUES
         ('registertype', '1', " . NV_CURRENTTIME . "),
         ('deny_email', 'yoursite.com|mysite.com|localhost|xxx', " . NV_CURRENTTIME . "),

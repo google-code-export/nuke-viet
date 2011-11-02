@@ -1509,6 +1509,7 @@ function nv_ParseIP($ip)
  */
 function nv_getCountry($ip)
 {
+    global $db_config, $db;
     $result = nv_ParseIP($ip);
 
     if (empty($result) or $result == "localhost")
@@ -1522,8 +1523,27 @@ function nv_getCountry($ip)
         $countries = array();
         include (NV_ROOTDIR . "/includes/countries.php");
 
-        if (isset($countries[$code]) and !empty($countries[$code]))
+        if (isset($countries[$code]))
         {
+            if (preg_match('/inetnum[\s\n\t\r]*\:[\s\n\t\r]*([0-9\.]+)[\s\n\t\r]*\-[\s\n\t\r]*([0-9\.]+)[\s\n\t\r]*/', $result, $arrip))
+            {
+                $numbers = preg_split("/\./", $arrip[1]);
+                $ip_file = $numbers[0];
+                $ip_from = ($numbers[0] * 16777216) + ($numbers[1] * 65536) + ($numbers[2] * 256) + ($numbers[3]);
+                $numbers = preg_split("/\./", $arrip[2]);
+                $ip_to = ($numbers[0] * 16777216) + ($numbers[1] * 65536) + ($numbers[2] * 256) + ($numbers[3]);
+                if ($db->sql_query("INSERT INTO `" . $db_config['prefix'] . "_ipcountry` (`ip_from`, `ip_to`, `country`, `ip_file`) VALUES (" . $ip_from . ", " . $ip_to . ", '" . $code . "', '" . $ip_file . "')"))
+                {
+                    $result = $db->sql_query("SELECT `ip_from`, `ip_to`, `country` FROM `" . $db_config['prefix'] . "_ipcountry` WHERE `ip_file`='" . $ip_file . "'");
+                    $array_ip_file = array();
+                    while ($row = $db->sql_fetch_assoc($result))
+                    {
+                        $array_ip_file[] = $row['ip_from'] . " => array(" . $row['ip_to'] . ", '" . $row['country'] . "')";
+                    }
+
+                    file_put_contents(NV_ROOTDIR . "/" . NV_DATADIR . "/ip_files/" . $ip_file . ".php", "<?php\n\n\$ranges = array(" . implode(', ', $array_ip_file) . ");\n\n?>", LOCK_EX);
+                }
+            }
             return array($arr[1], $countries[$code][0], $countries[$code][1]);
         }
     }

@@ -464,7 +464,7 @@ function nv_func_update_data()
             }
         }
     }
-    
+
     if ($global_config['revision'] < 1363)
     {
         $sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
@@ -475,13 +475,24 @@ function nv_func_update_data()
             $db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $lang_i . "_modfuncs`  DROP `layout`");
         }
     }
-	
+
     if ($global_config['revision'] < 1365)
     {
         $array_config_rewrite = array('rewrite_optional' => $global_config['rewrite_optional']);
         nv_rewrite_change($array_config_rewrite);
-    }	
-        
+    }
+
+    if ($global_config['revision'] < 1366)
+    {
+        $db->sql_query("CREATE TABLE IF NOT EXISTS `" . $db_config['prefix'] . "_ipcountry` (
+		  `ip_from` int(11) unsigned NOT NULL,
+		  `ip_to` int(11) unsigned NOT NULL,
+		  `country` char(2) NOT NULL,
+		  `ip_file` smallint(5) unsigned NOT NULL,
+		  UNIQUE KEY `ip_from` (`ip_from`,`ip_to`),
+		  KEY `ip_file` (`ip_file`)
+		) ENGINE=MyISAM");
+    }
     nv_save_file_config_global();
     // End date data
     if (empty($error_contents))
