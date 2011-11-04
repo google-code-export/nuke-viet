@@ -35,7 +35,7 @@ if (is_file(NV_ROOTDIR . '/' . $file_config_temp))
     require_once (NV_ROOTDIR . '/includes/class/mysql.class.php');
     $db_config['new_link'] = NV_MYSQL_NEW_LINK;
     $db_config['persistency'] = NV_MYSQL_PERSISTENCY;
-	$db_config['collation'] = NV_MYSQL_COLLATION;
+    $db_config['collation'] = NV_MYSQL_COLLATION;
 }
 
 $contents = "";
@@ -129,7 +129,7 @@ elseif ($step == 3)
 }
 elseif ($step == 4)
 {
-    $array_dir = array(NV_SESSION_SAVE_PATH, NV_LOGS_DIR, NV_LOGS_DIR . "/data_logs", NV_LOGS_DIR . "/dump_backup", NV_LOGS_DIR . "/error_logs", NV_LOGS_DIR . "/error_logs/errors256", NV_LOGS_DIR . "/error_logs/old", NV_LOGS_DIR . "/error_logs/tmp", NV_LOGS_DIR . "/ip_logs", NV_LOGS_DIR . "/ref_logs", NV_LOGS_DIR . "/voting_logs", NV_CACHEDIR, NV_UPLOADS_DIR, NV_TEMP_DIR, NV_FILES_DIR, NV_FILES_DIR . "/css", NV_FILES_DIR . "/js", NV_DATADIR);
+    $array_dir = array(NV_SESSION_SAVE_PATH, NV_LOGS_DIR, NV_LOGS_DIR . "/data_logs", NV_LOGS_DIR . "/dump_backup", NV_LOGS_DIR . "/error_logs", NV_LOGS_DIR . "/error_logs/errors256", NV_LOGS_DIR . "/error_logs/old", NV_LOGS_DIR . "/error_logs/tmp", NV_LOGS_DIR . "/ip_logs", NV_LOGS_DIR . "/ref_logs", NV_LOGS_DIR . "/voting_logs", NV_CACHEDIR, NV_UPLOADS_DIR, NV_TEMP_DIR, NV_FILES_DIR, NV_FILES_DIR . "/css", NV_FILES_DIR . "/js", NV_DATADIR, NV_DATADIR . "/ip_files", );
     $array_file_data = nv_scandir(NV_ROOTDIR . "/" . NV_DATADIR, "/^([a-zA-Z0-9\-\_\.]+)\.([a-z0-9]{2,6})$/");
     foreach ($array_file_data as $file_i)
     {
@@ -267,7 +267,22 @@ elseif ($step == 4)
     {
         ftp_close($conn_id);
     }
-
+    if ($nextstep)
+    {
+        $i = 0;
+        for ($ip_file = 0; $ip_file <= 255; $ip_file++)
+        {
+            if (file_put_contents(NV_ROOTDIR . "/" . NV_DATADIR . "/ip_files/" . $ip_file . ".php", "<?php\n\n\$ranges = array();\n\n?>", LOCK_EX))
+            {
+                ++$i;
+            }
+        }
+        if ($i != 256)
+        {
+            $nextstep = 0;
+            $array_dir_check[NV_DATADIR . "/ip_files"] = sprintf($lang_module['dir_not_writable_ip_files'], NV_DATADIR . "/ip_files");
+        }
+    }
     if ($step < 5 and $nextstep == 1)
     {
         $nv_Request->set_Session('maxstep', 5);

@@ -485,13 +485,16 @@ function nv_func_update_data()
     if ($global_config['revision'] < 1366)
     {
         $db->sql_query("CREATE TABLE IF NOT EXISTS `" . $db_config['prefix'] . "_ipcountry` (
-		  `ip_from` int(11) unsigned NOT NULL,
-		  `ip_to` int(11) unsigned NOT NULL,
-		  `country` char(2) NOT NULL,
-		  `ip_file` smallint(5) unsigned NOT NULL,
-		  UNIQUE KEY `ip_from` (`ip_from`,`ip_to`),
-		  KEY `ip_file` (`ip_file`)
-		) ENGINE=MyISAM");
+			  `ip_from` int(11) unsigned NOT NULL,
+			  `ip_to` int(11) unsigned NOT NULL,
+			  `country` char(2) NOT NULL,
+			  `ip_file` smallint(5) unsigned NOT NULL,
+			  `time` int(11) NOT NULL DEFAULT '0',
+			  UNIQUE KEY `ip_from` (`ip_from`,`ip_to`),
+			  KEY `ip_file` (`ip_file`),
+			  KEY `country` (`country`),
+			  KEY `time` (`time`)
+        	) ENGINE=MyISAM");
     }
     nv_save_file_config_global();
     // End date data

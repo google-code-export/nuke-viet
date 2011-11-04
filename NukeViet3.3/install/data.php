@@ -7,16 +7,17 @@
  * @createdate 12/28/2009 20:8
  */
 
-if ( ! defined( 'NV_MAINFILE' ) ) die( 'Stop!!!' );
+if (!defined('NV_MAINFILE'))
+    die('Stop!!!');
 
 //Ten cac table cua CSDL dung chung cho he thong
-define( 'NV_AUTHORS_GLOBALTABLE', $db_config['prefix'] . '_authors' );
-define( 'NV_USERS_GLOBALTABLE', $db_config['prefix'] . '_users' );
-define( 'NV_CONFIG_GLOBALTABLE', $db_config['prefix'] . '_config' );
-define( 'NV_GROUPS_GLOBALTABLE', $db_config['prefix'] . '_groups' );
-define( 'NV_LANGUAGE_GLOBALTABLE', $db_config['prefix'] . '_language' );
-define( 'NV_SESSIONS_GLOBALTABLE', $db_config['prefix'] . '_sessions' );
-define( 'NV_CRONJOBS_GLOBALTABLE', $db_config['prefix'] . '_cronjobs' );
+define('NV_AUTHORS_GLOBALTABLE', $db_config['prefix'] . '_authors');
+define('NV_USERS_GLOBALTABLE', $db_config['prefix'] . '_users');
+define('NV_CONFIG_GLOBALTABLE', $db_config['prefix'] . '_config');
+define('NV_GROUPS_GLOBALTABLE', $db_config['prefix'] . '_groups');
+define('NV_LANGUAGE_GLOBALTABLE', $db_config['prefix'] . '_language');
+define('NV_SESSIONS_GLOBALTABLE', $db_config['prefix'] . '_sessions');
+define('NV_CRONJOBS_GLOBALTABLE', $db_config['prefix'] . '_cronjobs');
 
 $sql_create_table[] = "CREATE TABLE `" . NV_AUTHORS_GLOBALTABLE . "` (
   `admin_id` mediumint(8) unsigned NOT NULL,
@@ -328,12 +329,15 @@ $sql_create_table[] = "CREATE TABLE `" . $db_config['prefix'] . "_logs` (
 ) ENGINE=MyISAM";
 
 $sql_create_table[] = "CREATE TABLE `" . $db_config['prefix'] . "_ipcountry` (
-  `ip_from` int(11) unsigned NOT NULL,
-  `ip_to` int(11) unsigned NOT NULL,
-  `country` char(2) NOT NULL,
-  `ip_file` smallint(5) unsigned NOT NULL,
-  UNIQUE KEY `ip_from` (`ip_from`,`ip_to`),
-  KEY `ip_file` (`ip_file`)
+	  `ip_from` int(11) unsigned NOT NULL,
+	  `ip_to` int(11) unsigned NOT NULL,
+	  `country` char(2) NOT NULL,
+	  `ip_file` smallint(5) unsigned NOT NULL,
+	  `time` int(11) NOT NULL DEFAULT '0',
+	  UNIQUE KEY `ip_from` (`ip_from`,`ip_to`),
+	  KEY `ip_file` (`ip_file`),
+	  KEY `country` (`country`),
+	  KEY `time` (`time`)
 ) ENGINE=MyISAM";
 
 $sql_create_table[] = "INSERT INTO `" . NV_USERS_GLOBALTABLE . "_config` (`config`, `content`, `edit_time`) VALUES
@@ -360,7 +364,7 @@ $sql_create_table[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `mod
 ('sys', 'global', 'file_allowed_ext', 'adobe,application,archives,audio,documents,flash,images,real,video'),
 ('sys', 'global', 'forbid_extensions', 'php'),
 ('sys', 'global', 'forbid_mimes', ''),
-('sys', 'global', 'nv_max_size', '" . min( nv_converttoBytes( ini_get( 'upload_max_filesize' ) ), nv_converttoBytes( ini_get( 'post_max_size' ) ) ) . "'),
+('sys', 'global', 'nv_max_size', '" . min(nv_converttoBytes(ini_get('upload_max_filesize')), nv_converttoBytes(ini_get('post_max_size'))) . "'),
 ('sys', 'global', 'upload_checking_mode', 'strong'),
 ('sys', 'global', 'update_revision_lang_mode', '1'),
 ('sys', 'global', 'str_referer_blocker', '0'),
@@ -379,11 +383,11 @@ $sql_create_table[] = "INSERT INTO `" . NV_CONFIG_GLOBALTABLE . "` (`lang`, `mod
 ('sys', 'global', 'useactivate', '2'),
 ('sys', 'global', 'allowmailchange', '1'),
 ('sys', 'global', 'allow_sitelangs', '" . NV_LANG_DATA . "'),
-('sys', 'global', 'allow_adminlangs', '" . implode( ",", $languageslist ) . "'),
+('sys', 'global', 'allow_adminlangs', '" . implode(",", $languageslist) . "'),
 ('sys', 'global', 'read_type', '0'),
 ('sys', 'global', 'is_url_rewrite', '" . $global_config['is_url_rewrite'] . "'),
 ('sys', 'global', 'rewrite_optional', '0'),
-('sys', 'global', 'rewrite_endurl', '".$global_config['rewrite_endurl']."'),
+('sys', 'global', 'rewrite_endurl', '" . $global_config['rewrite_endurl'] . "'),
 ('sys', 'global', 'autocheckupdate', '1'),
 ('sys', 'global', 'autoupdatetime', '24'),
 ('sys', 'global', 'gzip_method', '" . $global_config['gzip_method'] . "'),
@@ -432,5 +436,4 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_banners_rows` V
 (1, 'Bo ngoai giao', 2, 0, 'bongoaigiao.jpg', 'jpg', 'image/jpeg', 160, 54, '', 'http://www.mofa.gov.vn', '', '', '', " . NV_CURRENTTIME . ", " . NV_CURRENTTIME . ", 0, 0, 1,1), 
 (2, 'vinades', 2, 0, 'vinades.jpg', 'jpg', 'image/jpeg', 190, 454, '', 'http://vinades.vn', '', '', '', " . NV_CURRENTTIME . ", " . NV_CURRENTTIME . ", 0, 0, 1,2), 
 (3, 'Quang cao giua trang', 1, 0, 'webnhanh_vn.gif', 'gif', 'image/gif', 510, 65, '', 'http://webnhanh.vn', '', '', '', " . NV_CURRENTTIME . ", " . NV_CURRENTTIME . ", 0, 0, 1,1)";
-
 ?>

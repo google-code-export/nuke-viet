@@ -1,22 +1,23 @@
 <?php
 
 /**
-* @Project NUKEVIET 3.0
-* @Author VINADES.,JSC (contact@vinades.vn)
-* @Copyright (C) 2010 VINADES.,JSC. All rights reserved
-* @Language Tiếng Việt
-* @Createdate Jul 06, 2011, 04:38:01 PM
-*/
+ * @Project NUKEVIET 3.0
+ * @Author VINADES.,JSC (contact@vinades.vn)
+ * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
+ * @Language Tiếng Việt
+ * @Createdate Jul 06, 2011, 04:38:01 PM
+ */
 
- if (!defined( 'NV_MAINFILE' )) {
- die('Stop!!!');
+if (!defined('NV_MAINFILE'))
+{
+    die('Stop!!!');
 }
 
-$lang_translator['author'] ="VINADES.,JSC (contact@vinades.vn)";
-$lang_translator['createdate'] ="06/06/2011, 13:55";
-$lang_translator['copyright'] ="Copyright (C) 2010 VINADES.,JSC. All rights reserved";
-$lang_translator['info'] ="";
-$lang_translator['langtype'] ="lang_module";
+$lang_translator['author'] = "VINADES.,JSC (contact@vinades.vn)";
+$lang_translator['createdate'] = "06/06/2011, 13:55";
+$lang_translator['copyright'] = "Copyright (C) 2010 VINADES.,JSC. All rights reserved";
+$lang_translator['info'] = "";
+$lang_translator['langtype'] = "lang_module";
 
 $lang_module['titlesetup'] = "Cài đặt Nukeviet";
 $lang_module['select_language'] = "Lựa chọn ngôn ngữ";
@@ -60,6 +61,7 @@ $lang_module['session_support'] = "PHP hỗ trợ session";
 $lang_module['fileuploads_support'] = "PHP hỗ trợ uploads file";
 $lang_module['dir_noexit'] = "Không tồn tại";
 $lang_module['dir_not_writable'] = "Không ghi được";
+$lang_module['dir_not_writable_ip_files'] = "Không ghi được các file trong thư mục %1\$s";
 $lang_module['dir_writable'] = "OK";
 $lang_module['checkchmod_detail'] = "Kiểm tra việc CHMOD các file trên máy chủ";
 $lang_module['if_chmod'] = "Nếu danh sách các file, folder trên máy chủ chưa được CHMOD";
@@ -127,5 +129,4 @@ $lang_module['your_question_empty'] = "Bạn chưa khai báo câu hỏi bảo m�
 $lang_module['answer_empty'] = "Bạn chưa nhập câu Trả lời cho câu hỏi bảo mật";
 $lang_module['question_note'] = "Hệ thống sẽ hỏi bạn câu hỏi bảo mật trong trường hợp bạn cần khôi phục mật khẩu khi bạn bị quên. Vì vậy hãy chọn câu hỏi mà nó có thể giúp bạn nhớ chính xác câu trả lời.";
 $lang_module['answer_question_note'] = "Bạn hãy nhớ câu trả lời này để trả lời hệ thống.";
-
 ?>
