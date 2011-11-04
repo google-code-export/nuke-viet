@@ -23,16 +23,16 @@ function nv_create_table_news ( $catid )
 $sql_create_table = array();
 $sql_create_table[] = "TRUNCATE TABLE `" . $db_config['prefix'] . "_" . $lang_data . "_modules`";
 $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modules` (`title`, `module_file`, `module_data`, `custom_title`, `set_time`, `admin_file`, `theme`, `mobile`, `keywords`, `groups_view`, `in_menu`, `weight`, `submenu`, `act`, `admins`, `rss`) VALUES
-('about', 'about', 'about', 'Giới thiệu', 1276333182, 1, '', '', '', '0', 1, 1, 1, 1, '', 0),
-('news', 'news', 'news', 'Tin Tức', 1270400000, 1, '', '', '', '0', 1, 2, 1, 1, '', 1),
-('users', 'users', 'users', 'Thành viên', 1274080277, 1, '', '', '', '0', 1, 3, 1, 1, '', 0),
-('contact', 'contact', 'contact', 'Liên hệ', 1275351337, 1, '', '', '', '0', 1, 4, 1, 1, '', 0),
-('statistics', 'statistics', 'statistics', 'Thống kê', 1276520928, 0, '', '', 'truy cập, online, statistics', '0', 1, 5, 1, 1, '', 0),
-('voting', 'voting', 'voting', 'Thăm dò ý kiến', 1275315261, 1, '', '', '', '0', 0, 6, 1, 1, '', 1),
-('banners', 'banners', 'banners', 'Quảng cáo', 1270400000, 1, '', '', '', '0', 0, 7, 1, 1, '', 0),
-('search', 'search', 'search', 'Tìm kiếm', 1273474173, 0, '', '', '', '0', 0, 8, 1, 1, '', 0),
-('menu', 'menu', 'menu', 'Menu Site', 1295287334, 1, '', '', '', '0', 0, 9, 1, 1, '', 0),
-('rss', 'rss', 'rss', 'Rss', 1279366705, 1, '', '', '', '0', 0, 10, 10, 1, '', 0)";
+('about', 'about', 'about', 'Giới thiệu', 1276333182, 1, '', 'mobile_nukeviet', '', '0', 1, 1, 1, 1, '', 0),
+('news', 'news', 'news', 'Tin Tức', 1270400000, 1, '', 'mobile_nukeviet', '', '0', 1, 2, 1, 1, '', 1),
+('users', 'users', 'users', 'Thành viên', 1274080277, 1, '', 'mobile_nukeviet', '', '0', 1, 3, 1, 1, '', 0),
+('contact', 'contact', 'contact', 'Liên hệ', 1275351337, 1, '', 'mobile_nukeviet', '', '0', 1, 4, 1, 1, '', 0),
+('statistics', 'statistics', 'statistics', 'Thống kê', 1276520928, 0, '', 'mobile_nukeviet', 'truy cập, online, statistics', '0', 1, 5, 1, 1, '', 0),
+('voting', 'voting', 'voting', 'Thăm dò ý kiến', 1275315261, 1, '', 'mobile_nukeviet', '', '0', 0, 6, 1, 1, '', 1),
+('banners', 'banners', 'banners', 'Quảng cáo', 1270400000, 1, '', 'mobile_nukeviet', '', '0', 0, 7, 1, 1, '', 0),
+('search', 'search', 'search', 'Tìm kiếm', 1273474173, 0, '', 'mobile_nukeviet', '', '0', 0, 8, 1, 1, '', 0),
+('menu', 'menu', 'menu', 'Menu Site', 1295287334, 1, '', 'mobile_nukeviet', '', '0', 0, 9, 1, 1, '', 0),
+('rss', 'rss', 'rss', 'Rss', 1279366705, 1, '', 'mobile_nukeviet', '', '0', 0, 10, 10, 1, '', 0)";
 
 $sql_create_table[] = "TRUNCATE TABLE `" . $db_config['prefix'] . "_" . $lang_data . "_modfuncs`";
 $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modfuncs` (`func_id`, `func_name`, `func_custom_name`, `in_module`, `show_func`, `in_submenu`, `subweight`, `setting`) VALUES
@@ -153,6 +153,41 @@ $sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data
 (48, 'body', 'modern'),
 (48, 'left-body-right', 'default')";
 
+$sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modthemes` (`func_id`, `layout`, `theme`) VALUES
+(0, 'body', 'mobile_nukeviet'),
+(2, 'body', 'mobile_nukeviet'),
+(5, 'body', 'mobile_nukeviet'),
+(6, 'body', 'mobile_nukeviet'),
+(7, 'body', 'mobile_nukeviet'),
+(13, 'body', 'mobile_nukeviet'),
+(15, 'body', 'mobile_nukeviet'),
+(16, 'body', 'mobile_nukeviet'),
+(17, 'body', 'mobile_nukeviet'),
+(18, 'body', 'mobile_nukeviet'),
+(19, 'body', 'mobile_nukeviet'),
+(20, 'body', 'mobile_nukeviet'),
+(21, 'body', 'mobile_nukeviet'),
+(22, 'body', 'mobile_nukeviet'),
+(23, 'body', 'mobile_nukeviet'),
+(24, 'body', 'mobile_nukeviet'),
+(25, 'body', 'mobile_nukeviet'),
+(26, 'body', 'mobile_nukeviet'),
+(27, 'body', 'mobile_nukeviet'),
+(28, 'body', 'mobile_nukeviet'),
+(29, 'body', 'mobile_nukeviet'),
+(30, 'body', 'mobile_nukeviet'),
+(31, 'body', 'mobile_nukeviet'),
+(32, 'body', 'mobile_nukeviet'),
+(33, 'body', 'mobile_nukeviet'),
+(34, 'body', 'mobile_nukeviet'),
+(36, 'body', 'mobile_nukeviet'),
+(39, 'body', 'mobile_nukeviet'),
+(42, 'body', 'mobile_nukeviet'),
+(43, 'body', 'mobile_nukeviet'),
+(46, 'body', 'mobile_nukeviet'),
+(47, 'body', 'mobile_nukeviet'),
+(48, 'body', 'mobile_nukeviet')";
+
 $sql_create_table[] = "TRUNCATE TABLE `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_groups`";
 $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_groups` (`bid`, `theme`, `module`, `file_name`, `title`, `link`, `template`, `position`, `exp_time`, `active`, `groups_view`, `all_func`, `weight`, `config`) VALUES
 (1, 'default', 'news', 'global.block_category.php', 'Menu', '', '', '[LEFT]', 0, 1, '0', 0, 1, 'a:1:{s:12:\"title_length\";i:25;}'),
@@ -173,7 +208,8 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (16, 'modern', 'menu', 'global.menu_theme_modern.php', 'global menu theme modern', '', 'no_title', '[MENU_SITE]', 0, 1, '0', 1, 1, ''),
 (17, 'default', 'menu', 'global.menu_theme_default.php', 'global menu theme default', '', 'no_title', '[MENU_SITE]', 0, 1, '0', 1, 1, ''),
 (18, 'modern', 'global', 'global.html.php', 'footer site', '', 'no_title', '[FOOTER_SITE]', 0, 1, '0', 1, 1, 'a:1:{s:11:\"htmlcontent\";s:216:\"<p> © Copyright NukeViet 3. All right reserved.</p><p> Powered by <a href=\"http://nukeviet.vn/\" title=\"NukeViet CMS\">NukeViet CMS</a>. Design by <a href=\"http://vinades.vn/\" title=\"VINADES.,JSC\">VINADES.,JSC</a></p>\";}'),
-(19, 'default', 'global', 'global.html.php', 'footer site', '', 'no_title', '[FOOTER_SITE]', 0, 1, '0', 1, 1, 'a:1:{s:11:\"htmlcontent\";s:231:\"<p class=\"footer\"> © Copyright NukeViet 3. All right reserved.</p><p> Powered by <a href=\"http://nukeviet.vn/\" title=\"NukeViet CMS\">NukeViet CMS</a>. Design by <a href=\"http://vinades.vn/\" title=\"VINADES.,JSC\">VINADES.,JSC</a></p>\";}')";
+(19, 'default', 'global', 'global.html.php', 'footer site', '', 'no_title', '[FOOTER_SITE]', 0, 1, '0', 1, 1, 'a:1:{s:11:\"htmlcontent\";s:231:\"<p class=\"footer\"> © Copyright NukeViet 3. All right reserved.</p><p> Powered by <a href=\"http://nukeviet.vn/\" title=\"NukeViet CMS\">NukeViet CMS</a>. Design by <a href=\"http://vinades.vn/\" title=\"VINADES.,JSC\">VINADES.,JSC</a></p>\";}'),
+(20, 'mobile_nukeviet', 'menu', 'global.menu_theme_default.php', 'global menu theme default', '', 'no_title', '[MENU_SITE]', 0, 1, '0', 1, 1, '')";
 
 $sql_create_table[] = "TRUNCATE TABLE `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_weight`";
 $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
@@ -671,6 +707,40 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (12, 48, 3),
 (13, 48, 4),
 (15, 48, 1)";
+
+$sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
+(20, 2, 1),
+(20, 36, 1),
+(20, 39, 1),
+(20, 42, 1),
+(20, 43, 1),
+(20, 27, 1),
+(20, 5, 1),
+(20, 6, 1),
+(20, 7, 1),
+(20, 13, 1),
+(20, 15, 1),
+(20, 16, 1),
+(20, 47, 1),
+(20, 46, 1),
+(20, 33, 1),
+(20, 32, 1),
+(20, 30, 1),
+(20, 29, 1),
+(20, 31, 1),
+(20, 28, 1),
+(20, 34, 1),
+(20, 48, 1),
+(20, 24, 1),
+(20, 20, 1),
+(20, 21, 1),
+(20, 26, 1),
+(20, 23, 1),
+(20, 18, 1),
+(20, 25, 1),
+(20, 17, 1),
+(20, 22, 1),
+(20, 19, 1)";
 
 $disable_site_content = "Vì lý do kỹ thuật website tạm ngưng hoạt động. Thành thật xin lỗi các bạn vì sự bất tiện này!";
 $copyright = "Chú ý: Việc đăng lại bài viết trên ở website hoặc các phương tiện truyền thông khác mà không ghi rõ nguồn http://nukeviet.vn là vi phạm bản quyền";
