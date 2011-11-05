@@ -58,7 +58,7 @@ $tbl_src = "";
 if ( isset( $key{NV_MIN_SEARCH_LENGTH-1} ) )
 {
     $dbkey = $db->dblikeescape( $key );
-    $where = "AND ( " . NV_LANG_DATA . "_title LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_bodytext LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_keywords LIKE '%" . $dbkey . "%' ) ";
+    $where = "AND ( " . NV_LANG_DATA . "_title LIKE '%" . $dbkey . "%' OR product_code LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_bodytext LIKE '%" . $dbkey . "%' OR " . NV_LANG_DATA . "_keywords LIKE '%" . $dbkey . "%' ) ";
     if ( $catid != 0 )
     {
         $where .= "AND ( listcatid = " . intval($catid) . ")";

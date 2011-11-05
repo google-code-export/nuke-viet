@@ -10,6 +10,9 @@
         </span>
         <div class="info_product fl">
             <h2>{TITLE}</h2>
+            <!-- BEGIN: product_code -->
+             <b>{LANG.product_code}: {PRODUCT_CODE}</b>
+            <!-- END: product_code -->
             <span class="date_up">{DATE_UP} - {NUM_VIEW} {LANG.detail_num_view}</span>
             <!-- BEGIN: price -->
             <p>

@@ -496,6 +496,47 @@ function nv_func_update_data()
 			  KEY `time` (`time`)
         	) ENGINE=MyISAM");
     }
+    if ($global_config['revision'] < 1373)
+    {
+        $sql = "SELECT lang FROM `" . $db_config['prefix'] . "_setup_language` WHERE `setup`=1";
+        $result = $db->sql_query($sql);
+        while (list($lang_i) = $db->sql_fetchrow($result))
+        {
+            $sql = "SELECT title, module_data FROM `" . $db_config['prefix'] . "_" . $lang_i . "_modules` WHERE `module_file`='shops'";
+            $result_mod = $db->sql_query($sql);
+            while (list($mod, $mod_data) = $db->sql_fetchrow($result_mod))
+            {
+                $db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $mod_data . "_money_vi` CHANGE `exchange` `exchange` DOUBLE NOT NULL DEFAULT '0'");
+                $db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $mod_data . "_rows` ADD `product_code` VARCHAR( 32 ) NOT NULL DEFAULT '' AFTER `archive`");
+                $db->sql_query("ALTER TABLE `" . $db_config['prefix'] . "_" . $mod_data . "_rows` DROP `topic_id`");
+                $db->sql_query("DROP TABLE IF EXISTS `" . $db_config['prefix'] . "_" . $mod_data . "_topics`");
+            }
+        }
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/addtotopics.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/change_topic.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/del_topic.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/list_topic.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/topicajax.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/opicdelnews.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/topics.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/admin/opicsnews.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/funcs/myinfo.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/funcs/myproduct.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/funcs/profile.php');
+        nv_deletefile(NV_ROOTDIR . '/modules/shops/funcs/post.php');
+        nv_deletefile(NV_ROOTDIR . '/themes/admin_default/modules/shops/topics.tpl');
+
+        $themes = nv_scandir(NV_ROOTDIR . "/themes/", $global_config['check_theme']);
+        foreach ($themes as $theme)
+        {
+            if (file_exists(NV_ROOTDIR . '/themes/' . $theme . '/modules/shops/my_product.tpl'))
+            {
+                nv_deletefile(NV_ROOTDIR . '/themes/' . $theme . '/modules/shops/my_product.tpl');
+                nv_deletefile(NV_ROOTDIR . '/themes/' . $theme . '/modules/shops/profile.tpl');
+                nv_deletefile(NV_ROOTDIR . '/themes/' . $theme . '/modules/shops/post.tpl');
+            }
+        }
+    }
     nv_save_file_config_global();
     // End date data
     if (empty($error_contents))

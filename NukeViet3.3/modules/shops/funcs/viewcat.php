@@ -80,7 +80,7 @@ else
     
     $data_content = GetDataIn( $result, $catid );
     $data_content['count'] = $all_page;
-    $pages = nv_products_page( $base_url, $all_page, $per_page, $page );
+    $pages = nv_news_page( $base_url, $all_page, $per_page, $page );
     $contents = call_user_func( $global_array_cat[$catid]['viewcat'], $data_content, $pages );
 }
 

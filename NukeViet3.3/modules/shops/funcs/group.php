@@ -52,7 +52,7 @@ if ( empty( $contents ) )
     
     $data_content = GetDataInGroup( $result, $groupid );
     $data_content['count'] = $all_page;
-    $pages = nv_products_page( $base_url, $all_page, $per_page, $page );
+    $pages = nv_news_page( $base_url, $all_page, $per_page, $page );
     
     $contents = call_user_func( $global_array_group[$groupid]['viewgroup'] , $data_content, $pages );
 }
