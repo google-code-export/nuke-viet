@@ -106,7 +106,7 @@ while ( $row = $db->sql_fetchrow( $result ) )
     }
 }
 
-$generate_page = x_generate_page( $base_url, $all_page, $per_page, $page );
+$generate_page = nv_news_page( $base_url, $all_page, $per_page, $page );
 $subs = array();
 if ( ! empty( $subcats ) )
 {

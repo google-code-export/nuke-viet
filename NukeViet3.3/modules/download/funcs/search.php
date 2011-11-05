@@ -103,7 +103,7 @@ if ( ! empty( $all_page ) )
         }
     
     }
-    $generate_page = x_generate_page( $base_url, $all_page, $per_page, $page );
+    $generate_page = nv_news_page( $base_url, $all_page, $per_page, $page );
     
     $contents = theme_viewcat_download( $array, $download_config, "", $generate_page );
 
