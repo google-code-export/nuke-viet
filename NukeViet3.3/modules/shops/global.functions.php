@@ -27,14 +27,8 @@ if (empty($pro_config['format_order_id']))
 
 // lay ty gia ngoai te
 global $money_config;
-$money_config = array();
 $sql = "SELECT `id` , `code` , `currency` , `exchange`  FROM `" . $db_config['prefix'] . "_" . $module_data . "_money_" . NV_LANG_DATA . "`";
-$result = $db->sql_query($sql);
-while (list($id_i, $code_i, $currency_i, $exchange_i) = $db->sql_fetchrow($result))
-{
-    $is_config = ($code_i == $pro_config['money_unit']) ? 1 : 0;
-    $money_config[$code_i] = array('code' => $code_i, 'currency' => $currency_i, 'exchange' => $exchange_i, "is_config" => $is_config);
-}
+$money_config = nv_db_cache($sql, 'code', $module_name);
 
 function nv_comment_module($id, $page)
 {
