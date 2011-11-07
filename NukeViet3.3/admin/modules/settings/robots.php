@@ -7,7 +7,7 @@
  * @Createdate 5/12/2010, 1:34
  */
 
-if (!defined('NV_IS_FILE_WEBTOOLS'))
+if (!defined('NV_IS_FILE_SETTINGS'))
     die('Stop!!!');
 
 $xtpl = new XTemplate("robots.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file);

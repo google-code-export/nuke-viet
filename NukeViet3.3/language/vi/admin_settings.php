@@ -1,22 +1,23 @@
 <?php
 
 /**
-* @Project NUKEVIET 3.0
-* @Author VINADES.,JSC (contact@vinades.vn)
-* @Copyright (C) 2010 VINADES.,JSC. All rights reserved
-* @Language Tiếng Việt
-* @Createdate Jul 06, 2011, 04:38:01 PM
-*/
+ * @Project NUKEVIET 3.0
+ * @Author VINADES.,JSC (contact@vinades.vn)
+ * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
+ * @Language Tiếng Việt
+ * @Createdate Jul 06, 2011, 04:38:01 PM
+ */
 
- if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
- die('Stop!!!');
+if (!defined('NV_ADMIN') or !defined('NV_MAINFILE'))
+{
+    die('Stop!!!');
 }
 
-$lang_translator['author'] ="VINADES.,JSC (contact@vinades.vn)";
-$lang_translator['createdate'] ="04/03/2010, 15:22";
-$lang_translator['copyright'] ="@Copyright (C) 2010 VINADES.,JSC. All rights reserved";
-$lang_translator['info'] ="";
-$lang_translator['langtype'] ="lang_module";
+$lang_translator['author'] = "VINADES.,JSC (contact@vinades.vn)";
+$lang_translator['createdate'] = "04/03/2010, 15:22";
+$lang_translator['copyright'] = "@Copyright (C) 2010 VINADES.,JSC. All rights reserved";
+$lang_translator['info'] = "";
+$lang_translator['langtype'] = "lang_module";
 
 $lang_module['pagetitle'] = "Cấu hình tag \"title\"";
 $lang_module['pagetitle2'] = "Phương án hiển thị tag \"title\"";
@@ -195,4 +196,11 @@ $lang_module['closed_site_2'] = "Đóng cửa site Người điều hành chung 
 $lang_module['closed_site_3'] = "Đóng cửa site Tất cả admin truy cập";
 $lang_module['getloadavg'] = "Kiểm tra trạng thái máy chủ, nếu > 80% sẽ thông báo \"Server too busy. Please try again later\"";
 
+$lang_module['robots'] = "Cấu hình file robots.txt";
+$lang_module['robots_number'] = "Số thứ tự";
+$lang_module['robots_filename'] = "Tên file";
+$lang_module['robots_type'] = "Chế độ";
+$lang_module['robots_type_0'] = "Cấm truy cập";
+$lang_module['robots_type_1'] = "Không hiển thị trong file robots.txt";
+$lang_module['robots_error_writable'] = "Lỗi: Hệ thống không ghi được file robots.txt";
 ?>

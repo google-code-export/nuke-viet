@@ -116,12 +116,4 @@ $lang_module['config'] = "Cấu hình";
 $lang_module['autocheckupdate'] = "Bật tính năng kiểm tra phiên bản tự động";
 $lang_module['updatetime'] = "Thời gian kiểm lại phiên bản sau";
 $lang_module['clearip_logs'] = "Xóa ip logs";
-
-$lang_module['robots'] = "Quản lý file robots.txt";
-$lang_module['robots_number'] = "Số thứ tự";
-$lang_module['robots_filename'] = "Tên file";
-$lang_module['robots_type'] = "Chế độ";
-$lang_module['robots_type_0'] = "Cấm truy cập";
-$lang_module['robots_type_1'] = "Không hiển thị trong file robots.txt";
-$lang_module['robots_error_writable'] = "Lỗi: Hệ thống không ghi được file robots.txt";
 ?>
