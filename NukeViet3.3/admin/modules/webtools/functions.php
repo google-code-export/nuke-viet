@@ -19,19 +19,6 @@ $submenu['config'] = $lang_module['config'];
 
 if ( $module_name == "webtools" )
 {
-	if ( $global_config['autocheckupdate'] )
-    {
-        $new_version = nv_geVersion( $global_config['autoupdatetime'] * 3600 );
-    }
-    elseif ( file_exists( NV_ROOTDIR . '/' . NV_CACHEDIR . '/nukeviet.version.' . NV_LANG_INTERFACE . '.xml' ) )
-    {
-        $new_version = simplexml_load_file( NV_ROOTDIR . '/' . NV_CACHEDIR . '/nukeviet.version.' . NV_LANG_INTERFACE . '.xml' );
-    }
-    else
-    {
-        $new_version = array();
-    }
-    
     $allow_func = array( 
         'main', 'clearsystem', 'sitemapPing', 'checkupdate', 'siteDiagnostic', 'keywordRank', 'config', 'robots'
     );
