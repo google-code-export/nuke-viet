@@ -1,9 +1,152 @@
-var ddsmoothmenu={transition:{overtime:300,outtime:300},shadow:{enable:!0,offsetx:5,offsety:5},showhidedelay:{showdelay:100,hidedelay:200},detectwebkit:navigator.userAgent.toLowerCase().indexOf("applewebkit")!=-1,detectie6:document.all&&!window.XMLHttpRequest,css3support:window.msPerformance||!document.all&&document.querySelector,getajaxmenu:function(a,b){var d=a("#"+b.contentsource[0]);d.html("Loading Menu...");a.ajax({url:b.contentsource[1],async:!0,error:function(a){d.html("Error fetching content. Server Response: "+
-a.responseText)},success:function(e){d.html(e);ddsmoothmenu.buildmenu(a,b)}})},buildmenu:function(a,b){var d=ddsmoothmenu,e=a("#"+b.mainmenuid+">ul");e.parent().get(0).className=b.classname||"ddsmoothmenu";var h=e.find("ul").parent();h.hover(function(){a(this).children("a:eq(0)").addClass("selected")},function(){a(this).children("a:eq(0)").removeClass("selected")});h.each(function(e){var g=a(this).css({zIndex:b.zIndex-e}),f=a(this).find("ul:eq(0)").css({display:"block"});f.data("timers",{});this._dimensions=
-{w:this.offsetWidth,h:this.offsetHeight,subulw:f.outerWidth(),subulh:f.outerHeight()};this.istopheader=g.parents("ul").length==1?!0:!1;f.css({top:this.istopheader&&b.orientation!="v"?this._dimensions.h+"px":0});g.children("a:eq(0)").css(this.istopheader?{paddingRight:b.arrowimages.down[2]}:{}).append('<img src="'+(this.istopheader&&b.orientation!="v"?b.arrowimages.down[1]:b.arrowimages.right[1])+'" class="'+(this.istopheader&&b.orientation!="v"?b.arrowimages.down[0]:b.arrowimages.right[0])+'" style="border:0;" />');
-if(d.shadow.enable&&!d.css3support)this._shadowoffset={x:this.istopheader?f.offset().left+d.shadow.offsetx:this._dimensions.w,y:this.istopheader?f.offset().top+d.shadow.offsety:g.position().top},$parentshadow=this.istopheader?a(document.body):g.parents("li:eq(0)").get(0).$shadow,this.$shadow=a('<div class="ddshadow'+(this.istopheader?" toplevelshadow":"")+'"></div>').prependTo($parentshadow).css({left:this._shadowoffset.x+"px",top:this._shadowoffset.y+"px"});g.hover(function(){var c=g.get(0);clearTimeout(f.data("timers").hidetimer);
-f.data("timers").showtimer=setTimeout(function(){c._offsets={left:g.offset().left,top:g.offset().top};var e=c.istopheader&&b.orientation!="v"?0:c._dimensions.w;e=c._offsets.left+e+c._dimensions.subulw>a(window).width()?c.istopheader&&b.orientation!="v"?-c._dimensions.subulw+c._dimensions.w:-c._dimensions.w:e;if(f.queue().length<=1&&(f.css({left:e+"px",width:c._dimensions.subulw+"px"}).animate({height:"show",opacity:"show"},ddsmoothmenu.transition.overtime),d.shadow.enable&&!d.css3support)){e=c.istopheader?
-f.offset().left+ddsmoothmenu.shadow.offsetx:e;var h=c.istopheader?f.offset().top+d.shadow.offsety:c._shadowoffset.y;!c.istopheader&&ddsmoothmenu.detectwebkit&&c.$shadow.css({opacity:1});c.$shadow.css({overflow:"",width:c._dimensions.subulw+"px",left:e+"px",top:h+"px"}).animate({height:c._dimensions.subulh+"px"},ddsmoothmenu.transition.overtime)}},ddsmoothmenu.showhidedelay.showdelay)},function(){var a=g.get(0);clearTimeout(f.data("timers").showtimer);f.data("timers").hidetimer=setTimeout(function(){f.animate({height:"hide",
-opacity:"hide"},ddsmoothmenu.transition.outtime);d.shadow.enable&&!d.css3support&&(ddsmoothmenu.detectwebkit&&a.$shadow.children("div:eq(0)").css({opacity:0}),a.$shadow.css({overflow:"hidden"}).animate({height:0},ddsmoothmenu.transition.outtime))},ddsmoothmenu.showhidedelay.hidedelay)})});if(d.shadow.enable&&d.css3support){h=a("#"+b.mainmenuid+" ul li ul");for(var k=parseInt(d.shadow.offsetx)+"px "+parseInt(d.shadow.offsety)+"px 5px #aaa",j=["boxShadow","MozBoxShadow","WebkitBoxShadow","MsBoxShadow"],
-i=0;i<j.length;i++)h.css(j[i],k)}e.find("ul").css({display:"none",visibility:"visible"})},init:function(a){if(typeof a.customtheme=="object"&&a.customtheme.length==2){var b="#"+a.mainmenuid;document.write('<style type="text/css">\n'+(a.orientation=="v"?b:b+", "+b)+" ul li a {background:"+a.customtheme[0]+";}\n"+b+" ul li a:hover {background:"+a.customtheme[1]+";}\n</style>")}this.shadow.enable=document.all&&!window.XMLHttpRequest?!1:this.shadow.enable;jQuery(document).ready(function(b){typeof a.contentsource==
-"object"?ddsmoothmenu.getajaxmenu(b,a):ddsmoothmenu.buildmenu(b,a)})}};
+//** Smooth Navigational Menu- By Dynamic Drive DHTML code library: http://www.dynamicdrive.com
+//** Script Download/ instructions page: http://www.dynamicdrive.com/dynamicindex1/ddlevelsmenu/
+//** Menu created: Nov 12, 2008
+
+//** Dec 12th, 08" (v1.01): Fixed Shadow issue when multiple LIs within the same UL (level) contain sub menus: http://www.dynamicdrive.com/forums/showthread.php?t=39177&highlight=smooth
+
+//** Feb 11th, 09" (v1.02): The currently active main menu item (LI A) now gets a CSS class of ".selected", including sub menu items.
+
+//** May 1st, 09" (v1.3):
+//** 1) Now supports vertical (side bar) menu mode- set "orientation" to 'v'
+//** 2) In IE6, shadows are now always disabled
+
+//** July 27th, 09" (v1.31): Fixed bug so shadows can be disabled if desired.
+//** Feb 2nd, 10" (v1.4): Adds ability to specify delay before sub menus appear and disappear, respectively. See showhidedelay variable below
+
+//** Dec 17th, 10" (v1.5): Updated menu shadow to use CSS3 box shadows when the browser is FF3.5+, IE9+, Opera9.5+, or Safari3+/Chrome. Only .js file changed.
+
+var ddsmoothmenu={
+
+//Specify full URL to down and right arrow images (23 is padding-right added to top level LIs with drop downs):
+transition: {overtime:300, outtime:300}, //duration of slide in/ out animation, in milliseconds
+shadow: {enable:true, offsetx:5, offsety:5}, //enable shadow?
+showhidedelay: {showdelay: 100, hidedelay: 200}, //set delay in milliseconds before sub menus appear and disappear, respectively
+
+///////Stop configuring beyond here///////////////////////////
+
+detectwebkit: navigator.userAgent.toLowerCase().indexOf("applewebkit")!=-1, //detect WebKit browsers (Safari, Chrome etc)
+detectie6: document.all && !window.XMLHttpRequest,
+css3support: window.msPerformance || (!document.all && document.querySelector), //detect browsers that support CSS3 box shadows (ie9+ or FF3.5+, Safari3+, Chrome etc)
+
+getajaxmenu:function($, setting){ //function to fetch external page containing the panel DIVs
+	var $menucontainer=$('#'+setting.contentsource[0]) //reference empty div on page that will hold menu
+	$menucontainer.html("Loading Menu...")
+	$.ajax({
+		url: setting.contentsource[1], //path to external menu file
+		async: true,
+		error:function(ajaxrequest){
+			$menucontainer.html('Error fetching content. Server Response: '+ajaxrequest.responseText)
+		},
+		success:function(content){
+			$menucontainer.html(content)
+			ddsmoothmenu.buildmenu($, setting)
+		}
+	})
+},
+
+
+buildmenu:function($, setting){
+	var smoothmenu=ddsmoothmenu
+	var $mainmenu=$("#"+setting.mainmenuid+">ul") //reference main menu UL
+	$mainmenu.parent().get(0).className=setting.classname || "ddsmoothmenu"
+	var $headers=$mainmenu.find("ul").parent()
+	$headers.hover(
+		function(e){
+			$(this).children('a:eq(0)').addClass('selected')
+		},
+		function(e){
+			$(this).children('a:eq(0)').removeClass('selected')
+		}
+	)
+	$headers.each(function(i){ //loop through each LI header
+		var $curobj=$(this).css({zIndex: setting.zIndex-i}) //reference current LI header
+		var $subul=$(this).find('ul:eq(0)').css({display:'block'})
+		$subul.data('timers', {})
+		this._dimensions={w:this.offsetWidth, h:this.offsetHeight, subulw:$subul.outerWidth(), subulh:$subul.outerHeight()}
+		this.istopheader=$curobj.parents("ul").length==1? true : false //is top level header?
+		$subul.css({top:this.istopheader && setting.orientation!='v'? this._dimensions.h+"px" : 0})
+		$curobj.children("a:eq(0)").css(this.istopheader? {paddingRight: setting.arrowimages.down[2]} : {}).append( //add arrow images
+			'<img src="'+ (this.istopheader && setting.orientation!='v'? setting.arrowimages.down[1] : setting.arrowimages.right[1])
+			+'" class="' + (this.istopheader && setting.orientation!='v'? setting.arrowimages.down[0] : setting.arrowimages.right[0])
+			+ '" style="border:0;" />'
+		)
+		if (smoothmenu.shadow.enable && !smoothmenu.css3support){ //if shadows enabled and browser doesn't support CSS3 box shadows
+			this._shadowoffset={x:(this.istopheader?$subul.offset().left+smoothmenu.shadow.offsetx : this._dimensions.w), y:(this.istopheader? $subul.offset().top+smoothmenu.shadow.offsety : $curobj.position().top)} //store this shadow's offsets
+			if (this.istopheader)
+				$parentshadow=$(document.body)
+			else{
+				var $parentLi=$curobj.parents("li:eq(0)")
+				$parentshadow=$parentLi.get(0).$shadow
+			}
+			this.$shadow=$('<div class="ddshadow'+(this.istopheader? ' toplevelshadow' : '')+'"></div>').prependTo($parentshadow).css({left:this._shadowoffset.x+'px', top:this._shadowoffset.y+'px'})  //insert shadow DIV and set it to parent node for the next shadow div
+		}
+		$curobj.hover(
+			function(e){
+				var $targetul=$subul //reference UL to reveal
+				var header=$curobj.get(0) //reference header LI as DOM object
+				clearTimeout($targetul.data('timers').hidetimer)
+				$targetul.data('timers').showtimer=setTimeout(function(){
+					header._offsets={left:$curobj.offset().left, top:$curobj.offset().top}
+					var menuleft=header.istopheader && setting.orientation!='v'? 0 : header._dimensions.w
+					menuleft=(header._offsets.left+menuleft+header._dimensions.subulw>$(window).width())? (header.istopheader && setting.orientation!='v'? -header._dimensions.subulw+header._dimensions.w : -header._dimensions.w) : menuleft //calculate this sub menu's offsets from its parent
+					if ($targetul.queue().length<=1){ //if 1 or less queued animations
+						$targetul.css({left:menuleft+"px", width:header._dimensions.subulw+'px'}).animate({height:'show',opacity:'show'}, ddsmoothmenu.transition.overtime)
+						if (smoothmenu.shadow.enable && !smoothmenu.css3support){
+							var shadowleft=header.istopheader? $targetul.offset().left+ddsmoothmenu.shadow.offsetx : menuleft
+							var shadowtop=header.istopheader?$targetul.offset().top+smoothmenu.shadow.offsety : header._shadowoffset.y
+							if (!header.istopheader && ddsmoothmenu.detectwebkit){ //in WebKit browsers, restore shadow's opacity to full
+								header.$shadow.css({opacity:1})
+							}
+							header.$shadow.css({overflow:'', width:header._dimensions.subulw+'px', left:shadowleft+'px', top:shadowtop+'px'}).animate({height:header._dimensions.subulh+'px'}, ddsmoothmenu.transition.overtime)
+						}
+					}
+				}, ddsmoothmenu.showhidedelay.showdelay)
+			},
+			function(e){
+				var $targetul=$subul
+				var header=$curobj.get(0)
+				clearTimeout($targetul.data('timers').showtimer)
+				$targetul.data('timers').hidetimer=setTimeout(function(){
+					$targetul.animate({height:'hide', opacity:'hide'}, ddsmoothmenu.transition.outtime)
+					if (smoothmenu.shadow.enable && !smoothmenu.css3support){
+						if (ddsmoothmenu.detectwebkit){ //in WebKit browsers, set first child shadow's opacity to 0, as "overflow:hidden" doesn't work in them
+							header.$shadow.children('div:eq(0)').css({opacity:0})
+						}
+						header.$shadow.css({overflow:'hidden'}).animate({height:0}, ddsmoothmenu.transition.outtime)
+					}
+				}, ddsmoothmenu.showhidedelay.hidedelay)
+			}
+		) //end hover
+	}) //end $headers.each()
+	if (smoothmenu.shadow.enable && smoothmenu.css3support){ //if shadows enabled and browser supports CSS3 shadows
+		var $toplevelul=$('#'+setting.mainmenuid+' ul li ul')
+		var css3shadow=parseInt(smoothmenu.shadow.offsetx)+"px "+parseInt(smoothmenu.shadow.offsety)+"px 5px #aaa" //construct CSS3 box-shadow value
+		var shadowprop=["boxShadow", "MozBoxShadow", "WebkitBoxShadow", "MsBoxShadow"] //possible vendor specific CSS3 shadow properties
+		for (var i=0; i<shadowprop.length; i++){
+			$toplevelul.css(shadowprop[i], css3shadow)
+		}
+	}
+	$mainmenu.find("ul").css({display:'none', visibility:'visible'})
+},
+
+init:function(setting){
+	if (typeof setting.customtheme=="object" && setting.customtheme.length==2){ //override default menu colors (default/hover) with custom set?
+		var mainmenuid='#'+setting.mainmenuid
+		var mainselector=(setting.orientation=="v")? mainmenuid : mainmenuid+', '+mainmenuid
+		document.write('<style type="text/css">\n'
+			+mainselector+' ul li a {background:'+setting.customtheme[0]+';}\n'
+			+mainmenuid+' ul li a:hover {background:'+setting.customtheme[1]+';}\n'
+		+'</style>')
+	}
+	this.shadow.enable=(document.all && !window.XMLHttpRequest)? false : this.shadow.enable //in IE6, always disable shadow
+	jQuery(document).ready(function($){ //ajax menu?
+		if (typeof setting.contentsource=="object"){ //if external ajax menu
+			ddsmoothmenu.getajaxmenu($, setting)
+		}
+		else{ //else if markup menu
+			ddsmoothmenu.buildmenu($, setting)
+		}
+	})
+}
+
+} //end ddsmoothmenu variable

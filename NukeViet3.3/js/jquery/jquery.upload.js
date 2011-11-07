@@ -1,4 +1,133 @@
-(function(b){function m(e){return b.map(n(e),function(d){return'<input type="hidden" name="'+d.name+'" value="'+d.value+'"/>'}).join("")}function n(e){function d(c,f){a.push({name:c,value:f})}if(b.isArray(e))return e;var a=[];if(typeof e==="object")b.each(e,function(c){b.isArray(this)?b.each(this,function(){d(c,this)}):d(c,b.isFunction(this)?this():this)});else typeof e==="string"&&b.each(e.split("&"),function(){var c=b.map(this.split("="),function(f){return decodeURIComponent(f.replace(/\+/g," "))});
-d(c[0],c[1])});return a}function o(e,d){var a;a=b(e).contents().get(0);if(b.isXMLDoc(a)||a.XMLDocument)return a.XMLDocument||a;a=b(a).find("body").html();switch(d){case "xml":a=a;if(window.DOMParser)a=(new DOMParser).parseFromString(a,"application/xml");else{var c=new ActiveXObject("Microsoft.XMLDOM");c.async=false;c.loadXML(a);a=c}break;case "json":a=window.eval("("+a+")")}return a}var p=0;b.fn.upload=function(e,d,a,c){var f=this,g,j,h;h="jquery_upload"+ ++p;var k=b('<iframe name="'+h+'" style="position:absolute;top:-9999px" />').appendTo("body"),
-i='<form target="'+h+'" method="post" enctype="multipart/form-data" />';if(b.isFunction(d)){c=a;a=d;d={}}j=b("input:checkbox",this);h=b("input:checked",this);i=f.wrapAll(i).parent("form").attr("action",e);j.removeAttr("checked");h.attr("checked",true);g=(g=m(d))?b(g).appendTo(i):null;i.submit(function(){k.load(function(){var l=o(this,c),q=b("input:checked",f);i.after(f).remove();j.removeAttr("checked");q.attr("checked",true);g&&g.remove();setTimeout(function(){k.remove();c==="script"&&b.globalEval(l);
-a&&a.call(f,l)},0)})}).submit();return this}})(jQuery);
+/*
+ * jQuery.upload v1.0.2
+ *
+ * Copyright (c) 2010 lagos
+ * Dual licensed under the MIT and GPL licenses.
+ *
+ * http://lagoscript.org
+ */
+(function($) {
+
+	var uuid = 0;
+
+	$.fn.upload = function(url, data, callback, type) {
+		var self = this, inputs, checkbox, checked,
+			iframeName = 'jquery_upload' + ++uuid,
+			iframe = $('<iframe name="' + iframeName + '" style="position:absolute;top:-9999px" />').appendTo('body'),
+			form = '<form target="' + iframeName + '" method="post" enctype="multipart/form-data" />';
+
+		if ($.isFunction(data)) {
+			type = callback;
+			callback = data;
+			data = {};
+		}
+
+		checkbox = $('input:checkbox', this);
+		checked = $('input:checked', this);
+		form = self.wrapAll(form).parent('form').attr('action', url);
+
+		// Make sure radios and checkboxes keep original values
+		// (IE resets checkd attributes when appending)
+		checkbox.removeAttr('checked');
+		checked.attr('checked', true);
+
+		inputs = createInputs(data);
+		inputs = inputs ? $(inputs).appendTo(form) : null;
+
+		form.submit(function() {
+			iframe.load(function() {
+				var data = handleData(this, type),
+					checked = $('input:checked', self);
+
+				form.after(self).remove();
+				checkbox.removeAttr('checked');
+				checked.attr('checked', true);
+				if (inputs) {
+					inputs.remove();
+				}
+
+				setTimeout(function() {
+					iframe.remove();
+					if (type === 'script') {
+						$.globalEval(data);
+					}
+					if (callback) {
+						callback.call(self, data);
+					}
+				}, 0);
+			});
+		}).submit();
+
+		return this;
+	};
+
+	function createInputs(data) {
+		return $.map(param(data), function(param) {
+			return '<input type="hidden" name="' + param.name + '" value="' + param.value + '"/>';
+		}).join('');
+	}
+
+	function param(data) {
+		if ($.isArray(data)) {
+			return data;
+		}
+		var params = [];
+
+		function add(name, value) {
+			params.push({name:name, value:value});
+		}
+
+		if (typeof data === 'object') {
+			$.each(data, function(name) {
+				if ($.isArray(this)) {
+					$.each(this, function() {
+						add(name, this);
+					});
+				} else {
+					add(name, $.isFunction(this) ? this() : this);
+				}
+			});
+		} else if (typeof data === 'string') {
+			$.each(data.split('&'), function() {
+				var param = $.map(this.split('='), function(v) {
+					return decodeURIComponent(v.replace(/\+/g, ' '));
+				});
+
+				add(param[0], param[1]);
+			});
+		}
+
+		return params;
+	}
+
+	function handleData(iframe, type) {
+		var data, contents = $(iframe).contents().get(0);
+
+		if ($.isXMLDoc(contents) || contents.XMLDocument) {
+			return contents.XMLDocument || contents;
+		}
+		data = $(contents).find('body').html();
+
+		switch (type) {
+			case 'xml':
+				data = parseXml(data);
+				break;
+			case 'json':
+				data = window.eval('(' + data + ')');
+				break;
+		}
+		return data;
+	}
+
+	function parseXml(text) {
+		if (window.DOMParser) {
+			return new DOMParser().parseFromString(text, 'application/xml');
+		} else {
+			var xml = new ActiveXObject('Microsoft.XMLDOM');
+			xml.async = false;
+			xml.loadXML(text);
+			return xml;
+		}
+	}
+
+})(jQuery);

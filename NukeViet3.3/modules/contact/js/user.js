@@ -1,2 +1,61 @@
-function sendcontact(c){var a=document.getElementById("fname"),d=document.getElementById("femail_iavim"),e=document.getElementById("ftitle"),f=document.getElementById("fcon"),b=document.getElementById("btsend");document.getElementById("fcontact");b.disabled=!0;if(a.value.length<2)return alert(nv_fullname),b.disabled=!1,a.focus(),!1;if(!nv_mailfilter.test(d.value))return alert(nv_email),b.disabled=!1,d.focus(),!1;if(e.value.length<2)return alert(nv_title),b.disabled=!1,e.focus(),!1;if(f.value.length<
-2)return alert(nv_content),b.disabled=!1,f.focus(),!1;a=document.getElementById("fcode_iavim");if(a.value.length!=c||!nv_namecheck.test(a.value))return alert(nv_code),nv_change_captcha("vimg","fcode_iavim"),b.disabled=!1,a.focus(),!1;return!0}function nv_ismaxlength(c,a){if(c.value.length<a)c.value=c.value.substring(0,a)};
+function sendcontact( num )
+{
+   var sendname = document.getElementById( 'fname' );
+   var sendemail = document.getElementById( 'femail_iavim' );
+   var sendtitle = document.getElementById( 'ftitle' );
+   var sendcontent = document.getElementById( 'fcon' );
+   var bt = document.getElementById( 'btsend' );
+   var fcon = document.getElementById( 'fcontact' );
+
+   bt.disabled = true;
+   if( sendname.value.length < 2 )
+   {
+      alert( nv_fullname );
+      bt.disabled = false;
+      sendname.focus();
+      return false;
+   }
+   if( ! nv_mailfilter.test( sendemail.value ) )
+   {
+      alert( nv_email );
+      bt.disabled = false;
+      sendemail.focus();
+      return false;
+   }
+   if( sendtitle.value.length < 2 )
+   {
+      alert( nv_title );
+      bt.disabled = false;
+      sendtitle.focus();
+      return false;
+   }
+   if( sendcontent.value.length < 2 )
+   {
+      alert( nv_content );
+      bt.disabled = false;
+      sendcontent.focus();
+      return false;
+   }
+
+   var seccode = document.getElementById( 'fcode_iavim' );
+   if( ( seccode.value.length != num ) || ! nv_namecheck.test( seccode.value ) )
+   {
+      alert( nv_code );
+      nv_change_captcha( 'vimg', 'fcode_iavim' );
+      bt.disabled = false;
+      seccode.focus();
+      return false;
+   }
+   return true;
+
+}
+
+//  ---------------------------------------
+
+function  nv_ismaxlength ( fid, length )
+{
+   if ( fid.value.length < length )
+   {
+      fid.value = fid.value.substring( 0, length );
+   }
+}
