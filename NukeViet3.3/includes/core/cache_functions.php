@@ -46,6 +46,9 @@ function nv_delete_all_cache()
 /**
  * nv_del_cache_module()
  *
+ * @param mixed $module_name
+ * @param mixed $lang
+ * 
  * @return void
  */
 function nv_del_moduleCache($module_name, $lang = NV_LANG_DATA)
@@ -91,6 +94,9 @@ function nv_set_cache($filename, $content)
  * nv_db_cache()
  *
  * @param mixed $sql
+ * @param mixed $key
+ * @param mixed $module_name
+ * @param mixed $lang
  * @return
  */
 function nv_db_cache($sql, $key = '', $modname = '', $lang = NV_LANG_DATA)
