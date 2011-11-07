@@ -189,73 +189,39 @@ var comment_subject_defaul = '{ROW.comment_subject}';
     </div>
 <input type="hidden" name="comment_fid" id="comment_fid" value="{ROW.id}" />
 <!-- BEGIN: is_comment_allow -->
-    <div id="form_comment" class="comment-form" style="display:none">
+<div id="form_comment" class="comment-form" style="display:none">
+   <form id="commentForm" name="commentForm" action="{FORM_ACTION}" method="post">
         <div class="box-border content-box">
-			<p><input id="comment_subject" name="comment_subject" type="text" class="input input-c" onblur="if(this.value=='')this.value='{LANG.file_comment_subject}';" onclick="if(this.value=='{LANG.file_comment_subject}')this.value='';" value="{LANG.file_comment_subject}" /></p>
-			<div class="clear"></div>
             <div class="box clearfix">
-				<input id="comment_uname" name="comment_uname" type="text" class="input input-c fl" onblur="if(this.value=='')this.value='{ROW.comment_uemail}';" onclick="if(this.value=='{ROW.comment_uemail}')this.value='';" value="{ROW.comment_uemail}" maxlength="100"{ROW.disabled}/>
-                <input id="comment_uemail" name="comment_uemail" type="text" class="input input-c fr" onblur="if(this.value=='')this.value='{ROW.comment_uname}';" onclick="if(this.value=='{ROW.comment_uname}')this.value='';" value="{ROW.comment_uname}" maxlength="100"{ROW.disabled}/> &nbsp;
+				<input id="comment_uname" name="comment_uname" type="text" class="input input-c fl" onblur="if(this.value=='')this.value='{ROW.comment_uname}';" onclick="if(this.value=='{ROW.comment_uname}')this.value='';" value="{ROW.comment_uname}" maxlength="100"{ROW.disabled}/>
+                <input id="comment_uemail_iavim" name="comment_uemail" type="text" class="input input-c fr" onblur="if(this.value=='')this.value='{ROW.comment_uemail}';" onclick="if(this.value=='{ROW.comment_uemail}')this.value='';" value="{ROW.comment_uemail}" maxlength="100"{ROW.disabled}/> &nbsp;
             </div>
+			<p>{LANG.file_comment_subject}: <input id="comment_subject" name="comment_subject" type="text" class="input input-c" value="{ROW.comment_subject}" /></p>
             <p>
-                <textarea rows="1" cols="1" name="comment_content" id="comment_content" class="input typer box2"  onblur="if(this.value=='')this.value='{LANG.file_comment_content}';" onclick="if(this.value=='{LANG.file_comment_content}')this.value='';" value="{LANG.file_comment_content}"></textarea>
+            	{LANG.file_comment_content}:
+                <textarea rows="1" cols="1" name="comment_content" id="comment_content" class="input typer box2" value=""></textarea>
             </p>
             <p>
                 {LANG.file_comment_captcha}: &nbsp; <img  style="vertical-align: middle" height="22" id="vimg" src="{NV_BASE_SITEURL}index.php?scaptcha=captcha" title="{GLANG.captcha}" alt="{GLANG.captcha}" />
 				<img style="vertical-align: middle" alt="{GLANG.captcharefresh}" title="{GLANG.captcharefresh}" src="{NV_BASE_SITEURL}images/refresh.png" width="16" height="16" class="refresh" onclick="nv_change_captcha('vimg','comment_seccode_iavim');" />
-                &nbsp; <input type="text" class="input capcha" name="comment_seccode" id="comment_seccode" maxlength="{CAPTCHA_MAXLENGTH}"/>&nbsp; <input type="submit" class="button" id="comment_submit" name="comment_submit" type="submit" value="{LANG.file_comment_send}" />
+                &nbsp; <input type="text" class="input capcha" name="comment_seccode" id="comment_seccode_iavim" maxlength="{CAPTCHA_MAXLENGTH}"/>&nbsp; <input type="submit" class="button" id="comment_submit" name="comment_submit" type="submit" value="{LANG.file_comment_send}" />
             </p>
         </div>
-    </div>
+    </form>
+</div>
 <!-- END: is_comment_allow -->
 </div>
 <!-- END: comment_allow2 -->
+<script type="text/javascript">nv_list_comments();</script>
 <script type="text/javascript">
-	$("#comment_submit").click(function(){
-   		var fid = $('#comment_fid').val();		
-		var yoursubject = $("#comment_subject").val();
-		if (yoursubject=="{LANG.file_comment_subject}"){
-			alert("{LANG.comment_error4}");
-			$("#comment_subject").focus();
-			return false;
-		}
-		var yourname = $("#comment_uname").val();
-		var yourmail = $("#comment_uemail").val();
-		var comment_body = $("#comment_content").val();
-		if (comment_body=="{LANG.comment_error5}"){
-			alert("{LANG.comment_error5}");
-			$("#comment_content").focus();
-			return false;
-		}
-		var humand_verification = $("#comment_seccode").val();
-		$.ajax({	
-			type: 'POST',
-			url: nv_siteroot + 'index.php?' + nv_lang_variable + '=' + nv_sitelang + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=getcomment',
-			data: 'subject='+yoursubject+'&uname='+yourname+'&uemail='+ yourmail + '&content='+comment_body+'&seccode='+humand_verification+'&id='+fid+'&ajax=1',
-			success: function(data){
-				alert(data);
-				nv_change_captcha('vimg','comment_seccode_iavim');
-				$("#form_comment").slideUp();
-			}
-		});
-	})/*
-	$("#comment_subject,#comment_uemail,#comment_uname,#comment_content").click(function(){
-		$(this).val("");
-	});*/
 	$("#showform").toggle(function(){
-		$("#list_comments").slideUp();
 		$("#form_comment").slideDown();
 	}, function(){
-		$("#list_comments").slideUp();
 		$("#form_comment").slideUp();
 	});
-   	var fid = $('#comment_fid').val();
-	$("#list_comments").load(nv_siteroot + 'index.php?' + nv_lang_variable + '=' + nv_sitelang + '&' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=getcomment&list_comment=' + fid);
 	$("#show-comments").toggle(function(){
-		$("#form_comment").slideUp();
 		$("#list_comments").slideUp();
 	}, function(){
-		$("#form_comment").slideUp();
 		$("#list_comments").slideDown();
 	})
 </script>

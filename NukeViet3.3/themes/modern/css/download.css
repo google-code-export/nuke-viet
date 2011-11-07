@@ -161,7 +161,7 @@ ul.spec li {
 .upload-form .input {
 	width:300px;
 }
-.upload-form .error {
+.upload-form .error, .comment-form .error{
 	display: block;
 	font-size: 11px;
 	color: #FF0000;
