@@ -20,11 +20,11 @@ class CKEditor
 	/**
 	 * The version of %CKEditor.
 	 */
-	const version = '3.6.2';
+	const version = '3.6.3 (SVN)';
 	/**
 	 * A constant string unique for each release of %CKEditor.
 	 */
-	const timestamp = 'B8DJ5M3';
+	const timestamp = 'BA7L5MR';
 
 	/**
 	 * URL to the %CKEditor installation directory (absolute or relative to document root).
@@ -78,7 +78,7 @@ class CKEditor
 	 * A string indicating the creation date of %CKEditor.
 	 * Do not change it unless you want to force browsers to not use previously cached version of %CKEditor.
 	 */
-	public $timestamp = "B8DJ5M3";
+	public $timestamp = "BA7L5MR";
 	/**
 	 * An array that holds event listeners.
 	 */
@@ -382,7 +382,7 @@ class CKEditor
 				if (empty($handlers)) {
 					continue;
 				}
-				else if (sizeof($handlers) == 1) {
+				else if (count($handlers) == 1) {
 					$_config['on'][$eventName] = '@@'.$handlers[0];
 				}
 				else {
@@ -523,7 +523,7 @@ class CKEditor
 	 */
 	private function jsEncode($val)
 	{
-		if ($val === null) {
+		if (is_null($val)) {
 			return 'null';
 		}
 		if (is_bool($val)) {
@@ -536,7 +536,7 @@ class CKEditor
 			return str_replace(',', '.', $val);
 		}
 		if (is_array($val) || is_object($val)) {
-			if (is_array($val) && (array_keys($val) === range(0,sizeof($val)-1))) {
+			if (is_array($val) && (array_keys($val) === range(0,count($val)-1))) {
 				return '[' . implode(',', array_map(array($this, 'jsEncode'), $val)) . ']';
 			}
 			$temp = array();
