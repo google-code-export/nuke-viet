@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (!defined( 'NV_MAINFILE' )) {
@@ -20,6 +20,6 @@ $lang_translator['langtype'] ="lang_module";
 
 $lang_module['add_time'] = "Addition time";
 $lang_module['edit_time'] = "Last addition";
-$lang_module['not_found'] = "Sorry! Does not exist catagories";
+$lang_module['not_found'] = "Sorry! Does not exist categories";
 
 ?>

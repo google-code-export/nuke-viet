@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -22,7 +22,7 @@ $lang_module['edit_title'] = "Preview";
 $lang_module['add_row_title'] = "Add department";
 $lang_module['list_row_title'] = "List of departments";
 $lang_module['err_row_title'] = "Not exists";
-$lang_module['part_row_title'] = "Department name";
+$lang_module['part_row_title'] = "Department";
 $lang_module['email_row_title'] = "Email";
 $lang_module['note_row_title'] = "Note";
 $lang_module['bt_save_row_title'] = "Save";
@@ -38,12 +38,12 @@ $lang_module['tt2_row_title'] = "Replied";
 $lang_module['quesion_row_title'] = "Do you want to delete";
 $lang_module['send_suc_send_title'] = "Your message have been sent successfully";
 $lang_module['send_err_send_title'] = "failed to send mail";
-$lang_module['send_title'] = "send feedback";
+$lang_module['send_title'] = "Reply";
 $lang_module['back_title'] = "Back";
 $lang_module['infor_user_send_title'] = "Sender information";
 $lang_module['reply_user_send_title'] = "Reply to";
 $lang_module['reply_user_title'] = "Subject";
-$lang_module['name_user_send_title'] = "Sender name";
+$lang_module['name_user_send_title'] = "Sender";
 $lang_module['title_send_title'] = "Subject";
 $lang_module['status_send_title'] = "Status";
 $lang_module['content'] = "Content";

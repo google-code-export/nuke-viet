@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (!defined( 'NV_MAINFILE' )) {
@@ -198,10 +198,10 @@ $lang_module['email_is_exists'] = "Your OpenID's email was used.<br />Please cho
 $lang_module['error_update_users_info'] = "Error: System cannot update your user infomation, please contact site admin.";
 $lang_module['account_active_log'] = "Activate account";
 $lang_module['openid_add'] = "Add a new OpenID";
-
-$lang_module['in_group'] = "Register Group";
-$lang_module['no_in_group'] = "You have not registered groups";
-$lang_module['no_act'] = "This function is currently not  active";
-$lang_module['no_set'] = "There are currently no established  public  groups";
+$lang_module['no_in_group'] = "You have not registered in any group";
+$lang_module['no_act'] = "This function is currently not active";
+$lang_module['no_set'] = "There are currently any established public group";
 $lang_module['re_remove'] = "Register or quit the group successfully";
+$lang_module['in_group'] = "Register in Group";
+
 ?>

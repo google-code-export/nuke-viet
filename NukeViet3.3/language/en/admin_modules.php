@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -19,13 +19,13 @@ $lang_translator['info'] ="";
 $lang_translator['langtype'] ="lang_module";
 
 $lang_module['modules'] = "Setup new module";
-$lang_module['blocks'] = "Setup block";
+$lang_module['blocks'] = "Setting of Blocks";
 $lang_module['language'] = "Setup language";
 $lang_module['setup'] = "Setup";
-$lang_module['main'] = "List modules";
+$lang_module['main'] = "List of modules";
 $lang_module['edit'] = "Edit modules &ldquo;%s&rdquo;";
-$lang_module['caption_actmod'] = "List active modules";
-$lang_module['caption_deactmod'] = "List suspend modules";
+$lang_module['caption_actmod'] = "List of active modules";
+$lang_module['caption_deactmod'] = "List of inactive modules";
 $lang_module['caption_badmod'] = "List error modules";
 $lang_module['caption_newmod'] = "List deactive modules";
 $lang_module['module_name'] = "Module";
@@ -59,7 +59,7 @@ $lang_module['autoinstall'] = "Automatic setup";
 $lang_module['autoinstall_method'] = "Select process";
 $lang_module['autoinstall_method_none'] = "Please select:";
 $lang_module['autoinstall_method_module'] = "Setup module & block packet";
-$lang_module['autoinstall_method_block'] = "Setup block";
+$lang_module['autoinstall_method_block'] = "Install blocks";
 $lang_module['autoinstall_method_packet'] = "Module packeted";
 $lang_module['autoinstall_continue'] = "Next";
 $lang_module['autoinstall_back'] = "Back";
@@ -92,5 +92,6 @@ $lang_module['autoinstall_module_error_movefile'] = "The installation can not co
 $lang_module['autoinstall_package_select'] = "Select module to package";
 $lang_module['autoinstall_package_noselect'] = "No module selected";
 $lang_module['autoinstall_package_processing'] = "please wait to complete...";
+$lang_module['mobile'] = "Mobile theme";
 
 ?>

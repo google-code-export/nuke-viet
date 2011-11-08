@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (!defined( 'NV_MAINFILE' )) {
@@ -127,5 +127,6 @@ $lang_module['your_question_empty'] = "Empty question";
 $lang_module['answer_empty'] = "Please give an answer";
 $lang_module['question_note'] = "You should need security question and answer question if you have been lost your password";
 $lang_module['answer_question_note'] = "You must remember this answer in response to the system.";
+$lang_module['dir_not_writable_ip_files'] = "Can not write files in %1\$s folder";
 
 ?>

@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -35,21 +35,21 @@ $lang_module['configuration_php'] = "PHP informations";
 $lang_module['directive'] = "Directive";
 $lang_module['local_value'] = "Value";
 $lang_module['master_value'] = "Default value";
-$lang_module['extensions'] = "Extensions utility";
-$lang_module['extensions_php'] = "The extension of PHP";
+$lang_module['extensions'] = "Extensions";
+$lang_module['extensions_php'] = "PHP extensions";
 $lang_module['environment_php'] = "Environment";
 $lang_module['variable'] = "Variable name";
 $lang_module['value'] = "Value";
 $lang_module['variables_php'] = "Predefine variables";
 $lang_module['version'] = "NukeViet version";
-$lang_module['version_user'] = "Your version";
+$lang_module['version_user'] = "Installed version";
 $lang_module['version_news'] = "Latest official version";
 $lang_module['checkversion'] = "Check NukeViet version";
 $lang_module['server_api'] = "Server API";
-$lang_module['chmod'] = "Check folder permission";
+$lang_module['chmod'] = "Check folder permissions";
 $lang_module['chmod_need'] = "Need to set permission";
 $lang_module['chmod_noneed'] = "OK !";
-$lang_module['checkchmod'] = "Set permission for all folder needed";
+$lang_module['checkchmod'] = "Change permissions for all necessary folders";
 $lang_module['checkchmod_error_account'] = "Your ftp account is incorrect";
 $lang_module['checkchmod_error_path'] = "Path folder is incorrect";
 $lang_module['checkchmod_error_unable_chmod'] = "Can't set permission";
@@ -67,7 +67,7 @@ $lang_module['log_del_confirm'] = "Are you sure you want to delete?";
 $lang_module['log_View'] = "View";
 $lang_module['log_del_no_items'] = "You may choose";
 $lang_module['log_note'] = "Notes";
-$lang_module['moduleInfo'] = "Modules Information";
+$lang_module['moduleInfo'] = "Modules Informations";
 $lang_module['moduleName'] = "Module";
 $lang_module['moduleContent'] = "Content";
 $lang_module['moduleValue'] = "Value";
@@ -82,7 +82,7 @@ $lang_module['log_add_about'] = "about adding operations";
 $lang_module['log_del_banner'] = "deleting  about";
 $lang_module['log_edit_banner'] = "banner editing operations";
 $lang_module['log_add_banner'] = "banner adding operations";
-$lang_module['log_del_link'] = "deleting  about";
+$lang_module['log_del_link'] = "delete link";
 $lang_module['log_del_cat'] = "banner adding operations";
 $lang_module['log_edit_cat'] = "deleting  category";
 $lang_module['log_add_cat'] = "category adding operations";

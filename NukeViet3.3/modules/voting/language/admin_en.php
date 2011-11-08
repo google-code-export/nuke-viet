@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -26,14 +26,14 @@ $lang_module['voting_title'] = "Title";
 $lang_module['voting_stat'] = "Stats";
 $lang_module['voting_func'] = "Function";
 $lang_module['voting_totalcm'] = "Comment";
-$lang_module['voting_active'] = "Activities";
+$lang_module['voting_active'] = "Active";
 $lang_module['voting_yes'] = "Yes";
 $lang_module['voting_no'] = "No";
 $lang_module['voting_add'] = "Add";
 $lang_module['voting_request'] = "Declaration:";
 $lang_module['voting_allowcm'] = "Allow comment";
-$lang_module['voting_timeout'] = "Time out";
-$lang_module['voting_time'] = "Time voting";
+$lang_module['voting_timeout'] = "End time";
+$lang_module['voting_time'] = "Start Time";
 $lang_module['voting_option'] = "Order";
 $lang_module['voting_maxoption'] = "How many option can i select to vote?";
 $lang_module['voting_confirm'] = "Cornfirm";

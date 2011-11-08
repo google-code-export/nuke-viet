@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -18,9 +18,9 @@ $lang_translator['copyright'] ="@Copyright (C) 2010 VINADES.,JSC. All rights res
 $lang_translator['info'] ="";
 $lang_translator['langtype'] ="lang_module";
 
-$lang_module['main'] = "General Information";
-$lang_module['database_info'] = "Database information &ldquo;<strong>%s</strong>&rdquo;";
-$lang_module['tables_info'] = "Table in database &ldquo;<strong>%s</strong>&rdquo;";
+$lang_module['main'] = "General Informations";
+$lang_module['database_info'] = "Database General informations";
+$lang_module['tables_info'] = "Tables of database";
 $lang_module['table_caption'] = "Table information &ldquo;<strong>%s</strong>&rdquo;";
 $lang_module['table_row_caption'] = "Table field information &ldquo;<strong>%s</strong>&rdquo;";
 $lang_module['db_host_info'] = "Mysql server";
@@ -41,11 +41,11 @@ $lang_module['table_charset'] = "Charset";
 $lang_module['table_type'] = "Type";
 $lang_module['row_format'] = "Format";
 $lang_module['table_auto_increment'] = "Auto increment";
-$lang_module['table_create_time'] = "Creat";
+$lang_module['table_create_time'] = "Create date";
 $lang_module['table_update_time'] = "Update";
 $lang_module['table_check_time'] = "Check";
 $lang_module['optimize'] = "Optimize";
-$lang_module['savefile'] = "Save file";
+$lang_module['savefile'] = "Save on server";
 $lang_module['download'] = "Download";
 $lang_module['download_all'] = "Structures and data";
 $lang_module['download_str'] = "Structures";
@@ -53,7 +53,7 @@ $lang_module['ext_sql'] = "Sql file";
 $lang_module['ext_gz'] = "Zip file";
 $lang_module['submit'] = "Submit";
 $lang_module['third'] = "Total table: %1\$d; Size: %2\$s; Free capacity: %3\$s";
-$lang_module['optimize_result'] = "Optimize tables:%1\$sFree %2\$s capacity";
+$lang_module['optimize_result'] = "Optimize tables:%1\$sFree %2\$s excess data";
 $lang_module['nv_show_tab'] = "Table information &ldquo;%s&rdquo;";
 $lang_module['field_name'] = "Field";
 $lang_module['field_type'] = "Type";
@@ -64,14 +64,14 @@ $lang_module['field_extra'] = "Extra";
 $lang_module['php_code'] = "Code PHP";
 $lang_module['sql_code'] = "Code SQL";
 $lang_module['save_data'] = "Save database";
-$lang_module['save_error'] = "Error: The system could not write file <br /><br /> You should check the folder: %1\$s and add authorization for that folder.";
-$lang_module['save_ok'] = "Save data success";
+$lang_module['save_error'] = "Error: System can not write file <br /><br /> Please check permissions of folder: %1\$s.";
+$lang_module['save_ok'] = "Save successfully";
 $lang_module['save_download'] = "Click here to download the file.";
 $lang_module['dump_autobackup'] = "Activate auto backup";
 $lang_module['dump_backup_ext'] = "File extension";
-$lang_module['dump_backup_day'] = "Number of database backup";
-$lang_module['file_backup'] = "Data backup";
-$lang_module['file_nb'] = "Number";
+$lang_module['dump_backup_day'] = "Number of backups";
+$lang_module['file_backup'] = "Backups";
+$lang_module['file_nb'] = "No.";
 $lang_module['file_name'] = "File name";
 $lang_module['file_time'] = "Time";
 $lang_module['file_site'] = "Size";

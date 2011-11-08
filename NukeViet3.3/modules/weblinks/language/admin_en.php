@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:06 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -37,7 +37,7 @@ $lang_module['keywords'] = "Keywords";
 $lang_module['delcat_msg_cat'] = "Error:Delete  %s categories fail";
 $lang_module['delcat_msg_rows'] = "Error:Delete %s article fail";
 $lang_module['weblink'] = "Weblink module";
-$lang_module['weblink_catlist'] = "Weblink categories";
+$lang_module['weblink_catlist'] = "Categories";
 $lang_module['weblink_catrecent'] = "categories does not exist";
 $lang_module['error_title'] = "Error: Article have no title";
 $lang_module['error_description'] = "Error: Article have no description";
@@ -79,7 +79,7 @@ $lang_module['weblink_link_checked'] = "Check all";
 $lang_module['weblink_link_unchecked'] = "Unchecked";
 $lang_module['weblink_del_link_title'] = "Delete link";
 $lang_module['weblink_del_link_confirm'] = "Confirm to delete ?";
-$lang_module['weblink_config'] = "Weblink Config";
+$lang_module['weblink_config'] = "Configuration";
 $lang_module['weblink_config_intro'] = "Introduction:";
 $lang_module['weblink_config_main'] = "Main page";
 $lang_module['weblink_config_col'] = "Number of collum to display categories";
@@ -102,7 +102,7 @@ $lang_module['weblink_config_success'] = "Update successfully !";
 $lang_module['weblink_config_unsuccess'] = "Error:Update data fail";
 $lang_module['weblink_config_imgwidth'] = "Image width";
 $lang_module['weblink_config_imgheight'] = "Image height";
-$lang_module['weblink_config_timeout'] = "Time out(Minute)";
+$lang_module['weblink_config_timeout'] = "Waiting time between two clicks (Minutes)";
 $lang_module['weblink_config_error_numcat'] = "Please input number of collum to show on menu<br/>";
 $lang_module['weblink_config_error_numsub'] = "You must input number of sub-Catagores to display them";
 $lang_module['weblink_config_error_numsubcat'] = "When you find catagories.you must input number of collums to display list";

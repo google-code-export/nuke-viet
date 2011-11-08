@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 04, 2011, 10:15:50 AM
+* @Createdate Nov 08, 2011, 05:58:06 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -22,7 +22,7 @@ $lang_module['categories'] = "Category";
 $lang_module['sources'] = "Manufacturer";
 $lang_module['comments'] = "comments";
 $lang_module['save'] = "Save";
-$lang_module['action'] = "Action";
+$lang_module['action'] = "Perform";
 $lang_module['move'] = "Move";
 $lang_module['save_temp'] = "Save without publish";
 $lang_module['publtime'] = "Publish";
@@ -37,7 +37,7 @@ $lang_module['saveok'] = "Update succesfully";
 $lang_module['alias'] = "Alias";
 $lang_module['name'] = "Product name";
 $lang_module['error_name'] = "Error: You need to enter Product name";
-$lang_module['weight'] = "position";
+$lang_module['weight'] = "Position";
 $lang_module['numsubcat'] = "number of products";
 $lang_module['inhome'] = "show on main page";
 $lang_module['numlinks'] = "number of links";
@@ -63,7 +63,7 @@ $lang_module['content_main'] = "Module Informations";
 $lang_module['document_payment'] = "Payment guide";
 $lang_module['document_payment_note'] = "This content is showing in details of products suported the payment";
 $lang_module['cat_title'] = "List of Category";
-$lang_module['link'] = "source link";
+$lang_module['link'] = "Website";
 $lang_module['cat_sub'] = "Category";
 $lang_module['cat_sub_sl'] = "Main category";
 $lang_module['delcat_msg_cat'] = "This Category have %s sub-categories, you need to delete or move sub-categories first";
@@ -139,14 +139,14 @@ $lang_module['sources_sl'] = "Select or enter";
 $lang_module['content_cat'] = "Category";
 $lang_module['content_block'] = "product blocks";
 $lang_module['content_homeimg'] = "Illustration";
-$lang_module['content_homeimgalt'] = "Legend of illustration (for products details)";
+$lang_module['content_homeimgalt'] = "Legend of illustration (for product details)";
 $lang_module['content_hometext'] = "Short description";
 $lang_module['content_notehome'] = "(Show for all)";
 $lang_module['content_keywords'] = "Keywords";
 $lang_module['content_keywords_note'] = "For automatic adding, copy product details into the belows case then click";
 $lang_module['content_clickhere'] = "here";
 $lang_module['content_showmore'] = "(Extend for details view)";
-$lang_module['content_notetime'] = "(Date/mont/year hour:minute)";
+$lang_module['content_notetime'] = "(Date/month/year hour:minute)";
 $lang_module['content_publ_date'] = "updated time";
 $lang_module['content_exp_date'] = "Expire time";
 $lang_module['content_extra'] = "Extra-function";
@@ -206,9 +206,7 @@ $lang_module['comment_nocheck'] = "Please select at least 1 comment to process";
 $lang_module['comment_update_success'] = "Update successfully !";
 $lang_module['block'] = "Product blocks";
 $lang_module['adddefaultblock'] = "As defaut when posting products";
-$lang_module['source_logo'] = "Logo of source";
-$lang_module['cat_no'] = "Order";
-$lang_module['content_product_shop'] = "Booth";
+$lang_module['source_logo'] = "Logo";
 $lang_module['prounit'] = "Product unit";
 $lang_module['prounit_name_unit'] = "Product unit name";
 $lang_module['prounit_name_note'] = "Notes";
@@ -264,7 +262,7 @@ $lang_module['currency'] = "Currency";
 $lang_module['exchange'] = "Exchange rate";
 $lang_module['money_add'] = "Add currency";
 $lang_module['money_edit'] = "Edit currency";
-$lang_module['money_compare'] = "Compared to VND";
+$lang_module['money_compare'] = "Compared to";
 $lang_module['checkpayment'] = "Verify the transaction";
 $lang_module['paymentcaption'] = "Integrated payment gates";
 $lang_module['paymentcaption_other'] = "Other payment gates";
@@ -323,5 +321,8 @@ $lang_module['delgroup_msg_rows_move'] = "Or select group to move to";
 $lang_module['delgroupandrows'] = "Delete group and products";
 $lang_module['delgroup_msg_rows_noselect'] = "Please select product group to move to";
 $lang_module['content_group'] = "Product Group";
+$lang_module['siteinfo_exptime'] = "Products to expire";
+$lang_module['product'] = "products";
+$lang_module['content_product_code'] = "Product code";
 
 ?>

@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -25,7 +25,7 @@ $lang_global['mod_settings'] = "Configuration";
 $lang_global['mod_cronjobs'] = "Automatic process";
 $lang_global['mod_modules'] = "Modules";
 $lang_global['mod_themes'] = "Themes";
-$lang_global['mod_siteinfo'] = "Information";
+$lang_global['mod_siteinfo'] = "Informations";
 $lang_global['mod_language'] = "Language";
 $lang_global['mod_upload'] = "Upload";
 $lang_global['mod_webtools'] = "Webtools";
@@ -40,11 +40,11 @@ $lang_global['who_view'] = "View right";
 $lang_global['who_view0'] = "View all";
 $lang_global['who_view1'] = "Member";
 $lang_global['who_view2'] = "Administrators";
-$lang_global['who_view3'] = "Group Member";
+$lang_global['who_view3'] = "Members Group";
 $lang_global['groups_view'] = "Group viewed";
 $lang_global['block_modules'] = "Block in modules";
 $lang_global['hello_admin1'] = "Wellcome %1\$s ! Last login to administration at: %2\$s";
-$lang_global['hello_admin2'] = "Account: %1\$s ! You are logged in administration %2\$s ago";
+$lang_global['hello_admin2'] = "Account: %1\$s ! Your session was opened %2\$s ago";
 $lang_global['hello_admin3'] = "Wellcome %1\$s. This is the first time to login administration";
 $lang_global['ftp_error_account'] = "Error: Can't connect to FTP server, please check FTP configuration";
 $lang_global['ftp_error_path'] = "Error: Wrong configuration in Remote path";
@@ -69,7 +69,7 @@ $lang_global['error_upload_max_user_size'] = "The file exceeds the maximum size 
 $lang_global['error_upload_not_image'] = "The file is not a known image format";
 $lang_global['error_upload_image_failed'] = "Image Content is failed";
 $lang_global['error_upload_image_width'] = "The image is not allowed because the width is greater than the maximum of %d pixels";
-$lang_global['error_upload_image_height'] = "The image is not allowed because the height is greater than the maximum of %d pixels";
+$lang_global['error_upload_image_height'] = "Error: The image size is exceeded the allowed level. Maximum height is %d pixels";
 $lang_global['error_upload_forbidden'] = "Upload forbidden";
 $lang_global['error_upload_writable'] = "Directory %s is not writable";
 $lang_global['error_upload_urlfile'] = "The URL is not valid and cannot be loaded";

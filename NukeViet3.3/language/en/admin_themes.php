@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -18,7 +18,7 @@ $lang_translator['copyright'] ="@Copyright (C) 2010 VINADES.,JSC. All rights res
 $lang_translator['info'] ="";
 $lang_translator['langtype'] ="lang_module";
 
-$lang_module['blocks'] = "Setup block";
+$lang_module['blocks'] = "Blocks management";
 $lang_module['change_func_name'] = "Change the name of the function &ldquo;%1\$s&rdquo; in module &ldquo;%2\$s&rdquo;";
 $lang_module['bl_list_title'] = "Blocks in &ldquo;%1\$s&rdquo; is of function &ldquo;%2\$s&rdquo;";
 $lang_module['add_block_title'] = "Add block &ldquo;%1\$s&rdquo; of function &ldquo;%2\$s&rdquo; in module &ldquo;%3\$s&rdquo;";
@@ -87,19 +87,19 @@ $lang_module['block_select_module'] = "Select module";
 $lang_module['block_select_function'] = "Select function";
 $lang_module['block_error_fileconfig_title'] = "Interface configuration file error";
 $lang_module['block_error_fileconfig_content'] = "Interface configuration file is incorrect or does not exist. Check in your theme directory";
-$lang_module['autoinstall'] = "Automatic setup";
+$lang_module['autoinstall'] = "Installation";
 $lang_module['autoinstall_theme_install'] = "Installing themes";
 $lang_module['autoinstall_method_none'] = "Please select:";
 $lang_module['autoinstall_method_install'] = "Installing themes on the system";
-$lang_module['autoinstall_method_packet'] = "Module packeted";
-$lang_module['autoinstall_method_packet_module'] = "Packing the module theme";
+$lang_module['autoinstall_method_packet'] = "Pack Theme";
+$lang_module['autoinstall_method_packet_module'] = "Pack by module";
 $lang_module['autoinstall_continue'] = "Next";
 $lang_module['autoinstall_back'] = "Back";
 $lang_module['autoinstall_error_nomethod'] = "Empty setup type!";
 $lang_module['autoinstall_theme_select_file'] = "Please select packages for installation:";
 $lang_module['autoinstall_theme_error_nofile'] = "Error: Please select the file to install";
-$lang_module['autoinstall_theme_error_filetype'] = "Error: File must be installed zip or gz format file";
-$lang_module['autoinstall_theme_error_createfile'] = "Error: Unable to save cache file list. Check your tmp directory or chmod";
+$lang_module['autoinstall_theme_error_filetype'] = "Error: Install File must be in zip or gz format";
+$lang_module['autoinstall_theme_error_createfile'] = "Error: Unable to cache file list. Check the permissions of tmp directory";
 $lang_module['autoinstall_theme_uploadedfile'] = "The system uploaded file:";
 $lang_module['autoinstall_theme_uploadedfilesize'] = "File size";
 $lang_module['autoinstall_theme_uploaded_filenum'] = "Total number of files + folders:";
@@ -114,35 +114,35 @@ $lang_module['autoinstall_theme_error_uploadfile'] = "Error: Unable to upload fi
 $lang_module['autoinstall_theme_unzip_abort'] = "The installation can not continue automatically by the host does not support.";
 $lang_module['autoinstall_theme_permission_folder'] = "The installation can not continue automatically, because the system can not create folders.";
 $lang_module['autoinstall_theme_unzip_success'] = "The installation process successfully. The system will automatically switch you to a page layout settings for the interface.";
-$lang_module['autoinstall_theme_error_movefile'] = "The installation can not continue automatically because the host does not support moving files after unpacking";
-$lang_module['autoinstall_theme_cantunzip'] = "Error can not unpack. Please check the chmod of directory.";
-$lang_module['autoinstall_theme_unzip_filelist'] = "Extract files list";
+$lang_module['autoinstall_theme_error_movefile'] = "The automatic installation can not continue the host does not support moving files after extract";
+$lang_module['autoinstall_theme_cantunzip'] = "Error: can not extract. Please check folders permissions.";
+$lang_module['autoinstall_theme_unzip_filelist'] = "List of extracted files";
 $lang_module['autoinstall_theme_unzip_setuppage'] = "Go to the management page theme.";
-$lang_module['autoinstall_package_select'] = "Select module to package";
-$lang_module['autoinstall_package_noselect'] = "No module selected";
+$lang_module['autoinstall_package_select'] = "Select theme to pack";
+$lang_module['autoinstall_package_noselect'] = "Select theme to pack";
 $lang_module['autoinstall_package_module_select'] = "Select the module to package";
-$lang_module['autoinstall_package_noselect_module'] = "Please select a module to package themes";
-$lang_module['autoinstall_method_theme_none'] = "Please select the theme";
+$lang_module['autoinstall_package_noselect_module'] = "Please select a module to pack themes";
+$lang_module['autoinstall_method_theme_none'] = "Select Theme";
 $lang_module['autoinstall_method__module_none'] = "Select module";
-$lang_module['autoinstall_package_noselect_module_theme'] = "Required to choose the theme and module name to package";
-$lang_module['setup_layout'] = "Set layout";
+$lang_module['autoinstall_package_noselect_module_theme'] = "It is mandatory to choose the theme and the module to pack";
+$lang_module['setup_layout'] = "Layout setup";
 $lang_module['setup_module'] = "Module";
 $lang_module['setup_select_layout'] = "Choose layout";
-$lang_module['setup_updated_layout'] = "Set layout to succeed!";
-$lang_module['setup_error_layout'] = "Could not execute command set layout";
+$lang_module['setup_updated_layout'] = "Layout setup is successful!";
+$lang_module['setup_error_layout'] = "Unable to setup Layout";
 $lang_module['setup_save_layout'] = "Save all changes";
 $lang_module['theme_manager'] = "Management interface";
-$lang_module['theme_recent'] = "List interface is ready";
+$lang_module['theme_recent'] = "List of existing themes";
 $lang_module['theme_created_by'] = "designed by";
 $lang_module['theme_created_website'] = "visit author's website";
 $lang_module['theme_created_folder'] = "Files + directory in:";
-$lang_module['theme_created_position'] = "The position in the design theme:";
-$lang_module['theme_created_activate'] = "Activate uses";
+$lang_module['theme_created_position'] = "Positions designed in the theme:";
+$lang_module['theme_created_activate'] = "Activate";
 $lang_module['theme_created_activate_layout'] = "Error: You need to set the layout for this interface the firt to active";
-$lang_module['theme_created_delete'] = "Deleted from the system";
+$lang_module['theme_created_delete'] = "Delete";
 $lang_module['theme_created_current_use'] = "Interface using";
 $lang_module['theme_created_delete_theme'] = "Do you want to delete the all theme package";
-$lang_module['theme_created_delete_theme_success'] = "Successfully deleted the theme go out the system !";
+$lang_module['theme_created_delete_theme_success'] = "The Theme was removed from the system!";
 $lang_module['theme_created_delete_theme_unsuccess'] = "There are errors in the process of deleting files !";
 $lang_module['theme_created_delete_current_theme'] = "You can not delete the current theme when the systme is using it!";
 $lang_module['theme_created_delete_module_theme'] = "You can not delete themes because this theme are using for module:% s, you need to reconfigure modules.";
@@ -156,7 +156,7 @@ $lang_module['xcopyblock_from'] = "from theme";
 $lang_module['xcopyblock_position'] = "Select position";
 $lang_module['xcopyblock_process'] = "Copy";
 $lang_module['xcopyblock_no_position'] = "Please select at least on position to copy";
-$lang_module['xcopyblock_notice'] = "This process will drop all exist blocks in target theme, please wait until all process successful";
+$lang_module['xcopyblock_notice'] = "The system will drop all exist blocks in target theme, please wait until all process finished successfully";
 $lang_module['xcopyblock_success'] = "All process has been done !";
 $lang_module['block_weight'] = "Set the position of block";
 $lang_module['block_weight_confirm'] = "Do you want to set up the position of block? The settings in the function will be the settings.";

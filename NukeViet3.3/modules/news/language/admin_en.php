@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:06 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -34,7 +34,7 @@ $lang_module['status_0'] = "Waitting";
 $lang_module['status_1'] = "Published";
 $lang_module['status_2'] = "Still waitting";
 $lang_module['status_3'] = "Expired";
-$lang_module['errorsave'] = "Error:Update content fail, Please check your article title";
+$lang_module['errorsave'] = "Error: Update content fail, please check your article alias";
 $lang_module['saveok'] = "Update succesfully";
 $lang_module['clickgotomodule'] = "Click here to management posts.";
 $lang_module['alias'] = "Static Link";
@@ -46,8 +46,8 @@ $lang_module['inhome'] = "Home";
 $lang_module['numlinks'] = "Number of link";
 $lang_module['description'] = "Description";
 $lang_module['keywords'] = "Keyword";
-$lang_module['content_list'] = "List articles";
-$lang_module['content_add'] = "Add new article";
+$lang_module['content_list'] = "List of articles";
+$lang_module['content_add'] = "Add a new article";
 $lang_module['add_cat'] = "Add categories";
 $lang_module['add_topic'] = "Add topic";
 $lang_module['add_sources'] = "Add sources";
@@ -56,7 +56,7 @@ $lang_module['edit_topic'] = "Edit topic";
 $lang_module['edit_sources'] = "Edit sources";
 $lang_module['add_block_cat'] = "Add block group";
 $lang_module['edit_block_cat'] = "Edit block groups";
-$lang_module['link'] = "url source";
+$lang_module['link'] = "Website's link";
 $lang_module['cat_sub'] = "Categories";
 $lang_module['cat_sub_sl'] = "Main categories";
 $lang_module['topic_sl'] = "Select topics";
@@ -67,7 +67,7 @@ $lang_module['delcat_msg_rows_move'] = "Select category to move";
 $lang_module['delcatandrows'] = "Delete topics and articles";
 $lang_module['delcat_msg_rows_noselect'] = "You should choose the topic to move to article";
 $lang_module['deltopic_msg_rows'] = "relevant news group %s article, have you sure deleted, then group related information is deleted from the article?";
-$lang_module['setting'] = "Module Configuration";
+$lang_module['setting'] = "Configuration";
 $lang_module['setting_indexfile'] = "Home page plan";
 $lang_module['setting_homesite'] = "The size of the image at home";
 $lang_module['setting_thumbblock'] = "The size of the image in the block";
@@ -78,7 +78,7 @@ $lang_module['setting_idf_df'] = "Default";
 $lang_module['setting_setcomm'] = "Set default comment";
 $lang_module['setting_auto_postcomm'] = "Auto post comment";
 $lang_module['setting_copyright'] = "Copyright";
-$lang_module['viewcat_page'] = "Way are shown categories";
+$lang_module['viewcat_page'] = "Display method";
 $lang_module['viewcat_page_new'] = "New categories, Up";
 $lang_module['viewcat_page_old'] = "Old categories, Up";
 $lang_module['viewcat_main_left'] = "Categories,News other on left";
@@ -118,7 +118,7 @@ $lang_module['content_keywords_note'] = "To be automatic,  copy fully article co
 $lang_module['content_clickhere'] = "Click here";
 $lang_module['content_showmore'] = "(Show more)";
 $lang_module['content_notetime'] = "(date/month/year hour:minute)";
-$lang_module['content_publ_date'] = "Start";
+$lang_module['content_publ_date'] = "Publish Time";
 $lang_module['content_exp_date'] = "Expire:";
 $lang_module['content_extra'] = "Extra features";
 $lang_module['content_inhome'] = "Show on homepage";
@@ -131,7 +131,7 @@ $lang_module['content_allshow'] = "View all";
 $lang_module['content_allcollapse'] = "Close all";
 $lang_module['content_bodytext'] = "Content detail";
 $lang_module['content_bodytext_note'] = "(Allowed people are shown)";
-$lang_module['content_admin'] = "Admin";
+$lang_module['content_admin'] = "Creator";
 $lang_module['content_author'] = "Author";
 $lang_module['content_sourceid'] = "Source";
 $lang_module['content_copyright'] = "Copyright";
@@ -221,5 +221,8 @@ $lang_module['permissions_del_content'] = "Delete article";
 $lang_module['permissions_pub_error'] = "Error: You can not post messages in category: %1\$s";
 $lang_module['error_no_del_content_id'] = "Error: The system does not delete the article id:";
 $lang_module['structure_image_upload'] = "The module's upload images are archived in the default into directory structure";
+$lang_module['content_back'] = "Back to edit page";
+$lang_module['content_checkcat'] = "The main topic for this article";
+$lang_module['content_checkcatmsg'] = "You must choose the main category of the article.";
 
 ?>

@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -56,7 +56,7 @@ $lang_module['year'] = "Year";
 $lang_module['website'] = "Website";
 $lang_module['address'] = "Address";
 $lang_module['ym'] = "Yahoo messenger";
-$lang_module['phone'] = "Phone";
+$lang_module['phone'] = "Telephone";
 $lang_module['fax'] = "Fax";
 $lang_module['mobile'] = "Mobile";
 $lang_module['show_email'] = "Display email";
@@ -71,12 +71,10 @@ $lang_module['save'] = "Save";
 $lang_module['siteterms'] = "Site rules";
 $lang_module['error_content'] = "Error: Empty site rules";
 $lang_module['saveok'] = "Update successful";
-$lang_module['config'] = "Module configuration";
+$lang_module['config'] = "Configuration";
 $lang_module['allow_reg'] = "Allow register";
 $lang_module['allow_login'] = "Allow login";
 $lang_module['allow_change_email'] = "Allow change email";
-$lang_module['allow_public'] = "Allow registered public groups";
-$lang_module['allow_question'] = "Answering the question if you forget your  password  secret";
 $lang_module['type_reg'] = "Register type";
 $lang_module['active_not_allow'] = "Not grant to register";
 $lang_module['active_admin_check'] = "Admin active";
@@ -98,7 +96,7 @@ $lang_module['active_success'] = "Success!";
 $lang_module['memberlist_edit'] = "Edit";
 $lang_module['memberlist_deleteconfirm'] = "Do you realy want to delete?";
 $lang_module['edit_title'] = "Edit";
-$lang_module['edit_password_note'] = "Leave 2 frame below blank if you don't want to change password";
+$lang_module['edit_password_note'] = "Change password (leave blank if you don't want to change password)";
 $lang_module['edit_avatar_note'] = "Leave blank if you don't want to change avatar mới";
 $lang_module['edit_save'] = "Accept";
 $lang_module['edit_error_username_exist'] = "User name used by another member. Please choose another name";
@@ -150,8 +148,8 @@ $lang_module['error_title_exists'] = "Group name \"%s\" already exist";
 $lang_module['users_in_group_caption'] = "Member list in group \"%s\" (%d group)";
 $lang_module['error_group_not_found'] = "Error: Can't find group";
 $lang_module['error_users_not_found'] = "Group has not member";
-$lang_module['error_not_groups'] = "There are no groups to be established. Click here <a href=\"%s\">enter</a> to create a group";
-$lang_module['add_users'] = "Add new Member";
+$lang_module['error_not_groups'] = "There are no groups to be established. Click here <a href=\"%s\">vào đây</a> to create a group";
+$lang_module['add_users'] = "Add user";
 $lang_module['form_search_label0'] = "Search members by";
 $lang_module['form_search_label1'] = "Keyword (Null = all member)";
 $lang_module['form_search_select0'] = "Name";
@@ -165,20 +163,41 @@ $lang_module['add_user'] = "Member %1\$s group %2\$s";
 $lang_module['exclude_user'] = "Delete member %1\$s in group %2\$s";
 $lang_module['siteinfo_user'] = "Members";
 $lang_module['siteinfo_waiting'] = "Unactive members";
-
-$lang_module['changeGroupWeight'] = "Change group weight";
-$lang_module['ChangeGroupAct'] = "Change group status";
+$lang_module['allow_public'] = "Allow members register in public groups";
+$lang_module['allow_question'] = "Answer secret question for Lost Password";
+$lang_module['pagetitle'] = "Get Member ID";
+$lang_module['pagetitle1'] = "Search Member ID";
+$lang_module['search'] = "Find Member";
+$lang_module['reset'] = "Repeat";
+$lang_module['waiting'] = "Enter the information and then press the search member button to perform";
+$lang_module['from'] = "From";
+$lang_module['to'] = "to";
+$lang_module['select'] = "Select";
+$lang_module['noresult'] = "No results match your request";
+$lang_module['enter_key'] = "Please enter information to find a member";
+$lang_module['username'] = "Username";
+$lang_module['full_name'] = "Full Name";
+$lang_module['regdate'] = "Registration Date";
+$lang_module['yim'] = "Yahoo account";
+$lang_module['last_login'] = "Last session";
+$lang_module['last_idlogin'] = "IP of the last session";
+$lang_module['web'] = "Website";
+$lang_module['select_gender'] = "Select your gender";
+$lang_module['select_gender_male'] = "Male";
+$lang_module['select_gender_female'] = "Female";
+$lang_module['changeGroupWeight'] = "Change the weight of groups";
+$lang_module['ChangeGroupAct'] = "Change status of groups";
 $lang_module['delGroup'] = "Delete group";
-$lang_module['ChangeGroupPublic'] = "change group type";
-$lang_module['emptyIsUnlimited'] = "Empty is Unlimited";
-$lang_module['dateError'] = "Error! Date format error";
-$lang_module['delConfirm'] = "Do you realy want to delete";
-$lang_module['errorChangeWeight'] = "Error! Do not change the position";
-$lang_module['choiceUserID'] = "Please declare member ID";
-$lang_module['UserInGroup'] = "This ID is already in the members list of this group";
-$lang_module['UserNotInGroup'] = "This member not in the members list of this group";
-$lang_module['addMemberToGroup'] = "Add member to group";
+$lang_module['ChangeGroupPublic'] = "Change the type of group";
+$lang_module['emptyIsUnlimited'] = "Empty same with the infinite";
+$lang_module['dateError'] = "Error! Your date is error";
+$lang_module['delConfirm'] = "Are you sure to delete";
+$lang_module['errorChangeWeight'] = "Error! Can not change the position";
+$lang_module['choiceUserID'] = "Please enter the user ID";
+$lang_module['UserInGroup'] = "This user has on the list of group users";
+$lang_module['UserNotInGroup'] = "User of your choice is not in the list of group members";
+$lang_module['addMemberToGroup'] = "Add users to group";
 $lang_module['detail'] = "Detail";
-$lang_module['exclude_user2'] = "Exclude";
+$lang_module['exclude_user2'] = "Remove from group";
 
 ?>

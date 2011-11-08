@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 04, 2011, 10:15:47 AM
+* @Createdate Nov 08, 2011, 05:58:06 PM
 */
 
  if (!defined( 'NV_MAINFILE' )) {
@@ -126,11 +126,11 @@ $lang_module['product_catalogs'] = "Category";
 $lang_module['product_cate_of_shop'] = "Shop categories";
 $lang_module['product_image'] = "Product image";
 $lang_module['product_intro'] = "Short description";
-$lang_module['product_detail'] = "Products details";
+$lang_module['product_detail'] = "Product details";
 $lang_module['product_sale_info'] = "Sale information";
 $lang_module['product_unit_price'] = "Currency";
 $lang_module['product_unit'] = "Sale unit";
-$lang_module['product_number'] = "Sale quanity";
+$lang_module['product_number'] = "Sale quantity";
 $lang_module['product_status'] = "Product status";
 $lang_module['product_payment_form'] = "Payment method";
 $lang_module['product_keywords'] = "Keywords";
@@ -160,7 +160,7 @@ $lang_module['detail_rank'] = "Rating";
 $lang_module['detail_moment'] = "At";
 $lang_module['detail_unit'] = "unit";
 $lang_module['detail_others'] = "Products in this Category";
-$lang_module['detail_comments'] = "Comment";
+$lang_module['detail_comments'] = "Comments";
 $lang_module['detail_others_view'] = "Recently Viewed Products";
 $lang_module['detail_view_img'] = "View full size";
 $lang_module['detail_share_title'] = "Share";
@@ -180,7 +180,7 @@ $lang_module['cart_payment'] = "Payment";
 $lang_module['cart_images'] = "Image";
 $lang_module['cart_products'] = "Product";
 $lang_module['cart_unit'] = "Unit";
-$lang_module['cart_saler'] = "Saler";
+$lang_module['cart_saler'] = "Seller";
 $lang_module['cart_price'] = "Price";
 $lang_module['cart_numbers'] = "Q'ty";
 $lang_module['cart_note'] = "Note";
@@ -213,11 +213,11 @@ $lang_module['order_email_err'] = "<em>Your e-mail is invalide</em>";
 $lang_module['order_address_err'] = "<em>Please enter your e-mail</em>";
 $lang_module['order_phone_err'] = "<em>Please enter your telephone number</em>";
 $lang_module['order_check_err'] = "<em>You need to confirm information</em>";
-$lang_module['order_ok'] = "You order succesfully, we will reply you sonnest!";
+$lang_module['order_ok'] = "You order succesfully, we will reply you soonest!";
 $lang_module['order_payment'] = "Paid";
 $lang_module['order_no_payment'] = "Unpaid";
 $lang_module['product_none_select'] = "You did not select any product";
-$lang_module['shop_user_conect'] = "You cannected to this person";
+$lang_module['shop_user_conect'] = "You connected to this person";
 $lang_module['system_waring'] = "The system is updating this function";
 $lang_module['order_title'] = "Order";
 $lang_module['unit_total'] = "Unit";
@@ -263,7 +263,7 @@ $lang_module['hotnews'] = "Hot";
 $lang_module['lastest_comment'] = "New comment";
 $lang_module['category'] = "Category";
 $lang_module['counter'] = "times";
-$lang_module['total_comment'] = "Comment";
+$lang_module['total_comment'] = "Comments";
 $lang_module['search_cat'] = "Search in Category";
 $lang_module['search_all'] = "All products";
 $lang_module['main_title'] = "Search informations";
@@ -303,5 +303,6 @@ $lang_module['update_order'] = "Notification: The systeme updated information of
 $lang_module['no_update_order'] = "Notification: The systeme can not find any new order";
 $lang_module['active_order_dis'] = "On-line shopping function is disable";
 $lang_module['group_title'] = "Category";
+$lang_module['product_code'] = "Product code";
 
 ?>

@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -21,9 +21,9 @@ $lang_translator['langtype'] ="lang_module";
 $lang_module['add_client'] = "Add client";
 $lang_module['edit_client'] = "Edit client";
 $lang_module['full_name_empty'] = "Client name has not been declared";
-$lang_module['website_incorrect'] = "Website incorect";
-$lang_module['yim_incorrect'] = "YIM incorect";
-$lang_module['add_client_info'] = "Add new client, Please inter fully box below";
+$lang_module['website_incorrect'] = "Website incorrect";
+$lang_module['yim_incorrect'] = "YIM incorrect";
+$lang_module['add_client_info'] = "Complete all fields below to create a new customer account";
 $lang_module['edit_client_info'] = "Box marked with an asterisk to be required to declare";
 $lang_module['login'] = "Login";
 $lang_module['full_name'] = "Full name";
@@ -108,7 +108,7 @@ $lang_module['select'] = "Show";
 $lang_module['info_stat_byday_caption'] = "Stats click by %1\$s year %2\$s";
 $lang_module['info_stat_bycountry_caption'] = "Stats click by area in %1\$s year %2\$s";
 $lang_module['info_stat_bybrowse_caption'] = "Stats click by browser in %1\$s year %2\$s";
-$lang_module['info_stat_byos_caption'] = "Stats click by operate system in %1\$s year %2\$s";
+$lang_module['info_stat_byos_caption'] = "Total clicks by Operating System in %1\$s year %2\$s";
 $lang_module['exts_day'] = "by day";
 $lang_module['exts_country'] = "by country";
 $lang_module['exts_browse'] = "by browser";

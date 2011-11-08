@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -18,13 +18,13 @@ $lang_translator['copyright'] ="@Copyright (C) 2010 VINADES.,JSC. All rights res
 $lang_translator['info'] ="";
 $lang_translator['langtype'] ="lang_module";
 
-$lang_module['aabout0'] = "Introduction List";
-$lang_module['aabout1'] = "Add new article";
-$lang_module['aabout2'] = "Article name";
-$lang_module['aabout3'] = "Order list";
+$lang_module['aabout0'] = "List of articles";
+$lang_module['aabout1'] = "Add a new article";
+$lang_module['aabout2'] = "Title";
+$lang_module['aabout3'] = "Order";
 $lang_module['aabout4'] = "Status";
-$lang_module['aabout5'] = "Activities";
-$lang_module['aabout6'] = "No activities";
+$lang_module['aabout5'] = "Active";
+$lang_module['aabout6'] = "Inactive";
 $lang_module['aabout7'] = "Delete article";
 $lang_module['aabout8'] = "Please confirm your action";
 $lang_module['aabout9'] = "Article has not title";

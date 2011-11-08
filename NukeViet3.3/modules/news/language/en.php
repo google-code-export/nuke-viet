@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (!defined( 'NV_MAINFILE' )) {
@@ -21,7 +21,7 @@ $lang_translator['langtype'] ="lang_module";
 $lang_module['nocatpage'] = "Error:No topic";
 $lang_module['other'] = "Other";
 $lang_module['detail'] = "Detailed information";
-$lang_module['more'] = "More";
+$lang_module['more'] = "Read more...";
 $lang_module['comment'] = "Reader Comments";
 $lang_module['comment_login'] = "You must login to use this feature";
 $lang_module['comment_success'] = "Successful comments";
@@ -59,7 +59,7 @@ $lang_module['author'] = "Author";
 $lang_module['post_name'] = "post name";
 $lang_module['source'] = "Source";
 $lang_module['topic'] = "Event stream";
-$lang_module['related_new'] = "The latest news";
+$lang_module['related_new'] = "Newer articles";
 $lang_module['related'] = "Older articles";
 $lang_module['savefile'] = "Save";
 $lang_module['rating'] = "Article reviews";
@@ -73,7 +73,7 @@ $lang_module['star_verygood'] = "Excellent article";
 $lang_module['main_title'] = "Search";
 $lang_module['info_title'] = "Advanced search in news";
 $lang_module['key_title'] = "Keyword";
-$lang_module['type_search'] = "Search by";
+$lang_module['type_search'] = "Search method";
 $lang_module['search_title'] = "Search";
 $lang_module['search_title_adv'] = "Advanced search";
 $lang_module['search_on_site'] = "Search on site";
@@ -91,13 +91,13 @@ $lang_module['pages_title'] = "Page";
 $lang_module['time_update'] = "Time publish";
 $lang_module['from_date'] = "From date";
 $lang_module['to_date'] = "To date";
-$lang_module['find_content'] = "Search by content";
-$lang_module['find_author'] = "Search by author";
-$lang_module['find_resource'] = "Search by resource";
+$lang_module['find_content'] = "By content";
+$lang_module['find_author'] = "By author";
+$lang_module['find_resource'] = "By source";
 $lang_module['find_all'] = "All";
 $lang_module['search_modul_title'] = "News";
 $lang_module['type_title'] = "Search type";
-$lang_module['finter_title'] = "Time";
+$lang_module['finter_title'] = "From date:";
 $lang_module['source_title'] = "Source";
 $lang_module['keywords'] = "Key";
 $lang_module['member_view'] = "Only member can view!";

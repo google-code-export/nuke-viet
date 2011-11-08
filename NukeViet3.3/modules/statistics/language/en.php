@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (!defined( 'NV_MAINFILE' )) {
@@ -24,11 +24,11 @@ $lang_module['statbymoth'] = "Statistics by month of year %d";
 $lang_module['statbymoth2'] = "By month";
 $lang_module['statbyday'] = "Statistics by day of month %d";
 $lang_module['statbydayofweek'] = "Statistics by day of week";
-$lang_module['statbyhour'] = "Statistics by hour day";
+$lang_module['statbyhour'] = "Statistics by hour of day";
 $lang_module['statbycountry'] = "Statistics by country";
 $lang_module['statbybrowser'] = "Statistics by browser";
 $lang_module['statbyos'] = "Statistics by Operating System";
-$lang_module['statbybot'] = "Statistics by Server search";
+$lang_module['statbybot'] = "By Search Engine";
 $lang_module['statbyreferer'] = "Statistics by site path";
 $lang_module['unknown'] = "unknown";
 $lang_module['others'] = "other";
@@ -38,7 +38,7 @@ $lang_module['hits'] = "Hits";
 $lang_module['last_visit'] = "Last visit";
 $lang_module['browser'] = "Browser";
 $lang_module['os'] = "Operating Systems";
-$lang_module['bot'] = "Server search";
+$lang_module['bot'] = "Search Engines";
 $lang_module['referer'] = "Referer";
 $lang_module['refererbymonth'] = "Referer by month";
 $lang_module['refererbymonth2'] = "Statistics from site path %s by the months of the year% d";

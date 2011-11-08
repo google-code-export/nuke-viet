@@ -5,7 +5,7 @@
 * @Author VINADES.,JSC (contact@vinades.vn)
 * @Copyright (C) 2010 VINADES.,JSC. All rights reserved
 * @Language English
-* @Createdate Jul 06, 2011, 04:38:01 PM
+* @Createdate Nov 08, 2011, 05:58:05 PM
 */
 
  if (! defined('NV_ADMIN') or ! defined('NV_MAINFILE')){
@@ -29,11 +29,11 @@ $lang_module['nv_admin_sl1'] = "Choose new language";
 $lang_module['nv_admin_sl2'] = "Method";
 $lang_module['nv_admin_submit'] = "Submit";
 $lang_module['nv_lang_module'] = "Module";
-$lang_module['nv_admin_write'] = "Export file";
+$lang_module['nv_admin_write'] = "Export to file";
 $lang_module['nv_admin_download'] = "Download file";
 $lang_module['nv_admin_delete'] = "Delete";
 $lang_module['nv_admin_write_all'] = "Export all data to file";
-$lang_module['nv_admin_edit'] = "Edit language";
+$lang_module['nv_admin_edit'] = "Edit";
 $lang_module['nv_admin_edit_save'] = "Save";
 $lang_module['nv_lang_copy'] = "Copy";
 $lang_module['nv_lang_encstring'] = "Filter";
@@ -42,25 +42,25 @@ $lang_module['nv_lang_area'] = "Area";
 $lang_module['nv_lang_site'] = "Site";
 $lang_module['nv_lang_admin'] = "Admin";
 $lang_module['nv_lang_func'] = "Function";
-$lang_module['nv_lang_key'] = "Symbol";
+$lang_module['nv_lang_key'] = "Code";
 $lang_module['nv_lang_value'] = "value";
 $lang_module['nv_lang_note_edit'] = "Note: First cell to add variable only accept html tag";
 $lang_module['nv_lang_author'] = "Author";
 $lang_module['nv_lang_createdate'] = "Create date";
-$lang_module['nv_setting_read'] = "Read data configuration";
+$lang_module['nv_setting_read'] = "Method of data reading";
 $lang_module['nv_setting_type_0'] = "Save all value";
 $lang_module['nv_setting_type_1'] = "Save value that hase no lang_key only";
 $lang_module['nv_setting_type_2'] = "Update value that hase no lang_key only";
 $lang_module['nv_setting_save'] = "Update configuration successfully";
-$lang_module['nv_lang_show'] = "Show management language";
+$lang_module['nv_lang_show'] = "Managing the display language";
 $lang_module['nv_lang_name'] = "Language";
 $lang_module['nv_lang_sl'] = "Select";
-$lang_module['nv_lang_sladm'] = "Show admin page";
-$lang_module['nv_lang_slsite'] = "Show out site";
+$lang_module['nv_lang_sladm'] = "Administration";
+$lang_module['nv_lang_slsite'] = "Site";
 $lang_module['nv_lang_error_exit'] = "Announcement: The current language does not have to be read into the database, <br /> <br /> system will automatically read data in a language";
-$lang_module['nv_data_note'] = "To add a new language data, the first you need to create the interface language, output file and configuration for display in admin";
+$lang_module['nv_data_note'] = "To create a new data language, you need to create first the interface language, export to files then configure to display";
 $lang_module['nv_setup'] = "Installed";
-$lang_module['nv_setup_new'] = "New setup";
+$lang_module['nv_setup_new'] = "Setup";
 $lang_module['nv_setup_delete'] = "Delete data language";
 $lang_module['nv_data_setup'] = "Data of this language has been installed";
 $lang_module['nv_data_setup_ok'] = "Successful installation, the system will move to site configuration";
@@ -73,12 +73,12 @@ $lang_module['nv_lang_delete_error'] = "Error: Fail to delete interface languge,
 $lang_module['nv_error_write_file'] = "Fail to write file";
 $lang_module['nv_error_write_module'] = "Errors identified by the file module";
 $lang_module['nv_error_exit_module'] = "The module language  isn't exists";
-$lang_module['nv_lang_check'] = "Language testing";
-$lang_module['nv_lang_data_source'] = "Display the with language";
+$lang_module['nv_lang_check'] = "Language checking";
+$lang_module['nv_lang_data_source'] = "Reference Language";
 $lang_module['nv_lang_checkallarea'] = "All area";
 $lang_module['nv_lang_check_no_data'] = "No results were found according to your requirements";
-$lang_module['nv_check_type'] = "Test conditions";
-$lang_module['nv_check_type_0'] = "Language testing has not been translated";
+$lang_module['nv_check_type'] = "Checking method";
+$lang_module['nv_check_type_0'] = "Check non-translated language";
 $lang_module['nv_check_type_1'] = "Check the same language";
 $lang_module['nv_check_type_2'] = "Check all";
 $lang_module['nv_lang_check_title'] = "Check the language has not been translated";
