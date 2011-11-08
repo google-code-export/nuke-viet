@@ -80,7 +80,7 @@
     </div>
     <div>
         <center>
-            <form method="get" action="http://www.google.com.vn/custom" target="_top">
+            <form method="get" action="http://www.google.com/search" target="_top">
                 <input type="hidden" name="domains" value="{MY_DOMAIN}" />
                 <table width="100%">
                     <tr>

@@ -41,7 +41,7 @@
 		</div>
     </form>
 	<div class="fr">
-		<form action="http://www.google.com/cse" id="cse-search-box">
+		<form action="http://www.google.com/search" id="cse-search-box">
 			<div>
 				<input type="hidden" value="{DOMAIN}" name="domains">
 				<input type="hidden" value="UTF-8" name="ie"/>
