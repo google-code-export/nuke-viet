@@ -17,13 +17,40 @@ function nv_site_theme ( $contents )
         nv_info_die( $lang_global['error_layout_title'], $lang_global['error_layout_title'], $lang_global['error_layout_content'] );
     }
     
+    $css = nv_html_css();
+    $js = nv_html_site_js();
+    if ( $client_info['browser']['key'] != "explorer" )
+    {
+        $css .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/real.css\" />\n";
+    }
+    else
+    {
+        unset( $matches );
+        preg_match( "/^([^0-9]+)([0-9]+)\.(.*)$/", $client_info['browser']['name'], $matches );
+        $ieversion = ( int )$matches[2];
+        if ( $ieversion == 6 )
+        {
+            $css .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/ie6.css\" />\n";
+            $js .= "<script type=\"text/javascript\" src=\"" . NV_BASE_SITEURL . "js/fix-png-ie6.js\"></script>\n";
+            $js .= "<script type=\"text/javascript\">DD_belatedPNG.fix('#');</script>\n";
+        }
+        else
+        {
+            $css .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/gtie6.css\" />\n";
+            if ( $ieversion >= 9 )
+            {
+                $css .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/ie9.css\" />\n";
+            }
+        }
+    }
+    
     if ( defined( 'NV_IS_ADMIN' ) )
     {
-        $my_head .= "<link rel=\"stylesheet\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/admin.css\" type=\"text/css\" />";
+        $css .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/admin.css\" />\n";
     }
     if ( defined( 'NV_DISPLAY_ERRORS_LIST' ) and NV_DISPLAY_ERRORS_LIST != 0 )
     {
-        $my_head .= "<link rel=\"stylesheet\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/tab_info.css\" type=\"text/css\" />";
+        $css .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"" . NV_BASE_SITEURL . "themes/" . $global_config['module_theme'] . "/css/tab_info.css\" />\n";
     }
     
     $xtpl = new XTemplate( "layout." . $module_info['layout_funcs'][$op] . ".tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/layout/" );
@@ -31,8 +58,8 @@ function nv_site_theme ( $contents )
     $xtpl->assign( 'TEMPLATE', $global_config['module_theme'] );
     $xtpl->assign( 'NV_BASE_SITEURL', NV_BASE_SITEURL );
     $xtpl->assign( 'THEME_META_TAGS', nv_html_meta_tags() );
-    $xtpl->assign( 'THEME_SITE_JS', nv_html_site_js() );
-    $xtpl->assign( 'THEME_CSS', nv_html_css() );
+    $xtpl->assign( 'THEME_SITE_JS', $js );
+    $xtpl->assign( 'THEME_CSS', $css );
     $xtpl->assign( 'THEME_PAGE_TITLE', nv_html_page_title() );
     $xtpl->assign( 'THEME_SITE_HREF', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA );
     $xtpl->assign( 'MODULE_CONTENT', $contents . "&nbsp;" );

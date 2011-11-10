@@ -13,15 +13,7 @@
         {THEME_CSS}
         {THEME_SITE_RSS}
         {THEME_SITE_JS}
-        <script type="text/javascript" src="{NV_BASE_SITEURL}themes/{TEMPLATE}/js/styleswitch.js">
-        </script>
-        <!--[if IE 6]>
-            <link rel="stylesheet" type="text/css" href="{NV_BASE_SITEURL}themes/{TEMPLATE}/css/ie.css" />
-            <script src="{NV_BASE_SITEURL}js/fix-png-ie6.js"></script>
-            <script>
-				DD_belatedPNG.fix('#');
-            </script>
-        <![endif]-->
+        <script type="text/javascript" src="{NV_BASE_SITEURL}themes/{TEMPLATE}/js/styleswitch.js"></script>
     </head>
     <body>
         <div class="wrapper">
