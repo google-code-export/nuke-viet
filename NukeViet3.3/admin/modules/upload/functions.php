@@ -222,7 +222,7 @@ function nv_getFileInfo( $pathimg, $file )
     clearstatcache();
 
     unset( $matches );
-    preg_match( "/([a-zA-Z0-9\.\-\_]+)\.([a-zA-Z0-9]+)$/", $file, $matches );
+    preg_match( "/([a-zA-Z0-9\.\-\_\\s\(\)]+)\.([a-zA-Z0-9]+)$/", $file, $matches );
 
     $info = array();
     $info[0] = $file;
@@ -241,8 +241,8 @@ function nv_getFileInfo( $pathimg, $file )
     $info[5] = 32;
     $info[6] = 32;
     $info[7] = "|";
-
-    if ( in_array( $matches[2], $array_images ) )
+	$ext = strtolower($matches[2]);
+    if ( in_array( $ext, $array_images ) )
     {
         $size = @getimagesize( NV_ROOTDIR . '/' . $pathimg . '/' . $file );
         $info[2] = "image";
@@ -274,7 +274,7 @@ function nv_getFileInfo( $pathimg, $file )
                 }
             }
         }
-    } elseif ( in_array( $matches[2], $array_flash ) )
+    } elseif ( in_array( $ext, $array_flash ) )
     {
         $info[2] = "flash";
         $info[4] = 'images/flash.gif';
@@ -287,10 +287,10 @@ function nv_getFileInfo( $pathimg, $file )
                 $info[7] = $size[0] . "|" . $size[1];
             }
         }
-    } elseif ( in_array( $matches[2], $array_archives ) )
+    } elseif ( in_array( $ext, $array_archives ) )
     {
         $info[4] = 'images/zip.gif';
-    } elseif ( in_array( $matches[2], $array_documents ) )
+    } elseif ( in_array( $ext, $array_documents ) )
     {
         $info[4] = 'images/doc.gif';
     }
@@ -339,7 +339,7 @@ function nv_filesList( $pathimg, $refresh, $newFile = "", $delFile = "" )
                 {
                     if ( in_array( $file, $array_hidefolders ) ) continue;
 
-                    if ( preg_match( "/([a-zA-Z0-9\.\-\_]+)\.([a-zA-Z0-9]+)$/", $file ) )
+                    if ( preg_match( "/([a-zA-Z0-9\.\-\_\\s\(\)]+)\.([a-zA-Z0-9]+)$/", $file ) )
                     {
                         $files[] = $file;
 

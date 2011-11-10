@@ -11,6 +11,7 @@
 <title>Management Upload File</title>
 <script type="text/javascript" src="{NV_BASE_SITEURL}js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="{NV_BASE_SITEURL}js/jquery/jquery.upload.js"></script>
+<script type="text/javascript" src="{NV_BASE_SITEURL}js/jquery/jquery.lazyload.js"></script>
 </head>
 <style type="text/css">
 body{background:#EAEAEA;font:12px Arial;height:100%;margin:0;padding:0;position:fixed;width:100%;}

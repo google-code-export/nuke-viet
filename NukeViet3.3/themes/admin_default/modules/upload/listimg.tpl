@@ -11,6 +11,10 @@
 <div style="height:100px"></div>
 <script type="text/javascript">
 //<![CDATA[
+$("img").lazyload({
+    placeholder : "{NV_BASE_SITEURL}images/grey.gif",
+    container: $(".filebrowse")
+});
 $(".imgcontent").bind("mouseup", function() {
   fileMouseup(this)
 });
