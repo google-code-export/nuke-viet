@@ -53,7 +53,7 @@ class Diagnostic
         );
 
     private $pattern = array( //
-        'PageRank' => "http://%s/search?client=navclient-auto&ch=%s&features=Rank&q=info%s", //
+        'PageRank' => "http://%s/tbr?client=navclient-auto&ch=%s&features=Rank&q=info%s", //
         'AlexaRank' => "http://data.alexa.com/data?cli=10&dat=nsa&url=%s", //
         'YahooBackLink' => "http://siteexplorer.search.yahoo.com/search?ei=UTF-8&p=%s&bwm=i&bwmf=s", //
         'YahooIndexed' => "http://siteexplorer.search.yahoo.com/search?p=%s&bwm=p&bwmf=s&bwmo=d", //
@@ -280,10 +280,9 @@ class Diagnostic
 
         $url = sprintf( $this->pattern['GoogleBackLink'], urlencode( ":" . $this->currentDomain ) );
         $content = $getContent->get( $url );
-
-        if ( preg_match( "/\<div\s+id\=resultStats\>[^\d]*([0-9\,]+)[^\<]*\</is", $content, $match ) )
+        if ( preg_match( "/\<div\>Results(.+)\<b\>([0-9\,]+)\<\/b\> linking to \<b\>([^\<]+)\<\/b\>\.\<\/div\>/isU", $content, $match ) )
         {
-            $bl = preg_replace( "/\,/", "", $match[1] );
+            $bl = preg_replace( "/\,/", "", $match[2] );
             return ( int )$bl;
         }
         else
@@ -303,10 +302,9 @@ class Diagnostic
 
         $url = sprintf( $this->pattern['GoogleIndexed'], urlencode( ":" . $this->currentDomain ) );
         $content = $getContent->get( $url );
-
-        if ( preg_match( "/\<div\s+id\=resultStats\>[^\d]*([0-9\,]+)[^\<]*\</is", $content, $match ) )
+        if ( preg_match( "/\<div\>Results(.+)\<b\>([0-9\,]+)\<\/b\> from \<b\>([^\<]+)\<\/b\>\.\<\/div\>/isU", $content, $match ) )
         {
-            $bl = preg_replace( "/\,/", "", $match[1] );
+            $bl = preg_replace( "/\,/", "", $match[2] );
             return ( int )$bl;
         }
         else
@@ -434,7 +432,7 @@ class Diagnostic
             $domain = $this->myDomain;
         }
 
-        $domain = preg_replace( array( '/^[a-zA-Z]+\:\/\//e' ), '', $domain );
+        $domain = preg_replace( array( '/^[a-zA-Z]+\:\/\//e','/^www\./e' ), array('',''), $domain );
 
         $this->currentDomain = $domain;
         $this->currentCache = NV_ROOTDIR . '/' . NV_DATADIR . '/diagnostic-' . $this->currentDomain . '.xml';
