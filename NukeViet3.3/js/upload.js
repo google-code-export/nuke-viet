@@ -373,7 +373,7 @@ function folderClick( a )
         {
             a = $( "select[name=imgtype]" ).val();
             var d = $( "input[name=selFile]" ).val(), e = $( "select[name=author]" ).val() == 1 ? "&author" : "";
-            $( "div#imglist" ).load( nv_module_url + "imglist&path=" + b + "&imgfile=" + d + "&type=" + a + e + "&random=" + nv_randomNum( 10 ) )
+            $( "div#imglist" ).html('<p style="padding:20px; text-align:center"><img src="' + nv_base_siteurl + 'images/load_bar.gif"/> please wait...</p>').load( nv_module_url + "imglist&path=" + b + "&imgfile=" + d + "&type=" + a + e + "&random=" + nv_randomNum( 10 ) )
         }
         else
         {
