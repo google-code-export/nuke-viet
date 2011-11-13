@@ -31,10 +31,10 @@ if ( $count != 0 )
 	die();
 }
 
-$sql = "SELECT COUNT(*) as `count`, `username` FROM `" . NV_USERS_GLOBALTABLE . "` WHERE `userid`=" . $userid . " LIMIT 1";
+$sql = "SELECT `userid`, `username` FROM `" . NV_USERS_GLOBALTABLE . "` WHERE `userid`=" . $userid . " LIMIT 1";
 $result = $db->sql_query( $sql );
-list( $count, $username ) = $db->sql_fetchrow( $result );
-if ( $count != 1 )
+list( $userid, $username ) = $db->sql_fetchrow( $result );
+if ( empty($userid))
 {
 	Header( "Location: " . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name );
 	die();
