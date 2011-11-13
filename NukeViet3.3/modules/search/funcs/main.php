@@ -18,7 +18,7 @@ $array_modul = LoadModulesSearch();
 $key = filter_text_input( 'q', 'get', '', 0, NV_MAX_SEARCH_LENGTH );
 $len_key = 0;
 
-$logic = filter_text_input( 'logic', 'get', 'OR' );
+$logic = filter_text_input( 'logic', 'get', 'AND' );
 if ( $logic != 'AND' ) $logic = 'OR';
 
 $checkss = filter_text_input( 'search_checkss', 'get', '', 1, 32 );
