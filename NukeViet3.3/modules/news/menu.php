@@ -7,7 +7,7 @@
  */
 
 if ( ! defined( 'NV_IS_FILE_ADMIN' ) ) die( 'Stop!!!' );
-$sql="SELECT * FROM `" . NV_PREFIXLANG . "_" . $module . "_cat` ORDER BY `order` ASC";
+$sql="SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_d . "_cat` ORDER BY `order` ASC";
 
 $result=$db->sql_query($sql);
 While($row=$db->sql_fetchrow($result))
