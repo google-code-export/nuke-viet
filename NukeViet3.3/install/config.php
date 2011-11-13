@@ -43,6 +43,6 @@ $global_config['gfx_chk'] = 3;
 
 $array_config_rewrite = array('rewrite_optional' => 0);
 
-$global_config['version'] = "3.3.02"; //NUKEVIET 3.3 RC2.
-$global_config['revision'] = 1385;
+$global_config['version'] = "3.3.03"; //NUKEVIET 3.3 RC3.
+$global_config['revision'] = 1392;
 ?>
