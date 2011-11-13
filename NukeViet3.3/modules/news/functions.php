@@ -17,13 +17,13 @@ require_once ( NV_ROOTDIR . "/modules/" . $module_file . "/global.functions.php"
 global $global_array_cat;
 $global_array_cat = array();
 $link_i = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=Other";
-$global_array_cat[0] = array( "catid" => 0, "parentid" => 0, "title" => "Other", "alias" => "Other", "link" => $link_i, "viewcat" => "viewcat_page_new", "subcatid" => 0, "numlinks" => 3, "description" => "", "inhome" => 0, "keywords" => "" );
+$global_array_cat[0] = array( "catid" => 0, "parentid" => 0, "title" => "Other", "titlesite" => "", "alias" => "Other", "link" => $link_i, "viewcat" => "viewcat_page_new", "subcatid" => 0, "numlinks" => 3, "description" => "", "inhome" => 0, "keywords" => "" );
 $catid = 0;
 $parentid = 0;
 $alias_cat_url = isset( $array_op[0] ) ? $array_op[0] : "";
 $array_mod_title = array();
 
-$sql = "SELECT catid, parentid, title, alias, viewcat, subcatid, numlinks, description, inhome, keywords, who_view, groups_view FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` ORDER BY `order` ASC";
+$sql = "SELECT catid, parentid, title, titlesite, alias, viewcat, subcatid, numlinks, description, inhome, keywords, who_view, groups_view FROM `" . NV_PREFIXLANG . "_" . $module_data . "_cat` ORDER BY `order` ASC";
 $list = nv_db_cache( $sql, 'catid', $module_name );
 foreach ( $list as $l )
 {

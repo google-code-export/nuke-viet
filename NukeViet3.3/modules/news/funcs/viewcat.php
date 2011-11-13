@@ -294,7 +294,7 @@ if ( empty( $contents ) )
         nv_set_cache( $cache_file, $contents );
     }
 }
-$page_title = $global_array_cat[$catid]['title'];
+$page_title = (!empty($global_array_cat[$catid]['titlesite'])) ? $global_array_cat[$catid]['titlesite'] : $global_array_cat[$catid]['title'];
 $key_words = $global_array_cat[$catid]['keywords'];
 $description = $global_array_cat[$catid]['description'];
 

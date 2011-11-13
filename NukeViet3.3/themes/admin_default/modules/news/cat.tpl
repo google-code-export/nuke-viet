@@ -37,6 +37,12 @@
 		</tbody>
 		<tbody>
 			<tr>
+				<td align="right"><strong>Title Site: </strong></td>
+				<td><input style="width: 600px" name="titlesite" type="text" value="{titlesite}" maxlength="255"/></td>
+			</tr>
+		</tbody>
+		<tbody class="second">
+			<tr>
 				<td align="right"><strong>{LANG.cat_sub}: </strong></td>
 				<td>
 				<select name="parentid">
@@ -47,13 +53,13 @@
 				</td>
 			</tr>
 		</tbody>
-		<tbody class="second">
+		<tbody>
 			<tr>
 				<td align="right"><strong>{LANG.keywords}: </strong></td>
 				<td><input style="width: 600px" name="keywords" type="text" value="{keywords}" maxlength="255" /></td>
 			</tr>
 		</tbody>
-		<tbody>
+		<tbody class="second">
 			<tr>
 				<td valign="top" align="right"><br /><strong>{LANG.description} </strong></td>
 				<td>
@@ -61,7 +67,7 @@
 				</td>
 			</tr>
 		</tbody>
-		<tbody class="second">
+		<tbody>
 		<tr>
 			<td valign="top" align="right"><br /><strong>{GLANG.who_view} </strong></td>
 			<td>
@@ -89,7 +95,6 @@
 			</td>
 		</tr>
 		</tbody>
-    
     </table>
     <br /><center><input name="submit1" type="submit" value="{LANG.save}" /></center>
 </form>

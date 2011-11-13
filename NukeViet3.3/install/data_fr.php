@@ -775,13 +775,13 @@ $result = $db->sql_query("SELECT * FROM `" . $db_config['prefix'] . "_" . $lang_
 if ($db->sql_numrows($result))
 {
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_news_cat` VALUES
-		(1, 0, 'News', 'News', '', '', '', 1, 1, 0, 'viewcat_page_new', 3, '5,6,7', 1, 3, '', '', 1280644983, 1280927178, 0, ''), 
-		(2, 0, 'Produits', 'Produits', '', '', '', 2, 5, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280644996, 1280644996, 0, ''), 
-		(3, 0, 'Partenaires', 'Partenaires', '', '', '', 3, 6, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280645023, 1280645023, 0, ''), 
-		(4, 0, 'Recrutement', 'Recruitement', '', '', '', 4, 7, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280649352, 1280649900, 0, ''), 
-		(5, 1, 'News Interne', 'News-Interne', '', '', '', 1, 2, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280927318, 1280927318, 0, ''), 
-		(6, 1, 'Nouvelles Technologies', 'Nouvelles-Technologies', '', '', '', 2, 3, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280927364, 1280927364, 0, ''), 
-		(7, 1, 'Espace presse', 'Espace-presse', '', '', '', 3, 4, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280928740, 1280928740, 0, '')";
+		(1, 0, 'News', '', 'News', '', '', '', 1, 1, 0, 'viewcat_page_new', 3, '5,6,7', 1, 3, '', '', 1280644983, 1280927178, 0, ''), 
+		(2, 0, 'Produits', '', 'Produits', '', '', '', 2, 5, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280644996, 1280644996, 0, ''), 
+		(3, 0, 'Partenaires', '', 'Partenaires', '', '', '', 3, 6, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280645023, 1280645023, 0, ''), 
+		(4, 0, 'Recrutement', '', 'Recruitement', '', '', '', 4, 7, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280649352, 1280649900, 0, ''), 
+		(5, 1, 'News Interne', '', 'News-Interne', '', '', '', 1, 2, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280927318, 1280927318, 0, ''), 
+		(6, 1, 'Nouvelles Technologies', '', 'Nouvelles-Technologies', '', '', '', 2, 3, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280927364, 1280927364, 0, ''), 
+		(7, 1, 'Espace presse', '', 'Espace-presse', '', '', '', 3, 4, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1280928740, 1280928740, 0, '')";
 
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_news_rows` VALUES
 		(1, 1, '1,2', 0, 1, '', 0, 1280645699, 1280751776, 1, 1280645640, 0, 2, 'Nukeviet 3.0', 'Nukeviet-3-0', 'NukeViet 3 est une nouvelle génération de Système de Gestion de Contenu développée par les Vietnamiens. Pour la première fois au Vietnam, un noyau de Open Source ouverte est investi professionnelement en financement, en ressources humaines et en temps. Le résultat est que 100% de ligne de code de NukeViet est écrit entièrement neuf. Nukeviet 3.0 utilise XHTML, CSS et jQuery avec Xtemplate permettant une application souple de Ajax, même au niveau de noyau.', 'nukeviet3.jpg', '', 'thumb/nukeviet3.jpg|block/nukeviet3.jpg', 1, 2, 1, 2, 0, 0, 0, ''),

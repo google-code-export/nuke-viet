@@ -772,13 +772,13 @@ $result = $db->sql_query("SELECT * FROM `" . $db_config['prefix'] . "_" . $lang_
 if ($db->sql_numrows($result))
 {
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_news_cat` VALUES
-		(1, 0, 'Tin tức', 'Tin-tuc', '', '', '', 1, 1, 0, 'viewcat_main_right', 3, '8,12,9', 1, 3, '', '', 1274986690, 1274986690, 0, ''), 
-		(2, 0, 'Sản phẩm', 'San-pham', '', '', '', 2, 5, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274986705, 1274986705, 0, ''), 
-		(8, 1, 'Thông cáo báo chí', 'thong-cao-bao-chi', '', '', '', 1, 2, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987105, 1274987244, 0, ''), 
-		(9, 1, 'Tin công nghệ', 'Tin-cong-nghe', '', '', '', 3, 4, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987212, 1274987212, 0, ''), 
-		(10, 0, 'Đối tác', 'Doi-tac', '', '', '', 3, 9, 0, 'viewcat_main_right', 0, '', 1, 3, '', '', 1274987460, 1274987460, 0, ''), 
-		(11, 0, 'Tuyển dụng', 'Tuyen-dung', '', '', '', 4, 12, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987538, 1274987538, 0, ''), 
-		(12, 1, 'Bản tin nội bộ', 'Ban-tin-noi-bo', '', '', '', 2, 3, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987902, 1274987902, 0, '')";
+		(1, 0, 'Tin tức', '', 'Tin-tuc', '', '', '', 1, 1, 0, 'viewcat_main_right', 3, '8,12,9', 1, 3, '', '', 1274986690, 1274986690, 0, ''), 
+		(2, 0, 'Sản phẩm', '', 'San-pham', '', '', '', 2, 5, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274986705, 1274986705, 0, ''), 
+		(8, 1, 'Thông cáo báo chí', '', 'thong-cao-bao-chi', '', '', '', 1, 2, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987105, 1274987244, 0, ''), 
+		(9, 1, 'Tin công nghệ', '', 'Tin-cong-nghe', '', '', '', 3, 4, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987212, 1274987212, 0, ''), 
+		(10, 0, 'Đối tác', '', 'Doi-tac', '', '', '', 3, 9, 0, 'viewcat_main_right', 0, '', 1, 3, '', '', 1274987460, 1274987460, 0, ''), 
+		(11, 0, 'Tuyển dụng', '', 'Tuyen-dung', '', '', '', 4, 12, 0, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987538, 1274987538, 0, ''), 
+		(12, 1, 'Bản tin nội bộ', '', 'Ban-tin-noi-bo', '', '', '', 2, 3, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1274987902, 1274987902, 0, '')";
 
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_news_rows` VALUES
 		(1, 1, '1,8,12', 0, 1, 'Quỳnh Nhi', 1, 1274989177, 1275318126, 1, 1274989140, 0, 2, 'Ra mắt công ty mã nguồn mở đầu tiên tại Việt Nam', 'Ra-mat-cong-ty-ma-nguon-mo-dau-tien-tai-Viet-Nam', 'Mã nguồn mở NukeViet vốn đã quá quen thuộc với cộng đồng CNTT Việt Nam trong mấy năm qua. Tuy chưa hoạt động chính thức, nhưng chỉ trong khoảng 5 năm gần đây, mã nguồn mở NukeViet đã được dùng phổ biến ở Việt Nam, áp dụng ở hầu hết các lĩnh vực, từ tin tức đến thương mại điện tử, từ các website cá nhân cho tới những hệ thống website doanh nghiệp.', 'nangly.jpg', 'Thành lập VINADES.,JSC', 'thumb/nangly.jpg|block/nangly.jpg', 1, 2, 1, 97, 0, 0, 0, 'nguồn mở, quen thuộc, cộng đồng, việt nam, hoạt động, gần đây, phổ biến, áp dụng, hầu hết, hết các, lĩnh vực, tin tức, thương mại điện, điện tử, cá nhân, hệ thống'),

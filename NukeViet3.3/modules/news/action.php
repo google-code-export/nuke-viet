@@ -49,6 +49,7 @@
 	  `catid` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
 	  `parentid` mediumint(8) unsigned NOT NULL DEFAULT '0',
 	  `title` varchar(255) NOT NULL,
+	  `titlesite` varchar(255) NOT NULL,
 	  `alias` varchar(255) NOT NULL DEFAULT '',
 	  `description` varchar(255) NOT NULL,
 	  `image` varchar(255) NOT NULL DEFAULT '',

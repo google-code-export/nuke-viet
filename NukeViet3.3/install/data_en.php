@@ -774,20 +774,20 @@ $result = $db->sql_query("SELECT * FROM `" . $db_config['prefix'] . "_" . $lang_
 if ($db->sql_numrows($result))
 {
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_news_cat` VALUES
-		(1, 0, 'Co-operate', 'Co-operate', '', '', '', 2, 5, 0, 'viewcat_page_new', 2, '2,3', 1, 3, '', '', 1277689708, 1277689708, 0, ''), 
-		(2, 1, 'Careers at NukeViet', 'Careers-at-NukeViet', '', '', '', 1, 6, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690086, 1277690259, 0, ''), 
-		(3, 1, 'Partners', 'Partners', '', '', '', 2, 7, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690142, 1277690291, 0, ''), 
-		(4, 0, 'NukeViet news', 'NukeViet-news', '', '', '', 1, 1, 0, 'viewcat_page_new', 3, '5,6,7', 1, 3, '', '', 1277690451, 1277690451, 0, ''), 
-		(5, 4, 'Security issues', 'Security-issues', '', '', '', 1, 2, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690497, 1277690564, 0, ''), 
-		(6, 4, 'Release notes', 'Release-notes', '', '', '', 2, 3, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690588, 1277690588, 0, ''), 
-		(7, 4, 'Development team talk', 'Development-team-talk', '', '', '', 3, 4, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690652, 1277690652, 0, ''), 
-		(8, 0, 'NukeViet community', 'NukeViet-community', '', '', '', 3, 8, 0, 'viewcat_page_new', 3, '9,10,11', 1, 3, '', '', 1277690748, 1277690748, 0, ''), 
-		(9, 8, 'Activities', 'Activities', '', '', '', 1, 9, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690765, 1277690765, 0, ''), 
-		(10, 8, 'Events', 'Events', '', '', '', 2, 10, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690783, 1277690783, 0, ''), 
-		(11, 8, 'Faces of week &#x3A;D', 'Faces-of-week-D', '', '', '', 3, 11, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690821, 1277690821, 0, ''), 
-		(12, 0, 'Lastest technologies', 'Lastest-technologies', '', '', '', 4, 12, 0, 'viewcat_page_new', 2, '13,14', 1, 3, '', '', 1277690888, 1277690888, 0, ''), 
-		(13, 12, 'World wide web', 'World-wide-web', '', '', '', 1, 13, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690934, 1277690934, 0, ''), 
-		(14, 12, 'Around internet', 'Around-internet', '', '', '', 2, 14, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690982, 1277690982, 0, '')";
+		(1, 0, 'Co-operate', '', 'Co-operate', '', '', '', 2, 5, 0, 'viewcat_page_new', 2, '2,3', 1, 3, '', '', 1277689708, 1277689708, 0, ''), 
+		(2, 1, 'Careers at NukeViet', '', 'Careers-at-NukeViet', '', '', '', 1, 6, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690086, 1277690259, 0, ''), 
+		(3, 1, 'Partners', '', 'Partners', '', '', '', 2, 7, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690142, 1277690291, 0, ''), 
+		(4, 0, 'NukeViet news', '', 'NukeViet-news', '', '', '', 1, 1, 0, 'viewcat_page_new', 3, '5,6,7', 1, 3, '', '', 1277690451, 1277690451, 0, ''), 
+		(5, 4, 'Security issues', '', 'Security-issues', '', '', '', 1, 2, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690497, 1277690564, 0, ''), 
+		(6, 4, 'Release notes', '', 'Release-notes', '', '', '', 2, 3, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690588, 1277690588, 0, ''), 
+		(7, 4, 'Development team talk', '', 'Development-team-talk', '', '', '', 3, 4, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690652, 1277690652, 0, ''), 
+		(8, 0, 'NukeViet community', '', 'NukeViet-community', '', '', '', 3, 8, 0, 'viewcat_page_new', 3, '9,10,11', 1, 3, '', '', 1277690748, 1277690748, 0, ''), 
+		(9, 8, 'Activities', '', 'Activities', '', '', '', 1, 9, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690765, 1277690765, 0, ''), 
+		(10, 8, 'Events', '', 'Events', '', '', '', 2, 10, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690783, 1277690783, 0, ''), 
+		(11, 8, 'Faces of week &#x3A;D', '', 'Faces-of-week-D', '', '', '', 3, 11, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690821, 1277690821, 0, ''), 
+		(12, 0, 'Lastest technologies', '', 'Lastest-technologies', '', '', '', 4, 12, 0, 'viewcat_page_new', 2, '13,14', 1, 3, '', '', 1277690888, 1277690888, 0, ''), 
+		(13, 12, 'World wide web', '', 'World-wide-web', '', '', '', 1, 13, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690934, 1277690934, 0, ''), 
+		(14, 12, 'Around internet', '', 'Around-internet', '', '', '', 2, 14, 1, 'viewcat_page_new', 0, '', 1, 3, '', '', 1277690982, 1277690982, 0, '')";
 
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_news_rows` VALUES
 		(1, 1, '1,7,8', 0, 8, 'VINADES', 0, 1277689959, 1277690410, 1, 1277689920, 0, 2, 'Invite to co-operate announcement', 'Invite-to-co-operate-announcement', 'VINADES.,JSC was founded in order to professionalize NukeViet opensource development and release. We also using NukeViet in our bussiness projects to make it continue developing. Include Advertisment, provide hosting services for NukeViet CMS development.', 'hoptac.jpg', '', 'thumb/hoptac.jpg|block/hoptac.jpg', 1, 2, 1, 2, 0, 0, 0, 'VINADES'),

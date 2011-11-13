@@ -14,7 +14,7 @@ $page_title = $lang_module['categories'];
 
 $error = $admins = "";
 $savecat = 0;
-list($catid, $parentid, $title, $alias, $description, $keywords, $who_view, $groups_view) = array(0, 0, "", "", "", "", 0, "");
+list($catid, $parentid, $title, $titlesite, $alias, $description, $keywords, $who_view, $groups_view) = array(0, 0, "", "", "", "", "", 0, "");
 
 $groups_list = nv_groups_list();
 $savecat = $nv_Request->get_int('savecat', 'post', 0);
@@ -24,6 +24,7 @@ if (!empty($savecat))
     $parentid_old = $nv_Request->get_int('parentid_old', 'post', 0);
     $parentid = $nv_Request->get_int('parentid', 'post', 0);
     $title = filter_text_input('title', 'post', '', 1);
+    $titlesite = filter_text_input('titlesite', 'post', '', 1);
     $keywords = filter_text_input('keywords', 'post', '', 1);
     $alias = filter_text_input('alias', 'post', '');
     $description = $nv_Request->get_string('description', 'post', '');
@@ -53,8 +54,8 @@ if (!empty($savecat))
         $viewcat = "viewcat_page_new";
         $subcatid = "";
 
-        $query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_cat` (`catid`, `parentid`, `title`, `alias`, `description`, `image`, `thumbnail`, `weight`, `order`, `lev`, `viewcat`, `numsubcat`, `subcatid`, `inhome`, `numlinks`, `keywords`, `admins`, `add_time`, `edit_time`, `who_view`, `groups_view`)
-         VALUES (NULL, " . $db->dbescape($parentid) . ", " . $db->dbescape($title) . ", " . $db->dbescape($alias) . ", " . $db->dbescape($description) . ", '', '', " . $db->dbescape($weight) . ", '0', '0', " . $db->dbescape($viewcat) . ", '0', " . $db->dbescape($subcatid) . ", '1', '3', " . $db->dbescape($keywords) . ", " . $db->dbescape($admins) . ", UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), " . $db->dbescape($who_view) . "," . $db->dbescape($groups_view) . ")";
+        $query = "INSERT INTO `" . NV_PREFIXLANG . "_" . $module_data . "_cat` (`catid`, `parentid`, `title`, `titlesite`, `alias`, `description`, `image`, `thumbnail`, `weight`, `order`, `lev`, `viewcat`, `numsubcat`, `subcatid`, `inhome`, `numlinks`, `keywords`, `admins`, `add_time`, `edit_time`, `who_view`, `groups_view`)
+         VALUES (NULL, " . $db->dbescape($parentid) . ", " . $db->dbescape($title) . ", " . $db->dbescape($titlesite) . ", " . $db->dbescape($alias) . ", " . $db->dbescape($description) . ", '', '', " . $db->dbescape($weight) . ", '0', '0', " . $db->dbescape($viewcat) . ", '0', " . $db->dbescape($subcatid) . ", '1', '3', " . $db->dbescape($keywords) . ", " . $db->dbescape($admins) . ", UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), " . $db->dbescape($who_view) . "," . $db->dbescape($groups_view) . ")";
 
         $newcatid = (int)$db->sql_query_insert_id($query);
         if ($newcatid > 0)
@@ -78,7 +79,7 @@ if (!empty($savecat))
     }
     elseif ($catid > 0 and $title != "")
     {
-        $query = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_cat` SET `parentid`=" . $db->dbescape($parentid) . ", `title`=" . $db->dbescape($title) . ", `alias` =  " . $db->dbescape($alias) . ", `description`=" . $db->dbescape($description) . ", `keywords`= " . $db->dbescape($keywords) . ", `who_view`=" . $db->dbescape($who_view) . ", `groups_view`=" . $db->dbescape($groups_view) . ", `edit_time`=UNIX_TIMESTAMP( ) WHERE `catid` =" . $catid;
+        $query = "UPDATE `" . NV_PREFIXLANG . "_" . $module_data . "_cat` SET `parentid`=" . $db->dbescape($parentid) . ", `title`=" . $db->dbescape($title) . ", `titlesite`=" . $db->dbescape($titlesite) . ", `alias` =  " . $db->dbescape($alias) . ", `description`=" . $db->dbescape($description) . ", `keywords`= " . $db->dbescape($keywords) . ", `who_view`=" . $db->dbescape($who_view) . ", `groups_view`=" . $db->dbescape($groups_view) . ", `edit_time`=UNIX_TIMESTAMP( ) WHERE `catid` =" . $catid;
         $db->sql_query($query);
         if ($db->sql_affectedrows() > 0)
         {
@@ -115,6 +116,7 @@ if ($catid > 0 and isset($global_array_cat[$catid]))
 {
     $parentid = $global_array_cat[$catid]['parentid'];
     $title = $global_array_cat[$catid]['title'];
+    $titlesite = $global_array_cat[$catid]['titlesite'];
     $alias = $global_array_cat[$catid]['alias'];
     $description = $global_array_cat[$catid]['description'];
     $keywords = $global_array_cat[$catid]['keywords'];
@@ -200,6 +202,7 @@ $xtpl->assign('OP', $op);
 $xtpl->assign('caption', $caption);
 $xtpl->assign('catid', $catid);
 $xtpl->assign('title', $title);
+$xtpl->assign('titlesite', $titlesite);
 $xtpl->assign('alias', $alias);
 $xtpl->assign('parentid', $parentid);
 $xtpl->assign('keywords', $keywords);
