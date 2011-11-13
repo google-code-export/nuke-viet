@@ -17,7 +17,7 @@
 <div id="ddtopmenubar" class="mattblackmenu">
 <ul>
 <!-- BEGIN: loopcat1 -->
-	<li{CAT1.current}><a href="{CAT1.link}" {rel}><strong>{CAT1.title}</strong></a>
+	<li{CAT1.current}><a title="{CAT1.note}" href="{CAT1.link}" {rel}><strong>{CAT1.title}</strong></a>
 <!-- END: loopcat1 -->
 </ul>
 </div>
@@ -29,7 +29,7 @@ ddlevelsmenu.setup("ddtopmenubar", "topbar")
 <ul id="ddsubmenu{nu}" class="ddsubmenustyle">
 	<!-- BEGIN: loopcat2 -->
 	<li>
-		<strong><a href="{CAT2.link}">{CAT2.title}</a></strong>
+		<strong><a title="{CAT2.note}" href="{CAT2.link}">{CAT2.title}</a></strong>
 		<!-- BEGIN: cat3 -->
 		<ul >				
 			{HTML_CONTENT}	

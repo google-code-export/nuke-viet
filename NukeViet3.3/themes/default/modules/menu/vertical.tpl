@@ -1,5 +1,5 @@
 <!-- BEGIN: tree -->
-	<li class="{MENUTREE.class1}"><a href="{MENUTREE.link}" class="sf-with-ul"><strong>{MENUTREE.title}</strong></a>	
+	<li class="{MENUTREE.class1}"><a title="{MENUTREE.note}" href="{MENUTREE.link}" class="sf-with-ul"><strong>{MENUTREE.title}</strong></a>	
 		<!-- BEGIN: tree_content -->
 			<ul>
 				{TREE_CONTENT}
@@ -24,7 +24,7 @@ $(document).ready(function(){
 </script>
 <ul class="sf-menu sf-vertical sf-js-enabled sf-shadow">
 	<!-- BEGIN: loopcat1 -->
-	<li{CAT1.current}><a href="{CAT1.link}" class="sf-with-ul"><strong>{CAT1.title}</strong></a>						
+	<li{CAT1.current}><a title="{CAT1.note}" href="{CAT1.link}" class="sf-with-ul"><strong>{CAT1.title}</strong></a>						
 		<!-- BEGIN: cat2 -->
 		<ul>			
 			{HTML_CONTENT}	

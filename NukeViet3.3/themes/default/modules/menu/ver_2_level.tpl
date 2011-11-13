@@ -91,7 +91,7 @@ ddaccordion.init({
 </style>
 <div class="arrowsidemenu">
 	<!-- BEGIN: loopcat1 -->
-	<div {CAT1.current} {menuheaders}><a href="{CAT1.link}" title="{CAT1.title}"><strong>{CAT1.title}</strong></a>	</div>					
+	<div {CAT1.current} {menuheaders}><a href="{CAT1.link}" title="{CAT1.title}"><strong>{CAT1.title}</strong></a></div>					
 		<!-- BEGIN: cat2 -->
 		<ul class="menucontents">			
 			<!-- BEGIN: loop2 -->

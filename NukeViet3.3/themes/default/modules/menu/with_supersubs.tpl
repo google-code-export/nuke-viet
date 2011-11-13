@@ -1,5 +1,5 @@
 <!-- BEGIN: tree -->
-   <li class="{MENUTREE.class1}"><a href="{MENUTREE.link}" class="sf-with-ul" >{MENUTREE.title}</a>	
+   <li class="{MENUTREE.class1}"><a title="{MENUTREE.note}" href="{MENUTREE.link}" class="sf-with-ul" >{MENUTREE.title}</a>	
        <!-- BEGIN: tree_content -->
 	     <ul>
 	       {TREE_CONTENT}
@@ -43,7 +43,7 @@
 	<ul class="sf-menu" id="style1">
 		<!-- BEGIN: loopcat1 -->
 		<li{CAT1.current}>
-			<a href="{CAT1.link}" class="sf-with-ul">{CAT1.title}</a>
+			<a title="{CAT1.note}" href="{CAT1.link}" class="sf-with-ul">{CAT1.title}</a>
 			<!-- BEGIN: cat2 -->
 			<ul>			
 				{HTML_CONTENT}	

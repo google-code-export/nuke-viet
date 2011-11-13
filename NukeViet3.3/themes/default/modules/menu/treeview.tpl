@@ -23,7 +23,7 @@ $(function() {
 </script>
 <ul id="navigation">
 	<!-- BEGIN: loopcat1 -->
-	<li{CAT1.current}><a href="{CAT1.link}">{CAT1.title}</a>		
+	<li{CAT1.current}><a title="{CAT1.note}" href="{CAT1.link}">{CAT1.title}</a>		
 		<!-- BEGIN: cat2 -->
 		<ul>			
 			{HTML_CONTENT}	
