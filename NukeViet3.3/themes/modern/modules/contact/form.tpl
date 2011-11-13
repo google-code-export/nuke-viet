@@ -54,7 +54,7 @@
                         <br/>
                         <select class="sl2" id="fpart" name="fpart">
                             <!-- BEGIN: select_option_loop -->
-                            	<option value="{SELECT_VALUE}">{SELECT_NAME}</option>
+                            	<option value="{SELECT_VALUE}" {SELECTED}>{SELECT_NAME}</option>
                             <!-- END: select_option_loop -->
                         </select>
                     </p>
