@@ -128,6 +128,13 @@ turnpage:function(setting, thepage, autocall){
 	if (turntopage==setting.currentpage && typeof autocall=="undefined") //if a pagination link is clicked on repeatedly
 		return
 	setting.currentpage=turntopage
+	if(turntopage==1 && setting.topzindex > 100)
+	{
+		setting.topzindex = 0
+		for (var i=0; i < totalpages; i++) {
+			setting.contentdivs[i].style.zIndex=++setting.topzindex
+		};
+	}	
 	setting.contentdivs[turntopage-1].style.zIndex=++setting.topzindex
 	this.cleartimer(setting, window["fcsfade"+setting.id])
 	setting.cacheprevpage=setting.prevpage
