@@ -16,9 +16,13 @@ Detailed information about Nukeviet at Wikipedia Encyclopedia: [http://vi.wikipe
 Nukeviet official website: [http://nukeviet.vn/en/]
 
 =II. Nukeviet managing agency:=
-VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY (VINADES.,JSC)
- * Office: Room 704 - CT1 Nang Huong Building, 583 Nguyen Trai, Hanoi, Vietnam.
- * Tel: +84 - 4 - 85 87 2007
- * Fax: +84 - 4 - 35 500 914
- * Emai: contact(at)vinades.vn
- * Website: http://www.vinades.vn
+===VIETNAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY (VINADES.,JSC)===
+Website: http://vinades.vn | http://nukeviet.vn | http://webnhanh.vn
+
+ * *Head Office:*
+  * Room 704 - CT1 Nang Huong Building, 583 Nguyen Trai st, Hanoi, Vietnam.
+  * Phone: +84-4-85872007, Fax: +84-4-35500914, Email: contact [at] vinades.vn
+
+ * *Branch Office:*
+  * 69/6/10A, Tan Chanh Hiep 7 st., Dist. 12, Hochiminh city, Vietnam.
+  * Phone : +84-8-62736367, Email: hcm [at] vinades.vn
