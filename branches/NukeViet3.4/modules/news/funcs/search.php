@@ -138,6 +138,17 @@ if (isset($key{NV_MIN_SEARCH_LENGTH - 1}))
     }
     $contents .= call_user_func("search_result_theme", $key, $numRecord, $per_pages, $pages, $array_content, $url_link, $catid);
 }
+if (empty($key))
+{
+    $page_title = $module_info['custom_title'];
+}
+else
+{
+    $page_title = $q . ' ' . NV_TITLEBAR_DEFIS . ' ' . $module_info['custom_title'];
+}
+$key_words = $module_info['keywords'];
+$mod_title = isset($lang_module['main_title']) ? $lang_module['main_title'] : $module_info['custom_title'];
+
 include (NV_ROOTDIR . "/includes/header.php");
 echo nv_site_theme($contents);
 include (NV_ROOTDIR . "/includes/footer.php");

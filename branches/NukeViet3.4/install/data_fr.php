@@ -33,6 +33,7 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 ('banners', 'banners', 'banners', 'Publicité', 1270400000, 1, '', 'mobile_nukeviet', '', '0', 0, 7, 1, 1, '', 0),
 ('search', 'search', 'search', 'Recherche', 1273474173, 0, '', 'mobile_nukeviet', '', '0', 0, 8, 1, 1, '', 0),
 ('menu', 'menu', 'menu', 'Menu Site', 1295287334, 1, '', 'mobile_nukeviet', '', '0', 0, 9, 1, 1, '', 0),
+('tags', 'tags', 'tags', 'Tags', 1324787574, 0, '', 'mobile_nukeviet', '', '0', 0, 11, 1, 1, '', 0),
 ('rss', 'rss', 'rss', 'Rss', 1279366705, 1, '', 'mobile_nukeviet', '', '0', 0, 10, 1, 1, '', 0)";
 
 $sql_create_table[] = "TRUNCATE TABLE `" . $db_config['prefix'] . "_" . $lang_data . "_modfuncs`";
@@ -84,7 +85,8 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (45, 'adv', 'Adv', 'search', 0, 0, 0, ''),
 (46, 'main', 'Main', 'search', 1, 0, 1, ''),
 (47, 'main', 'Main', 'rss', 1, 0, 1, ''),
-(48, 'regroups', 'Regroups', 'users', 1, 0, 1, '')";
+(48, 'regroups', 'Regroups', 'users', 1, 0, 1, ''),
+(49, 'main', 'Main', 'tags', 1, 0, 1, '')";
 
 $sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modthemes` (`func_id`, `layout`, `theme`) VALUES
 (0, 'body-right', 'modern'),
@@ -188,6 +190,11 @@ $sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data
 (46, 'body', 'mobile_nukeviet'),
 (47, 'body', 'mobile_nukeviet'),
 (48, 'body', 'mobile_nukeviet')";
+
+$sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modthemes` (`func_id`, `layout`, `theme`) VALUES
+(49, 'body-right', 'modern'),
+(49, 'left-body-right', 'default'),
+(49, 'body', 'mobile_nukeviet')";
 
 $sql_create_table[] = "TRUNCATE TABLE `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_groups`";
 $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_groups` (`bid`, `theme`, `module`, `file_name`, `title`, `link`, `template`, `position`, `exp_time`, `active`, `groups_view`, `all_func`, `weight`, `config`) VALUES
@@ -743,6 +750,24 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (20, 22, 1),
 (20, 19, 1)";
 
+$sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
+(16, 49, 1),
+(10, 49, 1),
+(11, 49, 2),
+(12, 49, 3),
+(13, 49, 4),
+(15, 49, 1),
+(18, 49, 1),
+(17, 49, 1),
+(19, 49, 1),
+(2, 49, 1),
+(3, 49, 2),
+(4, 49, 1),
+(5, 49, 2),
+(6, 49, 3),
+(8, 49, 1),
+(20, 49, 1)";
+
 $disable_site_content = "Notre site est fermé temporairement pour la maintenance. Veuillez revenir plus tard. Merci!";
 $copyright = "Veuillez citer le lien vers l&#039;article original si vous le reproduisez sur un autre site. Merci.";
 $site_description = "NUKEVIET CMS 3.0 Developé par Vinades.,Jsc";
@@ -811,6 +836,10 @@ if ($db->sql_numrows($result))
 
     $sql_create_table[] = "UPDATE `" . $db_config['prefix'] . "_config` SET `config_value` =  " . $db->dbescape_string($copyright) . " WHERE `module` =  'news' AND `config_name` = 'copyright' AND `lang`='fr'";
     $sql_create_table[] = "UPDATE `" . $db_config['prefix'] . "_config` SET `config_value` =  'news' WHERE `module` =  'global' AND `config_name` = 'site_home_module' AND `lang`='" . $lang_data . "'";
+
+    $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_tags` VALUES (1, 'de nukeviet', 1)";
+    $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_tags_con_1` VALUES ('news', 3, 'Partenaires/VINADES-3', 'VINADES', 'Pour professionaliser la publication de NukeViet,  l&#039;administration de NukeViet a décidé de créer une société spécialisant la  gestion de NukeViet avec la raison sociale en vietnamien “Công ty cổ phần Phát triển Nguồn mở Việt Nam”, en anglais &quot;VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY&quot; et en abrégé VINADES.,JSC.', 'files/news/thumb/nangly.jpg')";
+    $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_tags_kid_1` VALUES (1, 'news', 3)";
 }
 
 $result = $db->sql_query("SELECT * FROM `" . $db_config['prefix'] . "_" . $lang_data . "_modules` where `title`='voting'");
