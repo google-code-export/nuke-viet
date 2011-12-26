@@ -39,7 +39,9 @@ $db->sql_query("CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $mo
                           `title` varchar(255) NOT NULL,
                           `text` text NOT NULL,
                           `image` varchar(255) NOT NULL,
-                          UNIQUE KEY `module` (`module`,`sid`)
+                          `publtime` int(11) NOT NULL DEFAULT '0',
+                          UNIQUE KEY `module` (`module`,`sid`),
+                          KEY `publtime` (`publtime`)
                     ) ENGINE=MyISAM");
 
 $db->sql_query("CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_kid_1` (

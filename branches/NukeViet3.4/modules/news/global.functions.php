@@ -159,6 +159,7 @@ function nv_del_content_module($id)
             $db->sql_query("DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_comments` WHERE `id` = " . $id);
             $db->sql_query("DELETE FROM `" . NV_PREFIXLANG . "_" . $module_data . "_block` WHERE `id` = " . $id);
             $content_del = "OK_" . $id;
+            nv_update_tags($module_name, $id, '', '', '', '', '');
         }
         else
         {

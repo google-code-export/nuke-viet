@@ -30,7 +30,7 @@ if ($tid)
 {
     $per_page = 20;
     $base_url = NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;q=" . urlencode($q);
-    $sql = "SELECT SQL_CALC_FOUND_ROWS t1.module, t1.link, t1.title, t1.text, t1.image FROM `" . NV_PREFIXLANG . "_tags_con_1`  AS t1 INNER JOIN `" . NV_PREFIXLANG . "_tags_kid_1` AS t2 ON (t1.sid = t2.sid AND t1.module = t2.module) WHERE t2.tid=" . $tid . " LIMIT  " . ($page - 1) * $per_page . "," . $per_page;
+    $sql = "SELECT SQL_CALC_FOUND_ROWS t1.module, t1.link, t1.title, t1.text, t1.image FROM `" . NV_PREFIXLANG . "_tags_con_1`  AS t1 INNER JOIN `" . NV_PREFIXLANG . "_tags_kid_1` AS t2 ON (t1.sid = t2.sid AND t1.module = t2.module) WHERE t2.tid=" . $tid . " ORDER BY t1.publtime DESC LIMIT  " . ($page - 1) * $per_page . "," . $per_page;
     $result = $db->sql_query($sql);
     $result_all = $db->sql_query("SELECT FOUND_ROWS()");
     list($all_page) = $db->sql_fetchrow($result_all);

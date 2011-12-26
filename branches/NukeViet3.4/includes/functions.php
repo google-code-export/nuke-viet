@@ -1700,9 +1700,10 @@ function nv_loadUploadDirList($return = true)
  * @param string $title
  * @param string $text
  * @param string $image
+ * @param integer $publtime
  * @return void
  */
-function nv_update_tags($module, $sid, $keywords, $link, $title, $text, $image)
+function nv_update_tags($module, $sid, $keywords, $link, $title, $text, $image, $publtime = 0)
 {
     global $db;
 
@@ -1743,7 +1744,9 @@ function nv_update_tags($module, $sid, $keywords, $link, $title, $text, $image)
                           `title` varchar(255) NOT NULL,
                           `text` text NOT NULL,
                           `image` varchar(255) NOT NULL,
-                          UNIQUE KEY `module` (`module`,`sid`)
+                          `publtime` int(11) NOT NULL DEFAULT '0',
+                          UNIQUE KEY `module` (`module`,`sid`),
+                          KEY `publtime` (`publtime`)
                     ) ENGINE=MyISAM");
 
                 $db->sql_query("CREATE TABLE IF NOT EXISTS `" . NV_PREFIXLANG . "_tags_kid_" . $tableid . "` (
@@ -1756,7 +1759,11 @@ function nv_update_tags($module, $sid, $keywords, $link, $title, $text, $image)
             if (!isset($arr_tableid_con[$tableid]))
             {
                 $arr_tableid_con[$tableid] = 1;
-                $db->sql_query("REPLACE INTO `" . NV_PREFIXLANG . "_tags_con_" . $tableid . "` VALUES ('" . $module . "', " . $sid . ", '" . $link . "', " . $db->dbescape($title) . ", " . $db->dbescape($text) . ", '" . $image . "')");
+                if (empty($publtime))
+                {
+                    $publtime = NV_CURRENTTIME;
+                }
+                $db->sql_query("REPLACE INTO `" . NV_PREFIXLANG . "_tags_con_" . $tableid . "` VALUES ('" . $module . "', " . $sid . ", '" . $link . "', " . $db->dbescape($title) . ", " . $db->dbescape($text) . ", '" . $image . "', " . $publtime . ")");
             }
             if ($db->sql_query("INSERT INTO `" . NV_PREFIXLANG . "_tags_kid_" . $tableid . "` VALUES ('" . $tid . "', '" . $module . "', " . $sid . ")"))
             {

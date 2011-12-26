@@ -634,7 +634,7 @@ if ($nv_Request->get_int('save', 'post') == 1)
             {
                 $image = "";
             }
-            nv_update_tags($module_name, $rowcontent['id'], $rowcontent['keywords'], $global_array_cat[$rowcontent['catid']]['alias'] . "/" . $rowcontent['alias'] . "-" . $rowcontent['id'], $rowcontent['title'], $rowcontent['hometext'], $image);
+            nv_update_tags($module_name, $rowcontent['id'], $rowcontent['keywords'], $global_array_cat[$rowcontent['catid']]['alias'] . "/" . $rowcontent['alias'] . "-" . $rowcontent['id'], $rowcontent['title'], $rowcontent['hometext'], $image, $rowcontent['publtime']);
             //end nv_update_tags
 
             $url = NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name;

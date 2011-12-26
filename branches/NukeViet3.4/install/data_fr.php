@@ -838,7 +838,7 @@ if ($db->sql_numrows($result))
     $sql_create_table[] = "UPDATE `" . $db_config['prefix'] . "_config` SET `config_value` =  'news' WHERE `module` =  'global' AND `config_name` = 'site_home_module' AND `lang`='" . $lang_data . "'";
 
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_tags` VALUES (1, 'de nukeviet', 1)";
-    $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_tags_con_1` VALUES ('news', 3, 'Partenaires/VINADES-3', 'VINADES', 'Pour professionaliser la publication de NukeViet,  l&#039;administration de NukeViet a décidé de créer une société spécialisant la  gestion de NukeViet avec la raison sociale en vietnamien “Công ty cổ phần Phát triển Nguồn mở Việt Nam”, en anglais &quot;VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY&quot; et en abrégé VINADES.,JSC.', 'files/news/thumb/nangly.jpg')";
+    $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_tags_con_1` VALUES ('news', 3, 'Partenaires/VINADES-3', 'VINADES', 'Pour professionaliser la publication de NukeViet,  l&#039;administration de NukeViet a décidé de créer une société spécialisant la  gestion de NukeViet avec la raison sociale en vietnamien “Công ty cổ phần Phát triển Nguồn mở Việt Nam”, en anglais &quot;VIET NAM OPEN SOURCE DEVELOPMENT JOINT STOCK COMPANY&quot; et en abrégé VINADES.,JSC.', 'files/news/thumb/nangly.jpg', 1280646180)";
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_tags_kid_1` VALUES (1, 'news', 3)";
 }
 
