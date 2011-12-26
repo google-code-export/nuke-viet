@@ -629,65 +629,6 @@ function nv_show_sources_list ( )
     return $contents;
 }
 
-function nv_content_keywords ( $content )
-{
-    global $db, $db_config, $lang_module, $module_name, $op, $global_config, $sys_info;
-    $keywords = "n/a";
-    if ( $content != "" )
-    {
-        $arrkw = array();
-        $memoryLimitMB = ( integer )ini_get( 'memory_limit' );
-        if ( $memoryLimitMB > 60 and file_exists( NV_ROOTDIR . "/includes/keywords/" . NV_LANG_DATA . ".txt" ) )
-        {
-            require_once ( NV_ROOTDIR . "/includes/keywords/" . NV_LANG_DATA . ".txt" );
-        }
-        $keywords_return = array();
-        if ( ! empty( $arrkw ) )
-        {
-            nv_internal_encoding( $global_config['site_charset'] );
-            $content = nv_strtolower( $content );
-            $content = str_replace( array( 
-                '&quot;', '&copy;', '&gt;', '&lt;', '&nbsp;' 
-            ), " ", $content );
-            $content = str_replace( array( 
-                ',', ')', '(', '.', "'", '"', '<', '>', ';', '!', '?', '/', '-', '_', '[', ']', ':', '+', '=', '#', '$', chr( 10 ), chr( 13 ), chr( 9 ) 
-            ), " ", $content );
-            $content = preg_replace( '/ {2,}/si', " ", $content );
-            $content_array = explode( " ", $content );
-            $a = 0;
-            $b = sizeof( $content_array );
-            for ( $i = 0; $i < $b - 3; ++$i )
-            {
-                $key3 = $content_array[$i] . " " . $content_array[$i + 1] . " " . $content_array[$i + 2];
-                $key2 = $content_array[$i] . " " . $content_array[$i + 1];
-                if ( array_search( $key3, $arrkw ) )
-                {
-                    $keywords_return[] = $key3;
-                }
-                elseif ( array_search( $key2, $arrkw ) )
-                {
-                    $keywords_return[] = $key2;
-                }
-                $keywords_return = array_unique( $keywords_return );
-                if ( sizeof( $keywords_return ) > 20 )
-                {
-                    break;
-                }
-            }
-            $keywords = implode( ", ", $keywords_return );
-        }
-        else
-        {
-            $keywords = nv_get_keywords( $content );
-            if ( empty( $keywords ) )
-            {
-                $keywords = "n/a";
-            }
-        }
-    }
-    return $keywords;
-}
-
 function nv_show_block_list ( $bid )
 {
     global $db, $db_config, $lang_module, $lang_global, $module_name, $module_data, $op, $global_array_cat;

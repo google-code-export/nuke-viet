@@ -194,11 +194,11 @@ if ($nv_Request->get_int('save', 'post') == 1)
         {
             if ($rowcontent['hometext'] != "")
             {
-                $rowcontent['keywords'] = nv_content_keywords($rowcontent['hometext']);
+                $rowcontent['keywords'] = nv_get_keywords($rowcontent['hometext']);
             }
             else
             {
-                $rowcontent['keywords'] = nv_content_keywords($rowcontent['bodytext']);
+                $rowcontent['keywords'] = nv_get_keywords($rowcontent['bodytext']);
             }
         }
         $rowcontent['status'] = ($nv_Request->isset_request('status1', 'post')) ? 1 : 0;

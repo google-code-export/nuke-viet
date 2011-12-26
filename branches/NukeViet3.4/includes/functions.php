@@ -940,50 +940,80 @@ function nv_get_keywords($content = "")
     $content = nv_strtolower($content);
 
     $content = " " . $content . " ";
+    $keywords_return = array();
 
-    $pattern_word = array();
-
-    if (NV_SITEWORDS_MIN_3WORDS_LENGTH > 0 and NV_SITEWORDS_MIN_3WORDS_PHRASE_OCCUR > 0)
+    $memoryLimitMB = ( integer )ini_get('memory_limit');
+    if ($memoryLimitMB > 60 and file_exists(NV_ROOTDIR . "/includes/keywords/" . NV_LANG_DATA . ".php"))
     {
-        $pattern_word[] = "/[\s]+([\S]{" . NV_SITEWORDS_MIN_3WORDS_LENGTH . ",}\s[\S]{" . NV_SITEWORDS_MIN_3WORDS_LENGTH . ",}\s[\S]{" . NV_SITEWORDS_MIN_3WORDS_LENGTH . ",})(\s.*\\1){" . NV_SITEWORDS_MIN_3WORDS_PHRASE_OCCUR . ",}[\s]+/uis";
-    }
-
-    if (NV_SITEWORDS_MIN_2WORDS_LENGTH > 0 and NV_SITEWORDS_MIN_2WORDS_PHRASE_OCCUR > 0)
-    {
-        $pattern_word[] = "/[\s]+([\S]{" . NV_SITEWORDS_MIN_2WORDS_LENGTH . ",}\s[\S]{" . NV_SITEWORDS_MIN_2WORDS_LENGTH . ",})(\s.*\\1){" . NV_SITEWORDS_MIN_2WORDS_PHRASE_OCCUR . ",}[\s]+/uis";
-    }
-
-    if (NV_SITEWORDS_MIN_WORD_LENGTH > 0 and NV_SITEWORDS_MIN_WORD_OCCUR > 0)
-    {
-        $pattern_word[] = "/[\s]+([\S]{" . NV_SITEWORDS_MIN_WORD_LENGTH . ",})(\s.*\\1){" . NV_SITEWORDS_MIN_WORD_OCCUR . ",}[\s]+/uis";
-    }
-
-    if (empty($pattern_word))
-        return ("");
-
-    $keywords = array();
-    $lenght = 0;
-    $max_strlen = min(NV_SITEWORDS_MAX_STRLEN, 300);
-
-    foreach ($pattern_word as $pattern)
-    {
-        while (preg_match($pattern, $content, $matches))
+        require (NV_ROOTDIR . "/includes/keywords/" . NV_LANG_DATA . ".php");
+        $content_array = explode(" ", $content);
+        $a = 0;
+        $b = sizeof($content_array);
+        for ($i = 0; $i < $b - 3; ++$i)
         {
-            $keywords[] = $matches[1];
-            $lenght += nv_strlen($matches[1]);
+            $key3 = $content_array[$i] . ' ' . $content_array[$i + 1] . ' ' . $content_array[$i + 2];
+            $key2 = $content_array[$i] . ' ' . $content_array[$i + 1];
+            if (array_search($key3, $array_keywords_3))
+            {
+                $keywords_return[] = $key3;
+                $i = $i + 2;
+            }
+            elseif (array_search($key2, $array_keywords_2))
+            {
+                $keywords_return[] = $key2;
+                $i = $i + 1;
+            }
+            $keywords_return = array_unique($keywords_return);
+            if (sizeof($keywords_return) > 20)
+            {
+                break;
+            }
+        }
+    }
+    else
+    {
+        $pattern_word = array();
 
-            $content = preg_replace("/[\s]+(" . preg_quote($matches[1]) . ")[\s]+/uis", " ", $content);
+        if (NV_SITEWORDS_MIN_3WORDS_LENGTH > 0 and NV_SITEWORDS_MIN_3WORDS_PHRASE_OCCUR > 0)
+        {
+            $pattern_word[] = "/[\s]+([\S]{" . NV_SITEWORDS_MIN_3WORDS_LENGTH . ",}\s[\S]{" . NV_SITEWORDS_MIN_3WORDS_LENGTH . ",}\s[\S]{" . NV_SITEWORDS_MIN_3WORDS_LENGTH . ",})[\s]+/uis";
+        }
+
+        if (NV_SITEWORDS_MIN_2WORDS_LENGTH > 0 and NV_SITEWORDS_MIN_2WORDS_PHRASE_OCCUR > 0)
+        {
+            $pattern_word[] = "/[\s]+([\S]{" . NV_SITEWORDS_MIN_2WORDS_LENGTH . ",}\s[\S]{" . NV_SITEWORDS_MIN_2WORDS_LENGTH . ",})[\s]+/uis";
+        }
+
+        if (NV_SITEWORDS_MIN_WORD_LENGTH > 0 and NV_SITEWORDS_MIN_WORD_OCCUR > 0)
+        {
+            $pattern_word[] = "/[\s]+([\S]{" . NV_SITEWORDS_MIN_WORD_LENGTH . ",})[\s]+/uis";
+        }
+
+        if (empty($pattern_word))
+            return ("");
+
+        $lenght = 0;
+        $max_strlen = min(NV_SITEWORDS_MAX_STRLEN, 300);
+
+        foreach ($pattern_word as $pattern)
+        {
+            while (preg_match($pattern, $content, $matches))
+            {
+                $keywords_return[] = $matches[1];
+                $lenght += nv_strlen($matches[1]);
+
+                $content = preg_replace("/[\s]+(" . preg_quote($matches[1]) . ")[\s]+/uis", " ", $content);
+
+                if ($lenght >= $max_strlen)
+                    break;
+            }
 
             if ($lenght >= $max_strlen)
                 break;
         }
-
-        if ($lenght >= $max_strlen)
-            break;
+        $keywords_return = array_unique($keywords_return);
     }
-
-    $keywords = array_unique($keywords);
-    return implode(",", $keywords);
+    return implode(",", $keywords_return);
 }
 
 /**

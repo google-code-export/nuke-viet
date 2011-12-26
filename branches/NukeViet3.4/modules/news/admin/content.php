@@ -367,11 +367,11 @@ if ($nv_Request->get_int('save', 'post') == 1)
         {
             if ($rowcontent['hometext'] != "")
             {
-                $rowcontent['keywords'] = nv_content_keywords($rowcontent['hometext']);
+                $rowcontent['keywords'] = nv_get_keywords($rowcontent['hometext']);
             }
             else
             {
-                $rowcontent['keywords'] = nv_content_keywords($rowcontent['bodyhtml']);
+                $rowcontent['keywords'] = nv_get_keywords($rowcontent['bodyhtml']);
             }
         }
 
