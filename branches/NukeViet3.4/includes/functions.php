@@ -1331,10 +1331,6 @@ function nv_is_url($url)
     if (empty($url))
         return false;
 
-    $url = (($_url = substr($url, -1)) == "/") ? $_url : $url;
-    if (empty($url))
-        return false;
-
     $url = nv_strtolower($url);
 
     if (!($parts = @parse_url($url)))
