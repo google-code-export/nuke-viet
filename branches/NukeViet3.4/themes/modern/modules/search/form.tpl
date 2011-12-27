@@ -1,5 +1,16 @@
 <!-- BEGIN: main -->
-<div class="box-border-shadow content-box clearfix">
+<div id="cse" style="width: 100%;display:none">
+    Loading
+</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript" >
+    google.load('search', '1',
+    {
+        language : nv_sitelang
+    });
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+<div id="id_form_search" class="box-border-shadow content-box clearfix">
 	<h3 class="title-search">
         {LANG.info_title}
     </h3>
@@ -29,7 +40,7 @@
             <!-- BEGIN: search_engine_unique_ID -->
 			<div class="clearfix rows">
 				<label>&nbsp;</label>
-                - <a href="IntSearch" class="IntSearch">{LANG.search_adv_internet}</a>
+                - <a href="#" class="IntSearch">{LANG.search_adv_internet}</a>
 			</div>
             <!-- END: search_engine_unique_ID -->
 		</div>
@@ -49,12 +60,13 @@ $("a.advSearch").click(function() {
 });
 $("a.IntSearch").click(function() {
   var a = $("#form_search [name=q]").val();
-  if({NV_MIN_SEARCH_LENGTH} <= a.length && {NV_MAX_SEARCH_LENGTH} >= a.length) {
-    a = rawurlencode(a), window.open("http://www.google.com/cse?cx={SEARCH_ENGINE_UNIQUE_ID}&ie=UTF-8&q=" + a, "_blank");
-    return!1
-  }else {
-    return a.focus(), !1
-  }
+ 	$("#id_form_search").hide();
+	$("#cse").show();
+	$("#search_result").hide();
+    var customSearchControl = new google.search.CustomSearchControl('{SEARCH_ENGINE_UNIQUE_ID}');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+    customSearchControl.execute(a);
 });
 $("#form_search").submit(function() {
   var a = $("#form_search [name=q]").val(), a = formatStringAsUriComponent(a), b;
