@@ -39,7 +39,7 @@ if ( $nv_Request->isset_request( 'activelang', 'get' ) and $checksess == md5( "a
     $result = $db->sql_query( $query );
     $temp = ( $activelang == 1 ) ? $lang_global['yes'] : $lang_global['no'];
     nv_insert_logs( NV_LANG_DATA, $module_name, $lang_module['nv_lang_slsite'], " langkey : " . $keylang . " [ " . $temp . " ]", $admin_info['userid'] );
-    nv_delete_all_cache();
+    nv_save_file_config_global();
     
     $contents = "<br /><br /><br /><p align=\"center\">" . $lang_module['nv_setting_save'] . "</p>";
     $contents .= "<meta http-equiv=\"Refresh\" content=\"1;URL=" . NV_BASE_ADMINURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&" . NV_OP_VARIABLE . "=" . $op . "\" />";
