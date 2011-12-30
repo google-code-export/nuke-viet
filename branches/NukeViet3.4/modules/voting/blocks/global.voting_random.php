@@ -70,7 +70,7 @@ if ( ! nv_function_exists( 'nv_block_voting' ) )
             $rand = rand( 0, $a );
             $current_voting = $allowed[$rand];
             
-            $sql = "SELECT `id`, `vid`, `title` FROM `" . NV_PREFIXLANG . "_" . $site_mods['voting']['module_data'] . "_rows` 
+            $sql = "SELECT `id`, `vid`, `title`, `url` FROM `" . NV_PREFIXLANG . "_" . $site_mods['voting']['module_data'] . "_rows` 
             WHERE `vid` = " . $current_voting['vid'] . "  ORDER BY `id` ASC";
             
             $list = nv_db_cache( $sql, '', 'voting' );
@@ -118,6 +118,10 @@ if ( ! nv_function_exists( 'nv_block_voting' ) )
             $xtpl->assign( 'VOTING', $voting_array );
             foreach ( $list as $row )
             {
+                if(!empty($row['url']))
+                {
+                    $row['title'] = '<a target="_blank" href="'.$row['url'].'">'.$row['title'].'</a>';
+                }
                 $xtpl->assign( 'RESULT', $row );
                 if ( ( int )$current_voting['acceptcm'] > 1 )
                 {

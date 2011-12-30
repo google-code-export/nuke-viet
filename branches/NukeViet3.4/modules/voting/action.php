@@ -33,6 +33,7 @@ $sql_create_module[] = "CREATE TABLE `" . $db_config['prefix'] . "_" . $lang . "
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `vid` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
+  `url` varchar(255) NOT NULL DEFAULT '',
   `hitstotal` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `vid` (`vid`,`title`)

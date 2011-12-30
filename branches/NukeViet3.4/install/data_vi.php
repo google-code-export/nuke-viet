@@ -71,7 +71,7 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (32, 'allreferers', 'Theo đường dẫn đến site', 'statistics', 1, 1, 2, ''),
 (33, 'main', 'Main', 'statistics', 1, 0, 1, ''),
 (34, 'referer', 'Đường dẫn đến site theo tháng', 'statistics', 1, 0, 7, ''),
-(35, 'main', 'Main', 'voting', 0, 0, 0, ''),
+(35, 'main', 'Main', 'voting', 1, 0, 0, ''),
 (36, 'addads', 'Addads', 'banners', 1, 0, 1, ''),
 (37, 'cledit', 'Cledit', 'banners', 0, 0, 0, ''),
 (38, 'click', 'Click', 'banners', 0, 0, 0, ''),
@@ -85,7 +85,8 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (46, 'main', 'Main', 'search', 1, 0, 1, ''),
 (47, 'main', 'Main', 'rss', 1, 0, 1, ''),
 (48, 'regroups', 'Nhóm thành viên', 'users', 1, 0, 1, ''),
-(49, 'main', 'Main', 'tags', 1, 0, 1, '')";
+(49, 'main', 'Main', 'tags', 1, 0, 1, ''),
+(50, 'groups', 'Groups', 'news', 1, 0, 1, '')";
 
 $sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modthemes` (`func_id`, `layout`, `theme`) VALUES
 (0, 'body-right', 'modern'),
@@ -191,9 +192,19 @@ $sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data
 (48, 'body', 'mobile_nukeviet')";
 
 $sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modthemes` (`func_id`, `layout`, `theme`) VALUES
+(35, 'body-right', 'modern'),
+(35, 'left-body-right', 'default'),
+(35, 'body', 'mobile_nukeviet')";
+
+$sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modthemes` (`func_id`, `layout`, `theme`) VALUES
 (49, 'body-right', 'modern'),
 (49, 'left-body-right', 'default'),
 (49, 'body', 'mobile_nukeviet')";
+
+$sql_create_table[] = "REPLACE INTO `" . $db_config['prefix'] . "_" . $lang_data . "_modthemes` (`func_id`, `layout`, `theme`) VALUES
+(50, 'body-right', 'modern'),
+(50, 'left-body-right', 'default'),
+(50, 'body', 'mobile_nukeviet')";
 
 $sql_create_table[] = "TRUNCATE TABLE `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_groups`";
 $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_groups` (`bid`, `theme`, `module`, `file_name`, `title`, `link`, `template`, `position`, `exp_time`, `active`, `groups_view`, `all_func`, `weight`, `config`) VALUES
@@ -750,6 +761,24 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (20, 19, 1)";
 
 $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
+(16, 35, 1),
+(10, 35, 1),
+(11, 35, 2),
+(12, 35, 3),
+(13, 35, 4),
+(15, 35, 1),
+(18, 35, 1),
+(17, 35, 1),
+(19, 35, 1),
+(2, 35, 1),
+(3, 35, 2),
+(4, 35, 1),
+(5, 35, 2),
+(6, 35, 3),
+(8, 35, 1),
+(20, 35, 1)";
+
+$sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
 (16, 49, 1),
 (10, 49, 1),
 (11, 49, 2),
@@ -766,6 +795,24 @@ $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data 
 (6, 49, 3),
 (8, 49, 1),
 (20, 49, 1)";
+
+$sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_blocks_weight` (`bid`, `func_id`, `weight`) VALUES
+(16, 50, 1),
+(10, 50, 1),
+(11, 50, 2),
+(12, 50, 3),
+(13, 50, 4),
+(15, 50, 1),
+(18, 50, 1),
+(17, 50, 1),
+(19, 50, 1),
+(2, 50, 1),
+(3, 50, 2),
+(4, 50, 1),
+(5, 50, 2),
+(6, 50, 3),
+(8, 50, 1),
+(20, 50, 1)";
 
 $disable_site_content = "Vì lý do kỹ thuật website tạm ngưng hoạt động. Thành thật xin lỗi các bạn vì sự bất tiện này!";
 $copyright = "Chú ý: Việc đăng lại bài viết trên ở website hoặc các phương tiện truyền thông khác mà không ghi rõ nguồn http://nukeviet.vn là vi phạm bản quyền";
@@ -1030,15 +1077,15 @@ if ($db->sql_numrows($result))
 		(3, 'Bạn quan tâm gì nhất ở mã nguồn mở?', 1, 1, 0, '0', 1275318589, 0, 1)";
 
     $sql_create_table[] = "INSERT INTO `" . $db_config['prefix'] . "_" . $lang_data . "_voting_rows` VALUES
-		(5, 2, 'Một bộ sourcecode cho web hoàn toàn mới.', 0), 
-		(6, 2, 'Mã nguồn mở, sử dụng miễn phí.', 0), 
-		(7, 2, 'Sử dụng xHTML, CSS và hỗ trợ Ajax', 0), 
-		(8, 2, 'Tất cả các ý kiến trên', 0), 
-		(9, 3, 'Liên tục được cải tiến, sửa đổi bởi cả thế giới.', 0), 
-		(10, 3, 'Được sử dụng miễn phí không mất tiền.', 0), 
-		(11, 3, 'Được tự do khám phá, sửa đổi theo ý thích.', 0), 
-		(12, 3, 'Phù hợp để học tập, nghiên cứu vì được tự do sửa đổi theo ý thích.', 0), 
-		(13, 3, 'Tất cả các ý kiến trên', 0)";
+		(5, 2, 'Một bộ sourcecode cho web hoàn toàn mới.', '', 0), 
+		(6, 2, 'Mã nguồn mở, sử dụng miễn phí.','', 0), 
+		(7, 2, 'Sử dụng xHTML, CSS và hỗ trợ Ajax','', 0), 
+		(8, 2, 'Tất cả các ý kiến trên','', 0), 
+		(9, 3, 'Liên tục được cải tiến, sửa đổi bởi cả thế giới.','', 0), 
+		(10, 3, 'Được sử dụng miễn phí không mất tiền.','', 0), 
+		(11, 3, 'Được tự do khám phá, sửa đổi theo ý thích.','', 0), 
+		(12, 3, 'Phù hợp để học tập, nghiên cứu vì được tự do sửa đổi theo ý thích.', '',0), 
+		(13, 3, 'Tất cả các ý kiến trên','', 0)";
 }
 
 $result = $db->sql_query("SELECT * FROM `" . $db_config['prefix'] . "_" . $lang_data . "_modules` where `title`='about'");
