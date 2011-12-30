@@ -29,6 +29,7 @@ function nv_vote_additem(mess) {
 	var newitem = "<tbody" + nclass + "><tr>";
 	newitem += "	<td style=\"text-align:right\">" + mess + " " + items + "</td>";
 	newitem += "	<td><input type=\"text\" value=\"\" name=\"answervotenews[]\" size=\"60\"></td>";
+	newitem += "	<td><input type=\"text\" value=\"\" name=\"urlvotenews[]\" size=\"80\"></td>";
 	newitem += "	</tr>";
 	newitem += "</tbody>";
 	$("#items").append(newitem);
