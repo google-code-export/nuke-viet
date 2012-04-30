@@ -21,8 +21,12 @@ Website: http://vinades.vn | http://nukeviet.vn | http://webnhanh.vn
 
  * *Head Office:*
   * Room 407 - CT1 FODACON Building, 18 Tran Phu st, Ha Dong dist, Hanoi, Vietnam.
-  * Phone: +84-4-85872007, Fax: +84-4-35500914, Email: contact (at) vinades.vn
+  * Phone: +84-4-85872007, Email: contact (at) vinades.vn
 
- * *Branch Office:*
-  * 69/6/10A, Tan Chanh Hiep 7 st., Dist. 12, Hochiminh city, Vietnam.
-  * Phone : +84-8-62736367, Email: hcm (at) vinades.vn
+ * * HCMC Branch:*
+  * 204A An Suong building, 1A National Road, Trung My Tay Ward, District 12, HCM city, Vietnam.
+  * Phone: +84-8-62736367, Email: hcm (at) vinades.vn
+
+ * * Hai Phong Branch:*
+  * 539 Truong Chinh st, Kien An dist, Hai Phong city, Vietnam.
+  * Phone: +84-31-3678731, Email: haiphong (at) vinades.vn
