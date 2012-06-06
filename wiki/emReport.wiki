@@ -35,9 +35,10 @@
 
 	Module cung cấp khả năng đăng nhập cho bệnh nhân, nhờ việc hỗ trợ kết nối phân tán của openid có sẵn trong hệ thống NukeViet, bệnh nhân có thể đăng nhập tài khoản của mình tại các website khác nhau của các cơ sở ý tế khác nhau cũng như đăng nhập vào sổ y bạ của mình trên site chủ để đồng bộ dữ liệu khám bệnh từ các trung tâm y tế đã khám...
 
-===1.5.	Mentor:===
-  * Công ty cổ phần phát triển nguồn mở Việt Nam.
-  * Đội ngũ phát triển mã nguồn mở NukeViet.
-  * Thí sinh tìm hiểu thông tin về ý tưởng để nhận ý tưởng hoặc nhận làm mentor, co-mentor... xin liên hệ: admin@nukeviet.vn
+===1.5.	Mentor & co-mentor:===
+  * Mentor: Bùi Văn Thắng <thangbv@vinades.vn> Công ty cổ phần phát triển nguồn mở Việt Nam.
+  * Co-mentor: Nguyễn Thế Hùng <thehung@vinades.vn> Công ty cổ phần phát triển nguồn mở Việt Nam.
+
+Thí sinh tìm hiểu thông tin về ý tưởng để nhận ý tưởng hoặc nhận làm mentor, co-mentor... xin liên hệ: admin@nukeviet.vn
 ----
 [http://code.google.com/p/nuke-viet/wiki/ideasMHST2011 Quay lại danh sách ý tưởng!]
